@@ -20,15 +20,15 @@ git clone git@github.com:jingxa/jingxa.github.io.git
 改成你的名字
 ###### 【特别注意】：先不要进行下面的步骤，先将仓库中【.git,.gitignore】复制出来，不然下面安装hexo会将这个给覆盖掉，后面无法提交
 #### 三、开始安装hexo
-##### 1、
- ```
+##### 1、安装hexo
+```
  npm install -g hexo-cli
- ```
-##### 2、 
+```
+##### 2、 初始化hexo
 ```
 hexo init
 ```
-##### 3、
+##### 3、安装npm
  ```
  npm install
  ```
@@ -43,16 +43,16 @@ git clone https://github.com/iissnan/hexo-theme-next themes/next
 ###### 【注意：每一项的填写，其:后面都要保留一个空格】
 (1).修改网站相关信息
 ```
-title: inerdstack
-subtitle: the stack of it nerds
-description: start from zero
-author: inerdstack
+title: 你的题目
+subtitle: 小题目
+description: 描述
+author: 作者
 language: zh-Hans
 timezone: Asia/Shanghai
 ```
 (2).配置统一资源定位符（个人域名）
 ```
-url: http://inerdstack.com
+url: https://jingxa.github.io
 ```
 对于root（根目录）、permalink（永久链接）、permalink_defaults（默认永久链接）等其他信息保持默认。
 (3). 配置部署
@@ -67,7 +67,6 @@ deploy:
 ```
 themes: next
 ```
-
 ##### 6.配置主题文件
 这些大家自己百度
 [【干货】2个小时教你hexo博客添加评论、打赏、RSS等功能](http://www.jianshu.com/p/5973c05d7100)
@@ -103,21 +102,23 @@ git commit -m "自己修改commit信息"
 git push origin hexo
 ```
 然后完成了源文件的提交，下一步就是提交hexo生成的静态文件，再次之前，需要安装依赖包
-##### 8。安装npm install hexo-deployer-git --save
+##### 8.安装npm install hexo-deployer-git --save
 ```
 npm install hexo-deployer-git --save
 ```
 其实这一步可以在前面npm install 之后安装
 ##### 9.静态博客生成
-我们可以写一篇文章
-(1)。 
+(1).我们可以写一篇文章
 ```
 hexo new "你的题目"
 ```
 我们可以在本地博客文件夹source->_post文件夹下看到我们新建的markdown文件。
 保存后，我们进行本地发布：
-(2).hexo s -p 8888 
-我自己测试，如果使用 
+(2).我自己测试，
+```
+　hexo s -p 8888
+```
+如果使用 
 ```
 hexo server
 ```

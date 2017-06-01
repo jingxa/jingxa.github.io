@@ -71,3 +71,11 @@ deploy:
   type: git
   repo: ssh://git@github.com/jingxa/jingxa.github.io.git
   branch: master
+  
+# rss
+feed:
+  type: rss2
+  path: rss2.xml
+  limit: 5
+  hub:
+  content: 'true'
