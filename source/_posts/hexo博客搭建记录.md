@@ -1,7 +1,8 @@
 ---
 title: hexo博客搭建记录
 date: 2017-05-31 18:37:27
-tags:
+tags: hexo
+categories: 杂乱笔记
 ---
 简单记录一下利用hexo+github搭建博客的过程
 #### 主要思路
