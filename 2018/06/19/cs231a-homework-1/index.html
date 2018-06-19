@@ -111,7 +111,7 @@
 <meta property="og:image" content="https://latex.codecogs.com/gif.latex?%28x_%7B1%7Dx_%7B2%7D+y_%7B1%7Dy_%7B2%7D%29w_%7B1%7D%20+%20%28x_%7B1%7D%20+%20x_%7B2%7D%29w_%7B4%7D+%28y_%7B1%7D%20+%20y_%7B2%7D%29w_%7B5%7D+w_%7B6%7D%3D0">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-d09bf4c264e3b2d9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-ccbc7da86c7231c6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-06-19T14:35:51.676Z">
+<meta property="og:updated_time" content="2018-06-19T14:43:39.338Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="cs231a-homework-1">
 <meta name="twitter:description" content="一、affine camera Calibration1.1 相机参数 计算   小块大小： 50 mm * 50 mm 小块间隔： 30mm 总大小： 450 mm * 450 mm    计算思路： 查看ps1_code中的三个npy文件的shape real_XY:(12,2) front:(12,2) back:(12,2)说明选取了十二个点作为测量点，对于3D到2D的变换： p&amp;#39;">
@@ -371,7 +371,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2,383
+                  2,335
                 </span>
               
 
@@ -566,10 +566,6 @@
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&apos;&apos;&apos;</span><br><span class="line">COMPUTE_K_FROM_VANISHING_POINTS</span><br><span class="line">Arguments:</span><br><span class="line">    vanishing_points1 - a list of vanishing points in image 1</span><br><span class="line">    vanishing_points2 - a list of vanishing points in image 2</span><br><span class="line">    K - the camera matrix used to take both images</span><br><span class="line"></span><br><span class="line">Returns:</span><br><span class="line">    R - the rotation matrix between camera 1 and camera 2</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line">def compute_rotation_matrix_between_cameras(vanishing_points1, vanishing_points2, K):</span><br><span class="line"></span><br><span class="line">    ones = np.ones((vanishing_points1.shape[0], 1))</span><br><span class="line">    # 建立齐次矩阵</span><br><span class="line">    v1 = np.hstack((vanishing_points1, ones)).T</span><br><span class="line">    v2 = np.hstack((vanishing_points2, ones)).T</span><br><span class="line"></span><br><span class="line">    # 计算真实平行线的方向</span><br><span class="line">    # d = K^-1 * v</span><br><span class="line">    k_inv = np.linalg.inv(K)</span><br><span class="line">    D1 = k_inv.dot(v1) / np.linalg.norm(k_inv.dot(v1),axis=0)   # 按列计算norm范数</span><br><span class="line">    D2 = k_inv.dot(v2) / np.linalg.norm(k_inv.dot(v2),axis=0)</span><br><span class="line"></span><br><span class="line">    # d2 = R * d1, d2.T = d1.T * R.T</span><br><span class="line">    R = np.linalg.lstsq(D1.T, D2.T,rcond = None)[0].T</span><br><span class="line"></span><br><span class="line">    return R</span><br></pre></td></tr></table></figure>
 <hr>
-<blockquote>
-<p>版权声明：<br><br>本文作者：<br>本文链接：https://jingxa.github.io/2018/06/19/cs231a-homework-1/</p>
-</blockquote>
-<p><hr><br>除非注明，本博文章均为原创，转载请以链接形式标明本文地址。<br></p>
 
       
     </div>
@@ -629,10 +625,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/19/test/" rel="prev" title="test">
-                test <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -713,7 +705,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -823,7 +815,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">3.5k</span>
+    <span title="Site words total count">3.3k</span>
   
 </div>
 
