@@ -30,3 +30,7 @@ package-lock.json
 node_modules/
 public/
 .deploy*/
+
+
+# hexo themes settings
+themes/next/_config.yml
