@@ -45,6 +45,50 @@
 
 
 
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
 
 
 
@@ -111,7 +155,7 @@
 <meta property="og:image" content="https://latex.codecogs.com/gif.latex?%28x_%7B1%7Dx_%7B2%7D+y_%7B1%7Dy_%7B2%7D%29w_%7B1%7D%20+%20%28x_%7B1%7D%20+%20x_%7B2%7D%29w_%7B4%7D+%28y_%7B1%7D%20+%20y_%7B2%7D%29w_%7B5%7D+w_%7B6%7D%3D0">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-d09bf4c264e3b2d9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-ccbc7da86c7231c6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-06-19T14:43:39.338Z">
+<meta property="og:updated_time" content="2018-06-20T08:47:47.788Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="cs231a-homework-1">
 <meta name="twitter:description" content="一、affine camera Calibration1.1 相机参数 计算   小块大小： 50 mm * 50 mm 小块间隔： 30mm 总大小： 450 mm * 450 mm    计算思路： 查看ps1_code中的三个npy文件的shape real_XY:(12,2) front:(12,2) back:(12,2)说明选取了十二个点作为测量点，对于3D到2D的变换： p&amp;#39;">
@@ -353,6 +397,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/06/19/cs231a-homework-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/06/19/cs231a-homework-1/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -371,7 +425,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2,335
+                  2,113
                 </span>
               
 
@@ -387,7 +441,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  12
+                  10
                 </span>
               
             </div>
@@ -459,7 +513,48 @@
 <p>对m求导，得到 </p>
 <p><img src="https://latex.codecogs.com/gif.latex?%5Cleft%20%5C%7C%20Am-b%20%5Cright%20%5C%7C%5E%7B2%7D%20%3D%20A%5E%7B2%7Dm%5E%7B2%7D-2Amb%20&plus;%20b%5E%7B2%7D%20%5C%5C%20%3D%3E%202A%5E%7B2%7Dm%20-%202A%5E%7BT%7Db%20%3D0%20%5C%5C%20%3D%3E%20m%20%3D%20%28A%5E%7B2%7D%29%5E%7B-1%7DA%5E%7BT%7Db%20%5C%5C%20%3D%3E%20m%20%3D%20%28A%5E%7BT%7DA%29%5E%7B-1%7DA%5E%7BT%7Db" alt=""></p>
 <p>因此，计算 affine camera的矩阵为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">def compute_camera_matrix(real_XY, front_image, back_image):</span><br><span class="line">    img_num1 = front_image.shape[0] </span><br><span class="line">    img_num2 = back_image.shape[0]</span><br><span class="line"></span><br><span class="line">    # 建立真实XYZ的齐次矩阵</span><br><span class="line">    ones = np.ones((img_num1, 1))</span><br><span class="line">    front_z = np.zeros((img_num1, 1))</span><br><span class="line">    front_scence = np.c_[real_XY, front_z, ones]  # 12 * 4</span><br><span class="line"></span><br><span class="line">    back_z =150 * np.ones((img_num2,1))</span><br><span class="line">    back_scence = np.c_[real_XY, back_z, ones]  # 12 * 4</span><br><span class="line"></span><br><span class="line">    # 合并两个真实场景</span><br><span class="line">    M_scene = np.r_[front_scence, back_scence]  # 24 * 4</span><br><span class="line"></span><br><span class="line">    # 系数矩阵 A  2n * 8</span><br><span class="line">    n = img_num1 + img_num2</span><br><span class="line">    A = np.zeros((2*n, 8))</span><br><span class="line">    for i in range(0, A.shape[0], 2):</span><br><span class="line">        idx = int(i/2)</span><br><span class="line">        A[i, :] = np.hstack((M_scene[idx, :], [0, 0, 0, 0]))</span><br><span class="line">        A[i+1, :] = np.hstack(([0, 0, 0, 0], M_scene[idx, :]))</span><br><span class="line"></span><br><span class="line">    # 图片对应点矩阵 2n * 1 </span><br><span class="line">    # b = [U1,V1, U2,V2,..., Un,Vn]</span><br><span class="line">    b = front_image[0].T</span><br><span class="line">    for i in range(1, img_num1, 1):</span><br><span class="line">        b = np.hstack((b, front_image[i].T))</span><br><span class="line">    for j in range(img_num2):</span><br><span class="line">        b = np.hstack((b, back_image[j].T))</span><br><span class="line">    b = np.reshape(b, (2 * n, 1))</span><br><span class="line"></span><br><span class="line">    # 计算矩阵，添加最后一行</span><br><span class="line">    # p = np.linalg.lstsq(A, b, rcond=None)  # 直接计算 AM= b ==&gt; M = A^(-1)*b</span><br><span class="line">    # camera_matrix = p[0]</span><br><span class="line"></span><br><span class="line">    camera_matrix = np.linalg.inv(A.T.dot(A)).dot(A.T).dot(b)   # 使用最小二乘计算结果</span><br><span class="line">    camera_matrix = np.reshape(camera_matrix, (2, -1)) # m(8,1) ==&gt; m(2,4)</span><br><span class="line">    camera_matrix = np.vstack((camera_matrix, [0, 0, 0, 1])) # 添加最后一列 ==&gt; m（3,4）</span><br><span class="line">    return camera_matrix</span><br></pre></td></tr></table></figure>
+<pre><code class="python">
+def compute_camera_matrix(real_XY, front_image, back_image):
+    img_num1 = front_image.shape[0] 
+    img_num2 = back_image.shape[0]
+
+    # 建立真实XYZ的齐次矩阵
+    ones = np.ones((img_num1, 1))
+    front_z = np.zeros((img_num1, 1))
+    front_scence = np.c_[real_XY, front_z, ones]  # 12 * 4
+
+    back_z =150 * np.ones((img_num2,1))
+    back_scence = np.c_[real_XY, back_z, ones]  # 12 * 4
+
+    # 合并两个真实场景
+    M_scene = np.r_[front_scence, back_scence]  # 24 * 4
+
+    # 系数矩阵 A  2n * 8
+    n = img_num1 + img_num2
+    A = np.zeros((2*n, 8))
+    for i in range(0, A.shape[0], 2):
+        idx = int(i/2)
+        A[i, :] = np.hstack((M_scene[idx, :], [0, 0, 0, 0]))
+        A[i+1, :] = np.hstack(([0, 0, 0, 0], M_scene[idx, :]))
+
+    # 图片对应点矩阵 2n * 1 
+    # b = [U1,V1, U2,V2,..., Un,Vn]
+    b = front_image[0].T
+    for i in range(1, img_num1, 1):
+        b = np.hstack((b, front_image[i].T))
+    for j in range(img_num2):
+        b = np.hstack((b, back_image[j].T))
+    b = np.reshape(b, (2 * n, 1))
+
+    # 计算矩阵，添加最后一行
+    # p = np.linalg.lstsq(A, b, rcond=None)  # 直接计算 AM= b ==&gt; M = A^(-1)*b
+    # camera_matrix = p[0]
+
+    camera_matrix = np.linalg.inv(A.T.dot(A)).dot(A.T).dot(b)   # 使用最小二乘计算结果
+    camera_matrix = np.reshape(camera_matrix, (2, -1)) # m(8,1) ==&gt; m(2,4)
+    camera_matrix = np.vstack((camera_matrix, [0, 0, 0, 1])) # 添加最后一列 ==&gt; m（3,4）
+    return camera_matrix
+</code></pre>
 <ul>
 <li>其中，使用两中方法：</li>
 <li>计算 m = A^(-1)*b</li>
@@ -467,28 +562,75 @@
 </ul>
 <p>两个的结果为；</p>
 <ul>
-<li><p>方法一：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[[ 5.31276507e-01 -1.80886074e-02  1.20509667e-01  1.29720641e+02]</span><br><span class="line">[ 4.84975447e-02  5.36366401e-01 -1.02675222e-01  4.43879607e+01]</span><br><span class="line">[ 0.00000000e+00  0.00000000e+00  0.00000000e+00  1.00000000e+00]]</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>方法二：</p>
-</li>
+<li>方法一：<pre><code>[[ 5.31276507e-01 -1.80886074e-02  1.20509667e-01  1.29720641e+02]
+[ 4.84975447e-02  5.36366401e-01 -1.02675222e-01  4.43879607e+01]
+[ 0.00000000e+00  0.00000000e+00  0.00000000e+00  1.00000000e+00]]
+</code></pre></li>
+<li>方法二：</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[[ 5.31276507e-01 -1.80886074e-02  1.20509667e-01  1.29720641e+02]</span><br><span class="line"> [ 4.84975447e-02  5.36366401e-01 -1.02675222e-01  4.43879607e+01]</span><br><span class="line"> [ 0.00000000e+00  0.00000000e+00  0.00000000e+00  1.00000000e+00]]</span><br></pre></td></tr></table></figure>
-<ul>
+<pre><code>[[ 5.31276507e-01 -1.80886074e-02  1.20509667e-01  1.29720641e+02]
+ [ 4.84975447e-02  5.36366401e-01 -1.02675222e-01  4.43879607e+01]
+ [ 0.00000000e+00  0.00000000e+00  0.00000000e+00  1.00000000e+00]]
+</code></pre><ul>
 <li>两者之间的差为：</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[[ 3.55271368e-15  5.19723153e-15 -1.38777878e-17  0.00000000e+00]</span><br><span class="line"> [ 2.20060081e-13 -1.89404048e-13  3.06282777e-14  2.84217094e-14]</span><br><span class="line"> [ 0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00]]</span><br></pre></td></tr></table></figure>
-<p>可以看出每一项的差很小,说明两种方法近似；</p>
+<pre><code>[[ 3.55271368e-15  5.19723153e-15 -1.38777878e-17  0.00000000e+00]
+ [ 2.20060081e-13 -1.89404048e-13  3.06282777e-14  2.84217094e-14]
+ [ 0.00000000e+00  0.00000000e+00  0.00000000e+00  0.00000000e+00]]
+
+</code></pre><p>可以看出每一项的差很小,说明两种方法近似；</p>
 <hr>
 <h2 id="1-2-RMS-计算"><a href="#1-2-RMS-计算" class="headerlink" title="1.2 RMS 计算"></a>1.2 RMS 计算</h2><ul>
 <li>RMS : </li>
 </ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/5361608-53ce720a360065b5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">def rms_error(camera_matrix, real_XY, front_image, back_image):</span><br><span class="line">    img_num1 = front_image.shape[0]</span><br><span class="line">    img_num2 = back_image.shape[0]</span><br><span class="line"></span><br><span class="line">    ones = np.ones((img_num1,1))</span><br><span class="line">    # 建立图像XYZ的齐次矩阵</span><br><span class="line">    front_img = np.c_[front_image, ones]     # front_image : n * 3</span><br><span class="line">    back_img = np.c_[back_image, ones]   # back_image: n * 3</span><br><span class="line">    img = np.r_[front_img, back_img]</span><br><span class="line">    img = img.T  # img : 3 * 2n</span><br><span class="line"></span><br><span class="line">    # 建立真实XYZ的齐次矩阵</span><br><span class="line">    front_z = np.zeros((img_num1, 1))</span><br><span class="line">    front_scence = np.c_[real_XY, front_z, ones]  # n * 4</span><br><span class="line"></span><br><span class="line">    back_z =150 * np.ones((img_num2,1))</span><br><span class="line">    back_scence = np.c_[real_XY, back_z, ones]  # n * 4</span><br><span class="line"></span><br><span class="line">    # 合并两个真实场景</span><br><span class="line">    M_scene = np.r_[front_scence, back_scence]  # 2n * 4</span><br><span class="line">    M_scene = M_scene.T  # real : 4 * 2n</span><br><span class="line"></span><br><span class="line">    M_scene_trans = camera_matrix.dot(M_scene)  # 变换</span><br><span class="line">    diff_sqr = (M_scene_trans - img)**2 # 平方差</span><br><span class="line">    diff_sum = np.sum(np.sum(diff_sqr,axis=0))  # 平方差的和，先行相加，在列相加</span><br><span class="line">    diff_sum /= (img_num1 + img_num2)   # 求均值</span><br><span class="line"></span><br><span class="line">    rms_error = np.sqrt(diff_sum)</span><br><span class="line">    return rms_error</span><br></pre></td></tr></table></figure>
+<pre><code class="python">def rms_error(camera_matrix, real_XY, front_image, back_image):
+    img_num1 = front_image.shape[0]
+    img_num2 = back_image.shape[0]
+
+    ones = np.ones((img_num1,1))
+    # 建立图像XYZ的齐次矩阵
+    front_img = np.c_[front_image, ones]     # front_image : n * 3
+    back_img = np.c_[back_image, ones]   # back_image: n * 3
+    img = np.r_[front_img, back_img]
+    img = img.T  # img : 3 * 2n
+
+    # 建立真实XYZ的齐次矩阵
+    front_z = np.zeros((img_num1, 1))
+    front_scence = np.c_[real_XY, front_z, ones]  # n * 4
+
+    back_z =150 * np.ones((img_num2,1))
+    back_scence = np.c_[real_XY, back_z, ones]  # n * 4
+
+    # 合并两个真实场景
+    M_scene = np.r_[front_scence, back_scence]  # 2n * 4
+    M_scene = M_scene.T  # real : 4 * 2n
+
+    M_scene_trans = camera_matrix.dot(M_scene)  # 变换
+    diff_sqr = (M_scene_trans - img)**2 # 平方差
+    diff_sum = np.sum(np.sum(diff_sqr,axis=0))  # 平方差的和，先行相加，在列相加
+    diff_sum /= (img_num1 + img_num2)   # 求均值
+
+    rms_error = np.sqrt(diff_sum)
+    return rms_error
+
+</code></pre>
 <h2 id="1-3-主函数"><a href="#1-3-主函数" class="headerlink" title="1.3 主函数"></a>1.3 主函数</h2><ul>
 <li>python 3.6<br>这两个函数的主函数：</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    # Load the example coordinates setup.</span><br><span class="line">    real_XY = np.load(&apos;real_XY.npy&apos;)</span><br><span class="line">    front_image = np.load(&apos;front_image.npy&apos;)</span><br><span class="line">    back_image = np.load(&apos;back_image.npy&apos;)</span><br><span class="line"></span><br><span class="line">    camera_matrix = compute_camera_matrix(real_XY, front_image, back_image)</span><br><span class="line">    rmse = rms_error(camera_matrix, real_XY, front_image, back_image)</span><br><span class="line">    print (&quot;Camera Matrix:\n&quot;, camera_matrix)</span><br><span class="line">    print()</span><br><span class="line">    print (&quot;RMS Error: &quot;, rmse)</span><br></pre></td></tr></table></figure>
+<pre><code class="python">import numpy as np
+if __name__ == &#39;__main__&#39;:
+    # Load the example coordinates setup.
+    real_XY = np.load(&#39;real_XY.npy&#39;)
+    front_image = np.load(&#39;front_image.npy&#39;)
+    back_image = np.load(&#39;back_image.npy&#39;)
+
+    camera_matrix = compute_camera_matrix(real_XY, front_image, back_image)
+    rmse = rms_error(camera_matrix, real_XY, front_image, back_image)
+    print (&quot;Camera Matrix:\n&quot;, camera_matrix)
+    print()
+    print (&quot;RMS Error: &quot;, rmse)
+</code></pre>
 <p><img src="https://upload-images.jianshu.io/upload_images/5361608-18036e390c98df9c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <h2 id="1-4-使用两个位置平面的原因"><a href="#1-4-使用两个位置平面的原因" class="headerlink" title="1.4 使用两个位置平面的原因"></a>1.4 使用两个位置平面的原因</h2><ul>
 <li>如果只使用一个平面：<ul>
@@ -509,7 +651,39 @@
 <li><p>在3d中平行的线投影到2D中，相交于一点—灭点；因此，通过两线相交求得灭点；</p>
 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&apos;&apos;&apos;</span><br><span class="line">COMPUTE_VANISHING_POINTS</span><br><span class="line">Arguments:</span><br><span class="line">    points - 四对点，前两对为一条直线，后两对为一条，两条线是平行的；</span><br><span class="line">Returns:</span><br><span class="line">    灭点</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line">def compute_vanishing_point(points):</span><br><span class="line">    # 获取四对点</span><br><span class="line">    x1 = points[0, 0]</span><br><span class="line">    y1 = points[0, 1]   # (x1,y1)</span><br><span class="line">    x2 = points[1, 0]</span><br><span class="line">    y2 = points[1, 1]   # (x2,y2)</span><br><span class="line">    x3 = points[2, 0]</span><br><span class="line">    y3 = points[2, 1]   # （x3,y3）</span><br><span class="line">    x4 = points[3, 0]</span><br><span class="line">    y4 = points[3, 1]   # (x4,y4)</span><br><span class="line"></span><br><span class="line">    # 计算两条直线的参数</span><br><span class="line">    a1 = (y2 - y1)/(x2 - x1)</span><br><span class="line">    b1 = y1 - a1 * x1</span><br><span class="line">    print(&quot;line1: &quot;, a1, b1)</span><br><span class="line"></span><br><span class="line">    a2 = (y4 - y3)/(x4 - x3)</span><br><span class="line">    b2 = y3 - a2 * x3</span><br><span class="line">    print(&quot;line2:&quot;, a2, b2)</span><br><span class="line"></span><br><span class="line">    # 计算交点</span><br><span class="line">    x = (b1 - b2)/(a2 - a1)</span><br><span class="line">    y = a1 * x + b1</span><br><span class="line">    vanish_point = np.array([x, y])</span><br><span class="line">    return vanish_point</span><br></pre></td></tr></table></figure>
+<pre><code class="python">&#39;&#39;&#39;
+COMPUTE_VANISHING_POINTS
+Arguments:
+    points - 四对点，前两对为一条直线，后两对为一条，两条线是平行的；
+Returns:
+    灭点
+&#39;&#39;&#39;
+def compute_vanishing_point(points):
+    # 获取四对点
+    x1 = points[0, 0]
+    y1 = points[0, 1]   # (x1,y1)
+    x2 = points[1, 0]
+    y2 = points[1, 1]   # (x2,y2)
+    x3 = points[2, 0]
+    y3 = points[2, 1]   # （x3,y3）
+    x4 = points[3, 0]
+    y4 = points[3, 1]   # (x4,y4)
+
+    # 计算两条直线的参数
+    a1 = (y2 - y1)/(x2 - x1)
+    b1 = y1 - a1 * x1
+    print(&quot;line1: &quot;, a1, b1)
+
+    a2 = (y4 - y3)/(x4 - x3)
+    b2 = y3 - a2 * x3
+    print(&quot;line2:&quot;, a2, b2)
+
+    # 计算交点
+    x = (b1 - b2)/(a2 - a1)
+    y = a1 * x + b1
+    vanish_point = np.array([x, y])
+    return vanish_point
+</code></pre>
 <h2 id="2-2-计算相机内参矩阵K"><a href="#2-2-计算相机内参矩阵K" class="headerlink" title="2.2 计算相机内参矩阵K"></a>2.2 计算相机内参矩阵K</h2><ul>
 <li>使用三对灭点计算内部参数</li>
 <li>无穷线的投影变成了水平线：</li>
@@ -543,7 +717,50 @@
 <li><h2 id="cholesky分解"><a href="#cholesky分解" class="headerlink" title="cholesky分解"></a><a href="https://blog.csdn.net/billbliss/article/details/78559387" target="_blank" rel="noopener">cholesky分解</a></h2></li>
 </ul>
 <p>因此，通过三对灭点构建3*4系数矩阵;<br>代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">&apos;&apos;&apos;</span><br><span class="line">COMPUTE_K_FROM_VANISHING_POINTS</span><br><span class="line">Arguments:</span><br><span class="line">    vanishing_points - a list of vanishing points</span><br><span class="line"></span><br><span class="line">Returns:</span><br><span class="line">    K - the intrinsic camera matrix (3x3 matrix)</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line">def compute_K_from_vanishing_points(vanishing_points):</span><br><span class="line">    v1 = vanishing_points[0]</span><br><span class="line">    v2 = vanishing_points[1]</span><br><span class="line">    v3 = vanishing_points[2]</span><br><span class="line"></span><br><span class="line">    # 构建系数矩阵</span><br><span class="line">    A = np.zeros((3, 4))</span><br><span class="line">    A[0] = np.array([(v1[0]*v2[0] + v1[1]*v2[1]), (v1[0] + v2[0]), (v1[1] + v2[1]), 1])</span><br><span class="line">    A[1] = np.array([(v1[0]*v3[0] + v1[1]*v3[1]), (v1[0] + v3[0]), (v1[1] + v3[1]), 1])</span><br><span class="line">    A[2] = np.array([(v2[0]*v3[0] + v2[1]*v3[1]), (v2[0] + v3[0]), (v2[1] + v3[1]), 1])</span><br><span class="line"></span><br><span class="line">    # print(&quot;A:\n&quot;,A)</span><br><span class="line">    # SVD分解</span><br><span class="line">    U, s, vT = np.linalg.svd(A, full_matrices=True)</span><br><span class="line"></span><br><span class="line">    # print(&apos;SVD:\n&apos;,U,U.shape)</span><br><span class="line">    # print(&apos;s:\n&apos;,s, s.shape)</span><br><span class="line">    # print(&apos;v:\n&apos;,vT,vT.shape)</span><br><span class="line">    # print()</span><br><span class="line"></span><br><span class="line">    w = vT[-1, :]   # 取最后一行，最为最优解</span><br><span class="line">    print(&apos;w:\n&apos;,w, w.shape)</span><br><span class="line">    omega = np.array([  # 建立w矩阵</span><br><span class="line">        [w[0], 0, w[1]],</span><br><span class="line">        [0, w[0], w[2]],</span><br><span class="line">        [w[1], w[2], w[3]]</span><br><span class="line">    ], dtype=np.float64)</span><br><span class="line"></span><br><span class="line">    print()</span><br><span class="line">    # 使用cholesky 分解得到K</span><br><span class="line">    kT_inv = np.linalg.cholesky(omega)  # w = (k*k.T)^-1 ==&gt; 分解为 k.T^-1</span><br><span class="line">    k = np.linalg.inv(kT_inv.T) </span><br><span class="line">    k /= k[2, 2]    # 最小化</span><br><span class="line">    return k</span><br></pre></td></tr></table></figure>
+<pre><code class="python">&#39;&#39;&#39;
+COMPUTE_K_FROM_VANISHING_POINTS
+Arguments:
+    vanishing_points - a list of vanishing points
+
+Returns:
+    K - the intrinsic camera matrix (3x3 matrix)
+&#39;&#39;&#39;
+def compute_K_from_vanishing_points(vanishing_points):
+    v1 = vanishing_points[0]
+    v2 = vanishing_points[1]
+    v3 = vanishing_points[2]
+
+    # 构建系数矩阵
+    A = np.zeros((3, 4))
+    A[0] = np.array([(v1[0]*v2[0] + v1[1]*v2[1]), (v1[0] + v2[0]), (v1[1] + v2[1]), 1])
+    A[1] = np.array([(v1[0]*v3[0] + v1[1]*v3[1]), (v1[0] + v3[0]), (v1[1] + v3[1]), 1])
+    A[2] = np.array([(v2[0]*v3[0] + v2[1]*v3[1]), (v2[0] + v3[0]), (v2[1] + v3[1]), 1])
+
+    # print(&quot;A:\n&quot;,A)
+    # SVD分解
+    U, s, vT = np.linalg.svd(A, full_matrices=True)
+
+    # print(&#39;SVD:\n&#39;,U,U.shape)
+    # print(&#39;s:\n&#39;,s, s.shape)
+    # print(&#39;v:\n&#39;,vT,vT.shape)
+    # print()
+
+    w = vT[-1, :]   # 取最后一行，最为最优解
+    print(&#39;w:\n&#39;,w, w.shape)
+    omega = np.array([  # 建立w矩阵
+        [w[0], 0, w[1]],
+        [0, w[0], w[2]],
+        [w[1], w[2], w[3]]
+    ], dtype=np.float64)
+
+    print()
+    # 使用cholesky 分解得到K
+    kT_inv = np.linalg.cholesky(omega)  # w = (k*k.T)^-1 ==&gt; 分解为 k.T^-1
+    k = np.linalg.inv(kT_inv.T) 
+    k /= k[2, 2]    # 最小化
+    return k
+
+</code></pre>
 <p>【注意】</p>
 <ul>
 <li>三对灭点： 需要正交</li>
@@ -556,7 +773,37 @@
 </ul>
 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&apos;&apos;&apos;</span><br><span class="line">COMPUTE_K_FROM_VANISHING_POINTS</span><br><span class="line">Arguments:</span><br><span class="line">    vanishing_pair1 - a list of a pair of vanishing points computed from lines within the same plane</span><br><span class="line">    vanishing_pair2 - a list of another pair of vanishing points from a different plane than vanishing_pair1</span><br><span class="line">    K - the camera matrix used to take both images</span><br><span class="line"></span><br><span class="line">Returns:</span><br><span class="line">    angle - the angle in degrees between the planes which the vanishing point pair comes from2</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line">def compute_angle_between_planes(vanishing_pair1, vanishing_pair2, K):</span><br><span class="line">    omega_inv = K.dot(K.T)</span><br><span class="line"></span><br><span class="line">    # a set of vanishing points on one plane</span><br><span class="line">    v1 = np.hstack((vanishing_pair1[0], 1))</span><br><span class="line">    v2 = np.hstack((vanishing_pair1[1], 1))</span><br><span class="line"></span><br><span class="line">    # another set of vanishing points on the other plane</span><br><span class="line">    v3 = np.hstack((vanishing_pair2[0], 1))</span><br><span class="line">    v4 = np.hstack((vanishing_pair2[1], 1))</span><br><span class="line"></span><br><span class="line">    # find two vanishing lines</span><br><span class="line">    L1 = np.cross(v1.T, v2.T)  # 为什么如此？</span><br><span class="line">    L2 = np.cross(v3.T, v4.T)</span><br><span class="line"></span><br><span class="line">    # find the angle between planes</span><br><span class="line">    costheta = (L1.T.dot(omega_inv).dot(L2)) / (np.sqrt(L1.T.dot(omega_inv).dot(L1)) * np.sqrt(L2.T.dot(omega_inv).dot(L2)))</span><br><span class="line">    theta = (np.arccos(costheta) / math.pi) * 180</span><br><span class="line"></span><br><span class="line">    return theta</span><br></pre></td></tr></table></figure>
+<pre><code class="python">&#39;&#39;&#39;
+COMPUTE_K_FROM_VANISHING_POINTS
+Arguments:
+    vanishing_pair1 - a list of a pair of vanishing points computed from lines within the same plane
+    vanishing_pair2 - a list of another pair of vanishing points from a different plane than vanishing_pair1
+    K - the camera matrix used to take both images
+
+Returns:
+    angle - the angle in degrees between the planes which the vanishing point pair comes from2
+&#39;&#39;&#39;
+def compute_angle_between_planes(vanishing_pair1, vanishing_pair2, K):
+    omega_inv = K.dot(K.T)
+
+    # a set of vanishing points on one plane
+    v1 = np.hstack((vanishing_pair1[0], 1))
+    v2 = np.hstack((vanishing_pair1[1], 1))
+
+    # another set of vanishing points on the other plane
+    v3 = np.hstack((vanishing_pair2[0], 1))
+    v4 = np.hstack((vanishing_pair2[1], 1))
+
+    # find two vanishing lines
+    L1 = np.cross(v1.T, v2.T)  # 为什么如此？
+    L2 = np.cross(v3.T, v4.T)
+
+    # find the angle between planes
+    costheta = (L1.T.dot(omega_inv).dot(L2)) / (np.sqrt(L1.T.dot(omega_inv).dot(L1)) * np.sqrt(L2.T.dot(omega_inv).dot(L2)))
+    theta = (np.arccos(costheta) / math.pi) * 180
+
+    return theta
+</code></pre>
 <h2 id="2-4-计算旋转矩阵"><a href="#2-4-计算旋转矩阵" class="headerlink" title="2.4 计算旋转矩阵"></a>2.4 计算旋转矩阵</h2><p><img src="https://upload-images.jianshu.io/upload_images/5361608-d09bf4c264e3b2d9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p><img src="https://upload-images.jianshu.io/upload_images/5361608-ccbc7da86c7231c6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <ul>
@@ -564,7 +811,34 @@
 <li>通过灭点求解的真实平行线的方向；</li>
 <li>两幅图片的真实平行线是不变的，通过真实平行线的矩阵变换求得相机的旋转矩阵；</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&apos;&apos;&apos;</span><br><span class="line">COMPUTE_K_FROM_VANISHING_POINTS</span><br><span class="line">Arguments:</span><br><span class="line">    vanishing_points1 - a list of vanishing points in image 1</span><br><span class="line">    vanishing_points2 - a list of vanishing points in image 2</span><br><span class="line">    K - the camera matrix used to take both images</span><br><span class="line"></span><br><span class="line">Returns:</span><br><span class="line">    R - the rotation matrix between camera 1 and camera 2</span><br><span class="line">&apos;&apos;&apos;</span><br><span class="line">def compute_rotation_matrix_between_cameras(vanishing_points1, vanishing_points2, K):</span><br><span class="line"></span><br><span class="line">    ones = np.ones((vanishing_points1.shape[0], 1))</span><br><span class="line">    # 建立齐次矩阵</span><br><span class="line">    v1 = np.hstack((vanishing_points1, ones)).T</span><br><span class="line">    v2 = np.hstack((vanishing_points2, ones)).T</span><br><span class="line"></span><br><span class="line">    # 计算真实平行线的方向</span><br><span class="line">    # d = K^-1 * v</span><br><span class="line">    k_inv = np.linalg.inv(K)</span><br><span class="line">    D1 = k_inv.dot(v1) / np.linalg.norm(k_inv.dot(v1),axis=0)   # 按列计算norm范数</span><br><span class="line">    D2 = k_inv.dot(v2) / np.linalg.norm(k_inv.dot(v2),axis=0)</span><br><span class="line"></span><br><span class="line">    # d2 = R * d1, d2.T = d1.T * R.T</span><br><span class="line">    R = np.linalg.lstsq(D1.T, D2.T,rcond = None)[0].T</span><br><span class="line"></span><br><span class="line">    return R</span><br></pre></td></tr></table></figure>
+<pre><code class="python">&#39;&#39;&#39;
+COMPUTE_K_FROM_VANISHING_POINTS
+Arguments:
+    vanishing_points1 - a list of vanishing points in image 1
+    vanishing_points2 - a list of vanishing points in image 2
+    K - the camera matrix used to take both images
+
+Returns:
+    R - the rotation matrix between camera 1 and camera 2
+&#39;&#39;&#39;
+def compute_rotation_matrix_between_cameras(vanishing_points1, vanishing_points2, K):
+
+    ones = np.ones((vanishing_points1.shape[0], 1))
+    # 建立齐次矩阵
+    v1 = np.hstack((vanishing_points1, ones)).T
+    v2 = np.hstack((vanishing_points2, ones)).T
+
+    # 计算真实平行线的方向
+    # d = K^-1 * v
+    k_inv = np.linalg.inv(K)
+    D1 = k_inv.dot(v1) / np.linalg.norm(k_inv.dot(v1),axis=0)   # 按列计算norm范数
+    D2 = k_inv.dot(v2) / np.linalg.norm(k_inv.dot(v2),axis=0)
+
+    # d2 = R * d1, d2.T = d1.T * R.T
+    R = np.linalg.lstsq(D1.T, D2.T,rcond = None)[0].T
+
+    return R
+</code></pre>
 <hr>
 
       
@@ -652,6 +926,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
 
   
 
@@ -815,7 +1096,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">3.3k</span>
+    <span title="Site words total count">3.0k</span>
   
 </div>
 
@@ -974,6 +1255,48 @@
 
 
 
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+      <style>
+        a.gitment-editor-footer-tip { display: none; }
+        .gitment-container.gitment-footer-container { display: none; }
+      </style>
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'jingxa',
+            repo: 'jingxa.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: 'a60429c86a4b7abb1e1d5d4fa11db0557eb2683a',
+            
+                client_id: 'a24135f240136ad4e4bb'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
 
 
 
