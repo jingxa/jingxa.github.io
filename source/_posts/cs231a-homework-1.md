@@ -70,7 +70,7 @@ categories:
 
 因此，计算 affine camera的矩阵为：
 
-```
+```python
 
 def compute_camera_matrix(real_XY, front_image, back_image):
     img_num1 = front_image.shape[0] 
@@ -151,7 +151,7 @@ def compute_camera_matrix(real_XY, front_image, back_image):
 ![](https://upload-images.jianshu.io/upload_images/5361608-53ce720a360065b5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
-```
+```python
 def rms_error(camera_matrix, real_XY, front_image, back_image):
     img_num1 = front_image.shape[0]
     img_num2 = back_image.shape[0]
@@ -188,7 +188,7 @@ def rms_error(camera_matrix, real_XY, front_image, back_image):
 - python 3.6
 这两个函数的主函数：
 
-```
+```python
 import numpy as np
 if __name__ == '__main__':
     # Load the example coordinates setup.
@@ -227,7 +227,7 @@ if __name__ == '__main__':
 - 在3d中平行的线投影到2D中，相交于一点---灭点；因此，通过两线相交求得灭点；
 
 
-```
+```python
 '''
 COMPUTE_VANISHING_POINTS
 Arguments:
@@ -307,7 +307,7 @@ w6 最小化1；
 因此，通过三对灭点构建3*4系数矩阵;
 代码如下：
 
-```
+```python
 '''
 COMPUTE_K_FROM_VANISHING_POINTS
 Arguments:
@@ -362,7 +362,7 @@ def compute_K_from_vanishing_points(vanishing_points):
 - 【问题】
   - 不明白为什么通过求点的叉积来获得灭线向量，感觉没有意义啊？？
 
-```
+```python
 '''
 COMPUTE_K_FROM_VANISHING_POINTS
 Arguments:
@@ -407,7 +407,7 @@ def compute_angle_between_planes(vanishing_pair1, vanishing_pair2, K):
 - 两幅图片的真实平行线是不变的，通过真实平行线的矩阵变换求得相机的旋转矩阵；
 
 
-```
+```python
 '''
 COMPUTE_K_FROM_VANISHING_POINTS
 Arguments:
@@ -439,8 +439,4 @@ def compute_rotation_matrix_between_cameras(vanishing_points1, vanishing_points2
 
 
 ---
->版权声明：<br>
->本文作者：{{ author }}
->本文链接：{{ permalink }}
-<hr>
-除非注明，本博文章均为原创，转载请以链接形式标明本文地址。<br>
+
