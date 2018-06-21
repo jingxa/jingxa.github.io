@@ -112,7 +112,7 @@
 
 
 
-  <meta name="keywords" content="hexo," />
+  <meta name="keywords" content="TensorFlow," />
 
 
 
@@ -125,18 +125,36 @@
 
 
 
-<meta name="description" content="简单记录一下利用hexo+github搭建博客的过程 主要思路　　安装git和node的过程就不多提了，本次安装hexo博客主要采用建立GitHub pages托管，建立两个分支，一个用于提交源文件，一个用于提交hexo静态文件，如果博客需要换电脑，直接git clone下来即可  hexo分支：博客源文件内容master分支:静态博客内容  一 建立远程库　　注意事项：　　　　１.建立两个分支m">
-<meta name="keywords" content="hexo">
+<meta name="description" content="1. 基本概念tensorflow不仅是一个软件库，还包括Tensorflow，Tensorboard,TensorServing;  Tensorflow中constants,variables,operators 称为：ops;  1.1 Constant optf.constant(value, dtype=None, shape=None, name=&amp;#39;Const&amp;#39;, ve">
+<meta name="keywords" content="TensorFlow">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hexo博客搭建记录">
-<meta property="og:url" content="https://jingxa.github.io/2017/05/31/hexo博客搭建记录/index.html">
+<meta property="og:title" content="1_Tensor_Learn_OPS_(2)">
+<meta property="og:url" content="https://jingxa.github.io/2018/06/21/1-Tensor-Learn-OPS-2/index.html">
 <meta property="og:site_name" content="Jingxa&#39;s Blog">
-<meta property="og:description" content="简单记录一下利用hexo+github搭建博客的过程 主要思路　　安装git和node的过程就不多提了，本次安装hexo博客主要采用建立GitHub pages托管，建立两个分支，一个用于提交源文件，一个用于提交hexo静态文件，如果博客需要换电脑，直接git clone下来即可  hexo分支：博客源文件内容master分支:静态博客内容  一 建立远程库　　注意事项：　　　　１.建立两个分支m">
+<meta property="og:description" content="1. 基本概念tensorflow不仅是一个软件库，还包括Tensorflow，Tensorboard,TensorServing;  Tensorflow中constants,variables,operators 称为：ops;  1.1 Constant optf.constant(value, dtype=None, shape=None, name=&amp;#39;Const&amp;#39;, ve">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-19T14:43:46.146Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-51931d934a916970.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-c5db6be102722506.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-a2fa8fa2ae007f5d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-8502e3bd5a2c5d97.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-18ba5ab7b409d49b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-d11f279c7db31cc0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-3b675676bdb469d7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-1586df33c9136fcb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-4ec12108b8a3f45c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-27d7811b4186dcf4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-0ae8c3063d20cd86.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-d8cd33fe3bf21fac.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-ddc839d123dc7831.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-7616c685ca6085bc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-96befea16e1db0dd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-4aa75cfd5df45da3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-d94c5e020c92428c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-06-21T13:36:26.542Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hexo博客搭建记录">
-<meta name="twitter:description" content="简单记录一下利用hexo+github搭建博客的过程 主要思路　　安装git和node的过程就不多提了，本次安装hexo博客主要采用建立GitHub pages托管，建立两个分支，一个用于提交源文件，一个用于提交hexo静态文件，如果博客需要换电脑，直接git clone下来即可  hexo分支：博客源文件内容master分支:静态博客内容  一 建立远程库　　注意事项：　　　　１.建立两个分支m">
+<meta name="twitter:title" content="1_Tensor_Learn_OPS_(2)">
+<meta name="twitter:description" content="1. 基本概念tensorflow不仅是一个软件库，还包括Tensorflow，Tensorboard,TensorServing;  Tensorflow中constants,variables,operators 称为：ops;  1.1 Constant optf.constant(value, dtype=None, shape=None, name=&amp;#39;Const&amp;#39;, ve">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5361608-51931d934a916970.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -166,13 +184,13 @@
 
 
 
-  <link rel="canonical" href="https://jingxa.github.io/2017/05/31/hexo博客搭建记录/"/>
+  <link rel="canonical" href="https://jingxa.github.io/2018/06/21/1-Tensor-Learn-OPS-2/"/>
 
 
 
 
 
-  <title>hexo博客搭建记录 | Jingxa's Blog</title>
+  <title>1_Tensor_Learn_OPS_(2) | Jingxa's Blog</title>
   
 
 
@@ -309,7 +327,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://jingxa.github.io/2017/05/31/hexo博客搭建记录/">
+    <link itemprop="mainEntityOfPage" href="https://jingxa.github.io/2018/06/21/1-Tensor-Learn-OPS-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="jingxa">
@@ -326,7 +344,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">hexo博客搭建记录</h1>
+          <h1 class="post-title" itemprop="name headline">1_Tensor_Learn_OPS_(2)</h1>
         
 
         <div class="post-meta">
@@ -338,8 +356,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-31T18:37:27+08:00">
-                2017-05-31
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-21T21:33:40+08:00">
+                2018-06-21
               </time>
             
 
@@ -361,8 +379,19 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/杂乱笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">杂乱笔记</span>
+                  <a href="/categories/TensorFlow/" itemprop="url" rel="index">
+                    <span itemprop="name">TensorFlow</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/TensorFlow/Standford-CS20/" itemprop="url" rel="index">
+                    <span itemprop="name">Standford_CS20</span>
                   </a>
                 </span>
 
@@ -379,8 +408,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/05/31/hexo博客搭建记录/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2017/05/31/hexo博客搭建记录/" itemprop="commentsCount"></span>
+                <a href="/2018/06/21/1-Tensor-Learn-OPS-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/06/21/1-Tensor-Learn-OPS-2/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -402,7 +431,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  936
+                  470
                 </span>
               
 
@@ -418,7 +447,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4
+                  2
                 </span>
               
             </div>
@@ -439,73 +468,93 @@
       
 
       
-        <p>简单记录一下利用hexo+github搭建博客的过程</p>
-<h4 id="主要思路"><a href="#主要思路" class="headerlink" title="主要思路"></a>主要思路</h4><p>　　安装git和node的过程就不多提了，本次安装hexo博客主要采用建立GitHub pages托管，建立两个分支，一个用于提交源文件，一个用于提交hexo静态文件，如果博客需要换电脑，直接git clone下来即可</p>
-<blockquote>
-<p>hexo分支：博客源文件内容<br>master分支:静态博客内容</p>
-</blockquote>
-<h4 id="一-建立远程库"><a href="#一-建立远程库" class="headerlink" title="一 建立远程库"></a>一 建立远程库</h4><p>　　注意事项：<br>　　　　１.建立两个分支master 和hexo<br>　　　　２.将hexo分支设为默认分支，这样方便提交源文件</p>
-<h4 id="二、下载远程库"><a href="#二、下载远程库" class="headerlink" title="二、下载远程库"></a>二、下载远程库</h4><pre><code>git clone git@github.com:jingxa/jingxa.github.io.git
-</code></pre><p>改成你的名字</p>
-<h6 id="【特别注意】：先不要进行下面的步骤，先将仓库中【-git-gitignore】复制出来，不然下面安装hexo会将这个给覆盖掉，后面无法提交"><a href="#【特别注意】：先不要进行下面的步骤，先将仓库中【-git-gitignore】复制出来，不然下面安装hexo会将这个给覆盖掉，后面无法提交" class="headerlink" title="【特别注意】：先不要进行下面的步骤，先将仓库中【.git,.gitignore】复制出来，不然下面安装hexo会将这个给覆盖掉，后面无法提交"></a>【特别注意】：先不要进行下面的步骤，先将仓库中【.git,.gitignore】复制出来，不然下面安装hexo会将这个给覆盖掉，后面无法提交</h6><h4 id="三、开始安装hexo"><a href="#三、开始安装hexo" class="headerlink" title="三、开始安装hexo"></a>三、开始安装hexo</h4><h5 id="1、安装hexo"><a href="#1、安装hexo" class="headerlink" title="1、安装hexo"></a>1、安装hexo</h5><pre><code> npm install -g hexo-cli
-</code></pre><h5 id="2、-初始化hexo"><a href="#2、-初始化hexo" class="headerlink" title="2、 初始化hexo"></a>2、 初始化hexo</h5><pre><code>hexo init
-</code></pre><h5 id="3、安装npm"><a href="#3、安装npm" class="headerlink" title="3、安装npm"></a>3、安装npm</h5><pre><code> npm install
-</code></pre><h5 id="4、-安装next主题-："><a href="#4、-安装next主题-：" class="headerlink" title="4、 安装next主题 ："></a>4、 安装next主题 ：</h5><pre><code>git clone https://github.com/iissnan/hexo-theme-next themes/next
-</code></pre><p>【注意：在<em>.jithub.io和themes/next都有一个_config.yml的文件，为了区分。我们使用一下称呼】<br>–</em>github.io/_config.yml:站点配置文件<br>–themes/next/_config.yml:主题配置文件</p>
-<h5 id="5-配置站点文件"><a href="#5-配置站点文件" class="headerlink" title="5.配置站点文件"></a>5.配置站点文件</h5><h6 id="【注意：每一项的填写，其-后面都要保留一个空格】"><a href="#【注意：每一项的填写，其-后面都要保留一个空格】" class="headerlink" title="【注意：每一项的填写，其:后面都要保留一个空格】"></a>【注意：每一项的填写，其:后面都要保留一个空格】</h6><p>(1).修改网站相关信息</p>
-<pre><code>title: 你的题目
-subtitle: 小题目
-description: 描述
-author: 作者
-language: zh-Hans
-timezone: Asia/Shanghai
-</code></pre><p>(2).配置统一资源定位符（个人域名）</p>
-<pre><code>url: https://jingxa.github.io
-</code></pre><p>对于root（根目录）、permalink（永久链接）、permalink_defaults（默认永久链接）等其他信息保持默认。<br>(3). 配置部署</p>
-<pre><code>deploy:
-  type: git
-  repo: ssh://git@github.com/jingxa/jingxa.github.io.git
-  branch: master
-</code></pre><p>这里我们使用ssh，不使用https,可以避免提交的时候需要输入密码验证<br>(4).主题修改</p>
-<pre><code>themes: next
-</code></pre><h5 id="6-配置主题文件"><a href="#6-配置主题文件" class="headerlink" title="6.配置主题文件"></a>6.配置主题文件</h5><p>这些大家自己百度<br><a href="http://www.jianshu.com/p/5973c05d7100" target="_blank" rel="noopener">【干货】2个小时教你hexo博客添加评论、打赏、RSS等功能</a></p>
-<h5 id="7-提交"><a href="#7-提交" class="headerlink" title="7.提交"></a>7.提交</h5><p>这一步大家讲源文件提交到github,托管源码，方便以后转移、<br>在提交之前，大家需要将【.gitignore】中添加一些配置，免得将一些不必要的东西提交到github上，我的配置如下：</p>
-<pre><code>.DS_Store
-Thumbs.db
-db.json
-*.log
-node_modules/
-public/
-.deploy*/
-</code></pre><p>将这个不必要的忽略掉<br>(1).增加文件 </p>
-<pre><code>git add .
-</code></pre><p>提交所有的文件<br>(2).可以使用 </p>
-<pre><code>git status
-</code></pre><p>检查提交哪些东西<br>(3).提交 </p>
-<pre><code>git commit -m &quot;自己修改commit信息&quot;
-</code></pre><p>(4).重要的地方，我们需要将修改提交到hexo,分支</p>
-<pre><code>git push origin hexo
-</code></pre><p>然后完成了源文件的提交，下一步就是提交hexo生成的静态文件，再次之前，需要安装依赖包</p>
-<h5 id="8-安装npm-install-hexo-deployer-git-–save"><a href="#8-安装npm-install-hexo-deployer-git-–save" class="headerlink" title="8.安装npm install hexo-deployer-git –save"></a>8.安装npm install hexo-deployer-git –save</h5><pre><code>npm install hexo-deployer-git --save
-</code></pre><p>其实这一步可以在前面npm install 之后安装</p>
-<h5 id="9-静态博客生成"><a href="#9-静态博客生成" class="headerlink" title="9.静态博客生成"></a>9.静态博客生成</h5><p>(1).我们可以写一篇文章</p>
-<pre><code>hexo new &quot;你的题目&quot;
-</code></pre><p>我们可以在本地博客文件夹source-&gt;_post文件夹下看到我们新建的markdown文件。<br>保存后，我们进行本地发布：<br>(2).我自己测试，</p>
-<pre><code>　hexo s -p 8888
-</code></pre><p>如果使用 </p>
-<pre><code>hexo server
-</code></pre><p> 会使用默认端口4000，这个一直不能再本地显示，所以我们可以自己更改端口，就能正常访问<br>(3).打开浏览器，输入：</p>
-<pre><code>http://localhost:8888/
-</code></pre><p>我们可以在浏览器端看到我们搭建好的博客和发布的文章：</p>
-<h5 id="10-博客提交到github上"><a href="#10-博客提交到github上" class="headerlink" title="10.博客提交到github上"></a>10.博客提交到github上</h5><p>(1).这一步主要是清除缓存数据</p>
-<pre><code>hexo clean
-</code></pre><p>(2). 生成</p>
-<pre><code>//hexo generate可以简写成
-hexo g
-</code></pre><p>(3). 发布</p>
-<pre><code>//hexo deploy可以简写成 
-hexo d
-</code></pre><p>然后访问你的默认网站。就可以看到你的成果了！</p>
+        <h1 id="1-基本概念"><a href="#1-基本概念" class="headerlink" title="1. 基本概念"></a>1. 基本概念</h1><p>tensorflow不仅是一个软件库，还包括Tensorflow，Tensorboard,TensorServing;</p>
+<ul>
+<li>Tensorflow中constants,variables,operators 称为：ops;</li>
+</ul>
+<h2 id="1-1-Constant-op"><a href="#1-1-Constant-op" class="headerlink" title="1.1 Constant op"></a>1.1 Constant op</h2><pre><code class="python">tf.constant(value, dtype=None, shape=None, name=&#39;Const&#39;, verify_shape=False)
+
+# constant of 1d tensor (vector)
+a = tf.constant([2, 2], name=&quot;vector&quot;)
+
+# constant of 2x2 tensor (matrix)
+b = tf.constant([[0, 1], [2, 3]], name=&quot;matrix&quot;)
+
+</code></pre>
+<p>创建 类似numpy的结构</p>
+<pre><code>tf.zeros(shape, dtype=tf.float32, name=None)
+# create a tensor of shape and all elements are zeros
+# ==&gt; [[0, 0, 0], [0, 0, 0]]
+tf.zeros([2, 3], tf.int32) 
+
+</code></pre><p>创建类似·input_tensor·的shape和type(除非指定)但是元素全部为0：</p>
+<pre><code>tf.zeros_like(input_tensor, dtype=None, name=None, optimize=True)
+
+# input_tensor [[0, 1], [2, 3], [4, 5]]
+tf.zeros_like(input_tensor)  #==&gt; [[0, 0], [0, 0], [0, 0]]
+</code></pre><ul>
+<li>创建一个tensor，所有元素都为1<br><code>`</code><br>tf.ones(shape.dtype  =  tf.float32  ,  name  =  None)</li>
+</ul>
+<p>tf.ones([  2  ,   3  ],  tf  .  int32  )  </p>
+<p> #==&gt;   [[  1  ,   1  ,   1  ],   [  1  ,   1  ,   1  ]]<br><code>`</code></p>
+<ul>
+<li>创建一个类似input_tensor的shape结构，数据type可以自定义,所有元素为1；</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-51931d934a916970.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>创建一个tensor ,并且使用一个标量填充；</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-c5db6be102722506.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>创建一个连续constant，包含start和stop；</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-a2fa8fa2ae007f5d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>从一个数开始创建一个constant 序列，但是不包括最后limit数；</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-8502e3bd5a2c5d97.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-18ba5ab7b409d49b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>但是，tensor不支持python的迭代器属性：</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-d11f279c7db31cc0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>tensorflow的随机生成：</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-3b675676bdb469d7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<hr>
+<h2 id="1-2-math-ops"><a href="#1-2-math-ops" class="headerlink" title="1.2 math ops"></a>1.2 math ops</h2><ul>
+<li><a href="https://www.tensorflow.org/api_guides/python/math_ops" target="_blank" rel="noopener">math_ops</a></li>
+</ul>
+<h3 id="1-2-1-division"><a href="#1-2-1-division" class="headerlink" title="1.2.1 division"></a>1.2.1 division</h3><p><img src="https://upload-images.jianshu.io/upload_images/5361608-1586df33c9136fcb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-4ec12108b8a3f45c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="1-2-2-add"><a href="#1-2-2-add" class="headerlink" title="1.2.2 add"></a>1.2.2 add</h3><p><img src="https://upload-images.jianshu.io/upload_images/5361608-27d7811b4186dcf4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="1-2-3-product"><a href="#1-2-3-product" class="headerlink" title="1.2.3 product"></a>1.2.3 product</h3><p><code>tf.matmul</code> 不等于dot product：<br><img src="https://upload-images.jianshu.io/upload_images/5361608-0ae8c3063d20cd86.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="1-2-4-ops-in-Python"><a href="#1-2-4-ops-in-Python" class="headerlink" title="1.2.4 ops in Python"></a>1.2.4 ops in Python</h3><p><img src="https://upload-images.jianshu.io/upload_images/5361608-d8cd33fe3bf21fac.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="1-3-Data-Type"><a href="#1-3-Data-Type" class="headerlink" title="1.3 Data Type"></a>1.3 Data Type</h2><h3 id="1-3-1-python-type"><a href="#1-3-1-python-type" class="headerlink" title="1.3.1 python type"></a>1.3.1 python type</h3><ul>
+<li>tensorflow 适配python原始类型：<ul>
+<li>python中的single value(boolean,numeric value,strings) =&gt; 0-d tensor（scalars）</li>
+<li>list : 1-d tensor</li>
+<li>list of list : 2-d tensor</li>
+</ul>
+</li>
+</ul>
+<p>等等；</p>
+<p>例如： </p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-ddc839d123dc7831.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-7616c685ca6085bc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="1-3-2-tensor-type"><a href="#1-3-2-tensor-type" class="headerlink" title="1.3.2 tensor type"></a>1.3.2 tensor type</h3><ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf/DType" target="_blank" rel="noopener">全部类型</a></li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-96befea16e1db0dd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-4aa75cfd5df45da3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="1-3-3-numpy-Type"><a href="#1-3-3-numpy-Type" class="headerlink" title="1.3.3 numpy Type"></a>1.3.3 numpy Type</h3><ul>
+<li>tensor 的type基于numpy的type，因此例如 <code>tf.int32 == np.int32</code> 返回true;<br>在tensor中可以传递numpy的type：</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-d94c5e020c92428c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p> <strong>1.tensor 和numpy的boolean，numeric value相互匹配；但是string不是完全匹配，tf能够导入numpy strings，只是不要指定numpy的dtypes;</strong></p>
+<p><strong>2.numpy  不支持gpu,tensorflow 支持；</strong> </p>
+<p><strong>3.tensorflow能够推断数据类型状态：如integer： tf中有：8-bit,16-bit,32-bit,64bit可用，但是python不能推断使用的那种数据类型</strong></p>
 <hr>
 
       
@@ -527,7 +576,7 @@ hexo d
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://jingxa.github.io/2017/05/31/hexo博客搭建记录/" title="hexo博客搭建记录">https://jingxa.github.io/2017/05/31/hexo博客搭建记录/</a>
+    <a href="https://jingxa.github.io/2018/06/21/1-Tensor-Learn-OPS-2/" title="1_Tensor_Learn_OPS_(2)">https://jingxa.github.io/2018/06/21/1-Tensor-Learn-OPS-2/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -542,7 +591,7 @@ hexo d
       
         <div class="post-tags">
           
-            <a href="/tags/hexo/" rel="tag"># hexo</a>
+            <a href="/tags/TensorFlow/" rel="tag"># TensorFlow</a>
           
         </div>
       
@@ -555,15 +604,15 @@ hexo d
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/06/21/1-Tensor-Learn-OPS-1/" rel="next" title="11_Tensor_Learn_1">
+                <i class="fa fa-chevron-left"></i> 11_Tensor_Learn_1
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/19/cs231a-homework-1/" rel="prev" title="cs231a-homework-1">
-                cs231a-homework-1 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -743,7 +792,7 @@ hexo d
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#主要思路"><span class="nav-number">1.</span> <span class="nav-text">主要思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一-建立远程库"><span class="nav-number">2.</span> <span class="nav-text">一 建立远程库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、下载远程库"><span class="nav-number">3.</span> <span class="nav-text">二、下载远程库</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#【特别注意】：先不要进行下面的步骤，先将仓库中【-git-gitignore】复制出来，不然下面安装hexo会将这个给覆盖掉，后面无法提交"><span class="nav-number">3.0.1.</span> <span class="nav-text">【特别注意】：先不要进行下面的步骤，先将仓库中【.git,.gitignore】复制出来，不然下面安装hexo会将这个给覆盖掉，后面无法提交</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、开始安装hexo"><span class="nav-number">4.</span> <span class="nav-text">三、开始安装hexo</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、安装hexo"><span class="nav-number">4.1.</span> <span class="nav-text">1、安装hexo</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、-初始化hexo"><span class="nav-number">4.2.</span> <span class="nav-text">2、 初始化hexo</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3、安装npm"><span class="nav-number">4.3.</span> <span class="nav-text">3、安装npm</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4、-安装next主题-："><span class="nav-number">4.4.</span> <span class="nav-text">4、 安装next主题 ：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-配置站点文件"><span class="nav-number">4.5.</span> <span class="nav-text">5.配置站点文件</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#【注意：每一项的填写，其-后面都要保留一个空格】"><span class="nav-number">4.5.1.</span> <span class="nav-text">【注意：每一项的填写，其:后面都要保留一个空格】</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-配置主题文件"><span class="nav-number">4.6.</span> <span class="nav-text">6.配置主题文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-提交"><span class="nav-number">4.7.</span> <span class="nav-text">7.提交</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-安装npm-install-hexo-deployer-git-–save"><span class="nav-number">4.8.</span> <span class="nav-text">8.安装npm install hexo-deployer-git –save</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#9-静态博客生成"><span class="nav-number">4.9.</span> <span class="nav-text">9.静态博客生成</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#10-博客提交到github上"><span class="nav-number">4.10.</span> <span class="nav-text">10.博客提交到github上</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-基本概念"><span class="nav-number">1.</span> <span class="nav-text">1. 基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-Constant-op"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 Constant op</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-math-ops"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 math ops</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-division"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.2.1 division</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-2-add"><span class="nav-number">1.2.2.</span> <span class="nav-text">1.2.2 add</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-3-product"><span class="nav-number">1.2.3.</span> <span class="nav-text">1.2.3 product</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-4-ops-in-Python"><span class="nav-number">1.2.4.</span> <span class="nav-text">1.2.4 ops in Python</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-Data-Type"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 Data Type</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-1-python-type"><span class="nav-number">1.3.1.</span> <span class="nav-text">1.3.1 python type</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-2-tensor-type"><span class="nav-number">1.3.2.</span> <span class="nav-text">1.3.2 tensor type</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-3-numpy-Type"><span class="nav-number">1.3.3.</span> <span class="nav-text">1.3.3 numpy Type</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

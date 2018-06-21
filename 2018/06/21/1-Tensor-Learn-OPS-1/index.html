@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="TensorFlow," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="Jingxa's Blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="1.4 variable1.4.1 变量的概念constant和variable的区别：  tf. constant is an op tf. V ariable is  a class with multiple ops.     第二点说明了常量存储在graph中，constant是memory expensive， 因此，如果graph中的constant过多，那么每次载入graph 的速">
+<meta name="keywords" content="TensorFlow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="11_Tensor_Learn_1">
+<meta property="og:url" content="https://jingxa.github.io/2018/06/21/1-Tensor-Learn-OPS-1/index.html">
+<meta property="og:site_name" content="Jingxa&#39;s Blog">
+<meta property="og:description" content="1.4 variable1.4.1 变量的概念constant和variable的区别：  tf. constant is an op tf. V ariable is  a class with multiple ops.     第二点说明了常量存储在graph中，constant是memory expensive， 因此，如果graph中的constant过多，那么每次载入graph 的速">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-cc093a4fa77154a8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-77c7034cd2acbd18.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-94e58d3c55fd6e67.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-8a43df33a3d32b29.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-917f5fbd29b25d8c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-8aac8812d20daba5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-43b02007952acd16.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-d01410fa9698f0fc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-9136055a81ae592e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-0cb840a6b3713f4d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-9c8d65f4f2aaf956.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-75a5c52f035aa654.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-6c7d5246165cf231.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-354852da3562ae67.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-cb8c618508c2ec0e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-146474becae7166d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-cb2f4a344122e236.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-bca6b384feb42500.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-244b9ea35721f8c4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-d279a789b35175b4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-043caee5b2fa2547.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-24ea7a500d250dc5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-4bed84beb31387fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-5697bb05c4dd5fe9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-329d9c901d0f2eaf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-496bc6ff7f0cb47f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-b67aa9d16cf42036.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-66c6107ea8f9e3f9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-29c2d6ed284cb64b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-a29cca95be6409d9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-06-21T13:36:41.884Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="11_Tensor_Learn_1">
+<meta name="twitter:description" content="1.4 variable1.4.1 变量的概念constant和variable的区别：  tf. constant is an op tf. V ariable is  a class with multiple ops.     第二点说明了常量存储在graph中，constant是memory expensive， 因此，如果graph中的constant过多，那么每次载入graph 的速">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5361608-cc093a4fa77154a8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Jingxa'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jingxa.github.io/2018/06/21/1-Tensor-Learn-OPS-1/"/>
+
+
+
+
+
+  <title>11_Tensor_Learn_1 | Jingxa's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jingxa's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">It's my precious!</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://jingxa.github.io/2018/06/21/1-Tensor-Learn-OPS-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jingxa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jingxa's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">11_Tensor_Learn_1</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-21T21:32:59+08:00">
+                2018-06-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/TensorFlow/" itemprop="url" rel="index">
+                    <span itemprop="name">TensorFlow</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/TensorFlow/Standford-CS20/" itemprop="url" rel="index">
+                    <span itemprop="name">Standford_CS20</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/06/21/1-Tensor-Learn-OPS-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/06/21/1-Tensor-Learn-OPS-1/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  868
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<h2 id="1-4-variable"><a href="#1-4-variable" class="headerlink" title="1.4 variable"></a>1.4 variable</h2><h3 id="1-4-1-变量的概念"><a href="#1-4-1-变量的概念" class="headerlink" title="1.4.1 变量的概念"></a>1.4.1 变量的概念</h3><p>constant和variable的区别：</p>
+<ul>
+<li>tf. constant is an op</li>
+<li>tf. V ariable is  a class with multiple ops. </li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-cc093a4fa77154a8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li><p>第二点说明了常量存储在graph中，constant是memory expensive， 因此，如果graph中的constant过多，那么每次载入graph 的速度变得很慢；</p>
+</li>
+<li><p>如果想要查看graph中的存储：</p>
+</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-77c7034cd2acbd18.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>输出为：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-94e58d3c55fd6e67.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>创建一个变量：</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-8a43df33a3d32b29.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>老的创建变量的方式为：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-917f5fbd29b25d8c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>但是现在不推荐使用这种方式，推荐使用：<code>tf.get_variable</code>,参数如下，当使用tf.constant作为初始器来，不需要输入shape;</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-8aac8812d20daba5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-43b02007952acd16.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="1-4-2-初始化变量"><a href="#1-4-2-初始化变量" class="headerlink" title="1.4.2 初始化变量"></a>1.4.2 初始化变量</h3><ul>
+<li>变量在使用前需要初始化，否则抛出<code>FailedPreconditionError:Attempting to use unintialized value</code></li>
+<li>如果想获得未初始化的变量列表：如下：</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-d01410fa9698f0fc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>(1)最简单的初始化变量的方式为：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-9136055a81ae592e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>(2)初始化变量的子集：<br>可以使用下面的<code>tf.variable_initializer()</code></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-0cb840a6b3713f4d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>(3)也可以对每个变量分开初始化<code>tf.Variable.initializer</code>：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-9c8d65f4f2aaf956.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>(4)从一个文件中载入值来初始化变量</p>
+<hr>
+<h3 id="1-4-3-求变量值"><a href="#1-4-3-求变量值" class="headerlink" title="1.4.3 求变量值"></a>1.4.3 求变量值</h3><p>（1） 类似tensors,获得变量值需要在一个session下；</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-75a5c52f035aa654.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>（2 ）使用<code>tf.Variable.eval()</code></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-6c7d5246165cf231.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<pre><code>print(V.eal()) # 获取值
+</code></pre><h3 id="1-4-4-变量赋值"><a href="#1-4-4-变量赋值" class="headerlink" title="1.4.4 变量赋值"></a>1.4.4 变量赋值</h3><p>（1） <code>tf.Variable.assign()</code></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-354852da3562ae67.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>W结果为10 ： 赋值操作有效，必须在session下：</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-cb8c618508c2ec0e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li><p>在这段代码中，没有使用初始化操作，因为初始化操作就是一个赋值操作；</p>
+</li>
+<li><p>源代码中的初始化操作：</p>
+</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-146474becae7166d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>一个例子：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-cb2f4a344122e236.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>·tf.Variable.assign_add()·和<code>tf.Variable.assign_sub()</code>不同于assign操作；这两个方法不能初始化变量，因为这两个方法依赖变量的初始值；</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-bca6b384feb42500.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>因为session分别维持着值，每个session 对于一个变量有着各自的当前值：</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-244b9ea35721f8c4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>假如一个变量W和另一个变量U是相关的，</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-d279a789b35175b4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>应该使用<code>initialized_value()</code>确保这个变量W初始化在U使用这个变量前：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-043caee5b2fa2547.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<hr>
+<h2 id="1-5-Interactive-Session"><a href="#1-5-Interactive-Session" class="headerlink" title="1.5 Interactive Session"></a>1.5 Interactive Session</h2><ul>
+<li>交互式session和默认session不同的是不需要显式调用session；</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-24ea7a500d250dc5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li><code>tf.get_default_session()</code>返回当前线程的默认session；</li>
+</ul>
+<hr>
+<h2 id="1-6-Control-Dependencies"><a href="#1-6-Control-Dependencies" class="headerlink" title="1.6  Control Dependencies"></a>1.6  Control Dependencies</h2><ul>
+<li>有时候，如果有多个独立的op，我们想要指定op的运行顺序：</li>
+<li>使用<code>tf.Graph.control_dependencies([control_inputs])</code></li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-4bed84beb31387fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<hr>
+<h2 id="1-7-Importing-Data"><a href="#1-7-Importing-Data" class="headerlink" title="1. 7 Importing Data"></a>1. 7 Importing Data</h2><h3 id="1-7-1-old-way-placeholders-and-feed-dict"><a href="#1-7-1-old-way-placeholders-and-feed-dict" class="headerlink" title="1.7.1 old way: placeholders and feed_dict"></a>1.7.1 old way: placeholders and feed_dict</h3><ul>
+<li><p>如果想要构建一个图，但是不知道要计算的值：</p>
+</li>
+<li><p>定义一个占位符：</p>
+</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-5697bb05c4dd5fe9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>如果这个占位符的shape为none,代表任何shape的tensor被接受；建议尽可能定义shape，不要默认；</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-329d9c901d0f2eaf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-496bc6ff7f0cb47f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>（1） 传递单一值<br>但是如果运行，会得到一个错误，需要给占位符一个输入；一般传入一个字典，key为占位符，value为占位符的值：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-b67aa9d16cf42036.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>（2）传递多个值给一个占位符<br>使用循环传递：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-66c6107ea8f9e3f9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>（3） 检查tensor是否feedable</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-29c2d6ed284cb64b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="1-7-2-new-way-tf-data"><a href="#1-7-2-new-way-tf-data" class="headerlink" title="1.7.2 new way:tf.data"></a>1.7.2 new way:tf.data</h3><ul>
+<li>后面线性回归举例子；</li>
+</ul>
+<hr>
+<h2 id="1-8-trap-of-lazy-loading"><a href="#1-8-trap-of-lazy-loading" class="headerlink" title="1.8  trap of lazy loading"></a>1.8  trap of lazy loading</h2><ul>
+<li><p>一个不是bug的bug – ‘lazy loading’</p>
+</li>
+<li><p>在tensorflow中，直到你需要一个op才会创建它；</p>
+</li>
+</ul>
+<p>例如：</p>
+<pre><code>x = tf.Variable(10,name = &#39;x&#39;)
+y = tf.Variable(20,name = &#39;y&#39;)
+z = tf.add(x,y)
+
+with tf.Session() as sess:
+  sess.run(tf.global_variables_initializer())
+  writer = tf.summary.FileWriter(&#39;graphs/normal_loading&#39;,sess.graph)
+  for _ in range(10):
+    sess.run(z)
+  writer.close()
+</code></pre><p>在循环中：</p>
+<pre><code>x = tf.Variable(10, name=&#39;x&#39;)
+y = tf.Variable(20, name=&#39;y&#39;)
+with tf.Session() as sess:
+  sess.run(tf.global_variables_initializer())
+  writer = tf.summary.FileWriter(&#39;graphs/lazy_loading&#39;, sess.graph)
+  for _ in range(10):
+    sess.run(tf.add(x, y))
+  print(tf.get_default_graph().as_graph_def())
+  writer.close()
+</code></pre><p>第一个只有一个add节点，结果为：</p>
+<pre><code>node {
+  name: &quot;Add&quot;
+  op: &quot;Add&quot;
+  input: &quot;x/read&quot;
+  input: &quot;y/read&quot;
+  attr {
+    key: &quot;T&quot;
+    value {
+      type: DT_INT32
+      }
+    }
+}
+</code></pre><p>而第二种有多个add节点：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-a29cca95be6409d9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>如果不注意，就会在graph中添加很多节点；</li>
+</ul>
+<hr>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    jingxa
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://jingxa.github.io/2018/06/21/1-Tensor-Learn-OPS-1/" title="11_Tensor_Learn_1">https://jingxa.github.io/2018/06/21/1-Tensor-Learn-OPS-1/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/TensorFlow/" rel="tag"># TensorFlow</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/19/cs231a-homework-1/" rel="next" title="cs231a-homework-1">
+                <i class="fa fa-chevron-left"></i> cs231a-homework-1
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/21/1-Tensor-Learn-OPS-2/" rel="prev" title="1_Tensor_Learn_OPS_(2)">
+                1_Tensor_Learn_OPS_(2) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="jingxa" />
+            
+              <p class="site-author-name" itemprop="name">jingxa</p>
+              <p class="site-description motion-element" itemprop="description">单影无人相依偎！</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/rss2.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/jingxa" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:wjszwzyd@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://kylingit.com/" title="诗与胡说" target="_blank">诗与胡说</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-variable"><span class="nav-number">1.</span> <span class="nav-text">1.4 variable</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-1-变量的概念"><span class="nav-number">1.1.</span> <span class="nav-text">1.4.1 变量的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-2-初始化变量"><span class="nav-number">1.2.</span> <span class="nav-text">1.4.2 初始化变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-3-求变量值"><span class="nav-number">1.3.</span> <span class="nav-text">1.4.3 求变量值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-4-变量赋值"><span class="nav-number">1.4.</span> <span class="nav-text">1.4.4 变量赋值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-Interactive-Session"><span class="nav-number">2.</span> <span class="nav-text">1.5 Interactive Session</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-6-Control-Dependencies"><span class="nav-number">3.</span> <span class="nav-text">1.6  Control Dependencies</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-7-Importing-Data"><span class="nav-number">4.</span> <span class="nav-text">1. 7 Importing Data</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-7-1-old-way-placeholders-and-feed-dict"><span class="nav-number">4.1.</span> <span class="nav-text">1.7.1 old way: placeholders and feed_dict</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-7-2-new-way-tf-data"><span class="nav-number">4.2.</span> <span class="nav-text">1.7.2 new way:tf.data</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-8-trap-of-lazy-loading"><span class="nav-number">5.</span> <span class="nav-text">1.8  trap of lazy loading</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jingxa</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">4.4k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+      <style>
+        a.gitment-editor-footer-tip { display: none; }
+        .gitment-container.gitment-footer-container { display: none; }
+      </style>
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'jingxa',
+            repo: 'jingxa.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: 'a60429c86a4b7abb1e1d5d4fa11db0557eb2683a',
+            
+                client_id: 'a24135f240136ad4e4bb'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
