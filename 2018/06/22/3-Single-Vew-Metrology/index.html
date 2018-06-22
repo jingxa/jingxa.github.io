@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Single_View_Metrology," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="Jingxa's Blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="CS231A笔记文章截图大多来自斯坦福CS231A课程;   1  2d中的变换1.1 几何变换 1.2 相似变换 1.3 仿射变换 1.4 投影变换 投影变换4个共线点的交叉率：   2 vanishing points and lines (灭点)2.1 无穷点 对于两条直线的交点：但是，如果两条平行直线的交点，在齐次坐标系进行计算：   在欧氏坐标系下， 这个点是无穷的； 两条线段的交点也">
+<meta name="keywords" content="Single_View_Metrology">
+<meta property="og:type" content="article">
+<meta property="og:title" content="3_Single_View_Metrology">
+<meta property="og:url" content="https://jingxa.github.io/2018/06/22/3-Single-Vew-Metrology/index.html">
+<meta property="og:site_name" content="Jingxa&#39;s Blog">
+<meta property="og:description" content="CS231A笔记文章截图大多来自斯坦福CS231A课程;   1  2d中的变换1.1 几何变换 1.2 相似变换 1.3 仿射变换 1.4 投影变换 投影变换4个共线点的交叉率：   2 vanishing points and lines (灭点)2.1 无穷点 对于两条直线的交点：但是，如果两条平行直线的交点，在齐次坐标系进行计算：   在欧氏坐标系下， 这个点是无穷的； 两条线段的交点也">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-4293a9fb6318994b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-f0b1c1de2d8270f0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-1e1629e3eaf9aec0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-1a1297c41268f109.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-2d65709b5e37222b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-ed0a8848567585d5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-033b9e87e41a0f47.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-5d1a8ee50373adf7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-ffddc1e05ba0b6f2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-f0fa9ecc24c3b48e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-42a7f1de720f48a2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-b58b22ded0124c7f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-df33547dc5b37f2b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-1a498638def1cfff.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-81e985560c732f30.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-01071f0955aeb371.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-ccbc7da86c7231c6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-0346133f45da09b1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-19aabed436274ba3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-f823386978ec4821.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-f85ca24a96846ad5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-a38031e839a04718.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-3f0fee0cbccdce69.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-344f019d6232aca4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-f0888390d19d82e1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-e388a2ec9b5c1e0b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-4d2c94fdc767a451.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-2af4fad907d2ad90.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-e5c3d841693d5796.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-06-22T02:56:37.684Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="3_Single_View_Metrology">
+<meta name="twitter:description" content="CS231A笔记文章截图大多来自斯坦福CS231A课程;   1  2d中的变换1.1 几何变换 1.2 相似变换 1.3 仿射变换 1.4 投影变换 投影变换4个共线点的交叉率：   2 vanishing points and lines (灭点)2.1 无穷点 对于两条直线的交点：但是，如果两条平行直线的交点，在齐次坐标系进行计算：   在欧氏坐标系下， 这个点是无穷的； 两条线段的交点也">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5361608-4293a9fb6318994b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Jingxa'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jingxa.github.io/2018/06/22/3-Single-Vew-Metrology/"/>
+
+
+
+
+
+  <title>3_Single_View_Metrology | Jingxa's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jingxa's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">It's my precious!</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://jingxa.github.io/2018/06/22/3-Single-Vew-Metrology/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jingxa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jingxa's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">3_Single_View_Metrology</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-22T10:33:38+08:00">
+                2018-06-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/cs231A/" itemprop="url" rel="index">
+                    <span itemprop="name">cs231A</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/06/22/3-Single-Vew-Metrology/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/06/22/3-Single-Vew-Metrology/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  485
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>CS231A笔记<br>文章截图大多来自斯坦福CS231A课程;</p>
+</blockquote>
+<hr>
+<h1 id="1-2d中的变换"><a href="#1-2d中的变换" class="headerlink" title="1  2d中的变换"></a>1  2d中的变换</h1><h2 id="1-1-几何变换"><a href="#1-1-几何变换" class="headerlink" title="1.1 几何变换"></a>1.1 几何变换</h2><p><img src="https://upload-images.jianshu.io/upload_images/5361608-4293a9fb6318994b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="1-2-相似变换"><a href="#1-2-相似变换" class="headerlink" title="1.2 相似变换"></a>1.2 相似变换</h2><p><img src="https://upload-images.jianshu.io/upload_images/5361608-f0b1c1de2d8270f0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="1-3-仿射变换"><a href="#1-3-仿射变换" class="headerlink" title="1.3 仿射变换"></a>1.3 仿射变换</h2><p><img src="https://upload-images.jianshu.io/upload_images/5361608-1e1629e3eaf9aec0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="1-4-投影变换"><a href="#1-4-投影变换" class="headerlink" title="1.4 投影变换"></a>1.4 投影变换</h2><p><img src="https://upload-images.jianshu.io/upload_images/5361608-1a1297c41268f109.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>投影变换4个共线点的交叉率：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-2d65709b5e37222b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<hr>
+<h1 id="2-vanishing-points-and-lines-灭点"><a href="#2-vanishing-points-and-lines-灭点" class="headerlink" title="2 vanishing points and lines (灭点)"></a>2 vanishing points and lines (灭点)</h1><h2 id="2-1-无穷点"><a href="#2-1-无穷点" class="headerlink" title="2.1 无穷点"></a>2.1 无穷点</h2><p><img src="https://upload-images.jianshu.io/upload_images/5361608-ed0a8848567585d5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>对于两条直线的交点：<br><img src="https://upload-images.jianshu.io/upload_images/5361608-033b9e87e41a0f47.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>但是，如果两条平行直线的交点，在齐次坐标系进行计算：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-5d1a8ee50373adf7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>在欧氏坐标系下， 这个点是无穷的；</li>
+<li>两条线段的交点也是无穷的；</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-ffddc1e05ba0b6f2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="2-2-无穷线"><a href="#2-2-无穷线" class="headerlink" title="2.2 无穷线"></a>2.2 无穷线</h2><p><img src="https://upload-images.jianshu.io/upload_images/5361608-f0fa9ecc24c3b48e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="2-3-无穷点的投影变换"><a href="#2-3-无穷点的投影变换" class="headerlink" title="2.3 无穷点的投影变换"></a>2.3 无穷点的投影变换</h2><p><img src="https://upload-images.jianshu.io/upload_images/5361608-42a7f1de720f48a2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="2-4-无穷线的投影变换"><a href="#2-4-无穷线的投影变换" class="headerlink" title="2.4 无穷线的投影变换"></a>2.4 无穷线的投影变换</h2><p><img src="https://upload-images.jianshu.io/upload_images/5361608-b58b22ded0124c7f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h1 id="3-3d中的点和面"><a href="#3-3d中的点和面" class="headerlink" title="3 3d中的点和面"></a>3 3d中的点和面</h1><ul>
+<li><p>点<br><img src="https://upload-images.jianshu.io/upload_images/5361608-df33547dc5b37f2b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+</li>
+<li><p>线段<br><img src="https://upload-images.jianshu.io/upload_images/5361608-1a498638def1cfff.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+</li>
+</ul>
+<h2 id="3-1-3d中的无穷点"><a href="#3-1-3d中的无穷点" class="headerlink" title="3.1 3d中的无穷点"></a>3.1 3d中的无穷点</h2><p><img src="https://upload-images.jianshu.io/upload_images/5361608-81e985560c732f30.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="3-2-vanishing-points"><a href="#3-2-vanishing-points" class="headerlink" title="3.2 vanishing points"></a>3.2 vanishing points</h2><p>无穷点的投影变换不在是无穷的；<br><img src="https://upload-images.jianshu.io/upload_images/5361608-01071f0955aeb371.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>给定一个相机参数K,R,T,得到灭点：<br><img src="https://upload-images.jianshu.io/upload_images/5361608-ccbc7da86c7231c6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>定义一个平行线的超集为一个平面，每对平行线的交点都是无穷点，这些无穷点组成的线段就是无穷线，这个平面的无穷线经过投影变换<code>H</code>后不再是无穷的，被称为<code>vanishing line 或者 horizon line</code>，可以通过以下计算：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-0346133f45da09b1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>例如：<br><img src="https://upload-images.jianshu.io/upload_images/5361608-19aabed436274ba3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>橙色的是水平线，两个铁轨的交点在水平线，那么这两条铁轨就是水平线；</li>
+</ul>
+<h2 id="3-3-面"><a href="#3-3-面" class="headerlink" title="3.3 面"></a>3.3 面</h2><p>通过3d的平面法线n和对应的水平线，可以得到以下公式：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-f823386978ec4821.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br><img src="https://upload-images.jianshu.io/upload_images/5361608-f85ca24a96846ad5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>如果相机的参数已知晓，那么可以得到水平线相关的平面的方向；</li>
+</ul>
+<h2 id="3-4-无穷面"><a href="#3-4-无穷面" class="headerlink" title="3.4 无穷面"></a>3.4 无穷面</h2><ul>
+<li>定义：2个或多个无穷线组成的平面</li>
+<li>在齐次坐标系下用<code>[0 0 0 1]T</code>表示</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-a38031e839a04718.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>设两对平行线的灭点为v1,v2, 平行线的方向分别为d1,d2，那么这两个方向的夹角为：<br><img src="https://upload-images.jianshu.io/upload_images/5361608-3f0fee0cbccdce69.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-344f019d6232aca4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-f0888390d19d82e1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>可以同时扩展到平面：<br><img src="https://upload-images.jianshu.io/upload_images/5361608-e388a2ec9b5c1e0b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="3-5-投影变换-总结"><a href="#3-5-投影变换-总结" class="headerlink" title="3.5  投影变换 总结"></a>3.5  投影变换 总结</h2><ul>
+<li>使用投影变换，可以将无穷点投影为灭点；</li>
+<li>无穷线投影为水平线；<br><img src="https://upload-images.jianshu.io/upload_images/5361608-4d2c94fdc767a451.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-2af4fad907d2ad90.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-e5c3d841693d5796.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<hr>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    jingxa
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://jingxa.github.io/2018/06/22/3-Single-Vew-Metrology/" title="3_Single_View_Metrology">https://jingxa.github.io/2018/06/22/3-Single-Vew-Metrology/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Single-View-Metrology/" rel="tag"># Single_View_Metrology</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/22/4-Camera-Calibration/" rel="next" title="4_Camera_Calibration">
+                <i class="fa fa-chevron-left"></i> 4_Camera_Calibration
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/22/6-Epipolar-Geomotry-2/" rel="prev" title="6_Epipolar_Geomotry_2">
+                6_Epipolar_Geomotry_2 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="jingxa" />
+            
+              <p class="site-author-name" itemprop="name">jingxa</p>
+              <p class="site-description motion-element" itemprop="description">单影无人相依偎！</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/rss2.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/jingxa" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:wjszwzyd@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://kylingit.com/" title="诗与胡说" target="_blank">诗与胡说</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-2d中的变换"><span class="nav-number">1.</span> <span class="nav-text">1  2d中的变换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-几何变换"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 几何变换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-相似变换"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 相似变换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-仿射变换"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 仿射变换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-投影变换"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 投影变换</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-vanishing-points-and-lines-灭点"><span class="nav-number">2.</span> <span class="nav-text">2 vanishing points and lines (灭点)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-无穷点"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 无穷点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-无穷线"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 无穷线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-无穷点的投影变换"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 无穷点的投影变换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-无穷线的投影变换"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 无穷线的投影变换</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-3d中的点和面"><span class="nav-number">3.</span> <span class="nav-text">3 3d中的点和面</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-3d中的无穷点"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 3d中的无穷点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-vanishing-points"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 vanishing points</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-面"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-无穷面"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 无穷面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-投影变换-总结"><span class="nav-number">3.5.</span> <span class="nav-text">3.5  投影变换 总结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jingxa</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">6.4k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+      <style>
+        a.gitment-editor-footer-tip { display: none; }
+        .gitment-container.gitment-footer-container { display: none; }
+      </style>
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'jingxa',
+            repo: 'jingxa.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: 'a60429c86a4b7abb1e1d5d4fa11db0557eb2683a',
+            
+                client_id: 'a24135f240136ad4e4bb'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

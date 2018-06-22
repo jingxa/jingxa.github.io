@@ -112,7 +112,7 @@
 
 
 
-  <meta name="keywords" content="hexo," />
+  <meta name="keywords" content="Epipolar_Gemotry," />
 
 
 
@@ -125,18 +125,40 @@
 
 
 
-<meta name="description" content="简单记录一下利用hexo+github搭建博客的过程 主要思路　　安装git和node的过程就不多提了，本次安装hexo博客主要采用建立GitHub pages托管，建立两个分支，一个用于提交源文件，一个用于提交hexo静态文件，如果博客需要换电脑，直接git clone下来即可  hexo分支：博客源文件内容master分支:静态博客内容  一 建立远程库　　注意事项：　　　　１.建立两个分支m">
-<meta name="keywords" content="hexo">
+<meta name="description" content="CS231A笔记文章截图大多来自斯坦福CS231A课程;    本章节许多问题没有看懂，o(╥﹏╥)o   1 问题  两个图片平行的问题 无旋转 R = I 平移： 假设在x 轴上平移    那么 本质矩阵为：  计算极线的方向：  可知，两张图片的极线是水平的；  可以得知，两点是共享同一个坐标轴 v的； 2  Rectification:    making    two    image">
+<meta name="keywords" content="Epipolar_Gemotry">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hexo博客搭建记录">
-<meta property="og:url" content="https://jingxa.github.io/2017/05/31/hexo博客搭建记录/index.html">
+<meta property="og:title" content="6_Epipolar_Geomotry_2">
+<meta property="og:url" content="https://jingxa.github.io/2018/06/22/6-Epipolar-Geomotry-2/index.html">
 <meta property="og:site_name" content="Jingxa&#39;s Blog">
-<meta property="og:description" content="简单记录一下利用hexo+github搭建博客的过程 主要思路　　安装git和node的过程就不多提了，本次安装hexo博客主要采用建立GitHub pages托管，建立两个分支，一个用于提交源文件，一个用于提交hexo静态文件，如果博客需要换电脑，直接git clone下来即可  hexo分支：博客源文件内容master分支:静态博客内容  一 建立远程库　　注意事项：　　　　１.建立两个分支m">
+<meta property="og:description" content="CS231A笔记文章截图大多来自斯坦福CS231A课程;    本章节许多问题没有看懂，o(╥﹏╥)o   1 问题  两个图片平行的问题 无旋转 R = I 平移： 假设在x 轴上平移    那么 本质矩阵为：  计算极线的方向：  可知，两张图片的极线是水平的；  可以得知，两点是共享同一个坐标轴 v的； 2  Rectification:    making    two    image">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-19T14:43:46.146Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-8cc0457621c6e56b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-208521e7cc7aff33.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-a2d105ea0a781cb8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-9b6f663493447819.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-b726092d63e282c8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-38908e5c54eec044.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-71094389014fe2b2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-862088c7ad288ef4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-97cac06011167479.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-c61637121427c095.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-caa07270e4d57480.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-a26a241aae147875.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-5ef88878c2c0ff5d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-24873393b76fdbc0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-11b0d26911a7843d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-364455beb480ae7a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-6359e1f4480583c4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-063b28dd23947fd5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-9d707c9d5df7a41f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-9baeaa8d9a32d5cb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-80295e9834fc1d02.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-06-22T02:57:27.234Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hexo博客搭建记录">
-<meta name="twitter:description" content="简单记录一下利用hexo+github搭建博客的过程 主要思路　　安装git和node的过程就不多提了，本次安装hexo博客主要采用建立GitHub pages托管，建立两个分支，一个用于提交源文件，一个用于提交hexo静态文件，如果博客需要换电脑，直接git clone下来即可  hexo分支：博客源文件内容master分支:静态博客内容  一 建立远程库　　注意事项：　　　　１.建立两个分支m">
+<meta name="twitter:title" content="6_Epipolar_Geomotry_2">
+<meta name="twitter:description" content="CS231A笔记文章截图大多来自斯坦福CS231A课程;    本章节许多问题没有看懂，o(╥﹏╥)o   1 问题  两个图片平行的问题 无旋转 R = I 平移： 假设在x 轴上平移    那么 本质矩阵为：  计算极线的方向：  可知，两张图片的极线是水平的；  可以得知，两点是共享同一个坐标轴 v的； 2  Rectification:    making    two    image">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5361608-8cc0457621c6e56b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -166,13 +188,13 @@
 
 
 
-  <link rel="canonical" href="https://jingxa.github.io/2017/05/31/hexo博客搭建记录/"/>
+  <link rel="canonical" href="https://jingxa.github.io/2018/06/22/6-Epipolar-Geomotry-2/"/>
 
 
 
 
 
-  <title>hexo博客搭建记录 | Jingxa's Blog</title>
+  <title>6_Epipolar_Geomotry_2 | Jingxa's Blog</title>
   
 
 
@@ -309,7 +331,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://jingxa.github.io/2017/05/31/hexo博客搭建记录/">
+    <link itemprop="mainEntityOfPage" href="https://jingxa.github.io/2018/06/22/6-Epipolar-Geomotry-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="jingxa">
@@ -326,7 +348,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">hexo博客搭建记录</h1>
+          <h1 class="post-title" itemprop="name headline">6_Epipolar_Geomotry_2</h1>
         
 
         <div class="post-meta">
@@ -338,8 +360,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-31T18:37:27+08:00">
-                2017-05-31
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-22T10:38:18+08:00">
+                2018-06-22
               </time>
             
 
@@ -361,8 +383,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/杂乱笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">杂乱笔记</span>
+                  <a href="/categories/cs231A/" itemprop="url" rel="index">
+                    <span itemprop="name">cs231A</span>
                   </a>
                 </span>
 
@@ -379,8 +401,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/05/31/hexo博客搭建记录/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2017/05/31/hexo博客搭建记录/" itemprop="commentsCount"></span>
+                <a href="/2018/06/22/6-Epipolar-Geomotry-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/06/22/6-Epipolar-Geomotry-2/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -402,7 +424,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  936
+                  259
                 </span>
               
 
@@ -418,7 +440,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4
+                  1
                 </span>
               
             </div>
@@ -439,73 +461,69 @@
       
 
       
-        <p>简单记录一下利用hexo+github搭建博客的过程</p>
-<h4 id="主要思路"><a href="#主要思路" class="headerlink" title="主要思路"></a>主要思路</h4><p>　　安装git和node的过程就不多提了，本次安装hexo博客主要采用建立GitHub pages托管，建立两个分支，一个用于提交源文件，一个用于提交hexo静态文件，如果博客需要换电脑，直接git clone下来即可</p>
-<blockquote>
-<p>hexo分支：博客源文件内容<br>master分支:静态博客内容</p>
+        <blockquote>
+<p>CS231A笔记<br>文章截图大多来自斯坦福CS231A课程;</p>
 </blockquote>
-<h4 id="一-建立远程库"><a href="#一-建立远程库" class="headerlink" title="一 建立远程库"></a>一 建立远程库</h4><p>　　注意事项：<br>　　　　１.建立两个分支master 和hexo<br>　　　　２.将hexo分支设为默认分支，这样方便提交源文件</p>
-<h4 id="二、下载远程库"><a href="#二、下载远程库" class="headerlink" title="二、下载远程库"></a>二、下载远程库</h4><pre><code>git clone git@github.com:jingxa/jingxa.github.io.git
-</code></pre><p>改成你的名字</p>
-<h6 id="【特别注意】：先不要进行下面的步骤，先将仓库中【-git-gitignore】复制出来，不然下面安装hexo会将这个给覆盖掉，后面无法提交"><a href="#【特别注意】：先不要进行下面的步骤，先将仓库中【-git-gitignore】复制出来，不然下面安装hexo会将这个给覆盖掉，后面无法提交" class="headerlink" title="【特别注意】：先不要进行下面的步骤，先将仓库中【.git,.gitignore】复制出来，不然下面安装hexo会将这个给覆盖掉，后面无法提交"></a>【特别注意】：先不要进行下面的步骤，先将仓库中【.git,.gitignore】复制出来，不然下面安装hexo会将这个给覆盖掉，后面无法提交</h6><h4 id="三、开始安装hexo"><a href="#三、开始安装hexo" class="headerlink" title="三、开始安装hexo"></a>三、开始安装hexo</h4><h5 id="1、安装hexo"><a href="#1、安装hexo" class="headerlink" title="1、安装hexo"></a>1、安装hexo</h5><pre><code> npm install -g hexo-cli
-</code></pre><h5 id="2、-初始化hexo"><a href="#2、-初始化hexo" class="headerlink" title="2、 初始化hexo"></a>2、 初始化hexo</h5><pre><code>hexo init
-</code></pre><h5 id="3、安装npm"><a href="#3、安装npm" class="headerlink" title="3、安装npm"></a>3、安装npm</h5><pre><code> npm install
-</code></pre><h5 id="4、-安装next主题-："><a href="#4、-安装next主题-：" class="headerlink" title="4、 安装next主题 ："></a>4、 安装next主题 ：</h5><pre><code>git clone https://github.com/iissnan/hexo-theme-next themes/next
-</code></pre><p>【注意：在<em>.jithub.io和themes/next都有一个_config.yml的文件，为了区分。我们使用一下称呼】<br>–</em>github.io/_config.yml:站点配置文件<br>–themes/next/_config.yml:主题配置文件</p>
-<h5 id="5-配置站点文件"><a href="#5-配置站点文件" class="headerlink" title="5.配置站点文件"></a>5.配置站点文件</h5><h6 id="【注意：每一项的填写，其-后面都要保留一个空格】"><a href="#【注意：每一项的填写，其-后面都要保留一个空格】" class="headerlink" title="【注意：每一项的填写，其:后面都要保留一个空格】"></a>【注意：每一项的填写，其:后面都要保留一个空格】</h6><p>(1).修改网站相关信息</p>
-<pre><code>title: 你的题目
-subtitle: 小题目
-description: 描述
-author: 作者
-language: zh-Hans
-timezone: Asia/Shanghai
-</code></pre><p>(2).配置统一资源定位符（个人域名）</p>
-<pre><code>url: https://jingxa.github.io
-</code></pre><p>对于root（根目录）、permalink（永久链接）、permalink_defaults（默认永久链接）等其他信息保持默认。<br>(3). 配置部署</p>
-<pre><code>deploy:
-  type: git
-  repo: ssh://git@github.com/jingxa/jingxa.github.io.git
-  branch: master
-</code></pre><p>这里我们使用ssh，不使用https,可以避免提交的时候需要输入密码验证<br>(4).主题修改</p>
-<pre><code>themes: next
-</code></pre><h5 id="6-配置主题文件"><a href="#6-配置主题文件" class="headerlink" title="6.配置主题文件"></a>6.配置主题文件</h5><p>这些大家自己百度<br><a href="http://www.jianshu.com/p/5973c05d7100" target="_blank" rel="noopener">【干货】2个小时教你hexo博客添加评论、打赏、RSS等功能</a></p>
-<h5 id="7-提交"><a href="#7-提交" class="headerlink" title="7.提交"></a>7.提交</h5><p>这一步大家讲源文件提交到github,托管源码，方便以后转移、<br>在提交之前，大家需要将【.gitignore】中添加一些配置，免得将一些不必要的东西提交到github上，我的配置如下：</p>
-<pre><code>.DS_Store
-Thumbs.db
-db.json
-*.log
-node_modules/
-public/
-.deploy*/
-</code></pre><p>将这个不必要的忽略掉<br>(1).增加文件 </p>
-<pre><code>git add .
-</code></pre><p>提交所有的文件<br>(2).可以使用 </p>
-<pre><code>git status
-</code></pre><p>检查提交哪些东西<br>(3).提交 </p>
-<pre><code>git commit -m &quot;自己修改commit信息&quot;
-</code></pre><p>(4).重要的地方，我们需要将修改提交到hexo,分支</p>
-<pre><code>git push origin hexo
-</code></pre><p>然后完成了源文件的提交，下一步就是提交hexo生成的静态文件，再次之前，需要安装依赖包</p>
-<h5 id="8-安装npm-install-hexo-deployer-git-–save"><a href="#8-安装npm-install-hexo-deployer-git-–save" class="headerlink" title="8.安装npm install hexo-deployer-git –save"></a>8.安装npm install hexo-deployer-git –save</h5><pre><code>npm install hexo-deployer-git --save
-</code></pre><p>其实这一步可以在前面npm install 之后安装</p>
-<h5 id="9-静态博客生成"><a href="#9-静态博客生成" class="headerlink" title="9.静态博客生成"></a>9.静态博客生成</h5><p>(1).我们可以写一篇文章</p>
-<pre><code>hexo new &quot;你的题目&quot;
-</code></pre><p>我们可以在本地博客文件夹source-&gt;_post文件夹下看到我们新建的markdown文件。<br>保存后，我们进行本地发布：<br>(2).我自己测试，</p>
-<pre><code>　hexo s -p 8888
-</code></pre><p>如果使用 </p>
-<pre><code>hexo server
-</code></pre><p> 会使用默认端口4000，这个一直不能再本地显示，所以我们可以自己更改端口，就能正常访问<br>(3).打开浏览器，输入：</p>
-<pre><code>http://localhost:8888/
-</code></pre><p>我们可以在浏览器端看到我们搭建好的博客和发布的文章：</p>
-<h5 id="10-博客提交到github上"><a href="#10-博客提交到github上" class="headerlink" title="10.博客提交到github上"></a>10.博客提交到github上</h5><p>(1).这一步主要是清除缓存数据</p>
-<pre><code>hexo clean
-</code></pre><p>(2). 生成</p>
-<pre><code>//hexo generate可以简写成
-hexo g
-</code></pre><p>(3). 发布</p>
-<pre><code>//hexo deploy可以简写成 
-hexo d
-</code></pre><p>然后访问你的默认网站。就可以看到你的成果了！</p>
+<hr>
+<blockquote>
+<p>本章节许多问题没有看懂，o(╥﹏╥)o</p>
+</blockquote>
+<hr>
+<h1 id="1-问题"><a href="#1-问题" class="headerlink" title="1 问题"></a>1 问题</h1><p><img src="https://upload-images.jianshu.io/upload_images/5361608-8cc0457621c6e56b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>两个图片平行的问题<ul>
+<li>无旋转 R = I</li>
+<li>平移： 假设在x 轴上平移</li>
+</ul>
+</li>
+</ul>
+<p>那么 本质矩阵为：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-208521e7cc7aff33.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>计算极线的方向：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-a2d105ea0a781cb8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="="></p>
+<p>可知，两张图片的极线是水平的；</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-9b6f663493447819.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>可以得知，两点是共享同一个坐标轴 v的；</p>
+<h1 id="2-Rectification-making-two-images-“parallel”"><a href="#2-Rectification-making-two-images-“parallel”" class="headerlink" title="2  Rectification:    making    two    images    “parallel”"></a>2  Rectification:    making    two    images    “parallel”</h1><ul>
+<li>平行图片的优点</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-b726092d63e282c8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="2-1-三角化"><a href="#2-1-三角化" class="headerlink" title="2.1 三角化"></a>2.1 三角化</h2><ul>
+<li>point triangulation</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-38908e5c54eec044.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>距离计算<br><img src="https://upload-images.jianshu.io/upload_images/5361608-71094389014fe2b2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-862088c7ad288ef4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="2-2-对应性问题"><a href="#2-2-对应性问题" class="headerlink" title="2.2 对应性问题"></a>2.2 对应性问题</h2><p><img src="https://upload-images.jianshu.io/upload_images/5361608-97cac06011167479.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-c61637121427c095.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="2-2-1-对应性方法"><a href="#2-2-1-对应性方法" class="headerlink" title="2.2.1 对应性方法"></a>2.2.1 对应性方法</h3><p><img src="https://upload-images.jianshu.io/upload_images/5361608-caa07270e4d57480.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>两个图片共享v轴，只在u轴上变化；</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-a26a241aae147875.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>这种方法造成强度的改变；</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-5ef88878c2c0ff5d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>窗口大小不同的结果为；</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-24873393b76fdbc0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>存在四个不同的问题：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-11b0d26911a7843d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-364455beb480ae7a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-6359e1f4480583c4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-063b28dd23947fd5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-9d707c9d5df7a41f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-9baeaa8d9a32d5cb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<hr>
+<h2 id="3-校正两张图片"><a href="#3-校正两张图片" class="headerlink" title="3 校正两张图片"></a>3 校正两张图片</h2><ul>
+<li>通过归一化8点算法获取基本矩阵</li>
+<li>极线交于极点： 通过最小二乘误差拟合</li>
+<li>svd计算 极点</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-80295e9834fc1d02.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<hr>
+<ul>
+<li>在求得极点e,e’</li>
+<li>寻找一对单应性矩阵H1,H2,使得极点无穷，即两张图片平行；</li>
+</ul>
 <hr>
 
       
@@ -527,7 +545,7 @@ hexo d
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://jingxa.github.io/2017/05/31/hexo博客搭建记录/" title="hexo博客搭建记录">https://jingxa.github.io/2017/05/31/hexo博客搭建记录/</a>
+    <a href="https://jingxa.github.io/2018/06/22/6-Epipolar-Geomotry-2/" title="6_Epipolar_Geomotry_2">https://jingxa.github.io/2018/06/22/6-Epipolar-Geomotry-2/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -542,7 +560,7 @@ hexo d
       
         <div class="post-tags">
           
-            <a href="/tags/hexo/" rel="tag"># hexo</a>
+            <a href="/tags/Epipolar-Gemotry/" rel="tag"># Epipolar_Gemotry</a>
           
         </div>
       
@@ -555,15 +573,15 @@ hexo d
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/06/22/3-Single-Vew-Metrology/" rel="next" title="3_Single_View_Metrology">
+                <i class="fa fa-chevron-left"></i> 3_Single_View_Metrology
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/19/cs231a-homework-1/" rel="prev" title="cs231a-homework-1">
-                cs231a-homework-1 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -743,7 +761,7 @@ hexo d
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#主要思路"><span class="nav-number">1.</span> <span class="nav-text">主要思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一-建立远程库"><span class="nav-number">2.</span> <span class="nav-text">一 建立远程库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、下载远程库"><span class="nav-number">3.</span> <span class="nav-text">二、下载远程库</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#【特别注意】：先不要进行下面的步骤，先将仓库中【-git-gitignore】复制出来，不然下面安装hexo会将这个给覆盖掉，后面无法提交"><span class="nav-number">3.0.1.</span> <span class="nav-text">【特别注意】：先不要进行下面的步骤，先将仓库中【.git,.gitignore】复制出来，不然下面安装hexo会将这个给覆盖掉，后面无法提交</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、开始安装hexo"><span class="nav-number">4.</span> <span class="nav-text">三、开始安装hexo</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、安装hexo"><span class="nav-number">4.1.</span> <span class="nav-text">1、安装hexo</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、-初始化hexo"><span class="nav-number">4.2.</span> <span class="nav-text">2、 初始化hexo</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3、安装npm"><span class="nav-number">4.3.</span> <span class="nav-text">3、安装npm</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4、-安装next主题-："><span class="nav-number">4.4.</span> <span class="nav-text">4、 安装next主题 ：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-配置站点文件"><span class="nav-number">4.5.</span> <span class="nav-text">5.配置站点文件</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#【注意：每一项的填写，其-后面都要保留一个空格】"><span class="nav-number">4.5.1.</span> <span class="nav-text">【注意：每一项的填写，其:后面都要保留一个空格】</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-配置主题文件"><span class="nav-number">4.6.</span> <span class="nav-text">6.配置主题文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-提交"><span class="nav-number">4.7.</span> <span class="nav-text">7.提交</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-安装npm-install-hexo-deployer-git-–save"><span class="nav-number">4.8.</span> <span class="nav-text">8.安装npm install hexo-deployer-git –save</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#9-静态博客生成"><span class="nav-number">4.9.</span> <span class="nav-text">9.静态博客生成</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#10-博客提交到github上"><span class="nav-number">4.10.</span> <span class="nav-text">10.博客提交到github上</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-问题"><span class="nav-number">1.</span> <span class="nav-text">1 问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Rectification-making-two-images-“parallel”"><span class="nav-number">2.</span> <span class="nav-text">2  Rectification:    making    two    images    “parallel”</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-三角化"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 三角化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-对应性问题"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 对应性问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-对应性方法"><span class="nav-number">2.2.1.</span> <span class="nav-text">2.2.1 对应性方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-校正两张图片"><span class="nav-number">2.3.</span> <span class="nav-text">3 校正两张图片</span></a></li></ol></li></ol></div>
             
 
           </div>
