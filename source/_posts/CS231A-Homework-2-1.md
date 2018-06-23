@@ -63,7 +63,7 @@ categories:
 - 首先获得F矩阵的近似；
 - 第二次获得RANK为2的F;
 
-```
+```python
 # points1, points2 都是np.array
 def lls_eight_point_alg(points1, points2):
     len = points1.shape[0]
@@ -142,7 +142,7 @@ def lls_eight_point_alg(points1, points2):
 ![](http://latex.codecogs.com/gif.latex?%5Csqrt%7B2/%28%5Csum_%7Bi%3D0%7D%5E%7Bn%7D%28x_%7Bi%7D%20-%20%5Coverline%7Bx%7D%29%5E%7B2%7D%20/%20N%29%20%7D)
 
 代码为：
-```
+```python
 def normalized_eight_point_alg(points1, points2):
     N = points1.shape[0]
     points1_uv = points1[:, 0:2]
@@ -202,7 +202,7 @@ def normalized_eight_point_alg(points1, points2):
 
 代码为：
 
-```
+```python
 def compute_distance_to_epipolar_lines(points1, points2, F):
     # F.Tp2 = l, 求得p2到p1面上的映射直线
     line = F.T.dot(points2.T)  # 3 * N
@@ -223,7 +223,7 @@ def compute_distance_to_epipolar_lines(points1, points2, F):
 
 ## 4. 画出极线
 
-```
+```python
 def plot_epipolar_lines_on_images(points1, points2, im1, im2, F):
     plt.subplot(1, 2, 1)  # 建立1*2 的图
     line1 = F.T.dot(points2.T)   # p2到p1面上的极线
