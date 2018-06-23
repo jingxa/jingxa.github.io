@@ -112,7 +112,7 @@
 
 
 
-  <meta name="keywords" content="homeworks,Epipolar_Geometry," />
+  <meta name="keywords" content="Epipolar_Geometry,homeworks," />
 
 
 
@@ -126,7 +126,7 @@
 
 
 <meta name="description" content="CS231A-Homework-2:ps-code2-part-1  一、 从对应点估计基础矩阵 本题要求从对应点估计基础矩阵，使用二种方法：  线性最小二乘法的八点算法 归一化八点算法   笔记：  对极几何1.1 八点算法– 基础矩阵求解过程   给予两张图片，没有相机内外参数；  求出基本矩阵  方法： ‘Eight-Point 算法 ‘     至少8对 对应点   则每队对对应点满足：">
-<meta name="keywords" content="homeworks,Epipolar_Geometry">
+<meta name="keywords" content="Epipolar_Geometry,homeworks">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CS231A-Homework-2.1">
 <meta property="og:url" content="https://jingxa.github.io/2018/06/23/CS231A-Homework-2-1/index.html">
@@ -150,7 +150,7 @@
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-47c66c9adca14dc2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=930595087,3467127615&fm=58">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-3ce26c6c5b0b7826.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-06-23T09:37:38.510Z">
+<meta property="og:updated_time" content="2018-06-23T09:47:16.931Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CS231A-Homework-2.1">
 <meta name="twitter:description" content="CS231A-Homework-2:ps-code2-part-1  一、 从对应点估计基础矩阵 本题要求从对应点估计基础矩阵，使用二种方法：  线性最小二乘法的八点算法 归一化八点算法   笔记：  对极几何1.1 八点算法– 基础矩阵求解过程   给予两张图片，没有相机内外参数；  求出基本矩阵  方法： ‘Eight-Point 算法 ‘     至少8对 对应点   则每队对对应点满足：">
@@ -510,7 +510,7 @@
 <li>首先获得F矩阵的近似；</li>
 <li>第二次获得RANK为2的F;</li>
 </ul>
-<pre><code># points1, points2 都是np.array
+<pre><code class="python"># points1, points2 都是np.array
 def lls_eight_point_alg(points1, points2):
     len = points1.shape[0]
 
@@ -535,7 +535,8 @@ def lls_eight_point_alg(points1, points2):
     F = np.dot(U, np.dot(s, VT))
 
     return F
-</code></pre><h2 id="2-归一化八点算法"><a href="#2-归一化八点算法" class="headerlink" title="2. 归一化八点算法"></a>2. 归一化八点算法</h2><p>标准的8点算法存在的问题：</p>
+</code></pre>
+<h2 id="2-归一化八点算法"><a href="#2-归一化八点算法" class="headerlink" title="2. 归一化八点算法"></a>2. 归一化八点算法</h2><p>标准的8点算法存在的问题：</p>
 <ul>
 <li>p点， 和通过基本矩阵将点p’映射到的极线上l= Fp’，两者的距离很大；点和极线之间的均值误差如下：</li>
 </ul>
@@ -575,7 +576,7 @@ def lls_eight_point_alg(points1, points2):
 <p>(1) 归一化： 先平移到新坐标系，在缩放<br><img src="http://latex.codecogs.com/gif.latex?%5Cbegin%7Bbmatrix%7D%20%26s_%7Bx%7D%20%260%20%26s_%7Bx%7Dt_%7Bx%7D%5C%5C%20%260%20%26s_%7By%7D%20%26s_%7By%7Dt_%7By%7D%5C%5C%20%260%20%260%20%261%20%5Cend%7Bbmatrix%7D%20*%20%5Cbegin%7Bbmatrix%7D%20x%5C%5C%20y%5C%5C%201%20%5Cend%7Bbmatrix%7D%20%3D%20%5Cbegin%7Bbmatrix%7D%20s_%7Bx%7D%28x&plus;t_%7Bx%7D%29%5C%5C%20s_%7By%7D%28y&plus;t_%7By%7D%29%5C%5C%201%20%5Cend%7Bbmatrix%7D" alt=""></p>
 <p>其中，缩放系数为：<br><img src="http://latex.codecogs.com/gif.latex?%5Csqrt%7B2/%28%5Csum_%7Bi%3D0%7D%5E%7Bn%7D%28x_%7Bi%7D%20-%20%5Coverline%7Bx%7D%29%5E%7B2%7D%20/%20N%29%20%7D" alt=""></p>
 <p>代码为：</p>
-<pre><code>def normalized_eight_point_alg(points1, points2):
+<pre><code class="python">def normalized_eight_point_alg(points1, points2):
     N = points1.shape[0]
     points1_uv = points1[:, 0:2]
     points2_uv = points2[:, 0:2]    # 取x,y 坐标
@@ -619,7 +620,8 @@ def lls_eight_point_alg(points1, points2):
     return F
 
 
-</code></pre><h2 id="3-计算平均距离"><a href="#3-计算平均距离" class="headerlink" title="3. 计算平均距离"></a>3. 计算平均距离</h2><ul>
+</code></pre>
+<h2 id="3-计算平均距离"><a href="#3-计算平均距离" class="headerlink" title="3. 计算平均距离"></a>3. 计算平均距离</h2><ul>
 <li>通过公式将p2的点映射成为p1面上的一条直线—极线</li>
 </ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/5361608-47c66c9adca14dc2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
@@ -628,7 +630,7 @@ def lls_eight_point_alg(points1, points2):
 </ul>
 <p><img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=930595087,3467127615&amp;fm=58" alt=""></p>
 <p>代码为：</p>
-<pre><code>def compute_distance_to_epipolar_lines(points1, points2, F):
+<pre><code class="python">def compute_distance_to_epipolar_lines(points1, points2, F):
     # F.Tp2 = l, 求得p2到p1面上的映射直线
     line = F.T.dot(points2.T)  # 3 * N
 
@@ -644,7 +646,8 @@ def lls_eight_point_alg(points1, points2):
         dis_sum += np.abs(A*x + B*y + C) / np.sqrt(A**2 + B**2)
 
     return dis_sum / N      # 平均距离
-</code></pre><h2 id="4-画出极线"><a href="#4-画出极线" class="headerlink" title="4. 画出极线"></a>4. 画出极线</h2><pre><code>def plot_epipolar_lines_on_images(points1, points2, im1, im2, F):
+</code></pre>
+<h2 id="4-画出极线"><a href="#4-画出极线" class="headerlink" title="4. 画出极线"></a>4. 画出极线</h2><pre><code class="python">def plot_epipolar_lines_on_images(points1, points2, im1, im2, F):
     plt.subplot(1, 2, 1)  # 建立1*2 的图
     line1 = F.T.dot(points2.T)   # p2到p1面上的极线
     N1 = line1.shape[1]     # 极线的数量
@@ -662,7 +665,8 @@ def lls_eight_point_alg(points1, points2):
                  &#39;r&#39;)
         plt.plot([points2[i][0]], [points2[i][1]], &#39;b*&#39;)
     plt.imshow(im2, cmap=&#39;gray&#39;)
-</code></pre><p>结果为：</p>
+</code></pre>
+<p>结果为：</p>
 <pre><code>Set: data/set1
 --------------------------------------------------------------------------------
 Fundamental Matrix from LLS  8-point algorithm:
@@ -731,9 +735,9 @@ Distance to lines in image 2 for normalized: 0.8959928005846117
       
         <div class="post-tags">
           
-            <a href="/tags/homeworks/" rel="tag"># homeworks</a>
-          
             <a href="/tags/Epipolar-Geometry/" rel="tag"># Epipolar_Geometry</a>
+          
+            <a href="/tags/homeworks/" rel="tag"># homeworks</a>
           
         </div>
       
