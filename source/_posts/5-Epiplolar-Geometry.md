@@ -20,13 +20,13 @@ categories:
 
 - 【推荐文章】：  [对极几何（Epipolar Geometry）](http://www.cnblogs.com/clarenceliang/p/6704970.html)
 
-- 叉乘：两个向量的叉乘可以由一个向量的反对称矩阵和另一向量的积；
+- 叉乘：两个向量的叉乘可以由一个向量的斜对称矩阵和另一向量的积；
 
 ![](https://upload-images.jianshu.io/upload_images/5361608-58e56509b18c3aac.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
 ## 1.1 特点
-- 极线交于一点---极点
+- 前向平移---极点都处于同一位置
 
 ![](https://upload-images.jianshu.io/upload_images/5361608-d9608d848346057d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
@@ -65,7 +65,7 @@ categories:
 为本质矩阵（The Essential Matrix）：
 
 >- 3*3的矩阵；
->- 自由度： 5
+>- 自由度： 5（3:Rotation 2:translation）
 >- rank : 2 ,奇异矩阵
 
 
@@ -94,7 +94,7 @@ categories:
 
 ![](https://upload-images.jianshu.io/upload_images/5361608-8e5e3e236a54d742.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-定义世界坐标系中的点P在两个位置的相机图片上的投影为：
+定义~~世界坐标系~~  相机坐标系中的点P在两个位置的相机图片上的投影为：
 
 ![](https://upload-images.jianshu.io/upload_images/5361608-539a4452776e48a1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
@@ -118,7 +118,7 @@ F就被称为： `基本矩阵`
 > - 奇异矩阵  Rank :2
 >- 包含R, T；
 >- 包含 相机参数 K,K'
->- 自由度 ： 7
+>- 自由度 ： 7 ()
 
 > 用处
  基本矩阵已知，已知一张图片上一点和另一张图片上的对应点， 就可以求出p和p'的对应关系；
