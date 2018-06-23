@@ -112,7 +112,7 @@
 
 
 
-  <meta name="keywords" content="Epipolar_Gemotry," />
+  <meta name="keywords" content="homeworks,Epipolar_Geometry," />
 
 
 
@@ -125,35 +125,14 @@
 
 
 
-<meta name="description" content="CS231A笔记文章截图大多来自斯坦福CS231A课程;   1 基本概念 相机的旋转矩阵： 正交矩阵  极点  极线 极平面  【推荐文章】：  对极几何（Epipolar Geometry）  叉乘：两个向量的叉乘可以由一个向量的斜对称矩阵和另一向量的积；    1.1 特点 前向平移—极点都处于同一位置   1.2 本质矩阵 相机是 标准相机：K = I    由图中可以看出，p经过变换得">
-<meta name="keywords" content="Epipolar_Gemotry">
+<meta name="description" content="CS231A-Homework-2:ps-code2-part-1  一、 从对应点估计基础矩阵 本题要求从对应点估计基础矩阵，使用二种方法：  线性最小二乘法的八点算法 归一化八点算法   笔记：  对极几何1.1 八点算法– 基础矩阵求解过程   给予两张图片，没有相机内外参数；  求出基本矩阵  方法： ‘Eight-Point 算法 ‘     至少8对 对应点   则每队对对应点满足：">
+<meta name="keywords" content="homeworks,Epipolar_Geometry">
 <meta property="og:type" content="article">
-<meta property="og:title" content="5_Epiplolar_Geometry">
-<meta property="og:url" content="https://jingxa.github.io/2018/06/22/5-Epiplolar-Geometry/index.html">
+<meta property="og:title" content="CS231A-Homework-2.1">
+<meta property="og:url" content="https://jingxa.github.io/2018/06/23/CS231A-Homework-2-1/index.html">
 <meta property="og:site_name" content="Jingxa&#39;s Blog">
-<meta property="og:description" content="CS231A笔记文章截图大多来自斯坦福CS231A课程;   1 基本概念 相机的旋转矩阵： 正交矩阵  极点  极线 极平面  【推荐文章】：  对极几何（Epipolar Geometry）  叉乘：两个向量的叉乘可以由一个向量的斜对称矩阵和另一向量的积；    1.1 特点 前向平移—极点都处于同一位置   1.2 本质矩阵 相机是 标准相机：K = I    由图中可以看出，p经过变换得">
+<meta property="og:description" content="CS231A-Homework-2:ps-code2-part-1  一、 从对应点估计基础矩阵 本题要求从对应点估计基础矩阵，使用二种方法：  线性最小二乘法的八点算法 归一化八点算法   笔记：  对极几何1.1 八点算法– 基础矩阵求解过程   给予两张图片，没有相机内外参数；  求出基本矩阵  方法： ‘Eight-Point 算法 ‘     至少8对 对应点   则每队对对应点满足：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-58e56509b18c3aac.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-d9608d848346057d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-24fd49f34c17ed5e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-26aa928ebfa621b2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://latex.codecogs.com/gif.latex?p%5E%7B%27%7D%20%3D%20R%5Ccdot%20p+T">
-<meta property="og:image" content="https://latex.codecogs.com/gif.latex?p%20%3D%20R%5E%7BT%7D%5Ccdot%20p%5E%7B%27%7D-%20R%5E%7BT%7DT">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-87f31eed4df5757f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-370b7b6e60cc5083.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-7a99b066db36db54.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-dd94d10de2b0d6f8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-a818cd6296f89153.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-5e374ad4ee35899c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-3a66b112ca5c0e67.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-320355b22790387f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-26aa928ebfa621b2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-8e5e3e236a54d742.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-539a4452776e48a1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-f33b5f801b31ac0a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-a1656321484f80b8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-2687edf23d78b80f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-0593f0f9af9f79b7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-750407be55d3a189.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-39605f51776577d9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-b2ab3e15ad77b5fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
@@ -166,11 +145,16 @@
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-a06c93ec30ac32aa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-446adabfc4846b85.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-97bf6c2a7e7c0064.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-06-23T09:11:45.322Z">
+<meta property="og:image" content="http://latex.codecogs.com/gif.latex?%5Cbegin%7Bbmatrix%7D%20%26s_%7Bx%7D%20%260%20%26s_%7Bx%7Dt_%7Bx%7D%5C%5C%20%260%20%26s_%7By%7D%20%26s_%7By%7Dt_%7By%7D%5C%5C%20%260%20%260%20%261%20%5Cend%7Bbmatrix%7D%20*%20%5Cbegin%7Bbmatrix%7D%20x%5C%5C%20y%5C%5C%201%20%5Cend%7Bbmatrix%7D%20%3D%20%5Cbegin%7Bbmatrix%7D%20s_%7Bx%7D%28x+t_%7Bx%7D%29%5C%5C%20s_%7By%7D%28y+t_%7By%7D%29%5C%5C%201%20%5Cend%7Bbmatrix%7D">
+<meta property="og:image" content="http://latex.codecogs.com/gif.latex?%5Csqrt%7B2/%28%5Csum_%7Bi%3D0%7D%5E%7Bn%7D%28x_%7Bi%7D%20-%20%5Coverline%7Bx%7D%29%5E%7B2%7D%20/%20N%29%20%7D">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-47c66c9adca14dc2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=930595087,3467127615&fm=58">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-3ce26c6c5b0b7826.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-06-23T09:37:38.510Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="5_Epiplolar_Geometry">
-<meta name="twitter:description" content="CS231A笔记文章截图大多来自斯坦福CS231A课程;   1 基本概念 相机的旋转矩阵： 正交矩阵  极点  极线 极平面  【推荐文章】：  对极几何（Epipolar Geometry）  叉乘：两个向量的叉乘可以由一个向量的斜对称矩阵和另一向量的积；    1.1 特点 前向平移—极点都处于同一位置   1.2 本质矩阵 相机是 标准相机：K = I    由图中可以看出，p经过变换得">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5361608-58e56509b18c3aac.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:title" content="CS231A-Homework-2.1">
+<meta name="twitter:description" content="CS231A-Homework-2:ps-code2-part-1  一、 从对应点估计基础矩阵 本题要求从对应点估计基础矩阵，使用二种方法：  线性最小二乘法的八点算法 归一化八点算法   笔记：  对极几何1.1 八点算法– 基础矩阵求解过程   给予两张图片，没有相机内外参数；  求出基本矩阵  方法： ‘Eight-Point 算法 ‘     至少8对 对应点   则每队对对应点满足：">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5361608-750407be55d3a189.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -200,13 +184,13 @@
 
 
 
-  <link rel="canonical" href="https://jingxa.github.io/2018/06/22/5-Epiplolar-Geometry/"/>
+  <link rel="canonical" href="https://jingxa.github.io/2018/06/23/CS231A-Homework-2-1/"/>
 
 
 
 
 
-  <title>5_Epiplolar_Geometry | Jingxa's Blog</title>
+  <title>CS231A-Homework-2.1 | Jingxa's Blog</title>
   
 
 
@@ -343,7 +327,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://jingxa.github.io/2018/06/22/5-Epiplolar-Geometry/">
+    <link itemprop="mainEntityOfPage" href="https://jingxa.github.io/2018/06/23/CS231A-Homework-2-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="jingxa">
@@ -360,7 +344,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">5_Epiplolar_Geometry</h1>
+          <h1 class="post-title" itemprop="name headline">CS231A-Homework-2.1</h1>
         
 
         <div class="post-meta">
@@ -372,8 +356,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-22T10:29:25+08:00">
-                2018-06-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-23T17:35:13+08:00">
+                2018-06-23
               </time>
             
 
@@ -413,8 +397,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/06/22/5-Epiplolar-Geometry/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/06/22/5-Epiplolar-Geometry/" itemprop="commentsCount"></span>
+                <a href="/2018/06/23/CS231A-Homework-2-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/06/23/CS231A-Homework-2-1/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -436,7 +420,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  729
+                  1,326
                 </span>
               
 
@@ -452,7 +436,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3
+                  7
                 </span>
               
             </div>
@@ -474,90 +458,22 @@
 
       
         <blockquote>
-<p>CS231A笔记<br>文章截图大多来自斯坦福CS231A课程;</p>
+<p>CS231A-Homework-2:ps-code2-part-1</p>
 </blockquote>
-<hr>
-<h1 id="1-基本概念"><a href="#1-基本概念" class="headerlink" title="1 基本概念"></a>1 基本概念</h1><ul>
-<li><p>相机的旋转矩阵： 正交矩阵</p>
-</li>
-<li><p>极点</p>
-</li>
-<li>极线</li>
-<li><p>极平面</p>
-</li>
-<li><p>【推荐文章】：  <a href="http://www.cnblogs.com/clarenceliang/p/6704970.html" target="_blank" rel="noopener">对极几何（Epipolar Geometry）</a></p>
-</li>
-<li><p>叉乘：两个向量的叉乘可以由一个向量的斜对称矩阵和另一向量的积；</p>
-</li>
-</ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-58e56509b18c3aac.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h2 id="1-1-特点"><a href="#1-1-特点" class="headerlink" title="1.1 特点"></a>1.1 特点</h2><ul>
-<li>前向平移—极点都处于同一位置</li>
-</ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-d9608d848346057d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h2 id="1-2-本质矩阵"><a href="#1-2-本质矩阵" class="headerlink" title="1.2 本质矩阵"></a>1.2 本质矩阵</h2><ul>
-<li>相机是 标准相机：K = I</li>
-</ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-24fd49f34c17ed5e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-26aa928ebfa621b2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>由图中可以看出，p经过变换得到p’:<br><img src="https://latex.codecogs.com/gif.latex?p%5E%7B%27%7D%20%3D%20R%5Ccdot%20p&plus;T" alt=""><br>得到：<br><img src="https://latex.codecogs.com/gif.latex?p%20%3D%20R%5E%7BT%7D%5Ccdot%20p%5E%7B%27%7D-%20R%5E%7BT%7DT" alt=""></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-87f31eed4df5757f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-370b7b6e60cc5083.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-7a99b066db36db54.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>通过叉乘：可以将上个式子变成：<br><img src="https://upload-images.jianshu.io/upload_images/5361608-dd94d10de2b0d6f8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h1 id="一、-从对应点估计基础矩阵"><a href="#一、-从对应点估计基础矩阵" class="headerlink" title="一、 从对应点估计基础矩阵"></a>一、 从对应点估计基础矩阵</h1><ul>
+<li><p>本题要求从对应点估计基础矩阵，使用二种方法：</p>
 <ul>
-<li>定义：<br><img src="https://upload-images.jianshu.io/upload_images/5361608-a818cd6296f89153.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></li>
+<li>线性最小二乘法的八点算法</li>
+<li>归一化八点算法</li>
 </ul>
-<p>为本质矩阵（The Essential Matrix）：</p>
-<blockquote>
+</li>
+<li><p>笔记：</p>
 <ul>
-<li>3*3的矩阵；</li>
-<li>自由度： 5（3:Rotation 2:translation）</li>
-<li>rank : 2 ,奇异矩阵</li>
+<li><a href="https://jingxa.github.io/2018/06/22/5-Epiplolar-Geometry/">对极几何</a><h2 id="1-1-八点算法–-基础矩阵求解过程"><a href="#1-1-八点算法–-基础矩阵求解过程" class="headerlink" title="1.1 八点算法– 基础矩阵求解过程"></a>1.1 八点算法– 基础矩阵求解过程</h2></li>
 </ul>
-</blockquote>
-<blockquote>
-<p>用处</p>
-</blockquote>
-<ol>
-<li>计算p 和 p’的极线</li>
-</ol>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-5e374ad4ee35899c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>表示：p被E投射到 第二幅图像上的极线l’上；</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-3a66b112ca5c0e67.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>表示：p’被E投射到 第一幅图像上的极线l上；</p>
-<ol start="2">
-<li>极点和矩阵的联系</li>
-</ol>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-320355b22790387f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h2 id="1-3-基本矩阵（Fundamental-Matrix）"><a href="#1-3-基本矩阵（Fundamental-Matrix）" class="headerlink" title="1.3 基本矩阵（Fundamental Matrix）"></a>1.3 基本矩阵（Fundamental Matrix）</h2><ul>
-<li>相机是非标准的；</li>
-</ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-26aa928ebfa621b2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>对应两个相机，两个相机的投影矩阵为：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-8e5e3e236a54d742.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>定义<del>世界坐标系</del>  相机坐标系中的点P在两个位置的相机图片上的投影为：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-539a4452776e48a1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-f33b5f801b31ac0a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>根据本质矩阵得到：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-a1656321484f80b8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>推导出，两个相机的位置变换：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-2687edf23d78b80f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>其中：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-0593f0f9af9f79b7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>F就被称为： <code>基本矩阵</code></p>
-<blockquote>
-<ul>
-<li>3* 3 矩阵</li>
-<li>奇异矩阵  Rank :2</li>
-<li>包含R, T；</li>
-<li>包含 相机参数 K,K’</li>
-<li>自由度 ： 7 ()</li>
-</ul>
-</blockquote>
-<blockquote>
-<p>用处<br> 基本矩阵已知，已知一张图片上一点和另一张图片上的对应点， 就可以求出p和p’的对应关系；</p>
-</blockquote>
-<p>#2  THE Eight-Point 算法</p>
-<h2 id="2-1-八点算法"><a href="#2-1-八点算法" class="headerlink" title="2.1 八点算法"></a>2.1 八点算法</h2><ul>
-<li>给予两张图片，没有相机内外参数；</li>
+</li>
+<li><p>给予两张图片，没有相机内外参数；</p>
+</li>
 <li><p>求出基本矩阵</p>
 </li>
 <li><p>方法： ‘<em>Eight-Point 算法</em> ‘</p>
@@ -589,8 +505,37 @@
 <li>#<a href="https://blog.csdn.net/kokerf/article/details/72630863?locationNum=2&amp;fps=1" target="_blank" rel="noopener">基本矩阵的基本解法之8点算法</a></li>
 </ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/5361608-67d92e80c6b464f9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<hr>
-<h2 id="3-2-Normalized-Eight-Point算法"><a href="#3-2-Normalized-Eight-Point算法" class="headerlink" title="3.2 Normalized Eight-Point算法"></a>3.2 Normalized Eight-Point算法</h2><p>标准的8点算法存在的问题：</p>
+<ul>
+<li>这里进行了两次SVD分解；</li>
+<li>首先获得F矩阵的近似；</li>
+<li>第二次获得RANK为2的F;</li>
+</ul>
+<pre><code># points1, points2 都是np.array
+def lls_eight_point_alg(points1, points2):
+    len = points1.shape[0]
+
+    W = np.zeros((len, 9))   # 37 * 9 齐次矩阵
+    for i in range(len):
+        u1 = points1[i, 0]
+        v1 = points1[i, 1]
+        u2 = points2[i, 0]
+        v2 = points2[i, 1]
+        W[i] = np.r_[u1*u2, u2*v1, u2, v2*u1, v1*v2, v2, u1, v1, 1]
+
+    # SVD
+    U, S, VT = np.linalg.svd(W, full_matrices=True)
+    f = VT[-1, :]   # 最后一行为最优解
+    F_hat = np.reshape(f, (3, 3))    # 最小二乘的近似
+
+    # 计算rank =2 的F
+    U, S_hat, VT = np.linalg.svd(F_hat, full_matrices=True)
+    s = np.zeros((3, 3))   # sigma 矩阵
+    s[0, 0] = S_hat[0]
+    s[1, 1] = S_hat[1]  # sigma 的Rank为2
+    F = np.dot(U, np.dot(s, VT))
+
+    return F
+</code></pre><h2 id="2-归一化八点算法"><a href="#2-归一化八点算法" class="headerlink" title="2. 归一化八点算法"></a>2. 归一化八点算法</h2><p>标准的8点算法存在的问题：</p>
 <ul>
 <li>p点， 和通过基本矩阵将点p’映射到的极线上l= Fp’，两者的距离很大；点和极线之间的均值误差如下：</li>
 </ul>
@@ -621,6 +566,136 @@
 <p><img src="https://upload-images.jianshu.io/upload_images/5361608-97bf6c2a7e7c0064.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p>然后通过反归一化，获得真实的基本矩阵；</p>
 <hr>
+<p>整个算法分为三个步骤：</p>
+<ul>
+<li>归一化，对每个点进行缩放</li>
+<li>八点算法计算Fq,</li>
+<li>反归一化</li>
+</ul>
+<p>(1) 归一化： 先平移到新坐标系，在缩放<br><img src="http://latex.codecogs.com/gif.latex?%5Cbegin%7Bbmatrix%7D%20%26s_%7Bx%7D%20%260%20%26s_%7Bx%7Dt_%7Bx%7D%5C%5C%20%260%20%26s_%7By%7D%20%26s_%7By%7Dt_%7By%7D%5C%5C%20%260%20%260%20%261%20%5Cend%7Bbmatrix%7D%20*%20%5Cbegin%7Bbmatrix%7D%20x%5C%5C%20y%5C%5C%201%20%5Cend%7Bbmatrix%7D%20%3D%20%5Cbegin%7Bbmatrix%7D%20s_%7Bx%7D%28x&plus;t_%7Bx%7D%29%5C%5C%20s_%7By%7D%28y&plus;t_%7By%7D%29%5C%5C%201%20%5Cend%7Bbmatrix%7D" alt=""></p>
+<p>其中，缩放系数为：<br><img src="http://latex.codecogs.com/gif.latex?%5Csqrt%7B2/%28%5Csum_%7Bi%3D0%7D%5E%7Bn%7D%28x_%7Bi%7D%20-%20%5Coverline%7Bx%7D%29%5E%7B2%7D%20/%20N%29%20%7D" alt=""></p>
+<p>代码为：</p>
+<pre><code>def normalized_eight_point_alg(points1, points2):
+    N = points1.shape[0]
+    points1_uv = points1[:, 0:2]
+    points2_uv = points2[:, 0:2]    # 取x,y 坐标
+    #
+    # 取坐标均值
+    points1_mean = np.mean(points1_uv, axis=0)
+    points2_mean = np.mean(points2_uv, axis=0)
+
+    # 点集的到中心的差
+    points1_new = points1_uv - points1_mean
+    points2_new = points2_uv - points2_mean
+
+    # 计算缩放参数
+    scale = np.sqrt(np.sum(points1_new**2)/N)
+    scale1 = np.sqrt(2 / (np.sum(points1_new**2)/N * 1.0))
+    scale2 = np.sqrt(2 / (np.sum(points2_new**2)/N * 1.0))
+
+    # 归一化矩阵
+    T1 = np.array([
+        [scale1, 0, -points1_mean[0] * scale1],
+        [0, scale1, -points1_mean[1] * scale2],
+        [0, 0, 1]
+    ])
+
+    T2 = np.array([
+        [scale2, 0, -points1_mean[0] * scale1],
+        [0, scale2, -points1_mean[1] * scale2],
+        [0, 0, 1]
+    ])
+
+    # 对坐标点变换
+    q1 = T1.dot(points1.T).T    # N * 3
+    q2 = T2.dot(points2.T).T    # N * 3
+
+    # 八点算法
+    Fq = lls_eight_point_alg(q1, q2)
+
+    #反归一化
+    F = T2.T.dot(Fq).dot(T1)
+
+    return F
+
+
+</code></pre><h2 id="3-计算平均距离"><a href="#3-计算平均距离" class="headerlink" title="3. 计算平均距离"></a>3. 计算平均距离</h2><ul>
+<li>通过公式将p2的点映射成为p1面上的一条直线—极线</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-47c66c9adca14dc2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>可以通过点到直线的距离公式计算平均距离：</li>
+</ul>
+<p><img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=930595087,3467127615&amp;fm=58" alt=""></p>
+<p>代码为：</p>
+<pre><code>def compute_distance_to_epipolar_lines(points1, points2, F):
+    # F.Tp2 = l, 求得p2到p1面上的映射直线
+    line = F.T.dot(points2.T)  # 3 * N
+
+    dis_sum = 0
+    N = points1.shape[0]
+
+    for i in range(N):
+        x = points1[i, 0]
+        y = points1[i, 1]
+        A = line[0, i]
+        B = line[1, i]
+        C = line[2, i]
+        dis_sum += np.abs(A*x + B*y + C) / np.sqrt(A**2 + B**2)
+
+    return dis_sum / N      # 平均距离
+</code></pre><h2 id="4-画出极线"><a href="#4-画出极线" class="headerlink" title="4. 画出极线"></a>4. 画出极线</h2><pre><code>def plot_epipolar_lines_on_images(points1, points2, im1, im2, F):
+    plt.subplot(1, 2, 1)  # 建立1*2 的图
+    line1 = F.T.dot(points2.T)   # p2到p1面上的极线
+    N1 = line1.shape[1]     # 极线的数量
+    for i in range(N1):
+        plt.plot([0, im1.shape[1]],
+                 [-line1[2][i] * 1.0 / line1[1][i], -(line1[2][i] + line1[0][i] * im1.shape[1]) * 1.0 / line1[1][i]], &#39;r&#39;)
+        plt.plot([points1[i][0]], [points1[i][1]], &#39;b*&#39;)
+    plt.imshow(im1, cmap=&#39;gray&#39;)
+
+    plt.subplot(1, 2, 2)
+    line2 = F.dot(points1.T)
+    N2 = line2.shape[1]
+    for i in range(N2):
+        plt.plot([0, im2.shape[1]], [-line2[2][i] * 1.0 / line2[1][i], -(line2[2][i] + line2[0][i] * im2.shape[1]) / line2[1][i]],
+                 &#39;r&#39;)
+        plt.plot([points2[i][0]], [points2[i][1]], &#39;b*&#39;)
+    plt.imshow(im2, cmap=&#39;gray&#39;)
+</code></pre><p>结果为：</p>
+<pre><code>Set: data/set1
+--------------------------------------------------------------------------------
+Fundamental Matrix from LLS  8-point algorithm:
+ [[ 1.55218081e-06 -8.18161523e-06 -1.50440111e-03]
+ [-5.86997052e-06 -3.02892219e-07 -1.13607605e-02]
+ [-3.52312036e-03  1.41453881e-02  9.99828068e-01]]
+Distance to lines in image 1 for LLS: 28.025662937533877
+Distance to lines in image 2 for LLS: 25.162875800036915
+p&#39;^T F p = 0.03156399064220228
+Fundamental Matrix from normalized 8-point algorithm:
+ [[ 5.93261511e-07 -5.08492255e-06  8.76427688e-05]
+ [-4.66834735e-06 -3.20108624e-07 -6.12207138e-03]
+ [-7.74714403e-04  8.42028676e-03  1.25311400e-01]]
+Distance to lines in image 1 for normalized: 0.9431072572196602
+Distance to lines in image 2 for normalized: 0.8719800541568359
+--------------------------------------------------------------------------------
+Set: data/set2
+--------------------------------------------------------------------------------
+Fundamental Matrix from LLS  8-point algorithm:
+ [[-5.63087200e-06  2.74976583e-05 -6.42650411e-03]
+ [-2.77622828e-05 -6.74748522e-06  1.52182033e-02]
+ [ 1.07623595e-02 -1.22519240e-02 -9.99730547e-01]]
+Distance to lines in image 1 for LLS: 9.701438829435915
+Distance to lines in image 2 for LLS: 14.568227190498229
+p&#39;^T F p = 0.03149037056281445
+Fundamental Matrix from normalized 8-point algorithm:
+ [[-1.53880961e-07  2.46528633e-06 -1.57563630e-04]
+ [ 3.50323566e-06  3.08159735e-07  6.82243058e-03]
+ [ 2.42265054e-04 -8.27925885e-03 -4.08002117e-03]]
+Distance to lines in image 1 for normalized: 0.8955997529976532
+Distance to lines in image 2 for normalized: 0.8959928005846117
+</code></pre><p><img src="https://upload-images.jianshu.io/upload_images/5361608-3ce26c6c5b0b7826.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<hr>
 
       
     </div>
@@ -641,7 +716,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://jingxa.github.io/2018/06/22/5-Epiplolar-Geometry/" title="5_Epiplolar_Geometry">https://jingxa.github.io/2018/06/22/5-Epiplolar-Geometry/</a>
+    <a href="https://jingxa.github.io/2018/06/23/CS231A-Homework-2-1/" title="CS231A-Homework-2.1">https://jingxa.github.io/2018/06/23/CS231A-Homework-2-1/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -656,7 +731,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Epipolar-Gemotry/" rel="tag"># Epipolar_Gemotry</a>
+            <a href="/tags/homeworks/" rel="tag"># homeworks</a>
+          
+            <a href="/tags/Epipolar-Geometry/" rel="tag"># Epipolar_Geometry</a>
           
         </div>
       
@@ -669,8 +746,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/22/2-Camera-Model/" rel="next" title="2_Camera_Model">
-                <i class="fa fa-chevron-left"></i> 2_Camera_Model
+              <a href="/2018/06/22/6-Epipolar-Geomotry-2/" rel="next" title="6_Epipolar_Geomotry_2">
+                <i class="fa fa-chevron-left"></i> 6_Epipolar_Geomotry_2
               </a>
             
           </div>
@@ -678,10 +755,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/22/4-Camera-Calibration/" rel="prev" title="4_Camera_Calibration">
-                4_Camera_Calibration <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -861,7 +934,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-基本概念"><span class="nav-number">1.</span> <span class="nav-text">1 基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-特点"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-本质矩阵"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 本质矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-基本矩阵（Fundamental-Matrix）"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 基本矩阵（Fundamental Matrix）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-八点算法"><span class="nav-number">1.4.</span> <span class="nav-text">2.1 八点算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-Normalized-Eight-Point算法"><span class="nav-number">1.5.</span> <span class="nav-text">3.2 Normalized Eight-Point算法</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、-从对应点估计基础矩阵"><span class="nav-number">1.</span> <span class="nav-text">一、 从对应点估计基础矩阵</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-八点算法–-基础矩阵求解过程"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 八点算法– 基础矩阵求解过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-归一化八点算法"><span class="nav-number">1.2.</span> <span class="nav-text">2. 归一化八点算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-计算平均距离"><span class="nav-number">1.3.</span> <span class="nav-text">3. 计算平均距离</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-画出极线"><span class="nav-number">1.4.</span> <span class="nav-text">4. 画出极线</span></a></li></ol></li></ol></div>
             
 
           </div>
