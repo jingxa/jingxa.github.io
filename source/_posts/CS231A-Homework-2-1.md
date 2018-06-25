@@ -169,10 +169,10 @@ def normalized_eight_point_alg(points1, points2):
     ])
 
     T2 = np.array([
-        [scale2, 0, -points1_mean[0] * scale1],
-        [0, scale2, -points1_mean[1] * scale2],
+		[scale2, 0, -points2_mean[0] * scale2],
+        [0, scale2, -points2_mean[1] * scale2],		# 在看到的别人答案中别人取_mean[0]，我觉得应该取[1],因为是y的差
         [0, 0, 1]
-    ])
+	])
 
     # 对坐标点变换
     q1 = T1.dot(points1.T).T    # N * 3
@@ -224,24 +224,35 @@ def compute_distance_to_epipolar_lines(points1, points2, F):
 ## 4. 画出极线
 
 ```python
-def plot_epipolar_lines_on_images(points1, points2, im1, im2, F):
     plt.subplot(1, 2, 1)  # 建立1*2 的图
-    line1 = F.T.dot(points2.T)   # p2到p1面上的极线
+    line1 = F.T.dot(points2.T)   # p2到p1面上的极线     3 * N
     N1 = line1.shape[1]     # 极线的数量
     for i in range(N1):
-        plt.plot([0, im1.shape[1]],
-                 [-line1[2][i] * 1.0 / line1[1][i], -(line1[2][i] + line1[0][i] * im1.shape[1]) * 1.0 / line1[1][i]], 'r')
-        plt.plot([points1[i][0]], [points1[i][1]], 'b*')
+        A = line1[0, i]
+        B = line1[1, i]
+        C = line1[2, i]  # 极线的参数: Ax + By + C =0; ==> y = (-A/B)x - (C/B)
+        W = im1.shape[1]    # 图片width，
+        y1 = -C/B       # (0,y1)
+        y2 = -(A * W + C) / B   # (W, y2)
+        plt.plot([0, W], [y1, y2], 'r')     # 画出每一条极线
+        plt.plot([points1[i, 0]], [points1[i, 1]], "b*")    # 画出 每个极点的（x，y）坐标
     plt.imshow(im1, cmap='gray')
 
+    # 第二幅图片
     plt.subplot(1, 2, 2)
     line2 = F.dot(points1.T)
     N2 = line2.shape[1]
-    for i in range(N2):
-        plt.plot([0, im2.shape[1]], [-line2[2][i] * 1.0 / line2[1][i], -(line2[2][i] + line2[0][i] * im2.shape[1]) / line2[1][i]],
-                 'r')
-        plt.plot([points2[i][0]], [points2[i][1]], 'b*')
+    for i in range(N1):
+        A = line2[0, i]
+        B = line2[1, i]
+        C = line2[2, i]  # 极线的参数: Ax + By + C =0; ==> y = (-A/B)x - (C/B)
+        W = im1.shape[1]    # 图片width，
+        y1 = -C/B       # (0,y1)
+        y2 = -(A * W + C) / B   # (W, y2)
+        plt.plot([0, W], [y1, y2], 'r')     # 画出每一条极线
+        plt.plot([points2[i, 0]], [points2[i, 1]], "b*")    # 画出 每个极点的（x，y）坐标
     plt.imshow(im2, cmap='gray')
+
 ```
 
 结果为：
