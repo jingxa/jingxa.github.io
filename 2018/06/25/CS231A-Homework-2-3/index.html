@@ -112,7 +112,7 @@
 
 
 
-  <meta name="keywords" content="Single_View_Metrology,Camera_Calibration," />
+  <meta name="keywords" content="Epipolar_Geometry,homeworks," />
 
 
 
@@ -125,26 +125,27 @@
 
 
 
-<meta name="description" content="CS231A笔记文章截图大多来自斯坦福CS231A课程;   1 单视图校准  回忆一下，相机参数有5个自由度；  w 为：   假设2,3 条件为真，那么w为：   这样就剩下了四个变量； 只需要三对方程就可以求得变量；">
-<meta name="keywords" content="Single_View_Metrology,Camera_Calibration">
+<meta name="description" content="cs231A Homework-2:ps-code2-part-3   三、 The Factorization Method 此方法用来解决SFM问题；  一、 算法过程 Tomasi &amp;amp; Kanade algorithm   分为两步：  Data centering Factorization    1. centering step 居中数据： 对于一张图片中的每个点，定义新的坐">
+<meta name="keywords" content="Epipolar_Geometry,homeworks">
 <meta property="og:type" content="article">
-<meta property="og:title" content="4_Camera_Calibration">
-<meta property="og:url" content="https://jingxa.github.io/2018/06/22/4-Camera-Calibration/index.html">
+<meta property="og:title" content="CS231A-Homework-2.3">
+<meta property="og:url" content="https://jingxa.github.io/2018/06/25/CS231A-Homework-2-3/index.html">
 <meta property="og:site_name" content="Jingxa&#39;s Blog">
-<meta property="og:description" content="CS231A笔记文章截图大多来自斯坦福CS231A课程;   1 单视图校准  回忆一下，相机参数有5个自由度；  w 为：   假设2,3 条件为真，那么w为：   这样就剩下了四个变量； 只需要三对方程就可以求得变量；">
+<meta property="og:description" content="cs231A Homework-2:ps-code2-part-3   三、 The Factorization Method 此方法用来解决SFM问题；  一、 算法过程 Tomasi &amp;amp; Kanade algorithm   分为两步：  Data centering Factorization    1. centering step 居中数据： 对于一张图片中的每个点，定义新的坐">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-f62ca01593756407.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-e93f7fea43d1c564.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-b1780f2198be53b2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-2193d397907e4109.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-5eb9d77e6a71dd07.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-82a9d2ce14a6c8d5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-25e8a60c165779cc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-06-22T02:56:53.828Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-eb8a7a929e736702.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-386ec29786e6939a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-cb9796ccae27a7ab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-8b77c687821f7a2e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-4f364584f1225c0d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-8a2bc38962294ff1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-be770447488c70bd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-88e8a61ad5260eab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-06-25T08:32:17.495Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="4_Camera_Calibration">
-<meta name="twitter:description" content="CS231A笔记文章截图大多来自斯坦福CS231A课程;   1 单视图校准  回忆一下，相机参数有5个自由度；  w 为：   假设2,3 条件为真，那么w为：   这样就剩下了四个变量； 只需要三对方程就可以求得变量；">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5361608-f62ca01593756407.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:title" content="CS231A-Homework-2.3">
+<meta name="twitter:description" content="cs231A Homework-2:ps-code2-part-3   三、 The Factorization Method 此方法用来解决SFM问题；  一、 算法过程 Tomasi &amp;amp; Kanade algorithm   分为两步：  Data centering Factorization    1. centering step 居中数据： 对于一张图片中的每个点，定义新的坐">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5361608-eb8a7a929e736702.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -174,13 +175,13 @@
 
 
 
-  <link rel="canonical" href="https://jingxa.github.io/2018/06/22/4-Camera-Calibration/"/>
+  <link rel="canonical" href="https://jingxa.github.io/2018/06/25/CS231A-Homework-2-3/"/>
 
 
 
 
 
-  <title>4_Camera_Calibration | Jingxa's Blog</title>
+  <title>CS231A-Homework-2.3 | Jingxa's Blog</title>
   
 
 
@@ -317,7 +318,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://jingxa.github.io/2018/06/22/4-Camera-Calibration/">
+    <link itemprop="mainEntityOfPage" href="https://jingxa.github.io/2018/06/25/CS231A-Homework-2-3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="jingxa">
@@ -334,7 +335,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">4_Camera_Calibration</h1>
+          <h1 class="post-title" itemprop="name headline">CS231A-Homework-2.3</h1>
         
 
         <div class="post-meta">
@@ -346,8 +347,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-22T10:33:29+08:00">
-                2018-06-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-25T16:28:37+08:00">
+                2018-06-25
               </time>
             
 
@@ -387,8 +388,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/06/22/4-Camera-Calibration/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/06/22/4-Camera-Calibration/" itemprop="commentsCount"></span>
+                <a href="/2018/06/25/CS231A-Homework-2-3/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/06/25/CS231A-Homework-2-3/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -410,7 +411,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  75
+                  663
                 </span>
               
 
@@ -426,7 +427,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  3
                 </span>
               
             </div>
@@ -448,25 +449,129 @@
 
       
         <blockquote>
-<p>CS231A笔记<br>文章截图大多来自斯坦福CS231A课程;</p>
+<p>cs231A Homework-2:ps-code2-part-3</p>
 </blockquote>
 <hr>
-<h1 id="1-单视图校准"><a href="#1-单视图校准" class="headerlink" title="1 单视图校准"></a>1 单视图校准</h1><p><img src="https://upload-images.jianshu.io/upload_images/5361608-f62ca01593756407.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<ul>
-<li><p>回忆一下，相机参数有5个自由度；<br><img src="https://upload-images.jianshu.io/upload_images/5361608-e93f7fea43d1c564.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h1 id="三、-The-Factorization-Method"><a href="#三、-The-Factorization-Method" class="headerlink" title="三、 The Factorization Method"></a>三、 The Factorization Method</h1><ul>
+<li>此方法用来解决SFM问题；</li>
+</ul>
+<h1 id="一、-算法过程"><a href="#一、-算法过程" class="headerlink" title="一、 算法过程"></a>一、 算法过程</h1><ul>
+<li><p>Tomasi &amp; Kanade algorithm </p>
 </li>
-<li><p>w 为：<br><img src="https://upload-images.jianshu.io/upload_images/5361608-b1780f2198be53b2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<li><p>分为两步：</p>
+<ul>
+<li>Data centering</li>
+<li>Factorization</li>
+</ul>
 </li>
 </ul>
-<p>假设2,3 条件为真，那么w为：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-2193d397907e4109.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<ul>
-<li>这样就剩下了四个变量；</li>
-<li>只需要三对方程就可以求得变量；</li>
+<h2 id="1-centering-step"><a href="#1-centering-step" class="headerlink" title="1. centering step"></a>1. centering step</h2><ul>
+<li>居中数据： 对于一张图片中的每个点，定义新的坐标点，通过减去图片中心点：</li>
 </ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-5eb9d77e6a71dd07.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-82a9d2ce14a6c8d5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-25e8a60c165779cc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-eb8a7a929e736702.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>并且可知：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-386ec29786e6939a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>上述两个式子可以得到：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-cb9796ccae27a7ab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li><p>居中后的3D点和居中后的图片点通过一个2*3矩阵A相关；</p>
+</li>
+<li><p>但是，只知道图片中的点，不知道A和X;</p>
+</li>
+</ul>
+<h2 id="2、-建立D矩阵"><a href="#2、-建立D矩阵" class="headerlink" title="2、 建立D矩阵"></a>2、 建立D矩阵</h2><p>通过建立一个处理矩阵D，由m个相机的n个观察点组成；</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-8b77c687821f7a2e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>M：2m*3</li>
+<li>S: 3 * n</li>
+<li>D = M * S </li>
+<li>rank(D) = 3</li>
+</ul>
+<h2 id="3-因素化"><a href="#3-因素化" class="headerlink" title="3. 因素化"></a>3. 因素化</h2><p>通过使用SVD方法将D分解为运动矩阵M和结构矩阵S：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-4f364584f1225c0d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>因为D的秩为3， 但是由于噪声和仿射变换近似，rank(D) &gt;3, 但是只需要取3仍然是最好的近似；</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-8a2bc38962294ff1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li><p>Tomasi and Kanade 的方法： </p>
+<p>最佳因素化选择：</p>
+</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-be770447488c70bd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>【问题】</p>
+<ul>
+<li>怎么得到M : 2m * 3? 难道其他元素为0？</li>
+<li>S也是类似？<ul>
+<li>因为M,S两个矩阵最大秩为3，所以两个矩阵的乘积Rank=3；实际中，D的rank大于3，但是rank为3是最佳近似；</li>
+<li>由于D有秩为3，将分解为（2m <em> 3）(3 </em> 3)(3 * n)的三个矩阵；</li>
+</ul>
+</li>
+</ul>
+<h1 id="二、-python实现"><a href="#二、-python实现" class="headerlink" title="二、 python实现"></a>二、 python实现</h1><h2 id="1-因素化方法"><a href="#1-因素化方法" class="headerlink" title="1.因素化方法"></a>1.因素化方法</h2><pre><code class="Python">
+def factorization_method(points_im1, points_im2):
+    N = points_im1.shape[0]
+    points_sets = [points_im1, points_im2]      # 2* (N * 3)
+
+    # 建立D矩阵
+    D = np.zeros((4, N))
+    for i in range(len(points_sets)):   # len : 2
+        points = points_sets[i]        # N * 3
+        # 中心化点
+        centroid = 1.0 / N * points.sum(axis=0)     # 均值 (x,y),
+        points[:, 0] -= centroid[0] * np.ones(N)    # x
+        points[:, 1] -= centroid[1] * np.ones(N)    # y
+        D[2*i:2*i+2, :] = points[:, 0:2].T    # 每一副图片的(x,y)复制到D中
+
+    # svd分解D矩阵
+    u, s, vt = np.linalg.svd(D)
+    print(u.shape, s.shape, vt.shape)
+    print(s)
+    M = u[:, 0:3]      # Motion
+    S = np.diag(s)[0:3, 0:3].dot(vt[0:3, :])        # structure
+    return S, M
+
+</code></pre>
+<p>在svd分解后，直接使用u作为M运动矩阵，S = singa*vT,作为结构矩阵；其实可以选择上面最后的最佳选择；</p>
+<h2 id="2-主函数"><a href="#2-主函数" class="headerlink" title="2. 主函数"></a>2. 主函数</h2><pre><code class="Python">import numpy as np
+from scipy.misc import imread
+import matplotlib.pyplot as plt
+import scipy.io as sio
+import matplotlib.gridspec as gridspec
+from epipolar_utils import *
+
+if __name__ == &#39;__main__&#39;:
+    for im_set in [&#39;data/set1&#39;, &#39;data/set1_subset&#39;]:
+        # Read in the data
+        im1 = imread(im_set+&#39;/image1.jpg&#39;)
+        im2 = imread(im_set+&#39;/image2.jpg&#39;)
+        points_im1 = get_data_from_txt_file(im_set + &#39;/pt_2D_1.txt&#39;)
+        points_im2 = get_data_from_txt_file(im_set + &#39;/pt_2D_2.txt&#39;)
+        points_3d = get_data_from_txt_file(im_set + &#39;/pt_3D.txt&#39;)
+        assert (points_im1.shape == points_im2.shape)
+
+        # Run the Factorization Method
+        structure, motion = factorization_method(points_im1, points_im2)
+
+        # Plot the structure
+        fig = plt.figure()
+        ax = fig.add_subplot(121, projection = &#39;3d&#39;)
+        scatter_3D_axis_equal(structure[0,:], structure[1,:], structure[2,:], ax)
+        ax.set_title(&#39;Factorization Method&#39;)
+        ax = fig.add_subplot(122, projection = &#39;3d&#39;)
+        scatter_3D_axis_equal(points_3d[:,0], points_3d[:,1], points_3d[:,2], ax)
+        ax.set_title(&#39;Ground Truth&#39;)
+
+        plt.show()
+
+
+</code></pre>
+<h1 id="三、结果"><a href="#三、结果" class="headerlink" title="三、结果"></a>三、结果</h1><pre><code>(4, 4) (4,) (37, 37)
+[959.5852216  540.47613178 184.43174791  27.9151956 ]
+(4, 4) (4,) (18, 18)
+[264.54396508 210.06072009   7.21921783   5.12857709]
+</code></pre><p>图对比：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-88e8a61ad5260eab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <hr>
 
       
@@ -488,7 +593,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://jingxa.github.io/2018/06/22/4-Camera-Calibration/" title="4_Camera_Calibration">https://jingxa.github.io/2018/06/22/4-Camera-Calibration/</a>
+    <a href="https://jingxa.github.io/2018/06/25/CS231A-Homework-2-3/" title="CS231A-Homework-2.3">https://jingxa.github.io/2018/06/25/CS231A-Homework-2-3/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -503,9 +608,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Single-View-Metrology/" rel="tag"># Single_View_Metrology</a>
+            <a href="/tags/Epipolar-Geometry/" rel="tag"># Epipolar_Geometry</a>
           
-            <a href="/tags/Camera-Calibration/" rel="tag"># Camera_Calibration</a>
+            <a href="/tags/homeworks/" rel="tag"># homeworks</a>
           
         </div>
       
@@ -518,8 +623,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/22/5-Epiplolar-Geometry/" rel="next" title="5_Epiplolar_Geometry">
-                <i class="fa fa-chevron-left"></i> 5_Epiplolar_Geometry
+              <a href="/2018/06/25/CS231A-Homework-2-2/" rel="next" title="CS231A-Homework-2.2">
+                <i class="fa fa-chevron-left"></i> CS231A-Homework-2.2
               </a>
             
           </div>
@@ -527,10 +632,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/22/3-Single-Vew-Metrology/" rel="prev" title="3_Single_View_Metrology">
-                3_Single_View_Metrology <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -716,7 +817,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-单视图校准"><span class="nav-text">1 单视图校准</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#三、-The-Factorization-Method"><span class="nav-text">三、 The Factorization Method</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一、-算法过程"><span class="nav-text">一、 算法过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-centering-step"><span class="nav-text">1. centering step</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、-建立D矩阵"><span class="nav-text">2、 建立D矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-因素化"><span class="nav-text">3. 因素化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、-python实现"><span class="nav-text">二、 python实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-因素化方法"><span class="nav-text">1.因素化方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-主函数"><span class="nav-text">2. 主函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、结果"><span class="nav-text">三、结果</span></a></li></ol></div>
             
 
           </div>
