@@ -68,9 +68,13 @@ theme: next
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: git
+- type: git
   repo: ssh://git@github.com/jingxa/jingxa.github.io.git
   branch: master
+- type: git
+  repo: git@git.coding.net:jingxa/jingxa.coding.me.git
+  branch: master
+  
   
 # rss
 feed:

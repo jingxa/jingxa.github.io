@@ -7,6 +7,8 @@ tags:
 categories:
 	- cs231A
 ---
+> cs231A Homework-2:ps-code2-part-2
+---
 
 # 2 图片校正 之 单应性匹配
 ## 2.1 求解过程
