@@ -112,7 +112,7 @@
 
 
 
-  <meta name="keywords" content="Epipolar_Gemotry," />
+  <meta name="keywords" content="Epipolar_Geometry,homeworks," />
 
 
 
@@ -125,34 +125,15 @@
 
 
 
-<meta name="description" content="CS231A笔记文章截图大多来自斯坦福CS231A课程;    本章节许多问题没有看懂，o(╥﹏╥)o    主题： 图片校正 Image Rectification  #1 问题   两个图片平行的问题 无旋转 R = I 平移： 假设在x 轴上平移    那么 本质矩阵为：  计算极线的方向：  可知，两张图片的极线是水平的；  可以得知，两点是共享同一个坐标轴 v的； 2  Rectifi">
-<meta name="keywords" content="Epipolar_Gemotry">
+<meta name="description" content="2 图片校正 之 单应性匹配2.1 求解过程 校正两个图片不需要就知道相机的内参K和外参矩阵R,T，只需要通过基础矩阵计算极线；然后计算所以极线的交点—极点；由于噪点的干扰，不可能交于一点，因此计算极点，利用最小二乘方法求得极线拟合一点；并且在极线上的每一点：   如果定义极线集合：  可以得到：  因此整个步骤为：   通过归一化8点算法获取基本矩阵    极线交于极点： 通过最小二乘误差拟合">
+<meta name="keywords" content="Epipolar_Geometry,homeworks">
 <meta property="og:type" content="article">
-<meta property="og:title" content="6_Epipolar_Geomotry_2">
-<meta property="og:url" content="https://jingxa.github.io/2018/06/22/6-Epipolar-Geomotry-2/index.html">
+<meta property="og:title" content="CS231A-Homework-2.2">
+<meta property="og:url" content="https://jingxa.github.io/2018/06/25/CS231A-Homework-2-2/index.html">
 <meta property="og:site_name" content="Jingxa&#39;s Blog">
-<meta property="og:description" content="CS231A笔记文章截图大多来自斯坦福CS231A课程;    本章节许多问题没有看懂，o(╥﹏╥)o    主题： 图片校正 Image Rectification  #1 问题   两个图片平行的问题 无旋转 R = I 平移： 假设在x 轴上平移    那么 本质矩阵为：  计算极线的方向：  可知，两张图片的极线是水平的；  可以得知，两点是共享同一个坐标轴 v的； 2  Rectifi">
+<meta property="og:description" content="2 图片校正 之 单应性匹配2.1 求解过程 校正两个图片不需要就知道相机的内参K和外参矩阵R,T，只需要通过基础矩阵计算极线；然后计算所以极线的交点—极点；由于噪点的干扰，不可能交于一点，因此计算极点，利用最小二乘方法求得极线拟合一点；并且在极线上的每一点：   如果定义极线集合：  可以得到：  因此整个步骤为：   通过归一化8点算法获取基本矩阵    极线交于极点： 通过最小二乘误差拟合">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-8cc0457621c6e56b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-208521e7cc7aff33.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-a2d105ea0a781cb8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-9b6f663493447819.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-b726092d63e282c8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-38908e5c54eec044.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-71094389014fe2b2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-862088c7ad288ef4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-97cac06011167479.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-c61637121427c095.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-caa07270e4d57480.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-a26a241aae147875.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-5ef88878c2c0ff5d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-24873393b76fdbc0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-11b0d26911a7843d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-364455beb480ae7a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-6359e1f4480583c4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-063b28dd23947fd5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-9d707c9d5df7a41f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-9baeaa8d9a32d5cb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-041355bcb93319ce.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-70ef22c82e308bcd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-2ad1cd071a0b7c4e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-80295e9834fc1d02.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
@@ -177,11 +158,12 @@
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-2548833df47c882f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-dd8f6953623efa08.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-4b3993661018b687.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-06-23T09:24:44.830Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-d76d7018232d0b04.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-06-25T02:35:40.333Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="6_Epipolar_Geomotry_2">
-<meta name="twitter:description" content="CS231A笔记文章截图大多来自斯坦福CS231A课程;    本章节许多问题没有看懂，o(╥﹏╥)o    主题： 图片校正 Image Rectification  #1 问题   两个图片平行的问题 无旋转 R = I 平移： 假设在x 轴上平移    那么 本质矩阵为：  计算极线的方向：  可知，两张图片的极线是水平的；  可以得知，两点是共享同一个坐标轴 v的； 2  Rectifi">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5361608-8cc0457621c6e56b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:title" content="CS231A-Homework-2.2">
+<meta name="twitter:description" content="2 图片校正 之 单应性匹配2.1 求解过程 校正两个图片不需要就知道相机的内参K和外参矩阵R,T，只需要通过基础矩阵计算极线；然后计算所以极线的交点—极点；由于噪点的干扰，不可能交于一点，因此计算极点，利用最小二乘方法求得极线拟合一点；并且在极线上的每一点：   如果定义极线集合：  可以得到：  因此整个步骤为：   通过归一化8点算法获取基本矩阵    极线交于极点： 通过最小二乘误差拟合">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5361608-041355bcb93319ce.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -211,13 +193,13 @@
 
 
 
-  <link rel="canonical" href="https://jingxa.github.io/2018/06/22/6-Epipolar-Geomotry-2/"/>
+  <link rel="canonical" href="https://jingxa.github.io/2018/06/25/CS231A-Homework-2-2/"/>
 
 
 
 
 
-  <title>6_Epipolar_Geomotry_2 | Jingxa's Blog</title>
+  <title>CS231A-Homework-2.2 | Jingxa's Blog</title>
   
 
 
@@ -354,7 +336,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://jingxa.github.io/2018/06/22/6-Epipolar-Geomotry-2/">
+    <link itemprop="mainEntityOfPage" href="https://jingxa.github.io/2018/06/25/CS231A-Homework-2-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="jingxa">
@@ -371,7 +353,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">6_Epipolar_Geomotry_2</h1>
+          <h1 class="post-title" itemprop="name headline">CS231A-Homework-2.2</h1>
         
 
         <div class="post-meta">
@@ -383,8 +365,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-22T10:38:18+08:00">
-                2018-06-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-25T10:32:43+08:00">
+                2018-06-25
               </time>
             
 
@@ -424,8 +406,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/06/22/6-Epipolar-Geomotry-2/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/06/22/6-Epipolar-Geomotry-2/" itemprop="commentsCount"></span>
+                <a href="/2018/06/25/CS231A-Homework-2-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/06/25/CS231A-Homework-2-2/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -447,7 +429,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  844
+                  1,317
                 </span>
               
 
@@ -463,7 +445,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3
+                  6
                 </span>
               
             </div>
@@ -484,63 +466,8 @@
       
 
       
-        <blockquote>
-<p>CS231A笔记<br>文章截图大多来自斯坦福CS231A课程;</p>
-</blockquote>
-<hr>
-<blockquote>
-<p>本章节许多问题没有看懂，o(╥﹏╥)o</p>
-</blockquote>
-<hr>
-<blockquote>
-<p>主题： 图片校正 Image Rectification</p>
-</blockquote>
-<p>#1 问题</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-8cc0457621c6e56b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<ul>
-<li>两个图片平行的问题<ul>
-<li>无旋转 R = I</li>
-<li>平移： 假设在x 轴上平移</li>
-</ul>
-</li>
-</ul>
-<p>那么 本质矩阵为：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-208521e7cc7aff33.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>计算极线的方向：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-a2d105ea0a781cb8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="="></p>
-<p>可知，两张图片的极线是水平的；</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-9b6f663493447819.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>可以得知，两点是共享同一个坐标轴 v的；</p>
-<h1 id="2-Rectification-making-two-images-“parallel”"><a href="#2-Rectification-making-two-images-“parallel”" class="headerlink" title="2  Rectification:    making    two    images    “parallel”"></a>2  Rectification:    making    two    images    “parallel”</h1><ul>
-<li>平行图片的优点</li>
-</ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-b726092d63e282c8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h2 id="2-1-三角化"><a href="#2-1-三角化" class="headerlink" title="2.1 三角化"></a>2.1 三角化</h2><ul>
-<li>point triangulation</li>
-</ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-38908e5c54eec044.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<ul>
-<li>距离计算<br><img src="https://upload-images.jianshu.io/upload_images/5361608-71094389014fe2b2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></li>
-</ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-862088c7ad288ef4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h2 id="2-2-对应性问题"><a href="#2-2-对应性问题" class="headerlink" title="2.2 对应性问题"></a>2.2 对应性问题</h2><p><img src="https://upload-images.jianshu.io/upload_images/5361608-97cac06011167479.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-c61637121427c095.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h3 id="2-2-1-对应性方法"><a href="#2-2-1-对应性方法" class="headerlink" title="2.2.1 对应性方法"></a>2.2.1 对应性方法</h3><p><img src="https://upload-images.jianshu.io/upload_images/5361608-caa07270e4d57480.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>两个图片共享v轴，只在u轴上变化；</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-a26a241aae147875.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>这种方法造成强度的改变；</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-5ef88878c2c0ff5d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>窗口大小不同的结果为；</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-24873393b76fdbc0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>存在四个不同的问题：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-11b0d26911a7843d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-364455beb480ae7a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-6359e1f4480583c4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-063b28dd23947fd5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-9d707c9d5df7a41f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-9baeaa8d9a32d5cb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<hr>
-<h2 id="3-校正两张图片"><a href="#3-校正两张图片" class="headerlink" title="3 校正两张图片"></a>3 校正两张图片</h2><p> 校正两个图片不需要就知道相机的内参K和外参矩阵R,T，只需要通过基础矩阵计算极线；<br>然后计算所以极线的交点—极点；由于噪点的干扰，不可能交于一点，因此计算极点，利用最小二乘方法求得极线拟合一点；<br>并且在极线上的每一点：</p>
+        <h1 id="2-图片校正-之-单应性匹配"><a href="#2-图片校正-之-单应性匹配" class="headerlink" title="2 图片校正 之 单应性匹配"></a>2 图片校正 之 单应性匹配</h1><h2 id="2-1-求解过程"><a href="#2-1-求解过程" class="headerlink" title="2.1 求解过程"></a>2.1 求解过程</h2><p> 校正两个图片不需要就知道相机的内参K和外参矩阵R,T，只需要通过基础矩阵计算极线；<br>然后计算所以极线的交点—极点；由于噪点的干扰，不可能交于一点，因此计算极点，利用最小二乘方法求得极线拟合一点；<br>并且在极线上的每一点：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-041355bcb93319ce.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p><img src="https://upload-images.jianshu.io/upload_images/5361608-70ef22c82e308bcd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p>如果定义极线集合：</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/5361608-2ad1cd071a0b7c4e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
@@ -630,6 +557,135 @@
 <p><img src="https://upload-images.jianshu.io/upload_images/5361608-dd8f6953623efa08.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p><img src="https://upload-images.jianshu.io/upload_images/5361608-4b3993661018b687.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p>求得a的参数后，得到了HA,H2,M三个矩阵，根据上面的式子：<br>最终可以求得H1；</p>
+<hr>
+<h2 id="2-2-python-实现"><a href="#2-2-python-实现" class="headerlink" title="2.2 python 实现"></a>2.2 python 实现</h2><p>在经过上面的了解：</p>
+<h3 id="一、-计算极点"><a href="#一、-计算极点" class="headerlink" title="一、 计算极点"></a>一、 计算极点</h3><pre><code class="Python">def compute_epipole(points1, points2, F):
+    # F.Tp2 = l, 求得p2到p1面上的映射直线
+    line = F.T.dot(points2.T)  # 3 * N
+    lineT = line.T      # N * 3
+    u, s, vt = np.linalg.svd(lineT)
+    e = vt[-1, :]       # 最优解
+    e /= e[2]       # 齐次坐标（x, y, 1）
+
+    return e
+</code></pre>
+<h3 id="二、-计算-H1-H2"><a href="#二、-计算-H1-H2" class="headerlink" title="二、 计算 H1,H2"></a>二、 计算 H1,H2</h3><pre><code class="Python">def compute_matching_homographies(e2, F, im2, points1, points2):
+    # 首先计算H2
+    W = im2.shape[1]
+    H = im2.shape[0]
+
+    # 平移矩阵T
+    T = np.identity(3)
+    T[0, 2] = -1.0 * W /2
+    T[1, 2] = -1.0 * H /2
+
+    # 旋转矩阵R
+    e = T.dot(e2)   # 极点平移过后形成（x&#39;,y&#39;,1）
+    e_x = e[0]
+    e_y = e[1]
+    if e_x &gt;= 0:
+        alpha = 1.0
+    else:
+        alpha = -1.0    # 旋转矩阵alpha 正负判断
+
+    R = np.identity(3)
+    R[0, 0] = alpha * e_x / np.sqrt(e_x**2 + e_y**2)
+    R[0, 1] = alpha * e_y / np.sqrt(e_x**2 + e_y**2)
+    R[1, 0] = -alpha * e_y / np.sqrt(e_x**2 + e_y**2)
+    R[1, 1] = alpha * e_x / np.sqrt(e_x**2 + e_y**2)
+
+    # 矩阵G
+    f = R.dot(e)[0]     # R变换之后，e==&gt;(f,0,1)
+    G = np.identity(3)
+    G[2, 0] = -1.0 / f
+
+    H2 = np.linalg.inv(T).dot(G.dot(R.dot(T)))     # H2 = T^-1 G R T
+
+    # ===============================
+    # 计算H1 , H1 = HaH2M
+
+    # 首先计算M
+    e_p = np.zeros((3, 3))
+    e_p[0, 1] = - e2[2]
+    e_p[0, 2] = e2[1]
+    e_p[1, 0] = e2[2]
+    e_p[1, 2] = - e2[0]
+    e_p[2, 0] = - e2[1]
+    e_p[2, 1] = e2[0]   # skew-symmetric 矩阵
+
+    v = np.array([1, 1, 1])
+    M = e_p.dot(F) + np.outer(e2, v)    # e2*VT = (3,3)
+
+
+    # 计算Ha
+    p1_hat = H2.dot(M.dot(points1.T)).T     # p1_hat = H2Mp  3 * N,转置之后 N * 3
+    p2_hat = H2.dot(points2.T).T            # pe_hat = H2p&#39; , 3 * N ,转置之后 N * 3
+    W = p1_hat / p1_hat[:, 2].reshape(-1, 1)    # 齐次坐标系
+    b = (p2_hat / p2_hat[:, 2].reshape(-1, 1))[:, 0]
+
+    # 最小二乘问题
+    a1, a2, a3 = np.linalg.lstsq(W, b, rcond=None)[0]
+    HA = np.identity(3)
+    HA[0] = np.array([a1, a2, a3])
+
+    H1 = HA.dot(H2).dot(M)      # H1 = HaH2M
+
+    return H1, H2
+
+</code></pre>
+<h3 id="三、-主函数"><a href="#三、-主函数" class="headerlink" title="三、 主函数"></a>三、 主函数</h3><pre><code class="Python">if __name__ == &#39;__main__&#39;:
+    # Read in the data
+    im_set = &#39;data/set1&#39;
+    im1 = imread(im_set+&#39;/image1.jpg&#39;)
+    im2 = imread(im_set+&#39;/image2.jpg&#39;)
+    points1 = get_data_from_txt_file(im_set+&#39;/pt_2D_1.txt&#39;)
+    points2 = get_data_from_txt_file(im_set+&#39;/pt_2D_2.txt&#39;)
+    assert (points1.shape == points2.shape)
+
+    F = normalized_eight_point_alg(points1, points2)
+    e1 = compute_epipole(points1, points2, F)
+    e2 = compute_epipole(points2, points1, F.transpose())
+    print(&quot;e1&quot;, e1)
+    print(&quot;e2&quot;, e2)
+
+
+
+    # Find the homographies needed to rectify the pair of images
+    H1, H2 = compute_matching_homographies(e2, F, im2, points1, points2)
+    print(&quot;H1:\n&quot;, H1)
+    print
+    print(&quot;H2:\n&quot;, H2)
+
+    # Transforming the images by the homographies
+    new_points1 = H1.dot(points1.T)
+    new_points2 = H2.dot(points2.T)
+    new_points1 /= new_points1[2,:]
+    new_points2 /= new_points2[2,:]
+    new_points1 = new_points1.T
+    new_points2 = new_points2.T
+    rectified_im1, offset1 = compute_rectified_image(im1, H1)
+    rectified_im2, offset2 = compute_rectified_image(im2, H2)
+    new_points1 -= offset1 + (0,)
+    new_points2 -= offset2 + (0,)
+
+    # Plotting the image
+    F_new = normalized_eight_point_alg(new_points1, new_points2)
+    plot_epipolar_lines_on_images(new_points1, new_points2, rectified_im1, rectified_im2, F_new)
+    plt.show()
+</code></pre>
+<h3 id="四、-结果"><a href="#四、-结果" class="headerlink" title="四、 结果"></a>四、 结果</h3><pre><code>e1 [-1.30071143e+03 -1.42448272e+02  1.00000000e+00]
+e2 [1.65412463e+03 4.53021078e+01 1.00000000e+00]
+H1:
+ [[-1.20006316e+01 -4.15501447e+00 -1.23476881e+02]
+ [ 1.41006481e+00 -1.48704147e+01 -2.84177469e+02]
+ [-9.21889298e-03 -2.19184511e-03 -1.23033440e+01]]
+H2:
+ [[ 8.09798131e-01 -1.22036874e-01  7.99331183e+01]
+ [-3.00186699e-02  1.01581538e+00  3.63604348e+00]
+ [-6.99360915e-04  1.05393946e-04  1.15205554e+00]]
+</code></pre><p>调整过后的图片为：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-d76d7018232d0b04.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<hr>
 
       
     </div>
@@ -650,7 +706,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://jingxa.github.io/2018/06/22/6-Epipolar-Geomotry-2/" title="6_Epipolar_Geomotry_2">https://jingxa.github.io/2018/06/22/6-Epipolar-Geomotry-2/</a>
+    <a href="https://jingxa.github.io/2018/06/25/CS231A-Homework-2-2/" title="CS231A-Homework-2.2">https://jingxa.github.io/2018/06/25/CS231A-Homework-2-2/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -665,7 +721,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Epipolar-Gemotry/" rel="tag"># Epipolar_Gemotry</a>
+            <a href="/tags/Epipolar-Geometry/" rel="tag"># Epipolar_Geometry</a>
+          
+            <a href="/tags/homeworks/" rel="tag"># homeworks</a>
           
         </div>
       
@@ -678,8 +736,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/22/3-Single-Vew-Metrology/" rel="next" title="3_Single_View_Metrology">
-                <i class="fa fa-chevron-left"></i> 3_Single_View_Metrology
+              <a href="/2018/06/23/CS231A-Homework-2-1/" rel="next" title="CS231A-Homework-2.1">
+                <i class="fa fa-chevron-left"></i> CS231A-Homework-2.1
               </a>
             
           </div>
@@ -687,10 +745,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/23/CS231A-Homework-2-1/" rel="prev" title="CS231A-Homework-2.1">
-                CS231A-Homework-2.1 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -870,7 +924,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Rectification-making-two-images-“parallel”"><span class="nav-number">1.</span> <span class="nav-text">2  Rectification:    making    two    images    “parallel”</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-三角化"><span class="nav-number">1.1.</span> <span class="nav-text">2.1 三角化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-对应性问题"><span class="nav-number">1.2.</span> <span class="nav-text">2.2 对应性问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-对应性方法"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.2.1 对应性方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-校正两张图片"><span class="nav-number">1.3.</span> <span class="nav-text">3 校正两张图片</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2-图片校正-之-单应性匹配"><span class="nav-number">1.</span> <span class="nav-text">2 图片校正 之 单应性匹配</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-求解过程"><span class="nav-number">1.1.</span> <span class="nav-text">2.1 求解过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-python-实现"><span class="nav-number">1.2.</span> <span class="nav-text">2.2 python 实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、-计算极点"><span class="nav-number">1.2.1.</span> <span class="nav-text">一、 计算极点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、-计算-H1-H2"><span class="nav-number">1.2.2.</span> <span class="nav-text">二、 计算 H1,H2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、-主函数"><span class="nav-number">1.2.3.</span> <span class="nav-text">三、 主函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、-结果"><span class="nav-number">1.2.4.</span> <span class="nav-text">四、 结果</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
