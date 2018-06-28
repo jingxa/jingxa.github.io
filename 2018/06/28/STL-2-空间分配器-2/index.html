@@ -134,8 +134,9 @@
 <meta property="og:description" content="本文章内容来源于《STL源码分析》第二章   2 内存基本处理工具 STL有五个全局函数：作用于未初始化空间  construct() destroy() uninitialized_copy() ==&amp;gt;对应高层函数copy() uninitialized_fill() ==&amp;gt; fill() uninitialized_fill_n() ==&amp;gt; fill_n()   后面三个低">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-f7bb5f4e8c3c7791.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-89af66f445096a72.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-9fd0facaaf195893.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-06-28T13:03:10.855Z">
+<meta property="og:updated_time" content="2018-06-28T13:10:27.238Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="STL_2_空间分配器_2">
 <meta name="twitter:description" content="本文章内容来源于《STL源码分析》第二章   2 内存基本处理工具 STL有五个全局函数：作用于未初始化空间  construct() destroy() uninitialized_copy() ==&amp;gt;对应高层函数copy() uninitialized_fill() ==&amp;gt; fill() uninitialized_fill_n() ==&amp;gt; fill_n()   后面三个低">
@@ -405,7 +406,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  738
+                  730
                 </span>
               
 
@@ -458,7 +459,7 @@
 </li>
 <li><p>后面三个低层次函数：</p>
 </li>
-<li><code>&lt;memory&gt;</code></li>
+<li>定义于<code>&lt;memory&gt;</code></li>
 <li><p>SGI 定义于：<code>&lt;stl_uninitialized&gt;</code></p>
 </li>
 <li><p>POD： plain Old Data : 标量型别或者传统的 c struct 型别：如char, int等等；</p>
@@ -496,15 +497,21 @@ __uninitialized_copy(InputIterator first, InputIterator last,
 }
 </code></pre>
 </li>
-<li><p>POD型别<br><code>`</code>C++<br>template<class inputiterator,="" class="" forwarditerator,="" t=""><br>inline ForwardIterator<br>__uninitialized_copy_aux(InputIterator first, InputIterator last,</class></p>
-<pre><code> ForwardIterator result, __true_type){
-     return copy(first, last, result);   // 调用STL算法 copy()
- }    
-</code></pre></li>
+<li><p>POD型别</p>
+</li>
 </ul>
-<pre><code>- non-POD型别
-```C++ 
-template&lt;class InputIterator, class ForwardIterator, class T&gt;
+<pre><code class="C++">template&lt;class InputIterator, class ForwardIterator, class T&gt;
+inline ForwardIterator
+__uninitialized_copy_aux(InputIterator first, InputIterator last,
+        ForwardIterator result, __true_type){
+            return copy(first, last, result);   // 调用STL算法 copy()
+        }    
+
+</code></pre>
+<ul>
+<li>non-POD型别</li>
+</ul>
+<pre><code class="C++">template&lt;class InputIterator, class ForwardIterator, class T&gt;
 inline ForwardIterator
 __uninitialized_copy_aux(InputIterator first, InputIterator last,
         ForwardIterator result, __false_type){
@@ -516,23 +523,32 @@ __uninitialized_copy_aux(InputIterator first, InputIterator last,
             return cur;
 
         }    
-</code></pre><ul>
-<li>针对char*, wchar_t*的版本<br><code>`</code>C++<br>inline char<em> uninitialized_copy(const char</em> first, const char<em> last, char</em> result){<br> memmove(result, first, last - first);<br> return result + (last - first);<br>} </li>
+</code></pre>
+<ul>
+<li>针对char*, wchar_t*的版本</li>
 </ul>
-<p>inline wchar_t<em> uninitialized_copy(const wchar_t</em> first, const wchar_t<em> last,<br>    wchar_t</em> result){<br>    memmove(result, first, sizeof(wchar_t)*(last - first));<br>    return result+(last - first);<br>}</p>
-<pre><code>
-## 2.2 uninitialized_fill
+<pre><code class="C++">inline char* uninitialized_copy(const char* first, const char* last, char* result){
+    memmove(result, first, last - first);
+    return result + (last - first);
+} 
 
-![](https://upload-images.jianshu.io/upload_images/5361608-89af66f445096a72.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
--  在i出调用construct(&amp;*i, x)
-```C++
-template&lt;class ForwardIterator, class T&gt;
+inline wchar_t* uninitialized_copy(const wchar_t* first, const wchar_t* last,
+    wchar_t* result){
+    memmove(result, first, sizeof(wchar_t)*(last - first));
+    return result+(last - first);
+}
+</code></pre>
+<h2 id="2-2-uninitialized-fill"><a href="#2-2-uninitialized-fill" class="headerlink" title="2.2 uninitialized_fill"></a>2.2 uninitialized_fill</h2><p><img src="https://upload-images.jianshu.io/upload_images/5361608-89af66f445096a72.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>在i出调用construct(&amp;*i, x)</li>
+</ul>
+<pre><code class="C++">template&lt;class ForwardIterator, class T&gt;
 void uninitialized_fill(ForwardIterator first, ForwardIterator last, const T&amp; x){
     __uninitialized_fill(first, last, x, value_type(first));
 }
 
-</code></pre><ul>
+</code></pre>
+<ul>
 <li>判断POD</li>
 </ul>
 <pre><code class="C++">template&lt;class ForwardIterator , class T, class T1&gt;
@@ -544,14 +560,20 @@ inline void __uninitialized_fill(ForwardIterator first, ForwardIterator last,
 
 </code></pre>
 <ul>
-<li>POD型别<br><code>`</code>C++<br>template<class forwarditerator="" ,="" class="" t,="" t1=""><br>inline void <strong>uninitialized_fill(ForwardIterator first, ForwardIterator last,<br>  const T&amp; x, </strong>true_type){<pre><code>  fill(first, last, x);  // 调用STL算法 fill()
-</code></pre></class></li>
+<li>POD型别</li>
 </ul>
-<p>}</p>
-<pre><code>-  non-POD型别
+<pre><code class="C++">template&lt;class ForwardIterator , class T, class T1&gt;
+inline void __uninitialized_fill(ForwardIterator first, ForwardIterator last,
+    const T&amp; x, __true_type){
+        fill(first, last, x);  // 调用STL算法 fill()
 
-```C++
-template&lt;class ForwardIterator , class T, class T1&gt;
+}
+
+</code></pre>
+<ul>
+<li>non-POD型别</li>
+</ul>
+<pre><code class="C++">template&lt;class ForwardIterator , class T, class T1&gt;
 inline void __uninitialized_fill(ForwardIterator first, ForwardIterator last,
     const T&amp; x, __false_type){
                     ForwardIterator cur = result;
@@ -562,7 +584,8 @@ inline void __uninitialized_fill(ForwardIterator first, ForwardIterator last,
             return cur;
 
 }
-</code></pre><h2 id="2-3-uninitialized-fill-n"><a href="#2-3-uninitialized-fill-n" class="headerlink" title="2.3 uninitialized_fill_n"></a>2.3 uninitialized_fill_n</h2><p><img src="https://upload-images.jianshu.io/upload_images/5361608-9fd0facaaf195893.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+</code></pre>
+<h2 id="2-3-uninitialized-fill-n"><a href="#2-3-uninitialized-fill-n" class="headerlink" title="2.3 uninitialized_fill_n"></a>2.3 uninitialized_fill_n</h2><p><img src="https://upload-images.jianshu.io/upload_images/5361608-9fd0facaaf195893.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <blockquote>
 <ol>
 <li>首先使用萃取器取出first的value type,</li>
@@ -858,7 +881,7 @@ inline ForwardIterator __uninitialized_fill_n_aux(ForwardIterator first,
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2-内存基本处理工具"><span class="nav-text">2 内存基本处理工具</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-uninitialized-copy"><span class="nav-text">2.1 uninitialized_copy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-uninitialized-fill-n"><span class="nav-text">2.3 uninitialized_fill_n</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2-内存基本处理工具"><span class="nav-text">2 内存基本处理工具</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-uninitialized-copy"><span class="nav-text">2.1 uninitialized_copy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-uninitialized-fill"><span class="nav-text">2.2 uninitialized_fill</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-uninitialized-fill-n"><span class="nav-text">2.3 uninitialized_fill_n</span></a></li></ol></li></ol></div>
             
 
           </div>
