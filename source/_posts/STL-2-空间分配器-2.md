@@ -19,7 +19,7 @@ categories:
   - uninitialized_fill_n() ==> fill_n()
  
 - 后面三个低层次函数：
-- `<memory>`
+- 定义于`<memory>`
 - SGI 定义于：`<stl_uninitialized>`
 
 - POD： plain Old Data : 标量型别或者传统的 c struct 型别：如char, int等等；
@@ -36,7 +36,7 @@ categories:
 ![](https://upload-images.jianshu.io/upload_images/5361608-f7bb5f4e8c3c7791.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 - 主要接口
-```C++
+```c++
 // uninitialized_copy
 template<class InputIterator, class ForwardIterator>
 ForwardIterator uninitialized_copy(InputIterator first, InputIterator last,
@@ -47,7 +47,7 @@ ForwardIterator uninitialized_copy(InputIterator first, InputIterator last,
 ```
 
 - POD判别函数
-```C++	
+```c++	
 // POD  判断
 template<class InputIterator, class ForwardIterator, class T>
 inline ForwardIterator
@@ -58,8 +58,9 @@ __uninitialized_copy(InputIterator first, InputIterator last,
 }
 ```
 
--  POD型别
-```C++
+- POD型别
+
+```c++
 template<class InputIterator, class ForwardIterator, class T>
 inline ForwardIterator
 __uninitialized_copy_aux(InputIterator first, InputIterator last,
@@ -68,8 +69,11 @@ __uninitialized_copy_aux(InputIterator first, InputIterator last,
 		}	
 
 ```
+
 - non-POD型别
-```C++ 
+
+
+```c++ 
 template<class InputIterator, class ForwardIterator, class T>
 inline ForwardIterator
 __uninitialized_copy_aux(InputIterator first, InputIterator last,
@@ -84,8 +88,10 @@ __uninitialized_copy_aux(InputIterator first, InputIterator last,
 		}	
 ```	
 	
+	
 -  针对char\*, wchar_t\*的版本
-```C++
+
+```c++
 inline char* uninitialized_copy(const char* first, const char* last, char* result){
 	memmove(result, first, last - first);
 	return result + (last - first);
@@ -98,21 +104,28 @@ inline wchar_t* uninitialized_copy(const wchar_t* first, const wchar_t* last,
 }
 ```
 
+
 ## 2.2 uninitialized_fill
+
 
 ![](https://upload-images.jianshu.io/upload_images/5361608-89af66f445096a72.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 -  在i出调用construct(&*i, x)
-```C++
+
+```c++
 template<class ForwardIterator, class T>
 void uninitialized_fill(ForwardIterator first, ForwardIterator last, const T& x){
 	__uninitialized_fill(first, last, x, value_type(first));
 }
 
 ```
+
+
 - 判断POD
 
-```C++
+
+
+```c++
 template<class ForwardIterator , class T, class T1>
 inline void __uninitialized_fill(ForwardIterator first, ForwardIterator last,
 	const T& x, T1*){
@@ -121,9 +134,13 @@ inline void __uninitialized_fill(ForwardIterator first, ForwardIterator last,
 	}
 
 ```	
+
+
 	
 - POD型别
-```C++
+
+
+```c++
 template<class ForwardIterator , class T, class T1>
 inline void __uninitialized_fill(ForwardIterator first, ForwardIterator last,
 	const T& x, __true_type){
@@ -132,9 +149,13 @@ inline void __uninitialized_fill(ForwardIterator first, ForwardIterator last,
 }
 
 ```
+
+
 -  non-POD型别
 
-```C++
+
+
+```c++
 template<class ForwardIterator , class T, class T1>
 inline void __uninitialized_fill(ForwardIterator first, ForwardIterator last,
 	const T& x, __false_type){
@@ -148,6 +169,7 @@ inline void __uninitialized_fill(ForwardIterator first, ForwardIterator last,
 }
 ```
 
+
 ## 2.3 uninitialized_fill_n
 
 ![](https://upload-images.jianshu.io/upload_images/5361608-9fd0facaaf195893.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
@@ -160,16 +182,22 @@ inline void __uninitialized_fill(ForwardIterator first, ForwardIterator last,
 
 - 接口
 
-```C++
+
+
+```c++
 template<class ForwardIterator , class Size, class T>
 inline ForwardIterator uninitialized_fill_n(ForwardIterator first, Size n, const T& x){
 	return __uninitialized_fill_n(first,n, x, value_type(first));
 }
 ```
 
+
+
 -  POD型别判断
 
-```C++
+
+
+```c++
 template <class ForwardIterator , class Size, class T,class T1>
 inline ForwardIterator __uninitialized_fill_n(ForwardIterator first,
 	Size n , const T& x, T1*){
@@ -177,9 +205,12 @@ inline ForwardIterator __uninitialized_fill_n(ForwardIterator first,
 		return __uninitialized_fill_n_aux(first, n, x, is_POD());
 	}
 ```
+
+
 - POD 型别
 
-```C++
+
+```c++
 template <class ForwardIterator , class Size, class T>
 inline ForwardIterator __uninitialized_fill_n_aux(ForwardIterator first,
 	Size n , const T& x, __true_type){
@@ -190,7 +221,9 @@ inline ForwardIterator __uninitialized_fill_n_aux(ForwardIterator first,
 	
 -  non-POD型别
 
-```C++
+
+
+```c++
 
 template<class ForwardIterator, class Size, class T>
 inline ForwardIterator __uninitialized_fill_n_aux(ForwardIterator first,
