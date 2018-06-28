@@ -71,9 +71,9 @@ deploy:
 - type: git
   repo: ssh://git@github.com/jingxa/jingxa.github.io.git
   branch: master
-- type: git
-  repo: git@git.coding.net:jingxa/jingxa.coding.me.git
-  branch: master
+#- type: git
+#  repo: git@git.coding.net:jingxa/jingxa.coding.me.git
+#  branch: master
   
   
 # rss

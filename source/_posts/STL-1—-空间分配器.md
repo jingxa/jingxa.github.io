@@ -8,7 +8,7 @@ categories:
 	- STL源码分析
 ---
 
-> 本文章内容来源于《STL源码分析》
+> 本文章内容来源于《STL源码分析》第二章
 ---
 
 # 1. STL allocater
