@@ -112,7 +112,7 @@
 
 
 
-  <meta name="keywords" content="Camera," />
+  <meta name="keywords" content="STL,Allocator," />
 
 
 
@@ -125,39 +125,21 @@
 
 
 
-<meta name="description" content="CS231A笔记文章截图大多来自斯坦福CS231A课程;    干脆 明亮的图片   镜头   使用lense 透镜来解决上述问题；  透镜的问题：  pincushion distortion 枕形畸变 barrel distortion 桶形畸变      3. 3d到2d的投影变换对于某些平移和缩放：  但是在公式中，缺少两个重要参数，相机制造误差：  skewness: 倾斜 disto">
-<meta name="keywords" content="Camera">
+<meta name="description" content="本文章内容来源于《STL源码分析》第四章   容器的分类：  1 序列式容器1 vector array: 静态空间 ，不能改变 vector: 动态空间 &amp;lt;vector&amp;gt;SGI的实现：&amp;lt;stl_vector.h&amp;gt;  1.1 迭代器和 数据结构template&amp;lt;class T, class Alloc = alloc&amp;gt; class vector{ public">
+<meta name="keywords" content="STL,Allocator">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2_Camera_Model">
-<meta property="og:url" content="https://jingxa.github.io/2018/06/22/2-Camera-Model/index.html">
+<meta property="og:title" content="STL_4_容器_vector">
+<meta property="og:url" content="https://jingxa.github.io/2018/06/28/STL-4-容器-vector/index.html">
 <meta property="og:site_name" content="Jingxa&#39;s Blog">
-<meta property="og:description" content="CS231A笔记文章截图大多来自斯坦福CS231A课程;    干脆 明亮的图片   镜头   使用lense 透镜来解决上述问题；  透镜的问题：  pincushion distortion 枕形畸变 barrel distortion 桶形畸变      3. 3d到2d的投影变换对于某些平移和缩放：  但是在公式中，缺少两个重要参数，相机制造误差：  skewness: 倾斜 disto">
+<meta property="og:description" content="本文章内容来源于《STL源码分析》第四章   容器的分类：  1 序列式容器1 vector array: 静态空间 ，不能改变 vector: 动态空间 &amp;lt;vector&amp;gt;SGI的实现：&amp;lt;stl_vector.h&amp;gt;  1.1 迭代器和 数据结构template&amp;lt;class T, class Alloc = alloc&amp;gt; class vector{ public">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-03d37c544f3260a2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-f22aaa6b85b5c1c2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-aa9051feb0ad3ba7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-cd8d34757e165d97.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-e8d619979d82849a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-2de9c0e396c134df.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-56bd38497c0aa26a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-10876044e7f7900a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-bf0b8cfedaf66c57.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-d6e80555a72c7dfa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-68c0aa0e15865b30.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-819d27eb90c59245.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-b2b94ebd08e64e3b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-734a190121f0af84.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-4f0424a16bb4daa7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-52f254e482337ca7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-63d1cb18425bbd9e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-314c82c970c265c3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-38920e7d3beea99c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-fdc05c03cc05a7f0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-06-22T02:21:00.093Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-406c4fd15665c541.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-d5d1c167a7518acc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-06-28T13:01:30.038Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="2_Camera_Model">
-<meta name="twitter:description" content="CS231A笔记文章截图大多来自斯坦福CS231A课程;    干脆 明亮的图片   镜头   使用lense 透镜来解决上述问题；  透镜的问题：  pincushion distortion 枕形畸变 barrel distortion 桶形畸变      3. 3d到2d的投影变换对于某些平移和缩放：  但是在公式中，缺少两个重要参数，相机制造误差：  skewness: 倾斜 disto">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5361608-03d37c544f3260a2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:title" content="STL_4_容器_vector">
+<meta name="twitter:description" content="本文章内容来源于《STL源码分析》第四章   容器的分类：  1 序列式容器1 vector array: 静态空间 ，不能改变 vector: 动态空间 &amp;lt;vector&amp;gt;SGI的实现：&amp;lt;stl_vector.h&amp;gt;  1.1 迭代器和 数据结构template&amp;lt;class T, class Alloc = alloc&amp;gt; class vector{ public">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5361608-406c4fd15665c541.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -187,13 +169,13 @@
 
 
 
-  <link rel="canonical" href="https://jingxa.github.io/2018/06/22/2-Camera-Model/"/>
+  <link rel="canonical" href="https://jingxa.github.io/2018/06/28/STL-4-容器-vector/"/>
 
 
 
 
 
-  <title>2_Camera_Model | Jingxa's Blog</title>
+  <title>STL_4_容器_vector | Jingxa's Blog</title>
   
 
 
@@ -330,7 +312,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://jingxa.github.io/2018/06/22/2-Camera-Model/">
+    <link itemprop="mainEntityOfPage" href="https://jingxa.github.io/2018/06/28/STL-4-容器-vector/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="jingxa">
@@ -347,7 +329,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">2_Camera_Model</h1>
+          <h1 class="post-title" itemprop="name headline">STL_4_容器_vector</h1>
         
 
         <div class="post-meta">
@@ -359,8 +341,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-22T10:16:24+08:00">
-                2018-06-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-28T20:58:49+08:00">
+                2018-06-28
               </time>
             
 
@@ -382,8 +364,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/cs231A/" itemprop="url" rel="index">
-                    <span itemprop="name">cs231A</span>
+                  <a href="/categories/STL源码分析/" itemprop="url" rel="index">
+                    <span itemprop="name">STL源码分析</span>
                   </a>
                 </span>
 
@@ -400,8 +382,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/06/22/2-Camera-Model/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/06/22/2-Camera-Model/" itemprop="commentsCount"></span>
+                <a href="/2018/06/28/STL-4-容器-vector/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/06/28/STL-4-容器-vector/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -423,7 +405,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  521
+                  865
                 </span>
               
 
@@ -439,7 +421,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  4
                 </span>
               
             </div>
@@ -461,87 +443,204 @@
 
       
         <blockquote>
-<p>CS231A笔记<br>文章截图大多来自斯坦福CS231A课程;</p>
+<p>本文章内容来源于《STL源码分析》第四章</p>
 </blockquote>
 <hr>
-<ul>
-<li>干脆 明亮的图片</li>
+<p>容器的分类：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-406c4fd15665c541.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h1 id="1-序列式容器"><a href="#1-序列式容器" class="headerlink" title="1 序列式容器"></a>1 序列式容器</h1><h2 id="1-vector"><a href="#1-vector" class="headerlink" title="1 vector"></a>1 vector</h2><ul>
+<li>array: 静态空间 ，不能改变</li>
+<li>vector: 动态空间</li>
+<li><code>&lt;vector&gt;</code><br>SGI的实现：<code>&lt;stl_vector.h&gt;</code></li>
 </ul>
-<ol>
-<li>镜头</li>
-</ol>
+<h3 id="1-1-迭代器和-数据结构"><a href="#1-1-迭代器和-数据结构" class="headerlink" title="1.1 迭代器和 数据结构"></a>1.1 迭代器和 数据结构</h3><pre><code class="C++">template&lt;class T, class Alloc = alloc&gt;
+class vector{
+public:
+    // vector的嵌套定义
+    typedef T                value_type;
+    typedef value_type*     pointer;
+    typedef value_type&amp;        reference;
+    typedef    value_type*        iterator;
+    typedef size_t             size_type;
+    typedef    ptrdiff_t        difference_type;
+
+protected:
+    // 以下，simple_alloc 是SGI STL的空间配置器；
+    typedef simple_alloc&lt;value_type, Alloc&gt; data_allocator;
+    iterator start;                // 表示空间使用的头
+    iterator finish;            // 表示空间使用的尾
+    iterator end_of_storage;     // 表示可用空间的尾部
+
+...
+};
+</code></pre>
 <ul>
-<li><p>使用lense 透镜来解决上述问题；</p>
+<li>可以看出： vector的指针是普通指针；</li>
+<li>迭代器 <code>start</code>,<code>end</code>: 表示vector的连续空间中已被使用的范围；</li>
+<li><code>end_of_storage</code>: 指向整块空间(包含未使用部分)的尾端；</li>
+</ul>
+<p>使用三个迭代器提供的vector的状态：</p>
+<pre><code class="C++">    iterator begin(){return start;} // 开始位置
+    iterator end(){return finish;}    //
+    size_type size()const {return size_type(end() - begin());}  //使用大小
+    size_type capacity() const{  // 容量
+        return end_of_storage - begin();
+    }
+    bool empty() const{return begin() == end();}  // 空
+    reference operator[](size_type n){return *(begin() +n);}
+
+    reference front(){return *begin();}
+    reference back(){return *(end() -1);}
+</code></pre>
+<h3 id="1-2-内存管理"><a href="#1-2-内存管理" class="headerlink" title="1.2 内存管理"></a>1.2 内存管理</h3><ul>
+<li>vector 的构造： construct </li>
+<li><p>内存： push_back</p>
 </li>
-<li><p>透镜的问题：</p>
+<li><p>vector 使用<code>alloc</code>作为空间配置器，并且还定义了一个<code>data_allocator</code></p>
+<pre><code>  // 以下，simple_alloc 是SGI STL的空间配置器；
+  typedef simple_alloc&lt;value_type, Alloc&gt; data_allocator;
+</code></pre></li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-d5d1c167a7518acc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>(1) <strong>vector 的构造函数</strong></p>
 <ul>
-<li>pincushion distortion 枕形畸变<ul>
-<li>barrel distortion 桶形畸变</li>
+<li>vector使用很多构造器， </li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h1 id="3-3d到2d的投影变换"><a href="#3-3d到2d的投影变换" class="headerlink" title="3. 3d到2d的投影变换"></a>3. 3d到2d的投影变换</h1><p><img src="https://upload-images.jianshu.io/upload_images/5361608-03d37c544f3260a2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br><img src="https://upload-images.jianshu.io/upload_images/5361608-f22aaa6b85b5c1c2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>对于某些平移和缩放：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-aa9051feb0ad3ba7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<p>但是在公式中，缺少两个重要参数，相机制造误差：</p>
+<pre><code class="C++">// 构造函数
+    vector(): start(0), finish(0), end_of_storage(0)(){}
+    vector(size_type n, const T&amp; value){fill_initialize(n, value);}
+    vector(int n , const T&amp; value){fill_initialize(n, value);}
+    vector(long n, const T&amp; value){fill_initialize(n ,value);}
+    explicit vector(size_type n){fill_initialize(n, T());}
+
+    ~vector(){
+        destroy(start, finish);  // 全局函数
+        deallocate();             // 成员函数
+    }
+
+
+protected:
+
+    // 填充并且初始化
+    void fill_initialize(size_type n, const T&amp; value){
+        start = allocate_and_fill(n, value);
+        finish = start + n;
+        end_of_storage = finish;
+    }
+
+    // 配置空间并填满内存
+    iterator allocate_and_fill(size_type n, const T&amp; x){
+        iterator result = data_allocator::allocate(n);  // 分配n个元素空间
+        uninitialized_fill_n(result, n, x);
+        return result;
+    }
+</code></pre>
 <ul>
-<li>skewness: 倾斜</li>
-<li>distortion： 形变</li>
+<li>空间操作</li>
 </ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-cd8d34757e165d97.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>因此形成5个自由度的相机内参矩阵K;</p>
-<p>世界坐标到相机坐标系的变换为：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-e8d619979d82849a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>综上，变换矩阵由两个部分组成：</p>
+<pre><code class="C+++">public:
+    void resise(size_type new_size, const T&amp; x){
+        if(new_size &lt; size())
+            erase(begin()+new_size, end());
+        else{
+            insert(end(), new_size - size(), x);
+        }
+    }
+
+    void resise(size_type new_size){
+        resize(new_size, T());
+    }
+</code></pre>
+<p>(2) <strong>vector插入元素</strong></p>
+<pre><code class="C++">protected:
+    void insert_aux(iterator position, const T&amp; x);  // 插入
+
+public:
+    void push_back(const T&amp; x){        //还有剩余未使用空间
+        if(finish != end_of_storage){
+            construct(finish, x);
+            ++finish;
+        }else{    //空间不足
+            insert_aux(end(), x);
+        }
+    }
+
+</code></pre>
+<pre><code class="C++">template&lt;class T, class Alloc&gt;
+void vector&lt;T,Alloc&gt;::insert_aux(iterator position, const T&amp; x){
+    if(finish != end_of_storage){ // 还有备用空间
+        // 在备用空间起始处构造一个函数,并且以vector最后一个元素作为初始值
+        construct(finish, *(finish -1));  
+        ++finish;
+        T x_copy  = x;
+        copy_backward(position, finish-2, finish-1); // 往后复制
+        *position = x_copy;
+    }else{   // 已无备用空间
+        const size_type old_size = size();
+        const size_type len = old_size !=0 ? 2* old_size: 1;
+        // r如果原大小为0，配置一个元素大小；
+        // 如果原大小不为0， 新配置空间为原来2倍
+        // 前半段用来存放原始数据，后半段放新数据
+        iterator new_start = data_allocator::allocate(new_size);
+        iterator new_finish = new_start;
+        try{
+            // 将原来postion之前内容拷贝到新空间
+            new_finish = uninitialized_copy(start,position, new_start);
+            //为新元素赋值x
+            construct(new_finish, x);
+            ++new_finish;
+            // position之后半部分拷贝过来
+            new_finish = uninitialized_copy(position,finish, new_finish);
+        }catch(...){
+            // commit or rollback
+            destroy(new_start, new_finish);
+            data_allocator::deallocate(new_start,len);
+            throw;
+        }
+
+        //析构并释放原来空间
+        destroy(begin(), end());
+        deallocate();
+        //调整迭代器，指向新vector
+        start= new_start;
+        finish = new_finish;
+        end_of_storage = new_start+ len;
+
+    }
+}
+</code></pre>
+<p>(3) <strong>vector删除元素</strong></p>
 <ul>
-<li>instrinsic : K : 5个自由度</li>
-<li>extrinsic ： T ,R : 各自3个自由度<br>总共11个自由度；</li>
+<li>pop_back()</li>
+<li>erase(p)</li>
+<li>erase(first, last)</li>
+<li>clear()</li>
 </ul>
-<h1 id="4-Camera-Calibration（相机校准）"><a href="#4-Camera-Calibration（相机校准）" class="headerlink" title="4. Camera Calibration（相机校准）"></a>4. Camera Calibration（相机校准）</h1><p>在投影变换中，<br><img src="https://upload-images.jianshu.io/upload_images/5361608-2de9c0e396c134df.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>原理为：<br><img src="https://upload-images.jianshu.io/upload_images/5361608-56bd38497c0aa26a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h2 id="4-1-投影类型"><a href="#4-1-投影类型" class="headerlink" title="4.1 投影类型"></a>4.1 投影类型</h2><p>参考资料：<br>-<a href="https://blog.csdn.net/jyc1228/article/details/4209870" target="_blank" rel="noopener"> 摄像机透视投影近似模型</a></p>
-<h3 id="4-1-1-弱透视投影"><a href="#4-1-1-弱透视投影" class="headerlink" title="4.1.1 弱透视投影"></a>4.1.1 弱透视投影</h3><blockquote>
-<p>弱透视：weak perpective, 如果摄像机的视场比较小，而且物体表面深度变化相对其到摄像机的距离很小的话，物体上个点的深度可以用一个固定的深度值z0近似，这个值一般取物体质心的深度。这种近似可以看做是两次投影的合成。</p>
-</blockquote>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-10876044e7f7900a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<blockquote>
-<p>首先，整个物体按平行于光轴的方向正投影到经过物体质心并与图像平面平行的平面上；</p>
-</blockquote>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-bf0b8cfedaf66c57.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<blockquote>
-<p>然后，再按透视模型将上述物体平面的图像投影到摄像机的图像平面上，这一步实际是全局的放缩。因此，弱透视也叫放缩正投影（scaled orthographic projection）。</p>
-</blockquote>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-d6e80555a72c7dfa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h3 id="4-1-2-正投影：orthographic-projection"><a href="#4-1-2-正投影：orthographic-projection" class="headerlink" title="4.1.2 正投影：orthographic projection"></a>4.1.2 正投影：orthographic projection</h3><p><img src="https://upload-images.jianshu.io/upload_images/5361608-68c0aa0e15865b30.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<blockquote>
-<p>这种近似完全忽略了深度信息</p>
-</blockquote>
-<h2 id="4-2-校准目标"><a href="#4-2-校准目标" class="headerlink" title="4.2 校准目标"></a>4.2 校准目标</h2><blockquote>
-<p>估计内部参数和外部参数；</p>
-</blockquote>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-819d27eb90c59245.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-b2b94ebd08e64e3b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-734a190121f0af84.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>对于11自由度的参数：只要2n&gt;11,满足的n个点就可以得到很好的结果；<br><img src="https://upload-images.jianshu.io/upload_images/5361608-4f0424a16bb4daa7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-52f254e482337ca7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>得到一个方程组：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-63d1cb18425bbd9e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>求解一个线性方程：</p>
-<ul>
-<li>0 为解</li>
-<li>非零解： </li>
-</ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-314c82c970c265c3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<ul>
-<li>参考资料： <a href="http://www.cnblogs.com/pinard/p/6251584.html" target="_blank" rel="noopener">奇异值分解(SVD)原理与在降维中的应用</a></li>
-</ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-38920e7d3beea99c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<hr>
-<h3 id="4-2-2-Radial-Distortion"><a href="#4-2-2-Radial-Distortion" class="headerlink" title="4.2.2 Radial Distortion"></a>4.2.2 Radial Distortion</h3><ul>
-<li>参考资料：<a href="https://blog.csdn.net/dcrmg/article/details/52950141" target="_blank" rel="noopener">透镜畸变及校正模型</a></li>
-</ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-fdc05c03cc05a7f0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<pre><code class="C+++">public：
+    void pop_back(){  //释放对象，内存保留
+        --finish;
+        destroy(finish);
+    }
+    // 清除某个位置上的元素
+    iterator erase(iterator position){
+        if(postion + 1 != end()){
+            copy(position +1,finish, position );  // 后续元素往前移动
+            --finish;
+            destroy(finish);
+            return position;
+        }
+    }
+
+    // 清除某个区间上的元素
+    iterator erase(iterator first, iterator last){
+        iterator i = copy(last, finish, first);  // copy 全局函数
+        destroy(i, finish);
+        finish = finish - (last - first);
+        return first;
+    }
+
+    void clear(){return erase(begin(), end());}
+</code></pre>
 <hr>
 
       
@@ -563,7 +662,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://jingxa.github.io/2018/06/22/2-Camera-Model/" title="2_Camera_Model">https://jingxa.github.io/2018/06/22/2-Camera-Model/</a>
+    <a href="https://jingxa.github.io/2018/06/28/STL-4-容器-vector/" title="STL_4_容器_vector">https://jingxa.github.io/2018/06/28/STL-4-容器-vector/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -578,7 +677,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Camera/" rel="tag"># Camera</a>
+            <a href="/tags/STL/" rel="tag"># STL</a>
+          
+            <a href="/tags/Allocator/" rel="tag"># Allocator</a>
           
         </div>
       
@@ -591,8 +692,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/21/1-Tensor-Learn-OPS-2/" rel="next" title="1_Tensor_Learn_OPS_2">
-                <i class="fa fa-chevron-left"></i> 1_Tensor_Learn_OPS_2
+              <a href="/2018/06/27/char-的疑问/" rel="next" title="char*的疑问">
+                <i class="fa fa-chevron-left"></i> char*的疑问
               </a>
             
           </div>
@@ -601,8 +702,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/06/22/5-Epiplolar-Geometry/" rel="prev" title="5_Epiplolar_Geometry">
-                5_Epiplolar_Geometry <i class="fa fa-chevron-right"></i>
+              <a href="/2018/06/28/STL-2-空间分配器-2/" rel="prev" title="STL_2_空间分配器_2">
+                STL_2_空间分配器_2 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -789,7 +890,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#3-3d到2d的投影变换"><span class="nav-text">3. 3d到2d的投影变换</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-Camera-Calibration（相机校准）"><span class="nav-text">4. Camera Calibration（相机校准）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-投影类型"><span class="nav-text">4.1 投影类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-1-弱透视投影"><span class="nav-text">4.1.1 弱透视投影</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-2-正投影：orthographic-projection"><span class="nav-text">4.1.2 正投影：orthographic projection</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-校准目标"><span class="nav-text">4.2 校准目标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-2-Radial-Distortion"><span class="nav-text">4.2.2 Radial Distortion</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-序列式容器"><span class="nav-text">1 序列式容器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-vector"><span class="nav-text">1 vector</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-迭代器和-数据结构"><span class="nav-text">1.1 迭代器和 数据结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-内存管理"><span class="nav-text">1.2 内存管理</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

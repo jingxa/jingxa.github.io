@@ -112,7 +112,7 @@
 
 
 
-  <meta name="keywords" content="Camera," />
+  <meta name="keywords" content="STL,Allocator," />
 
 
 
@@ -125,39 +125,21 @@
 
 
 
-<meta name="description" content="CS231A笔记文章截图大多来自斯坦福CS231A课程;    干脆 明亮的图片   镜头   使用lense 透镜来解决上述问题；  透镜的问题：  pincushion distortion 枕形畸变 barrel distortion 桶形畸变      3. 3d到2d的投影变换对于某些平移和缩放：  但是在公式中，缺少两个重要参数，相机制造误差：  skewness: 倾斜 disto">
-<meta name="keywords" content="Camera">
+<meta name="description" content="本文章内容来源于《STL源码分析》第二章   2 内存基本处理工具 STL有五个全局函数：作用于未初始化空间  construct() destroy() uninitialized_copy() ==&amp;gt;对应高层函数copy() uninitialized_fill() ==&amp;gt; fill() uninitialized_fill_n() ==&amp;gt; fill_n()   后面三个低">
+<meta name="keywords" content="STL,Allocator">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2_Camera_Model">
-<meta property="og:url" content="https://jingxa.github.io/2018/06/22/2-Camera-Model/index.html">
+<meta property="og:title" content="STL_2_空间分配器_2">
+<meta property="og:url" content="https://jingxa.github.io/2018/06/28/STL-2-空间分配器-2/index.html">
 <meta property="og:site_name" content="Jingxa&#39;s Blog">
-<meta property="og:description" content="CS231A笔记文章截图大多来自斯坦福CS231A课程;    干脆 明亮的图片   镜头   使用lense 透镜来解决上述问题；  透镜的问题：  pincushion distortion 枕形畸变 barrel distortion 桶形畸变      3. 3d到2d的投影变换对于某些平移和缩放：  但是在公式中，缺少两个重要参数，相机制造误差：  skewness: 倾斜 disto">
+<meta property="og:description" content="本文章内容来源于《STL源码分析》第二章   2 内存基本处理工具 STL有五个全局函数：作用于未初始化空间  construct() destroy() uninitialized_copy() ==&amp;gt;对应高层函数copy() uninitialized_fill() ==&amp;gt; fill() uninitialized_fill_n() ==&amp;gt; fill_n()   后面三个低">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-03d37c544f3260a2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-f22aaa6b85b5c1c2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-aa9051feb0ad3ba7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-cd8d34757e165d97.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-e8d619979d82849a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-2de9c0e396c134df.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-56bd38497c0aa26a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-10876044e7f7900a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-bf0b8cfedaf66c57.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-d6e80555a72c7dfa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-68c0aa0e15865b30.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-819d27eb90c59245.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-b2b94ebd08e64e3b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-734a190121f0af84.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-4f0424a16bb4daa7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-52f254e482337ca7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-63d1cb18425bbd9e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-314c82c970c265c3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-38920e7d3beea99c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-fdc05c03cc05a7f0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-06-22T02:21:00.093Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-f7bb5f4e8c3c7791.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-9fd0facaaf195893.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-06-28T13:03:10.855Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="2_Camera_Model">
-<meta name="twitter:description" content="CS231A笔记文章截图大多来自斯坦福CS231A课程;    干脆 明亮的图片   镜头   使用lense 透镜来解决上述问题；  透镜的问题：  pincushion distortion 枕形畸变 barrel distortion 桶形畸变      3. 3d到2d的投影变换对于某些平移和缩放：  但是在公式中，缺少两个重要参数，相机制造误差：  skewness: 倾斜 disto">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5361608-03d37c544f3260a2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:title" content="STL_2_空间分配器_2">
+<meta name="twitter:description" content="本文章内容来源于《STL源码分析》第二章   2 内存基本处理工具 STL有五个全局函数：作用于未初始化空间  construct() destroy() uninitialized_copy() ==&amp;gt;对应高层函数copy() uninitialized_fill() ==&amp;gt; fill() uninitialized_fill_n() ==&amp;gt; fill_n()   后面三个低">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5361608-f7bb5f4e8c3c7791.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -187,13 +169,13 @@
 
 
 
-  <link rel="canonical" href="https://jingxa.github.io/2018/06/22/2-Camera-Model/"/>
+  <link rel="canonical" href="https://jingxa.github.io/2018/06/28/STL-2-空间分配器-2/"/>
 
 
 
 
 
-  <title>2_Camera_Model | Jingxa's Blog</title>
+  <title>STL_2_空间分配器_2 | Jingxa's Blog</title>
   
 
 
@@ -330,7 +312,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://jingxa.github.io/2018/06/22/2-Camera-Model/">
+    <link itemprop="mainEntityOfPage" href="https://jingxa.github.io/2018/06/28/STL-2-空间分配器-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="jingxa">
@@ -347,7 +329,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">2_Camera_Model</h1>
+          <h1 class="post-title" itemprop="name headline">STL_2_空间分配器_2</h1>
         
 
         <div class="post-meta">
@@ -359,8 +341,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-22T10:16:24+08:00">
-                2018-06-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-28T20:59:31+08:00">
+                2018-06-28
               </time>
             
 
@@ -382,8 +364,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/cs231A/" itemprop="url" rel="index">
-                    <span itemprop="name">cs231A</span>
+                  <a href="/categories/STL源码分析/" itemprop="url" rel="index">
+                    <span itemprop="name">STL源码分析</span>
                   </a>
                 </span>
 
@@ -400,8 +382,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/06/22/2-Camera-Model/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/06/22/2-Camera-Model/" itemprop="commentsCount"></span>
+                <a href="/2018/06/28/STL-2-空间分配器-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/06/28/STL-2-空间分配器-2/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -423,7 +405,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  521
+                  738
                 </span>
               
 
@@ -439,7 +421,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  4
                 </span>
               
             </div>
@@ -461,87 +443,176 @@
 
       
         <blockquote>
-<p>CS231A笔记<br>文章截图大多来自斯坦福CS231A课程;</p>
+<p>本文章内容来源于《STL源码分析》第二章</p>
 </blockquote>
 <hr>
+<h1 id="2-内存基本处理工具"><a href="#2-内存基本处理工具" class="headerlink" title="2 内存基本处理工具"></a>2 内存基本处理工具</h1><ul>
+<li><p>STL有五个全局函数：作用于未初始化空间</p>
 <ul>
-<li>干脆 明亮的图片</li>
+<li>construct()</li>
+<li>destroy()</li>
+<li>uninitialized_copy() ==&gt;对应高层函数copy()</li>
+<li>uninitialized_fill() ==&gt; fill()</li>
+<li>uninitialized_fill_n() ==&gt; fill_n()</li>
 </ul>
+</li>
+<li><p>后面三个低层次函数：</p>
+</li>
+<li><code>&lt;memory&gt;</code></li>
+<li><p>SGI 定义于：<code>&lt;stl_uninitialized&gt;</code></p>
+</li>
+<li><p>POD： plain Old Data : 标量型别或者传统的 c struct 型别：如char, int等等；</p>
+</li>
+<li>POD: 此型别必然有用trivial ctor/dtor/ copy/ assignment函数。可以采用类似<code>memcpy</code>之类的高效率函数；</li>
+<li><p>Non-POD: 采用最保险的做法；</p>
+</li>
+<li><p>__type_triats: 萃取型别的特性；</p>
+<ul>
+<li>如<code>typedef __type_traits&lt;T&gt;::is_POD_type is_POD</code> 判断T是否POD模型；</li>
+<li>traits具体查看《STL源码分析》第三章;</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-1-uninitialized-copy"><a href="#2-1-uninitialized-copy" class="headerlink" title="2.1 uninitialized_copy"></a>2.1 uninitialized_copy</h2><p><img src="https://upload-images.jianshu.io/upload_images/5361608-f7bb5f4e8c3c7791.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li><p>主要接口</p>
+<pre><code class="C++">// uninitialized_copy
+template&lt;class InputIterator, class ForwardIterator&gt;
+ForwardIterator uninitialized_copy(InputIterator first, InputIterator last,
+  ForwardIterator result){
+      retun __uninitialized_copy(first,last, result, value_type(result));
+      // 利用value_type() 取出first de value_type
+  }
+</code></pre>
+</li>
+<li><p>POD判别函数</p>
+<pre><code class="C++">// POD  判断
+template&lt;class InputIterator, class ForwardIterator, class T&gt;
+inline ForwardIterator
+__uninitialized_copy(InputIterator first, InputIterator last, 
+      ForwardIterator result ,T*){
+          typedef typename __type_traits&lt;T&gt;::is_POD_type is_POD;
+          return __uninitialized_copy_aux(first, last, result, is_POD());
+}
+</code></pre>
+</li>
+<li><p>POD型别<br><code>`</code>C++<br>template<class inputiterator,="" class="" forwarditerator,="" t=""><br>inline ForwardIterator<br>__uninitialized_copy_aux(InputIterator first, InputIterator last,</class></p>
+<pre><code> ForwardIterator result, __true_type){
+     return copy(first, last, result);   // 调用STL算法 copy()
+ }    
+</code></pre></li>
+</ul>
+<pre><code>- non-POD型别
+```C++ 
+template&lt;class InputIterator, class ForwardIterator, class T&gt;
+inline ForwardIterator
+__uninitialized_copy_aux(InputIterator first, InputIterator last,
+        ForwardIterator result, __false_type){
+            ForwardIterator cur = result;
+            // 异常处理省略
+            for(;first != last; ++first, ++cur){
+                construct(&amp;*cur, *first);   // 必须一个一个元素构造
+            }
+            return cur;
+
+        }    
+</code></pre><ul>
+<li>针对char*, wchar_t*的版本<br><code>`</code>C++<br>inline char<em> uninitialized_copy(const char</em> first, const char<em> last, char</em> result){<br> memmove(result, first, last - first);<br> return result + (last - first);<br>} </li>
+</ul>
+<p>inline wchar_t<em> uninitialized_copy(const wchar_t</em> first, const wchar_t<em> last,<br>    wchar_t</em> result){<br>    memmove(result, first, sizeof(wchar_t)*(last - first));<br>    return result+(last - first);<br>}</p>
+<pre><code>
+## 2.2 uninitialized_fill
+
+![](https://upload-images.jianshu.io/upload_images/5361608-89af66f445096a72.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+-  在i出调用construct(&amp;*i, x)
+```C++
+template&lt;class ForwardIterator, class T&gt;
+void uninitialized_fill(ForwardIterator first, ForwardIterator last, const T&amp; x){
+    __uninitialized_fill(first, last, x, value_type(first));
+}
+
+</code></pre><ul>
+<li>判断POD</li>
+</ul>
+<pre><code class="C++">template&lt;class ForwardIterator , class T, class T1&gt;
+inline void __uninitialized_fill(ForwardIterator first, ForwardIterator last,
+    const T&amp; x, T1*){
+        typedef typename __type_traits&lt;T&gt;::is_POD_type is_POD;
+        __uninitialized_fill_aux(first, last, x, is_POD());
+    }
+
+</code></pre>
+<ul>
+<li>POD型别<br><code>`</code>C++<br>template<class forwarditerator="" ,="" class="" t,="" t1=""><br>inline void <strong>uninitialized_fill(ForwardIterator first, ForwardIterator last,<br>  const T&amp; x, </strong>true_type){<pre><code>  fill(first, last, x);  // 调用STL算法 fill()
+</code></pre></class></li>
+</ul>
+<p>}</p>
+<pre><code>-  non-POD型别
+
+```C++
+template&lt;class ForwardIterator , class T, class T1&gt;
+inline void __uninitialized_fill(ForwardIterator first, ForwardIterator last,
+    const T&amp; x, __false_type){
+                    ForwardIterator cur = result;
+            // 异常处理省略
+            for(;first != last; ++first, ++cur){
+                construct(&amp;*cur, *first);   // 必须一个一个元素构造
+            }
+            return cur;
+
+}
+</code></pre><h2 id="2-3-uninitialized-fill-n"><a href="#2-3-uninitialized-fill-n" class="headerlink" title="2.3 uninitialized_fill_n"></a>2.3 uninitialized_fill_n</h2><p><img src="https://upload-images.jianshu.io/upload_images/5361608-9fd0facaaf195893.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<blockquote>
 <ol>
-<li>镜头</li>
+<li>首先使用萃取器取出first的value type,</li>
+<li>然后判断型别是否为POD型别（plain old data）,即标量型别，或者传统的 c struct型别；</li>
+<li>pod必然有用无用的trivial ctor/copy/dtor/assignment函数</li>
+<li>对pod采用memcpy之类高效率的函数,non-pod采用保险的做法；</li>
 </ol>
-<ul>
-<li><p>使用lense 透镜来解决上述问题；</p>
-</li>
-<li><p>透镜的问题：</p>
-<ul>
-<li>pincushion distortion 枕形畸变<ul>
-<li>barrel distortion 桶形畸变</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h1 id="3-3d到2d的投影变换"><a href="#3-3d到2d的投影变换" class="headerlink" title="3. 3d到2d的投影变换"></a>3. 3d到2d的投影变换</h1><p><img src="https://upload-images.jianshu.io/upload_images/5361608-03d37c544f3260a2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br><img src="https://upload-images.jianshu.io/upload_images/5361608-f22aaa6b85b5c1c2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>对于某些平移和缩放：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-aa9051feb0ad3ba7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<p>但是在公式中，缺少两个重要参数，相机制造误差：</p>
-<ul>
-<li>skewness: 倾斜</li>
-<li>distortion： 形变</li>
-</ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-cd8d34757e165d97.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>因此形成5个自由度的相机内参矩阵K;</p>
-<p>世界坐标到相机坐标系的变换为：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-e8d619979d82849a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>综上，变换矩阵由两个部分组成：</p>
-<ul>
-<li>instrinsic : K : 5个自由度</li>
-<li>extrinsic ： T ,R : 各自3个自由度<br>总共11个自由度；</li>
-</ul>
-<h1 id="4-Camera-Calibration（相机校准）"><a href="#4-Camera-Calibration（相机校准）" class="headerlink" title="4. Camera Calibration（相机校准）"></a>4. Camera Calibration（相机校准）</h1><p>在投影变换中，<br><img src="https://upload-images.jianshu.io/upload_images/5361608-2de9c0e396c134df.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>原理为：<br><img src="https://upload-images.jianshu.io/upload_images/5361608-56bd38497c0aa26a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h2 id="4-1-投影类型"><a href="#4-1-投影类型" class="headerlink" title="4.1 投影类型"></a>4.1 投影类型</h2><p>参考资料：<br>-<a href="https://blog.csdn.net/jyc1228/article/details/4209870" target="_blank" rel="noopener"> 摄像机透视投影近似模型</a></p>
-<h3 id="4-1-1-弱透视投影"><a href="#4-1-1-弱透视投影" class="headerlink" title="4.1.1 弱透视投影"></a>4.1.1 弱透视投影</h3><blockquote>
-<p>弱透视：weak perpective, 如果摄像机的视场比较小，而且物体表面深度变化相对其到摄像机的距离很小的话，物体上个点的深度可以用一个固定的深度值z0近似，这个值一般取物体质心的深度。这种近似可以看做是两次投影的合成。</p>
 </blockquote>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-10876044e7f7900a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<blockquote>
-<p>首先，整个物体按平行于光轴的方向正投影到经过物体质心并与图像平面平行的平面上；</p>
-</blockquote>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-bf0b8cfedaf66c57.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<blockquote>
-<p>然后，再按透视模型将上述物体平面的图像投影到摄像机的图像平面上，这一步实际是全局的放缩。因此，弱透视也叫放缩正投影（scaled orthographic projection）。</p>
-</blockquote>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-d6e80555a72c7dfa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h3 id="4-1-2-正投影：orthographic-projection"><a href="#4-1-2-正投影：orthographic-projection" class="headerlink" title="4.1.2 正投影：orthographic projection"></a>4.1.2 正投影：orthographic projection</h3><p><img src="https://upload-images.jianshu.io/upload_images/5361608-68c0aa0e15865b30.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<blockquote>
-<p>这种近似完全忽略了深度信息</p>
-</blockquote>
-<h2 id="4-2-校准目标"><a href="#4-2-校准目标" class="headerlink" title="4.2 校准目标"></a>4.2 校准目标</h2><blockquote>
-<p>估计内部参数和外部参数；</p>
-</blockquote>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-819d27eb90c59245.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-b2b94ebd08e64e3b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-734a190121f0af84.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>对于11自由度的参数：只要2n&gt;11,满足的n个点就可以得到很好的结果；<br><img src="https://upload-images.jianshu.io/upload_images/5361608-4f0424a16bb4daa7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-52f254e482337ca7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>得到一个方程组：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-63d1cb18425bbd9e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>求解一个线性方程：</p>
 <ul>
-<li>0 为解</li>
-<li>非零解： </li>
+<li>接口</li>
 </ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-314c82c970c265c3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<pre><code class="C++">template&lt;class ForwardIterator , class Size, class T&gt;
+inline ForwardIterator uninitialized_fill_n(ForwardIterator first, Size n, const T&amp; x){
+    return __uninitialized_fill_n(first,n, x, value_type(first));
+}
+</code></pre>
 <ul>
-<li>参考资料： <a href="http://www.cnblogs.com/pinard/p/6251584.html" target="_blank" rel="noopener">奇异值分解(SVD)原理与在降维中的应用</a></li>
+<li>POD型别判断</li>
 </ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-38920e7d3beea99c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<hr>
-<h3 id="4-2-2-Radial-Distortion"><a href="#4-2-2-Radial-Distortion" class="headerlink" title="4.2.2 Radial Distortion"></a>4.2.2 Radial Distortion</h3><ul>
-<li>参考资料：<a href="https://blog.csdn.net/dcrmg/article/details/52950141" target="_blank" rel="noopener">透镜畸变及校正模型</a></li>
+<pre><code class="C++">template &lt;class ForwardIterator , class Size, class T,class T1&gt;
+inline ForwardIterator __uninitialized_fill_n(ForwardIterator first,
+    Size n , const T&amp; x, T1*){
+        typedef typename __type_traits&lt;T1&gt;::is_POD_type is_POD;
+        return __uninitialized_fill_n_aux(first, n, x, is_POD());
+    }
+</code></pre>
+<ul>
+<li>POD 型别</li>
 </ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-fdc05c03cc05a7f0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<pre><code class="C++">template &lt;class ForwardIterator , class Size, class T&gt;
+inline ForwardIterator __uninitialized_fill_n_aux(ForwardIterator first,
+    Size n , const T&amp; x, __true_type){
+        return fill_n(first, n, x);  // 告诫函数执行
+    }
+
+</code></pre>
+<ul>
+<li>non-POD型别</li>
+</ul>
+<pre><code class="C++">
+template&lt;class ForwardIterator, class Size, class T&gt;
+inline ForwardIterator __uninitialized_fill_n_aux(ForwardIterator first,
+    Size n, const T&amp; x, __false_type){
+        ForwardIterator cur = first;
+        for(; n&gt;0; --n, ++cur){
+            construct(&amp;*cur, x);
+        }
+        return cur;
+    }
+</code></pre>
 <hr>
 
       
@@ -563,7 +634,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://jingxa.github.io/2018/06/22/2-Camera-Model/" title="2_Camera_Model">https://jingxa.github.io/2018/06/22/2-Camera-Model/</a>
+    <a href="https://jingxa.github.io/2018/06/28/STL-2-空间分配器-2/" title="STL_2_空间分配器_2">https://jingxa.github.io/2018/06/28/STL-2-空间分配器-2/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -578,7 +649,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Camera/" rel="tag"># Camera</a>
+            <a href="/tags/STL/" rel="tag"># STL</a>
+          
+            <a href="/tags/Allocator/" rel="tag"># Allocator</a>
           
         </div>
       
@@ -591,8 +664,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/21/1-Tensor-Learn-OPS-2/" rel="next" title="1_Tensor_Learn_OPS_2">
-                <i class="fa fa-chevron-left"></i> 1_Tensor_Learn_OPS_2
+              <a href="/2018/06/28/STL-4-容器-vector/" rel="next" title="STL_4_容器_vector">
+                <i class="fa fa-chevron-left"></i> STL_4_容器_vector
               </a>
             
           </div>
@@ -600,10 +673,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/22/5-Epiplolar-Geometry/" rel="prev" title="5_Epiplolar_Geometry">
-                5_Epiplolar_Geometry <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -789,7 +858,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#3-3d到2d的投影变换"><span class="nav-text">3. 3d到2d的投影变换</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-Camera-Calibration（相机校准）"><span class="nav-text">4. Camera Calibration（相机校准）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-投影类型"><span class="nav-text">4.1 投影类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-1-弱透视投影"><span class="nav-text">4.1.1 弱透视投影</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-2-正投影：orthographic-projection"><span class="nav-text">4.1.2 正投影：orthographic projection</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-校准目标"><span class="nav-text">4.2 校准目标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-2-Radial-Distortion"><span class="nav-text">4.2.2 Radial Distortion</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2-内存基本处理工具"><span class="nav-text">2 内存基本处理工具</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-uninitialized-copy"><span class="nav-text">2.1 uninitialized_copy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-uninitialized-fill-n"><span class="nav-text">2.3 uninitialized_fill_n</span></a></li></ol></li></ol></div>
             
 
           </div>

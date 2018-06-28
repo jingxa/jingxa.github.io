@@ -125,13 +125,13 @@
 
 
 
-<meta name="description" content="本文章内容来源于《STL源码分析》   1. STL allocater1.1 操作过程 对象创建 内存分配： alloc:allocate() 对象构造： ::construct()   对象释放 对象析构： ::destroy() 内存释放：  alloc:deallocate()    1.2 定义 &amp;lt;memory&amp;gt;包含以下两个头文件：#include &amp;lt;stl_allo">
+<meta name="description" content="本文章内容来源于《STL源码分析》第二章   1. STL allocater1.1 操作过程 对象创建 内存分配： alloc:allocate() 对象构造： ::construct()   对象释放 对象析构： ::destroy() 内存释放：  alloc:deallocate()    1.2 定义 &amp;lt;memory&amp;gt;包含以下两个头文件：#include &amp;lt;stl_a">
 <meta name="keywords" content="STL,Allocator">
 <meta property="og:type" content="article">
 <meta property="og:title" content="STL_1—_空间分配器">
 <meta property="og:url" content="https://jingxa.github.io/2018/06/26/STL-1—-空间分配器/index.html">
 <meta property="og:site_name" content="Jingxa&#39;s Blog">
-<meta property="og:description" content="本文章内容来源于《STL源码分析》   1. STL allocater1.1 操作过程 对象创建 内存分配： alloc:allocate() 对象构造： ::construct()   对象释放 对象析构： ::destroy() 内存释放：  alloc:deallocate()    1.2 定义 &amp;lt;memory&amp;gt;包含以下两个头文件：#include &amp;lt;stl_allo">
+<meta property="og:description" content="本文章内容来源于《STL源码分析》第二章   1. STL allocater1.1 操作过程 对象创建 内存分配： alloc:allocate() 对象构造： ::construct()   对象释放 对象析构： ::destroy() 内存释放：  alloc:deallocate()    1.2 定义 &amp;lt;memory&amp;gt;包含以下两个头文件：#include &amp;lt;stl_a">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-e5370350f3ee4f1f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-966b28c00474dcf2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
@@ -140,10 +140,10 @@
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-5f57f1d1a29d7128.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-db5f494e259f11b3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-dd0ce8eb28e51e1b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-06-26T12:58:06.956Z">
+<meta property="og:updated_time" content="2018-06-28T13:01:33.688Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="STL_1—_空间分配器">
-<meta name="twitter:description" content="本文章内容来源于《STL源码分析》   1. STL allocater1.1 操作过程 对象创建 内存分配： alloc:allocate() 对象构造： ::construct()   对象释放 对象析构： ::destroy() 内存释放：  alloc:deallocate()    1.2 定义 &amp;lt;memory&amp;gt;包含以下两个头文件：#include &amp;lt;stl_allo">
+<meta name="twitter:description" content="本文章内容来源于《STL源码分析》第二章   1. STL allocater1.1 操作过程 对象创建 内存分配： alloc:allocate() 对象构造： ::construct()   对象释放 对象析构： ::destroy() 内存释放：  alloc:deallocate()    1.2 定义 &amp;lt;memory&amp;gt;包含以下两个头文件：#include &amp;lt;stl_a">
 <meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5361608-e5370350f3ee4f1f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
@@ -410,7 +410,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,742
+                  1,745
                 </span>
               
 
@@ -448,7 +448,7 @@
 
       
         <blockquote>
-<p>本文章内容来源于《STL源码分析》</p>
+<p>本文章内容来源于《STL源码分析》第二章</p>
 </blockquote>
 <hr>
 <h1 id="1-STL-allocater"><a href="#1-STL-allocater" class="headerlink" title="1. STL allocater"></a>1. STL allocater</h1><h2 id="1-1-操作过程"><a href="#1-1-操作过程" class="headerlink" title="1.1 操作过程"></a>1.1 操作过程</h2><ul>
@@ -858,8 +858,8 @@ char* __default_alloc_template&lt;threads, inst&gt;::chunk_alloc(size_t size, in
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/06/27/char-的疑问/" rel="prev" title="char\*的疑问">
-                char\*的疑问 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/06/27/char-的疑问/" rel="prev" title="char*的疑问">
+                char*的疑问 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -948,7 +948,7 @@ char* __default_alloc_template&lt;threads, inst&gt;::chunk_alloc(size_t size, in
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1080,7 +1080,7 @@ char* __default_alloc_template&lt;threads, inst&gt;::chunk_alloc(size_t size, in
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">12.5k</span>
+    <span title="Site words total count">14.1k</span>
   
 </div>
 
