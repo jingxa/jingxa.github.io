@@ -136,7 +136,7 @@
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-f7bb5f4e8c3c7791.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-89af66f445096a72.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-9fd0facaaf195893.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-06-28T13:10:27.238Z">
+<meta property="og:updated_time" content="2018-06-28T13:13:09.396Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="STL_2_空间分配器_2">
 <meta name="twitter:description" content="本文章内容来源于《STL源码分析》第二章   2 内存基本处理工具 STL有五个全局函数：作用于未初始化空间  construct() destroy() uninitialized_copy() ==&amp;gt;对应高层函数copy() uninitialized_fill() ==&amp;gt; fill() uninitialized_fill_n() ==&amp;gt; fill_n()   后面三个低">
@@ -477,7 +477,7 @@
 <h2 id="2-1-uninitialized-copy"><a href="#2-1-uninitialized-copy" class="headerlink" title="2.1 uninitialized_copy"></a>2.1 uninitialized_copy</h2><p><img src="https://upload-images.jianshu.io/upload_images/5361608-f7bb5f4e8c3c7791.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <ul>
 <li><p>主要接口</p>
-<pre><code class="C++">// uninitialized_copy
+<pre><code class="c++">// uninitialized_copy
 template&lt;class InputIterator, class ForwardIterator&gt;
 ForwardIterator uninitialized_copy(InputIterator first, InputIterator last,
   ForwardIterator result){
@@ -487,7 +487,7 @@ ForwardIterator uninitialized_copy(InputIterator first, InputIterator last,
 </code></pre>
 </li>
 <li><p>POD判别函数</p>
-<pre><code class="C++">// POD  判断
+<pre><code class="c++">// POD  判断
 template&lt;class InputIterator, class ForwardIterator, class T&gt;
 inline ForwardIterator
 __uninitialized_copy(InputIterator first, InputIterator last, 
@@ -500,7 +500,7 @@ __uninitialized_copy(InputIterator first, InputIterator last,
 <li><p>POD型别</p>
 </li>
 </ul>
-<pre><code class="C++">template&lt;class InputIterator, class ForwardIterator, class T&gt;
+<pre><code class="c++">template&lt;class InputIterator, class ForwardIterator, class T&gt;
 inline ForwardIterator
 __uninitialized_copy_aux(InputIterator first, InputIterator last,
         ForwardIterator result, __true_type){
@@ -511,7 +511,7 @@ __uninitialized_copy_aux(InputIterator first, InputIterator last,
 <ul>
 <li>non-POD型别</li>
 </ul>
-<pre><code class="C++">template&lt;class InputIterator, class ForwardIterator, class T&gt;
+<pre><code class="c++">template&lt;class InputIterator, class ForwardIterator, class T&gt;
 inline ForwardIterator
 __uninitialized_copy_aux(InputIterator first, InputIterator last,
         ForwardIterator result, __false_type){
@@ -527,7 +527,7 @@ __uninitialized_copy_aux(InputIterator first, InputIterator last,
 <ul>
 <li>针对char*, wchar_t*的版本</li>
 </ul>
-<pre><code class="C++">inline char* uninitialized_copy(const char* first, const char* last, char* result){
+<pre><code class="c++">inline char* uninitialized_copy(const char* first, const char* last, char* result){
     memmove(result, first, last - first);
     return result + (last - first);
 } 
@@ -542,7 +542,7 @@ inline wchar_t* uninitialized_copy(const wchar_t* first, const wchar_t* last,
 <ul>
 <li>在i出调用construct(&amp;*i, x)</li>
 </ul>
-<pre><code class="C++">template&lt;class ForwardIterator, class T&gt;
+<pre><code class="c++">template&lt;class ForwardIterator, class T&gt;
 void uninitialized_fill(ForwardIterator first, ForwardIterator last, const T&amp; x){
     __uninitialized_fill(first, last, x, value_type(first));
 }
@@ -551,7 +551,7 @@ void uninitialized_fill(ForwardIterator first, ForwardIterator last, const T&amp
 <ul>
 <li>判断POD</li>
 </ul>
-<pre><code class="C++">template&lt;class ForwardIterator , class T, class T1&gt;
+<pre><code class="c++">template&lt;class ForwardIterator , class T, class T1&gt;
 inline void __uninitialized_fill(ForwardIterator first, ForwardIterator last,
     const T&amp; x, T1*){
         typedef typename __type_traits&lt;T&gt;::is_POD_type is_POD;
@@ -562,7 +562,7 @@ inline void __uninitialized_fill(ForwardIterator first, ForwardIterator last,
 <ul>
 <li>POD型别</li>
 </ul>
-<pre><code class="C++">template&lt;class ForwardIterator , class T, class T1&gt;
+<pre><code class="c++">template&lt;class ForwardIterator , class T, class T1&gt;
 inline void __uninitialized_fill(ForwardIterator first, ForwardIterator last,
     const T&amp; x, __true_type){
         fill(first, last, x);  // 调用STL算法 fill()
@@ -573,7 +573,7 @@ inline void __uninitialized_fill(ForwardIterator first, ForwardIterator last,
 <ul>
 <li>non-POD型别</li>
 </ul>
-<pre><code class="C++">template&lt;class ForwardIterator , class T, class T1&gt;
+<pre><code class="c++">template&lt;class ForwardIterator , class T, class T1&gt;
 inline void __uninitialized_fill(ForwardIterator first, ForwardIterator last,
     const T&amp; x, __false_type){
                     ForwardIterator cur = result;
@@ -597,7 +597,7 @@ inline void __uninitialized_fill(ForwardIterator first, ForwardIterator last,
 <ul>
 <li>接口</li>
 </ul>
-<pre><code class="C++">template&lt;class ForwardIterator , class Size, class T&gt;
+<pre><code class="c++">template&lt;class ForwardIterator , class Size, class T&gt;
 inline ForwardIterator uninitialized_fill_n(ForwardIterator first, Size n, const T&amp; x){
     return __uninitialized_fill_n(first,n, x, value_type(first));
 }
@@ -605,7 +605,7 @@ inline ForwardIterator uninitialized_fill_n(ForwardIterator first, Size n, const
 <ul>
 <li>POD型别判断</li>
 </ul>
-<pre><code class="C++">template &lt;class ForwardIterator , class Size, class T,class T1&gt;
+<pre><code class="c++">template &lt;class ForwardIterator , class Size, class T,class T1&gt;
 inline ForwardIterator __uninitialized_fill_n(ForwardIterator first,
     Size n , const T&amp; x, T1*){
         typedef typename __type_traits&lt;T1&gt;::is_POD_type is_POD;
@@ -615,7 +615,7 @@ inline ForwardIterator __uninitialized_fill_n(ForwardIterator first,
 <ul>
 <li>POD 型别</li>
 </ul>
-<pre><code class="C++">template &lt;class ForwardIterator , class Size, class T&gt;
+<pre><code class="c++">template &lt;class ForwardIterator , class Size, class T&gt;
 inline ForwardIterator __uninitialized_fill_n_aux(ForwardIterator first,
     Size n , const T&amp; x, __true_type){
         return fill_n(first, n, x);  // 告诫函数执行
@@ -625,7 +625,7 @@ inline ForwardIterator __uninitialized_fill_n_aux(ForwardIterator first,
 <ul>
 <li>non-POD型别</li>
 </ul>
-<pre><code class="C++">
+<pre><code class="c++">
 template&lt;class ForwardIterator, class Size, class T&gt;
 inline ForwardIterator __uninitialized_fill_n_aux(ForwardIterator first,
     Size n, const T&amp; x, __false_type){
