@@ -12,6 +12,7 @@ categories:
 ---
 
 
+
 容器的分类：
 
 ![](https://upload-images.jianshu.io/upload_images/5361608-406c4fd15665c541.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
@@ -76,10 +77,6 @@ protected:
 	// 以下，simple_alloc 是SGI STL的空间配置器；
 	typedef simple_alloc<value_type, Alloc> data_allocator;
 ```
-
-
-![](https://upload-images.jianshu.io/upload_images/5361608-d5d1c167a7518acc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
 (1) **vector 的构造函数**
 
 - vector使用很多构造器， 
@@ -115,26 +112,10 @@ protected:
 	}
 ```
 
-- 空间操作
-
-```C+++
-public:
-	void resise(size_type new_size, const T& x){
-		if(new_size < size())
-			erase(begin()+new_size, end());
-		else{
-			insert(end(), new_size - size(), x);
-		}
-	}
-	
-	void resise(size_type new_size){
-		resize(new_size, T());
-	}
-```
-
-
-
 (2) **vector插入元素**
+
+![](https://upload-images.jianshu.io/upload_images/5361608-d5d1c167a7518acc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 ```C++
 protected:
 	void insert_aux(iterator position, const T& x);  // 插入
@@ -228,6 +209,105 @@ public：
 	
 	void clear(){return erase(begin(), end());}
 ```
+
+(4)  **空间重配置**
+
+- 空间操作
+
+```C+++
+public:
+	void resise(size_type new_size, const T& x){
+		if(new_size < size())
+			erase(begin()+new_size, end());
+		else{
+			insert(end(), new_size - size(), x);
+		}
+	}
+	
+	void resise(size_type new_size){
+		resize(new_size, T());
+	}
+
+      void insert(iterator postion, size_type n, const T& x);
+``` 
+
+其中，insert()的实现如下：
+
+- 备用空间充足
+![](https://upload-images.jianshu.io/upload_images/5361608-f4d49c0cee3453c8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![](https://upload-images.jianshu.io/upload_images/5361608-20ea0c68e3d41cc3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+- 备用空间不足
+
+![](https://upload-images.jianshu.io/upload_images/5361608-f92928219c83a3b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
+
+```
+// vector::insert()
+
+// c从position 开始插入n个元素， 元素初始值为x；
+
+template<Class T, class Alloc>
+void vector<T, alloc>:: insert(iterator position, size_type n, const T& x){
+	if(n != 0){// 当N！= 0的时候才可以进行
+		if(size_type(end_of_storage - finish )>= n){
+			// 备用空间足够
+			T x_copy = x;
+			// 一下计算插入点之后的现有元素个数
+			const size_type elem_after = finish - position;
+			iterator old_finish = finish;
+			if(elem_after > n){  // “插入点之后现有元素个数” > “新增的元素个数”
+				uninitialized_copy(finish - n, finish,finish);  // 覆盖
+				finish += n;  // vector  后端标记后移
+				copy_backward(position, old_finish - n, finish); // 前面向后移动n个位置
+				fill(postion, position + n, x_copy);	// 从插入点开始填值
+			}else{
+				// 插入点的之后的现有元素个数 小于等于 “新增元素个数”
+				uninitialized_fill_n(finish, n - elem_after, x_copy); 
+				finish += n - elem_after;
+				uninitialized_copy(position, old_finish, finish);
+				finish += elem_after;
+				fill(position, old_finish, x_copy);
+			}
+		}else{  // 备用空间 小于 “新增元素个数”（新配置额外的内存）
+			// 首先决定新的长度： 旧的长度的两倍， 或者旧长度 + 新元素个数
+			const size_type old_size = size();
+			const size_type len  = old_size  + max(old_size, n);
+			// 配置新的vector空间
+			iterator new_start = data_allocator::allocate(len);
+			iterator new_finish = new_start;
+			__STL_TRY{
+				// 一下首先将旧的vector 插入点之前的元素插入到新的空间
+				new_finish = uninitialized_copy(start, position, new_start);
+				// 然后将新增元素填入新空间
+				new_finish = uninitialized_fill_n(new_finish,n, x);
+				//然后将position 之后的点插入到新空间
+				new_finish = uninitialized_copy(position, finish, new_finish);
+			}
+			# ifdef __STL_USE_EXCEPTIONS
+			catch(...){
+				destroy(new_start, new_finish);
+				data_allocator::deallocate(new_start, len);
+				throw;
+			}
+			# endif
+			// 一下清除并且释放旧的vector
+			destroy(start, finish);
+			deallocate();
+			start = new_start;
+			finish = new_finish;
+			end_of_storage = new_start + len;
+		}
+	}
+}
+
+```
+
+
+
+
 
 
 ---
