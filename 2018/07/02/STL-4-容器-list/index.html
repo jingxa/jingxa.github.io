@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="STL,Container," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="Jingxa's Blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="本文章内容来源于《STL源码分析》第四章   一、 list 概述 空间运用精准，不浪费 元素的插入删除， 常数时间  1 list的节点template&amp;lt;class T&amp;gt; struct __list_node{     typedef void* void_pointer;     void_pointer prev;  // 型别为void* ,其实可设为__list_node&amp;">
+<meta name="keywords" content="STL,Container">
+<meta property="og:type" content="article">
+<meta property="og:title" content="STL_4_容器_list">
+<meta property="og:url" content="https://jingxa.github.io/2018/07/02/STL-4-容器-list/index.html">
+<meta property="og:site_name" content="Jingxa&#39;s Blog">
+<meta property="og:description" content="本文章内容来源于《STL源码分析》第四章   一、 list 概述 空间运用精准，不浪费 元素的插入删除， 常数时间  1 list的节点template&amp;lt;class T&amp;gt; struct __list_node{     typedef void* void_pointer;     void_pointer prev;  // 型别为void* ,其实可设为__list_node&amp;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-8489ae0596b75ed8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-0854592f11693038.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-5d2569f43d9a3e18.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-0be901f57d9f5e67.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-07-02T02:59:38.283Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="STL_4_容器_list">
+<meta name="twitter:description" content="本文章内容来源于《STL源码分析》第四章   一、 list 概述 空间运用精准，不浪费 元素的插入删除， 常数时间  1 list的节点template&amp;lt;class T&amp;gt; struct __list_node{     typedef void* void_pointer;     void_pointer prev;  // 型别为void* ,其实可设为__list_node&amp;">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5361608-8489ae0596b75ed8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Jingxa'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jingxa.github.io/2018/07/02/STL-4-容器-list/"/>
+
+
+
+
+
+  <title>STL_4_容器_list | Jingxa's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jingxa's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">It's my precious!</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://jingxa.github.io/2018/07/02/STL-4-容器-list/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jingxa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jingxa's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">STL_4_容器_list</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-02T10:55:50+08:00">
+                2018-07-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/STL源码分析/" itemprop="url" rel="index">
+                    <span itemprop="name">STL源码分析</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/07/02/STL-4-容器-list/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/07/02/STL-4-容器-list/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,558
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  8
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>本文章内容来源于《STL源码分析》第四章</p>
+</blockquote>
+<hr>
+<h1 id="一、-list-概述"><a href="#一、-list-概述" class="headerlink" title="一、 list 概述"></a>一、 list 概述</h1><ul>
+<li>空间运用精准，不浪费</li>
+<li>元素的插入删除， 常数时间</li>
+</ul>
+<h2 id="1-list的节点"><a href="#1-list的节点" class="headerlink" title="1 list的节点"></a>1 list的节点</h2><pre><code class="c++">template&lt;class T&gt;
+struct __list_node{
+    typedef void* void_pointer;
+    void_pointer prev;  // 型别为void* ,其实可设为__list_node&lt;T&gt;*
+    void_pointer next;
+    T data;
+};
+</code></pre>
+<h2 id="2-迭代器"><a href="#2-迭代器" class="headerlink" title="2 迭代器"></a>2 迭代器</h2><ul>
+<li>类型: 双向迭代器 — Bidirectional iterators</li>
+<li>插入(insert)和接合(splice)操作不会造成原有的迭代器失效</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-8489ae0596b75ed8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>实现：</p>
+<pre><code class="c++">/**
+    list 的迭代器
+    类型: 双向迭代器 --- Bidirectional iterators
+*/
+template&lt;class T, class Ref, class Ptr&gt;
+struct __list_iterator{
+    typedef __list_iterator&lt;T,T&amp;,T*&gt; iterator;
+    typedef __list_iterator&lt;T,Ref,Ptr&gt; self;
+
+    typedef bidirectional_iterator_org iterator_category;
+    typedef T                 value_type;
+    typedef Ptr                pointer;
+    typedef Ref                reference;
+    typedef __list_node&lt;T&gt;* link_type;
+    typedef size_t             size_type;
+    typedef    ptrdiff_t        difference_type;
+
+    link_type    node;        //迭代器内部的普通指针，指向list节点
+
+// 构造函数
+
+    __list_iterator(link_type x):node(x){}
+    __list_iterator(){}
+    __list_iterator(const iterator&amp; x):node(x.node){}
+
+
+    bool operator==(const self&amp; x) const {return node == x.node;}
+    bool operator!=(const self&amp; x) const {return node != x.node;}
+    //以下是对迭代器取值
+    reference operator*() const {return (*node).data;}
+
+    // 迭代器成员存取运算子的标准做法
+    pointer operator-&gt;() const{reteurn &amp;(operator*());}
+
+    // 对迭代器累加1， 就是前进一个节点
+    self&amp; operator++(){
+        node = (link_type)((*node).next);
+        return *this;
+    }
+
+    self operator++(int){
+        self tmp = *this;
+        ++*this;
+        return tmp;
+    }
+
+    //迭代器递减1， 就是后退一个节点
+    self&amp; operator--(){
+        node = (link_type)((*node).prev);
+        return *this;
+    }
+    self operator--(int){
+        self tmp = *this;
+        --*this;
+        return tmp;
+    }
+
+
+};
+
+</code></pre>
+<h2 id="3-数据结构"><a href="#3-数据结构" class="headerlink" title="3 数据结构"></a>3 数据结构</h2><p><img src="https://upload-images.jianshu.io/upload_images/5361608-0854592f11693038.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>不仅是一个双向链表</li>
+<li>还是一个环状链表</li>
+<li>让指针node指向刻意置于尾端的空白节点，node便能符合STL的“前闭后开”的区间要求</li>
+</ul>
+<h3 id="3-1-分配器"><a href="#3-1-分配器" class="headerlink" title="3.1 分配器"></a>3.1 分配器</h3><pre><code class="c++">template&lt; class T, Alloc = alloc&gt;
+class list{
+protected:
+    typedef __list_node&lt;T&gt; list_node;
+    // 专属空间分配器,每次配置一个节点大小
+    typedef simple_alloc&lt;list_node,Alloc&gt; list_node_allocator;  
+
+public:
+    typedef list_node* link_type;
+
+protected:
+    link_type node;   // 只要一个指针，就可表示整个链表
+
+...
+</code></pre>
+<h3 id="3-2-基本操作"><a href="#3-2-基本操作" class="headerlink" title="3.2 基本操作"></a>3.2 基本操作</h3><ul>
+<li>begin()</li>
+<li>end()</li>
+<li>empty()</li>
+<li>size()</li>
+<li>front()</li>
+<li>back()</li>
+</ul>
+<pre><code class="c++">    // node指向尾端空白节点
+    iterator begin(){return (link_type)((*node).next);}
+    iterator end() {return node;}
+    bool empty() const{return node-&gt;next == node;}
+    size_type size() const{
+        size_type result =0;
+        distance(begin(), end(), result);
+        return result;
+    }
+
+    // 取头结点的内容
+    reference front() const {return *begin();}
+    // 取尾节点的内容
+    reference back() const { return *(--end());}
+</code></pre>
+<h2 id="4-构造和内存管理"><a href="#4-构造和内存管理" class="headerlink" title="4 构造和内存管理"></a>4 构造和内存管理</h2><h3 id="4-1-构造和空间分配"><a href="#4-1-构造和空间分配" class="headerlink" title="4.1 构造和空间分配"></a>4.1 构造和空间分配</h3><p>list 提供了很多constructors，其中一个是default constructor</p>
+<pre><code class="c++">public:
+    // constructers
+    list(){empty_initialize();} // 产生一个空链表
+
+protected:
+    void empty_initialize(){
+        node = get_node();
+        node-&gt;next = node ;
+        node-&gt;prev = node;  // 头和尾都指向自己，不设值
+    }
+
+</code></pre>
+<ul>
+<li>list 使用<code>alloc</code>作为空间分配器<ul>
+<li>能够配置，释放，构造和销毁一个节点</li>
+</ul>
+</li>
+</ul>
+<pre><code class="c++">template&lt; class T, Alloc = alloc&gt;
+class list{
+protected:
+    typedef __list_node&lt;T&gt; list_node;
+    // 专属空间分配器,每次配置一个节点大小
+    typedef simple_alloc&lt;list_node,Alloc&gt; list_node_allocator; 
+...
+protected:
+    /* 配置，释放，构造， 销毁一个节点 */
+    // 配置一个节点并且返回
+    link_type get_node(){reteurn list_node_allocator::allocate();}
+    // 释放一节点
+    void put_node(link_type p){ list_node_allocator::deallocate(p);}
+
+    // 产生一个节点，带有元素值
+    link_type create_node(const T&amp; x){
+        link_type p = get_node();
+        construct(&amp;p-&gt;data, x);    // 全局函数
+        return p;
+    }
+    // 销毁一个节点
+    void destroy_node(link_type p){
+        destroy(&amp;p-&gt;data);    // 全局函数
+        put_node(p);
+    }
+...
+</code></pre>
+<h2 id="4-2-元素操作"><a href="#4-2-元素操作" class="headerlink" title="4.2 元素操作"></a>4.2 元素操作</h2><ul>
+<li>push_front()</li>
+<li>push_back()</li>
+<li>erase()</li>
+<li>pop_front()</li>
+<li>pop_back()</li>
+<li>clear()</li>
+<li>remove()</li>
+<li>unique()</li>
+<li>splice()</li>
+<li>merge()</li>
+<li>reverse()</li>
+<li>sort()</li>
+</ul>
+<h3 id="4-2-1-push-font-和push-back"><a href="#4-2-1-push-font-和push-back" class="headerlink" title="4.2.1 push_font()和push_back()"></a>4.2.1 push_font()和push_back()</h3><ul>
+<li>这两个函数依赖于一个函数<code>insert</code></li>
+</ul>
+<pre><code class="c++">    // 在position 中插入一个节点，值为x
+    iterator insert(iterator position, const T&amp; x){
+        link_type tmp = create_node(x);
+        // 调整双指针
+        tmp-&gt;next = position.node;
+        tmp-&gt;prev = position.node-&gt;prev;
+        (link_type(position.node-&gt;prev))-&gt;next = tmp;
+        position.node-&gt;prev = tmp;
+    }
+
+</code></pre>
+<ul>
+<li>push_front() 和push_back()</li>
+</ul>
+<pre><code class="c++">    // 插入一个节点，作为头结点
+    void push_front(const T&amp; x){insert(begin(), x);}
+
+    //插入一个节点，作为尾巴节点
+    void push_back(const T&amp; x){insert(end(),x);}
+</code></pre>
+<h3 id="4-2-2-erase-pop-font-和pop-back"><a href="#4-2-2-erase-pop-font-和pop-back" class="headerlink" title="4.2.2 erase(), pop_font()和pop_back()"></a>4.2.2 erase(), pop_font()和pop_back()</h3><ul>
+<li>后面两个函数依赖于<code>erase()</code></li>
+</ul>
+<pre><code class="c++">    // 移除 迭代器position的节点,返回下一个节点的迭代器
+    iterator erase(iterator position){
+        link_type next_node = link_type(position.node-&gt;next);
+        link_type prev_node = link_type(position.node-&gt;prev);
+        prev_node-&gt;next = next_node;
+        next_node-&gt;prev = prev_node;
+        destroy_node(position.node);
+        return iterator(next_node);
+    }
+
+    // 移除头结点
+    void pop_front(){
+        erase(begin());
+    }
+
+    //移除尾巴节点
+    void pop_back(){
+        iterator tmp == end();
+        erase(--tmp);
+    }
+
+</code></pre>
+<h3 id="4-2-3-remove-和clear-unique"><a href="#4-2-3-remove-和clear-unique" class="headerlink" title="4.2.3 remove()和clear(), unique()"></a>4.2.3 remove()和clear(), unique()</h3><ul>
+<li>clear()</li>
+</ul>
+<pre><code class="c++">    // 清除所有节点
+    clear(){
+        link_type cur = (link_type)node-&gt;next;
+        while(cur != node){
+            link_type tmp = cur;
+            cur = (link_type)cur-&gt;next;
+            destroy_node(tmp);    // 销毁一个节点
+        }
+        // 恢复node原始状态
+        node-&gt;next = node;
+        node-&gt;prev = node;
+    }
+
+</code></pre>
+<ul>
+<li>remove()</li>
+</ul>
+<pre><code class="c++">    // 将数值为value的元素移除
+    remove(const T&amp; value){
+        iterator first = begin();
+        iterator last = end();
+        while(first != last){
+            iterator next = first;
+            ++next ;
+            if(*next == value)erase(next);
+            first = next;
+        }
+    }
+</code></pre>
+<ul>
+<li>unique()</li>
+</ul>
+<pre><code class="c++">    // 移除数值相同的连续元素 “连续相同的元素”，移除剩余一个
+    void unique(){
+        iterator first = begin();
+        iterator last = end();
+        if(first == last) return ;  // 空链表，什么都不必做
+        iterator next = first;
+        while(++next != last)
+            if(*first == *next){
+                erase(next);
+            }else{
+                first = next;
+                next = first;
+            }
+    }
+</code></pre>
+<h3 id="4-2-4-splice-、merge-、reverse-、sort"><a href="#4-2-4-splice-、merge-、reverse-、sort" class="headerlink" title="4.2.4 splice()、merge()、reverse()、sort()"></a>4.2.4 splice()、merge()、reverse()、sort()</h3><ul>
+<li>这几个函数依赖于内部函数<code>transfer</code><br><img src="https://upload-images.jianshu.io/upload_images/5361608-5d2569f43d9a3e18.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></li>
+</ul>
+<pre><code class="c++">
+protected:
+    // 将[first, last) 内的元素移动到position 之前
+    void transfer(iterator position, iterator first, iterator last){
+        if(position != last){
+            (*(link_type)((*last.node).prev)).next = position.node;  //后一个元素
+            (*(link_type)((*first.node).prev)).next = last.node; // 前一个元素
+            (*(link_type)((*position.node).prev).next = first.node;
+            link_type tmp  = link_type(*(position.node).prev);
+            (*position.node).prev = (*last.node).prev;
+            (*last.node).prev = (*first.node).prev;
+            (*firt.node).prev = tmp;
+        }
+    }
+</code></pre>
+<p><strong>（1） splice()</strong></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-0be901f57d9f5e67.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<pre><code class="c++">// 将x接于position 之前， x必须不同于*this
+void splice(iterator position, list&amp; x){
+    if(!x.empty())
+        transfer(position, x.begin(), x.end());
+}
+
+// 将i所指的元素接于position 之前，position 和i可指向同一个list
+void splice(iterator position, list&amp;, iterator i){
+    iterator  j = i;
+    ++j;
+    if(position == i || position == j)return ;
+    ransfer(position, i, j);
+
+}
+
+//将[first, last)内所有的元素接于position 所指位置之前
+// 可为同一list的迭代器
+// position 不能在区间之中
+void splice(iterator position, list&amp;, iterator first,iterator last){
+    if(first != last){
+        transfer(position, first, last);
+    }
+</code></pre>
+<p><strong>(2) merge()</strong></p>
+<pre><code class="c++">
+    //  将x合并到*this中，两个list内容必须先经过递增排序
+    void  merge(list&lt;T,Alloc&gt;&amp; x){
+        iterator first1 = begin();
+        iterator last1 = end();
+        iterator first2 = x.begin();
+        iterator last2  = x.end();
+
+        // 前提是，两个lists都已经经过递增排序
+        while(first1 != last1 &amp;&amp; first2 != last2){
+            if(*first2 &lt; *first1){
+                iterator next = first2;
+                transfer(first1, first2, ++next);
+                first2 = next;
+            }else{
+                ++first1;
+            }
+            if(first2 != last2)transfer(last2, first2, last2);
+        }
+    }
+
+</code></pre>
+<p><strong>(3) reverse()</strong></p>
+<pre><code class="c++">    //逆向重置
+    void reverse(){
+        // 如果空链表，不进行操作
+        // size ==0 或者 size == 1
+        if(node-&gt;next == node || link_type(node-&gt;next)-&gt;next == node)
+            return;
+        iterator first = begin();
+        ++ first;
+        while(first != end()){
+            iterator old = first;
+            ++ first;
+            transfer(begin(), old, first);
+        }
+
+    }
+</code></pre>
+<p><strong>(4) sort()</strong></p>
+<ul>
+<li>[暂时未读明白]</li>
+</ul>
+<pre><code class="c++">    // list 不能STL算法 sort(), 必须使用自己的sort() member function,
+    // stl算法 sort()只接受randomAccessIterator
+    // 本函数采用quick sort
+    void sort(){
+        // size ==0 || size ==1
+        if(node-&gt;next == node || link_type(node-&gt;next)-&gt;next == node)
+            return ;
+
+        // 一些新的lists,作为中介数据存放区
+        list&lt;T, Alloc&gt; carry;
+        list&lt;T, Alloc&gt; counter[64];
+        int fill =0；
+        while(!empty()){
+            carry.splice(carry.begin(), *this, begin());
+            int i=0;
+            while( i &lt; fill &amp;&amp; !counter[i].empty()){
+                counter[i].merge(carry);
+                carry.swap(counter[i++]);
+            }
+            carry.swap(counter[i]);
+            if(i == fill)++fill;
+        }
+
+
+        for(int i=1 ; i&lt; fill; ++i){
+            counter[i].merge();
+        }
+        swap(counter[fill - 1]);
+
+    }
+</code></pre>
+<hr>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    jingxa
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://jingxa.github.io/2018/07/02/STL-4-容器-list/" title="STL_4_容器_list">https://jingxa.github.io/2018/07/02/STL-4-容器-list/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/STL/" rel="tag"># STL</a>
+          
+            <a href="/tags/Container/" rel="tag"># Container</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/29/CS231A-Homework-2-4/" rel="next" title="CS231A_Homework_2.4">
+                <i class="fa fa-chevron-left"></i> CS231A_Homework_2.4
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="jingxa" />
+            
+              <p class="site-author-name" itemprop="name">jingxa</p>
+              <p class="site-description motion-element" itemprop="description">单影无人相依偎！</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/rss2.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/jingxa" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://jingxa.coding.me" target="_blank" title="Coding">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Coding</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:wjszwzyd@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://kylingit.com/" title="诗与胡说" target="_blank">诗与胡说</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、-list-概述"><span class="nav-text">一、 list 概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-list的节点"><span class="nav-text">1 list的节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-迭代器"><span class="nav-text">2 迭代器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-数据结构"><span class="nav-text">3 数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-分配器"><span class="nav-text">3.1 分配器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-基本操作"><span class="nav-text">3.2 基本操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-构造和内存管理"><span class="nav-text">4 构造和内存管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-构造和空间分配"><span class="nav-text">4.1 构造和空间分配</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-元素操作"><span class="nav-text">4.2 元素操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-1-push-font-和push-back"><span class="nav-text">4.2.1 push_font()和push_back()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-2-erase-pop-font-和pop-back"><span class="nav-text">4.2.2 erase(), pop_font()和pop_back()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-3-remove-和clear-unique"><span class="nav-text">4.2.3 remove()和clear(), unique()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-4-splice-、merge-、reverse-、sort"><span class="nav-text">4.2.4 splice()、merge()、reverse()、sort()</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jingxa</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">17.9k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+      <style>
+        a.gitment-editor-footer-tip { display: none; }
+        .gitment-container.gitment-footer-container { display: none; }
+      </style>
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'jingxa',
+            repo: 'jingxa.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: 'a60429c86a4b7abb1e1d5d4fa11db0557eb2683a',
+            
+                client_id: 'a24135f240136ad4e4bb'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
