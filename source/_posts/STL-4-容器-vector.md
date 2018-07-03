@@ -3,7 +3,7 @@ title: STL_4_容器_vector
 date: 2018-06-28 20:58:49
 tags:
 	- STL
-	- Allocator
+	- Container
 categories:
 	- STL源码分析
 ---
