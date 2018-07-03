@@ -138,7 +138,7 @@
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-583e6584f429e8ae.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-51354bad0e2757e6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-850592471aba6fe7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-07-03T09:06:31.547Z">
+<meta property="og:updated_time" content="2018-07-03T09:16:02.378Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CS131_HomeWork_hw1">
 <meta name="twitter:description" content="cs131 hw1    参考资料： wwdguu/CS131_homework mikucy/CS131      python numpy  np.var() : 方差 np.flip() : 矩阵翻转 np.argmax():     最大值的indices    一、 Convolutions1.1 commutative Property 推导两个式子相等： 令 ：  x = m-i">
@@ -408,7 +408,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  450
+                  495
                 </span>
               
 
@@ -498,7 +498,9 @@ for m in range(Hi):
 
 return out
 </code></pre><pre><code>
+
 - padding添加：
+
 
 ```python
 
@@ -535,11 +537,17 @@ def zero_pad(image, pad_height, pad_width):
 </li>
 </ul>
 <pre><code class="python">def cross_correlation(f, g):
-    out = None
-    out = conv_fast(f, g)
-
+    Hi, Wi = f.shape
+    Hk, Wk = g.shape
+    out = np.zeros((Hi, Wi))
+    padd_H = Hk // 2
+    padd_W = Wk // 2
+    img_padd = zero_pad(f, padd_H, padd_W)
+    # 卷积过程
+    for i in range(Hi):
+        for j in range(Wi):
+            out[i, j] = np.sum(img_padd[i:(i+Hk), j:(j+Wk)] * g)
     return out
-
 `
 </code></pre>
 <ul>
