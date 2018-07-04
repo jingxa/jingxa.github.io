@@ -71,7 +71,9 @@ def conv_nested(image, kernel):
 
 ```
 
+
 - padding添加：
+
 
 ```python
 
@@ -83,7 +85,9 @@ def zero_pad(image, pad_height, pad_width):
 
 ```
 
+
 - 使用矩阵相乘：
+
 
 ```python
 def conv_fast(image, kernel):
@@ -111,11 +115,17 @@ def conv_fast(image, kernel):
 
 ```python 
 def cross_correlation(f, g):
-    out = None
-    out = conv_fast(f, g)
-
+    Hi, Wi = f.shape
+    Hk, Wk = g.shape
+    out = np.zeros((Hi, Wi))
+    padd_H = Hk // 2
+    padd_W = Wk // 2
+    img_padd = zero_pad(f, padd_H, padd_W)
+    # 卷积过程
+    for i in range(Hi):
+        for j in range(Wi):
+            out[i, j] = np.sum(img_padd[i:(i+Hk), j:(j+Wk)] * g)
     return out
-
 ````
 
 - zero_mean_cross_correlation
