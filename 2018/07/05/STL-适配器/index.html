@@ -112,7 +112,7 @@
 
 
 
-  <meta name="keywords" content="Camera," />
+  <meta name="keywords" content="STL,Container," />
 
 
 
@@ -125,39 +125,22 @@
 
 
 
-<meta name="description" content="CS231A笔记文章截图大多来自斯坦福CS231A课程;    干脆 明亮的图片   镜头   使用lense 透镜来解决上述问题；  透镜的问题：  pincushion distortion 枕形畸变 barrel distortion 桶形畸变      3. 3d到2d的投影变换对于某些平移和缩放：  但是在公式中，缺少两个重要参数，相机制造误差：  skewness: 倾斜 disto">
-<meta name="keywords" content="Camera">
+<meta name="description" content="本文章内容来源于《STL源码分析》第四章   1 适配器 （adapter） “修改某物接口，形成另一个风貌者”的性质，称为adapter；  STL的适配器：  stack queue  2 stack 以deque或者 list作为底层容器 先进后出 stack没有迭代器   emplate&amp;lt;class T, Sequence = deque&amp;lt;T&amp;gt;&amp;gt; class st">
+<meta name="keywords" content="STL,Container">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2_Camera_Model">
-<meta property="og:url" content="https://jingxa.github.io/2018/06/22/2-Camera-Model/index.html">
+<meta property="og:title" content="STL_适配器">
+<meta property="og:url" content="https://jingxa.github.io/2018/07/05/STL-适配器/index.html">
 <meta property="og:site_name" content="Jingxa&#39;s Blog">
-<meta property="og:description" content="CS231A笔记文章截图大多来自斯坦福CS231A课程;    干脆 明亮的图片   镜头   使用lense 透镜来解决上述问题；  透镜的问题：  pincushion distortion 枕形畸变 barrel distortion 桶形畸变      3. 3d到2d的投影变换对于某些平移和缩放：  但是在公式中，缺少两个重要参数，相机制造误差：  skewness: 倾斜 disto">
+<meta property="og:description" content="本文章内容来源于《STL源码分析》第四章   1 适配器 （adapter） “修改某物接口，形成另一个风貌者”的性质，称为adapter；  STL的适配器：  stack queue  2 stack 以deque或者 list作为底层容器 先进后出 stack没有迭代器   emplate&amp;lt;class T, Sequence = deque&amp;lt;T&amp;gt;&amp;gt; class st">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-03d37c544f3260a2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-f22aaa6b85b5c1c2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-aa9051feb0ad3ba7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-cd8d34757e165d97.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-e8d619979d82849a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-2de9c0e396c134df.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-56bd38497c0aa26a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-10876044e7f7900a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-bf0b8cfedaf66c57.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-d6e80555a72c7dfa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-68c0aa0e15865b30.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-819d27eb90c59245.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-b2b94ebd08e64e3b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-734a190121f0af84.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-4f0424a16bb4daa7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-52f254e482337ca7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-63d1cb18425bbd9e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-314c82c970c265c3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-38920e7d3beea99c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-fdc05c03cc05a7f0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-06-22T02:21:00.093Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-f525a94e3884b2a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-c3723b2ba1434db7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-a4a3bd8124fc1325.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-07-05T13:47:18.847Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="2_Camera_Model">
-<meta name="twitter:description" content="CS231A笔记文章截图大多来自斯坦福CS231A课程;    干脆 明亮的图片   镜头   使用lense 透镜来解决上述问题；  透镜的问题：  pincushion distortion 枕形畸变 barrel distortion 桶形畸变      3. 3d到2d的投影变换对于某些平移和缩放：  但是在公式中，缺少两个重要参数，相机制造误差：  skewness: 倾斜 disto">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5361608-03d37c544f3260a2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:title" content="STL_适配器">
+<meta name="twitter:description" content="本文章内容来源于《STL源码分析》第四章   1 适配器 （adapter） “修改某物接口，形成另一个风貌者”的性质，称为adapter；  STL的适配器：  stack queue  2 stack 以deque或者 list作为底层容器 先进后出 stack没有迭代器   emplate&amp;lt;class T, Sequence = deque&amp;lt;T&amp;gt;&amp;gt; class st">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5361608-f525a94e3884b2a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -187,13 +170,13 @@
 
 
 
-  <link rel="canonical" href="https://jingxa.github.io/2018/06/22/2-Camera-Model/"/>
+  <link rel="canonical" href="https://jingxa.github.io/2018/07/05/STL-适配器/"/>
 
 
 
 
 
-  <title>2_Camera_Model | Jingxa's Blog</title>
+  <title>STL_适配器 | Jingxa's Blog</title>
   
 
 
@@ -330,7 +313,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://jingxa.github.io/2018/06/22/2-Camera-Model/">
+    <link itemprop="mainEntityOfPage" href="https://jingxa.github.io/2018/07/05/STL-适配器/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="jingxa">
@@ -347,7 +330,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">2_Camera_Model</h1>
+          <h1 class="post-title" itemprop="name headline">STL_适配器</h1>
         
 
         <div class="post-meta">
@@ -359,8 +342,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-22T10:16:24+08:00">
-                2018-06-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-05T21:43:51+08:00">
+                2018-07-05
               </time>
             
 
@@ -382,8 +365,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/cs231A/" itemprop="url" rel="index">
-                    <span itemprop="name">cs231A</span>
+                  <a href="/categories/STL源码分析/" itemprop="url" rel="index">
+                    <span itemprop="name">STL源码分析</span>
                   </a>
                 </span>
 
@@ -400,8 +383,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/06/22/2-Camera-Model/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/06/22/2-Camera-Model/" itemprop="commentsCount"></span>
+                <a href="/2018/07/05/STL-适配器/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/07/05/STL-适配器/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -423,7 +406,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  521
+                  762
                 </span>
               
 
@@ -439,7 +422,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  4
                 </span>
               
             </div>
@@ -461,88 +444,183 @@
 
       
         <blockquote>
-<p>CS231A笔记<br>文章截图大多来自斯坦福CS231A课程;</p>
+<p>本文章内容来源于《STL源码分析》第四章</p>
 </blockquote>
 <hr>
+<h1 id="1-适配器-（adapter）"><a href="#1-适配器-（adapter）" class="headerlink" title="1 适配器 （adapter）"></a>1 适配器 （adapter）</h1><ul>
+<li>“修改某物接口，形成另一个风貌者”的性质，称为adapter；</li>
+</ul>
+<p>STL的适配器：</p>
 <ul>
-<li>干脆 明亮的图片</li>
+<li>stack</li>
+<li>queue</li>
 </ul>
-<ol>
-<li>镜头</li>
-</ol>
-<ul>
-<li><p>使用lense 透镜来解决上述问题；</p>
-</li>
-<li><p>透镜的问题：</p>
-<ul>
-<li>pincushion distortion 枕形畸变<ul>
-<li>barrel distortion 桶形畸变</li>
+<h1 id="2-stack"><a href="#2-stack" class="headerlink" title="2 stack"></a>2 stack</h1><ul>
+<li>以deque或者 list作为底层容器</li>
+<li>先进后出</li>
+<li>stack没有迭代器</li>
 </ul>
-</li>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-f525a94e3884b2a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<pre><code>emplate&lt;class T, Sequence = deque&lt;T&gt;&gt;
+class stack{
+    // __STL_NULL_TMPL_ARGS 展开为&lt;&gt;
+    friend bool operator== __STL_NULL_TMPL_ARGS(const stack&amp;, const stack&amp;);
+    friend bool operator&lt; __STL_NULL_TMPL_ARGS(const stack&amp;, const stack&amp;);
+
+public:
+    typedef typename Sequence::value_type value_type;
+    typedef typename Sequence:size_type     size_type;
+    typedef typename Sequence::reference    reference;
+    typedef    typename Sequence::const_reference    const_reference;
+
+protected:
+    Sequence c;  // 底层容器
+
+
+public:
+    // 一下完全利用Sequence c 的操作，完成stack的操作
+    bool empty()const{return c.empty();}
+    size_type    size() const{return c.size();}
+    reference top(){returnc.back();}
+    const_reference top() const{return c.back();}
+
+    // stack末端进，末端出
+    void push(const value_type&amp; x){c.push_back(x);}
+    void pop(){c.pop_back();}
+};
+
+
+template&lt;class T, class Sequence&gt;
+bool operator==(const stack&lt;T,Sequence&gt;&amp; x, const stack&lt;T, Sequence&gt;&amp; y){
+    return x.c = y.c;
+}
+
+template&lt;class T ,class Sequence&gt;
+bool operator&lt;(const stack&lt;T, Sequence&gt;&amp; x, const stack&lt;T, Sequence&gt;&amp; y){
+    return x.c &lt; y.c;
+}
+
+
+</code></pre><h1 id="3-queue"><a href="#3-queue" class="headerlink" title="3 queue"></a>3 queue</h1><ul>
+<li>以deque或者list作为底层容器</li>
+<li>先进先出的结构</li>
+<li>不允许有遍历行为，没有迭代器</li>
 </ul>
-</li>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-c3723b2ba1434db7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<pre><code>/**
+    queue: 先进先出
+    1. 不允许遍历
+    2. deque作为底层容器
+*/
+
+template&lt;class T, class Sequence = deque&lt;T&gt; &gt;
+class queue{
+    // __STL_NULL_TMPL_ARGS展开为&lt;&gt;
+    friend bool operator== __STL_NULL_TMPL_ARGS(const queue&amp; x, const queue&amp; y);
+    friend bool operator&lt; __STL_NULL_TMPL_ARGS(const queue&amp; x, const queue&amp; y);
+
+public:
+    typedef typename    Sequence::value_type    value_type;
+    typedef    typename    Sequence::size_type        size_type;
+    typedef    typename    Sequence::reference        reference;
+    typedef    typename    Sequence::const_reference    const_reference;
+
+protected:
+    Sequence c;  // 底层容器
+
+public:
+    bool empty() const{return c.empty();}
+    size_type size() const{return c.size();}
+    reference front(){return c.front();}
+    const_reference front() const{return c.front();}
+    reference back(){return c.back();}
+    const_reference back(){return c.back();}
+
+    // queue 末端进，前端出
+    void push(const value_type&amp; x){c.push_back(x);}
+    void pop(){c.pop_front();}
+
+
+};
+
+
+template&lt;class T, class Sequence&gt;
+bool operator==(const queue&lt;T, Sequence&gt;&amp; x, const queue&lt;T,Sequence&gt;&amp; y){
+    return x.c == y.c;
+}
+
+template&lt;class T, class Sequence&gt;
+bool operator,(const queue&lt;T, Sequence&gt;&amp; x, const queue&lt;T,Sequence&gt;&amp; y){
+    return x.c , y.c;
+}
+
+</code></pre><h1 id="4-priority-queue"><a href="#4-priority-queue" class="headerlink" title="4 priority_queue"></a>4 priority_queue</h1><h2 id="4-1-概述"><a href="#4-1-概述" class="headerlink" title="4.1  概述"></a>4.1  概述</h2><ul>
+<li>带有权值观念的queue;</li>
+<li>按照权值排列；</li>
+<li>缺省情况下priority_queue利用max_heap完成；</li>
 </ul>
-<h1 id="3-3d到2d的投影变换"><a href="#3-3d到2d的投影变换" class="headerlink" title="3. 3d到2d的投影变换"></a>3. 3d到2d的投影变换</h1><p><img src="https://upload-images.jianshu.io/upload_images/5361608-03d37c544f3260a2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br><img src="https://upload-images.jianshu.io/upload_images/5361608-f22aaa6b85b5c1c2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>对于某些平移和缩放：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-aa9051feb0ad3ba7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<p>但是在公式中，缺少两个重要参数，相机制造误差：</p>
-<ul>
-<li>skewness: 倾斜</li>
-<li>distortion： 形变</li>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-a4a3bd8124fc1325.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="4-2-定义"><a href="#4-2-定义" class="headerlink" title="4.2 定义"></a>4.2 定义</h2><ul>
+<li>priority_queue内部以vector为底层容器；</li>
+<li>使用泛型算法<code>push_heap</code>、<code>pop_heap</code>  、<code>mmake_heap</code>；</li>
 </ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-cd8d34757e165d97.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>因此形成5个自由度的相机内参矩阵K;</p>
-<p>世界坐标到相机坐标系的变换为：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-e8d619979d82849a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>综上，变换矩阵由两个部分组成：</p>
-<ul>
-<li>instrinsic : K : 5个自由度</li>
-<li>extrinsic ： T ,R : 各自3个自由度<br>总共11个自由度；</li>
-</ul>
-<h1 id="4-Camera-Calibration（相机校准）"><a href="#4-Camera-Calibration（相机校准）" class="headerlink" title="4. Camera Calibration（相机校准）"></a>4. Camera Calibration（相机校准）</h1><p>在投影变换中，<br><img src="https://upload-images.jianshu.io/upload_images/5361608-2de9c0e396c134df.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>原理为：<br><img src="https://upload-images.jianshu.io/upload_images/5361608-56bd38497c0aa26a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h2 id="4-1-投影类型"><a href="#4-1-投影类型" class="headerlink" title="4.1 投影类型"></a>4.1 投影类型</h2><p>参考资料：<br>-<a href="https://blog.csdn.net/jyc1228/article/details/4209870" target="_blank" rel="noopener"> 摄像机透视投影近似模型</a></p>
-<h3 id="4-1-1-弱透视投影"><a href="#4-1-1-弱透视投影" class="headerlink" title="4.1.1 弱透视投影"></a>4.1.1 弱透视投影</h3><blockquote>
-<p>弱透视：weak perpective, 如果摄像机的视场比较小，而且物体表面深度变化相对其到摄像机的距离很小的话，物体上个点的深度可以用一个固定的深度值z0近似，这个值一般取物体质心的深度。这种近似可以看做是两次投影的合成。</p>
-</blockquote>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-10876044e7f7900a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<blockquote>
-<p>首先，整个物体按平行于光轴的方向正投影到经过物体质心并与图像平面平行的平面上；</p>
-</blockquote>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-bf0b8cfedaf66c57.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<blockquote>
-<p>然后，再按透视模型将上述物体平面的图像投影到摄像机的图像平面上，这一步实际是全局的放缩。因此，弱透视也叫放缩正投影（scaled orthographic projection）。</p>
-</blockquote>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-d6e80555a72c7dfa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h3 id="4-1-2-正投影：orthographic-projection"><a href="#4-1-2-正投影：orthographic-projection" class="headerlink" title="4.1.2 正投影：orthographic projection"></a>4.1.2 正投影：orthographic projection</h3><p><img src="https://upload-images.jianshu.io/upload_images/5361608-68c0aa0e15865b30.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<blockquote>
-<p>这种近似完全忽略了深度信息</p>
-</blockquote>
-<h2 id="4-2-校准目标"><a href="#4-2-校准目标" class="headerlink" title="4.2 校准目标"></a>4.2 校准目标</h2><blockquote>
-<p>估计内部参数和外部参数；</p>
-</blockquote>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-819d27eb90c59245.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-b2b94ebd08e64e3b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-734a190121f0af84.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>对于11自由度的参数：只要2n&gt;11,满足的n个点就可以得到很好的结果；<br><img src="https://upload-images.jianshu.io/upload_images/5361608-4f0424a16bb4daa7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-52f254e482337ca7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>得到一个方程组：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-63d1cb18425bbd9e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>求解一个线性方程：</p>
-<ul>
-<li>0 为解</li>
-<li>非零解： </li>
-</ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-314c82c970c265c3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<ul>
-<li>参考资料： <a href="http://www.cnblogs.com/pinard/p/6251584.html" target="_blank" rel="noopener">奇异值分解(SVD)原理与在降维中的应用</a></li>
-</ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-38920e7d3beea99c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<hr>
-<h3 id="4-2-2-Radial-Distortion"><a href="#4-2-2-Radial-Distortion" class="headerlink" title="4.2.2 Radial Distortion"></a>4.2.2 Radial Distortion</h3><ul>
-<li>参考资料：<a href="https://blog.csdn.net/dcrmg/article/details/52950141" target="_blank" rel="noopener">透镜畸变及校正模型</a></li>
-</ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-fdc05c03cc05a7f0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<hr>
+<pre><code>
+template&lt;class T, class Sequence = vector&lt;T&gt;, 
+    class Compare = less&lt;typename Sequence::value_type&gt; &gt;
+class priority_queue{
+public:
+    typedef typename Sequence::value_type  value_type;
+    typedef typename Sequence::size_type     size_type;
+    typedef    typename Sequence::reference    reference;
+    typedef    typename Sequence::const_reference    const_reference;
+
+protected:
+    Sequence c; // 底层容器
+    Compare    comp;  // 元素比较器
+
+pubic:
+priority_queue(): c(){}
+explicit priority_queue(const Compar&amp; x):c(),comp(x){}
+
+
+    // 一下用到 make_heap()，push_heap(),pop_heap()都是泛型算法
+    // 注意，任一个构造函数都立刻于底层容器内产生一个隐式表述法的heap
+    template&lt;class InputIterator&gt;
+    priority_queue(InputIterator first, InputIterator last,
+    const Compar&amp; x):c(first,last), comp(x){
+        make_heap(c.begin(),c.end(),comp);
+    }
+
+    template&lt;class InputIterator&gt;
+    priority_queue(InputIterator first, InputIterator last)
+        :c(first,last){
+            make_heap(c.begin(),c.end(),comp);
+        }
+
+    bool empty() const{return c.empty();}
+    size_type size() const{return c.size();}
+    const_reference top() const{return c.front();}
+    void push(const value_type&amp; x){
+        __STL_TRY{
+            // push_heap 是泛型算法，先利用底层容器的push_back()将xnyrsu
+            // 推入末端，在重排heap
+            c.push_back(x);
+            push_heap(c.begin(),c.end(),comp);  // push_heap 是泛型算法
+        }
+        __STL_UNWIND(c.clear())；
+    }
+
+    void pop(){
+        __STL_TRY{
+            // pop_heap 是泛型算法， 从heap内取出一个元素，它并不是真正将
+            // 元素弹出，而是重排heap,然后再以底层容器pop_back()取得被弹出的元素
+            pop_heap(c.begin(),c.end(),comp);
+            c.pop_back();
+        }
+        __STL_UNWIND(c.clear());
+    }
+};
+</code></pre><hr>
 
       
     </div>
@@ -563,7 +641,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://jingxa.github.io/2018/06/22/2-Camera-Model/" title="2_Camera_Model">https://jingxa.github.io/2018/06/22/2-Camera-Model/</a>
+    <a href="https://jingxa.github.io/2018/07/05/STL-适配器/" title="STL_适配器">https://jingxa.github.io/2018/07/05/STL-适配器/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -578,7 +656,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Camera/" rel="tag"># Camera</a>
+            <a href="/tags/STL/" rel="tag"># STL</a>
+          
+            <a href="/tags/Container/" rel="tag"># Container</a>
           
         </div>
       
@@ -591,8 +671,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/21/1-Tensor-Learn-OPS-2/" rel="next" title="1_Tensor_Learn_OPS_2">
-                <i class="fa fa-chevron-left"></i> 1_Tensor_Learn_OPS_2
+              <a href="/2018/07/04/STL-容器-deque-2/" rel="next" title="STL_容器_deque_2">
+                <i class="fa fa-chevron-left"></i> STL_容器_deque_2
               </a>
             
           </div>
@@ -601,8 +681,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/06/22/5-Epiplolar-Geometry/" rel="prev" title="5_Epiplolar_Geometry">
-                5_Epiplolar_Geometry <i class="fa fa-chevron-right"></i>
+              <a href="/2018/07/05/STL-heap/" rel="prev" title="STL_heap">
+                STL_heap <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -789,7 +869,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#3-3d到2d的投影变换"><span class="nav-text">3. 3d到2d的投影变换</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-Camera-Calibration（相机校准）"><span class="nav-text">4. Camera Calibration（相机校准）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-投影类型"><span class="nav-text">4.1 投影类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-1-弱透视投影"><span class="nav-text">4.1.1 弱透视投影</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-2-正投影：orthographic-projection"><span class="nav-text">4.1.2 正投影：orthographic projection</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-校准目标"><span class="nav-text">4.2 校准目标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-2-Radial-Distortion"><span class="nav-text">4.2.2 Radial Distortion</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-适配器-（adapter）"><span class="nav-text">1 适配器 （adapter）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-stack"><span class="nav-text">2 stack</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-queue"><span class="nav-text">3 queue</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-priority-queue"><span class="nav-text">4 priority_queue</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-概述"><span class="nav-text">4.1  概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-定义"><span class="nav-text">4.2 定义</span></a></li></ol></li></ol></div>
             
 
           </div>

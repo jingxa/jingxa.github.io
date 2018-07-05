@@ -112,7 +112,7 @@
 
 
 
-  <meta name="keywords" content="Camera," />
+  <meta name="keywords" content="STL,Container," />
 
 
 
@@ -125,39 +125,21 @@
 
 
 
-<meta name="description" content="CS231A笔记文章截图大多来自斯坦福CS231A课程;    干脆 明亮的图片   镜头   使用lense 透镜来解决上述问题；  透镜的问题：  pincushion distortion 枕形畸变 barrel distortion 桶形畸变      3. 3d到2d的投影变换对于某些平移和缩放：  但是在公式中，缺少两个重要参数，相机制造误差：  skewness: 倾斜 disto">
-<meta name="keywords" content="Camera">
+<meta name="description" content="本文章内容来源于《STL源码分析》第四章    STL list是一个双向链表 slist不在STL标准中，是一个单向链表；  差别：  slist 的迭代器是单向的ForwardIterator list的迭代器是 双向的BidrectionalIterator  共同特点：  插入，移除，接合不会造成原有迭代器失效  1 节点结构 // 节点  struct __slist_node_bas">
+<meta name="keywords" content="STL,Container">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2_Camera_Model">
-<meta property="og:url" content="https://jingxa.github.io/2018/06/22/2-Camera-Model/index.html">
+<meta property="og:title" content="STL_非非标准_slist">
+<meta property="og:url" content="https://jingxa.github.io/2018/07/05/STL-非标准-slist/index.html">
 <meta property="og:site_name" content="Jingxa&#39;s Blog">
-<meta property="og:description" content="CS231A笔记文章截图大多来自斯坦福CS231A课程;    干脆 明亮的图片   镜头   使用lense 透镜来解决上述问题；  透镜的问题：  pincushion distortion 枕形畸变 barrel distortion 桶形畸变      3. 3d到2d的投影变换对于某些平移和缩放：  但是在公式中，缺少两个重要参数，相机制造误差：  skewness: 倾斜 disto">
+<meta property="og:description" content="本文章内容来源于《STL源码分析》第四章    STL list是一个双向链表 slist不在STL标准中，是一个单向链表；  差别：  slist 的迭代器是单向的ForwardIterator list的迭代器是 双向的BidrectionalIterator  共同特点：  插入，移除，接合不会造成原有迭代器失效  1 节点结构 // 节点  struct __slist_node_bas">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-03d37c544f3260a2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-f22aaa6b85b5c1c2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-aa9051feb0ad3ba7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-cd8d34757e165d97.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-e8d619979d82849a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-2de9c0e396c134df.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-56bd38497c0aa26a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-10876044e7f7900a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-bf0b8cfedaf66c57.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-d6e80555a72c7dfa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-68c0aa0e15865b30.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-819d27eb90c59245.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-b2b94ebd08e64e3b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-734a190121f0af84.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-4f0424a16bb4daa7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-52f254e482337ca7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-63d1cb18425bbd9e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-314c82c970c265c3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-38920e7d3beea99c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-fdc05c03cc05a7f0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-06-22T02:21:00.093Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-c69d236d1d012e2e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-2d9e4831ec4892b0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-07-05T13:47:17.407Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="2_Camera_Model">
-<meta name="twitter:description" content="CS231A笔记文章截图大多来自斯坦福CS231A课程;    干脆 明亮的图片   镜头   使用lense 透镜来解决上述问题；  透镜的问题：  pincushion distortion 枕形畸变 barrel distortion 桶形畸变      3. 3d到2d的投影变换对于某些平移和缩放：  但是在公式中，缺少两个重要参数，相机制造误差：  skewness: 倾斜 disto">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5361608-03d37c544f3260a2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:title" content="STL_非非标准_slist">
+<meta name="twitter:description" content="本文章内容来源于《STL源码分析》第四章    STL list是一个双向链表 slist不在STL标准中，是一个单向链表；  差别：  slist 的迭代器是单向的ForwardIterator list的迭代器是 双向的BidrectionalIterator  共同特点：  插入，移除，接合不会造成原有迭代器失效  1 节点结构 // 节点  struct __slist_node_bas">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5361608-c69d236d1d012e2e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -187,13 +169,13 @@
 
 
 
-  <link rel="canonical" href="https://jingxa.github.io/2018/06/22/2-Camera-Model/"/>
+  <link rel="canonical" href="https://jingxa.github.io/2018/07/05/STL-非标准-slist/"/>
 
 
 
 
 
-  <title>2_Camera_Model | Jingxa's Blog</title>
+  <title>STL_非非标准_slist | Jingxa's Blog</title>
   
 
 
@@ -330,7 +312,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://jingxa.github.io/2018/06/22/2-Camera-Model/">
+    <link itemprop="mainEntityOfPage" href="https://jingxa.github.io/2018/07/05/STL-非标准-slist/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="jingxa">
@@ -347,7 +329,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">2_Camera_Model</h1>
+          <h1 class="post-title" itemprop="name headline">STL_非非标准_slist</h1>
         
 
         <div class="post-meta">
@@ -359,8 +341,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-22T10:16:24+08:00">
-                2018-06-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-05T21:44:42+08:00">
+                2018-07-05
               </time>
             
 
@@ -382,8 +364,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/cs231A/" itemprop="url" rel="index">
-                    <span itemprop="name">cs231A</span>
+                  <a href="/categories/STL源码分析/" itemprop="url" rel="index">
+                    <span itemprop="name">STL源码分析</span>
                   </a>
                 </span>
 
@@ -400,8 +382,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/06/22/2-Camera-Model/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/06/22/2-Camera-Model/" itemprop="commentsCount"></span>
+                <a href="/2018/07/05/STL-非标准-slist/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/07/05/STL-非标准-slist/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -423,7 +405,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  521
+                  625
                 </span>
               
 
@@ -439,7 +421,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  3
                 </span>
               
             </div>
@@ -461,88 +443,222 @@
 
       
         <blockquote>
-<p>CS231A笔记<br>文章截图大多来自斯坦福CS231A课程;</p>
+<p>本文章内容来源于《STL源码分析》第四章</p>
 </blockquote>
 <hr>
 <ul>
-<li>干脆 明亮的图片</li>
+<li>STL list是一个双向链表</li>
+<li>slist不在STL标准中，是一个单向链表；</li>
 </ul>
-<ol>
-<li>镜头</li>
-</ol>
+<p>差别：</p>
 <ul>
-<li><p>使用lense 透镜来解决上述问题；</p>
-</li>
-<li><p>透镜的问题：</p>
+<li>slist 的迭代器是单向的ForwardIterator</li>
+<li>list的迭代器是 双向的BidrectionalIterator</li>
+</ul>
+<p>共同特点：</p>
 <ul>
-<li>pincushion distortion 枕形畸变<ul>
-<li>barrel distortion 桶形畸变</li>
+<li>插入，移除，接合不会造成原有迭代器失效</li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h1 id="3-3d到2d的投影变换"><a href="#3-3d到2d的投影变换" class="headerlink" title="3. 3d到2d的投影变换"></a>3. 3d到2d的投影变换</h1><p><img src="https://upload-images.jianshu.io/upload_images/5361608-03d37c544f3260a2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br><img src="https://upload-images.jianshu.io/upload_images/5361608-f22aaa6b85b5c1c2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>对于某些平移和缩放：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-aa9051feb0ad3ba7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<p>但是在公式中，缺少两个重要参数，相机制造误差：</p>
-<ul>
-<li>skewness: 倾斜</li>
-<li>distortion： 形变</li>
-</ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-cd8d34757e165d97.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>因此形成5个自由度的相机内参矩阵K;</p>
-<p>世界坐标到相机坐标系的变换为：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-e8d619979d82849a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>综上，变换矩阵由两个部分组成：</p>
-<ul>
-<li>instrinsic : K : 5个自由度</li>
-<li>extrinsic ： T ,R : 各自3个自由度<br>总共11个自由度；</li>
-</ul>
-<h1 id="4-Camera-Calibration（相机校准）"><a href="#4-Camera-Calibration（相机校准）" class="headerlink" title="4. Camera Calibration（相机校准）"></a>4. Camera Calibration（相机校准）</h1><p>在投影变换中，<br><img src="https://upload-images.jianshu.io/upload_images/5361608-2de9c0e396c134df.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>原理为：<br><img src="https://upload-images.jianshu.io/upload_images/5361608-56bd38497c0aa26a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h2 id="4-1-投影类型"><a href="#4-1-投影类型" class="headerlink" title="4.1 投影类型"></a>4.1 投影类型</h2><p>参考资料：<br>-<a href="https://blog.csdn.net/jyc1228/article/details/4209870" target="_blank" rel="noopener"> 摄像机透视投影近似模型</a></p>
-<h3 id="4-1-1-弱透视投影"><a href="#4-1-1-弱透视投影" class="headerlink" title="4.1.1 弱透视投影"></a>4.1.1 弱透视投影</h3><blockquote>
-<p>弱透视：weak perpective, 如果摄像机的视场比较小，而且物体表面深度变化相对其到摄像机的距离很小的话，物体上个点的深度可以用一个固定的深度值z0近似，这个值一般取物体质心的深度。这种近似可以看做是两次投影的合成。</p>
-</blockquote>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-10876044e7f7900a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<blockquote>
-<p>首先，整个物体按平行于光轴的方向正投影到经过物体质心并与图像平面平行的平面上；</p>
-</blockquote>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-bf0b8cfedaf66c57.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<blockquote>
-<p>然后，再按透视模型将上述物体平面的图像投影到摄像机的图像平面上，这一步实际是全局的放缩。因此，弱透视也叫放缩正投影（scaled orthographic projection）。</p>
-</blockquote>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-d6e80555a72c7dfa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h3 id="4-1-2-正投影：orthographic-projection"><a href="#4-1-2-正投影：orthographic-projection" class="headerlink" title="4.1.2 正投影：orthographic projection"></a>4.1.2 正投影：orthographic projection</h3><p><img src="https://upload-images.jianshu.io/upload_images/5361608-68c0aa0e15865b30.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<blockquote>
-<p>这种近似完全忽略了深度信息</p>
-</blockquote>
-<h2 id="4-2-校准目标"><a href="#4-2-校准目标" class="headerlink" title="4.2 校准目标"></a>4.2 校准目标</h2><blockquote>
-<p>估计内部参数和外部参数；</p>
-</blockquote>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-819d27eb90c59245.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-b2b94ebd08e64e3b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-734a190121f0af84.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>对于11自由度的参数：只要2n&gt;11,满足的n个点就可以得到很好的结果；<br><img src="https://upload-images.jianshu.io/upload_images/5361608-4f0424a16bb4daa7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-52f254e482337ca7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>得到一个方程组：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-63d1cb18425bbd9e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>求解一个线性方程：</p>
-<ul>
-<li>0 为解</li>
-<li>非零解： </li>
-</ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-314c82c970c265c3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<ul>
-<li>参考资料： <a href="http://www.cnblogs.com/pinard/p/6251584.html" target="_blank" rel="noopener">奇异值分解(SVD)原理与在降维中的应用</a></li>
-</ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-38920e7d3beea99c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<hr>
-<h3 id="4-2-2-Radial-Distortion"><a href="#4-2-2-Radial-Distortion" class="headerlink" title="4.2.2 Radial Distortion"></a>4.2.2 Radial Distortion</h3><ul>
-<li>参考资料：<a href="https://blog.csdn.net/dcrmg/article/details/52950141" target="_blank" rel="noopener">透镜畸变及校正模型</a></li>
-</ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-fdc05c03cc05a7f0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<hr>
+<h1 id="1-节点结构"><a href="#1-节点结构" class="headerlink" title="1 节点结构"></a>1 节点结构</h1><p><img src="https://upload-images.jianshu.io/upload_images/5361608-c69d236d1d012e2e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<pre><code>// 节点
+
+struct __slist_node_base{
+    __slist_node_base* next;
+
+};
+
+// 节点结构
+
+template&lt;class T&gt;
+struct __slist_node : public __slist_node_base{
+    T data;
+};
+
+// 全局函数
+// 已知道某一节点， 插入新节点于其后
+inline __slist_node_base* __slist_make_link(
+            __slist_node_base* prev_node,
+                __slist_node_base* new_node){
+    // 令new节点的下一个节点为prev节点的下一个节点
+    new_node-&gt;next = prev_node-&gt;next;
+    prev_node-&gt;next = new_node;  // prev指向new节点
+    return new_node;
+}
+
+
+// 全局函数 单向链表的大小
+
+inline size_t __slist_size(__slist_node_base* node){
+    size_t result = 0;
+    for(;node !=0; node = node-&gt;next)
+        ++result;
+    return result;
+}
+</code></pre><h1 id="2-迭代器"><a href="#2-迭代器" class="headerlink" title="2 迭代器"></a>2 迭代器</h1><p><img src="https://upload-images.jianshu.io/upload_images/5361608-2d9e4831ec4892b0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<pre><code>
+/**
+    slist的迭代器
+*/
+
+
+struct __slist_iterator_base{
+    typedef size_t size_type;
+    typedef    ptrdiff_t difference_type;
+    typedef forward_iterator_tag  iterator_category;  // 单向链表的大小
+
+    __slist_node_base* node;  // 指向节点基本结构
+    __slist_node_base(__slist_node_base* x):node(x){}
+
+    void incr(){
+        node = node -&gt;next;  // 前进一个节点
+    }
+
+    bool operator== (const __slist_iterator_base&amp; x) const{
+        return node == x.node;
+    }
+
+    bool operator!= (const __slist_iterator_base&amp; x) const{
+        return node != x.node;
+    }
+
+
+};
+
+
+// 单向链表的迭代器结构
+
+template&lt;class T, class Ref , class Ptr&gt;
+struct _slist_iterator: public __slist_iterator_base{
+    typedef __slist_iterator&lt;T,T&amp;,T*&gt;                 iterator;
+    typedef __slist_iterator&lt;T,const T&amp;, const T*&gt;   const_iterator;
+    typedef __slist_iterator&lt;T,Ref,Ptr&gt;                self;
+
+    typedef T                                        value_type;
+    typedef Ptr                                        pointer;
+    typedef    Ref                                        reference;
+    typedef    __slist_node&lt;T&gt;                         list_node;
+
+
+    __slist_iterator(list_node&amp; x):__slist_iterator_base(x){}
+    // 调用slist&lt;T&gt;::end()会造成 __slist_iterator_base(0)
+    __slist_iterator():__slist_iterator_base(0){}
+    __slist_iterator(const iterator&amp; x):__slist_iterator_base(x.node){}
+
+
+    reference operator*()const{ return ((list_node*)node)-&gt;data;}
+    pointer  operator-&gt;() const{ return &amp;((operator*());}
+
+
+    self&amp; operator++(){
+        incr();
+        return *this;
+    }
+
+    self operator++(int){
+        self tmp = *this;
+        incr();
+        return tmp;
+    }
+
+    // 没有实现operator-- ,因为这是一个forward iterator
+};
+
+
+
+</code></pre><h1 id="3-数据结构"><a href="#3-数据结构" class="headerlink" title="3 数据结构"></a>3 数据结构</h1><pre><code>
+/**
+    slist 数据结构
+
+*/
+
+
+template&lt;class T, class Alloc = alloc&gt;
+class slist{
+public:
+    typedef T                            value_type;
+    typedef value_type*                    pointer;
+    typedef    const value_type*            const_pointer;
+    typedef    value_type&amp;                 reference;
+    typedef    const value_type&amp;            const_reference;
+    typedef size_t                        size_type;
+    typedef    ptrdiff_t                    difference_type;
+
+
+    typedef    __slist_iterator&lt;T,T&amp;,T*&gt;    iterator;
+    typedef    __slist_iterator&lt;T,const T&amp;, const T*&gt;    const_iterator;
+
+private:
+    typedef    __slist_node&lt;T&gt;        list_node;
+    typedef    __slist_node_base   list_node_base;
+    typedef    __slist_iterator_base    iterator_base;
+    typedef    simple_alloc&lt;list_node, Alloc&gt;  list_node_allocator;
+
+
+    static list_node* create_node(const value_type&amp; x){
+        list_node* node = list_node_allocator::allocate(); // 配置一个节点
+        __STL_TRY{
+            construct(&amp;node-&gt;data,x);
+            node-&gt;next = 0;
+        }
+        __STL_UNWIND(list_node_allocator::deallocate(node)):
+        return node;
+    }
+
+
+    static void destroy_node(list_node* node){
+        destroy(&amp;node-&gt;data);   // 析构元素
+        list_node_allocator::deallocate(node);  // 释放空间
+    }
+
+
+private:
+
+    list_node_base     head;   // 头部，不是指针，是对象
+
+public:
+    slist(){head.next =0;}
+    ~slist(){clear();}
+
+
+public:
+    // 基本操作
+
+    iterator begin(){return iterator((list_node*)head.next);}
+    iterator end() {return iterator(0);}
+    size_type size()const{return __slist_size(head.next);}
+    bool empty() const {return head.next == 0;}
+
+
+    // 两个slist互换
+
+    void swap(slist&amp; L){
+        list_node_base * tmp = head.next;
+        head.next = L.head.next;
+        L.head.next = tmp;
+    }
+
+public:
+
+    // 取头部元素
+    reference front(){return ((list_node*)head.next)-&gt;data;}
+
+    // 从头部插入元素
+    void push_front(const value_type&amp; x){
+        __slist_make_link(&amp;head, create_node(x));
+    }
+
+    // 从头部取走元素；
+    void pop_front(){
+        list_node* node = (list_node*) head.next;
+        head.next = node-&gt;next;
+        destroy_node(node);
+    }
+
+    ...
+
+};
+
+</code></pre><hr>
 
       
     </div>
@@ -563,7 +679,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://jingxa.github.io/2018/06/22/2-Camera-Model/" title="2_Camera_Model">https://jingxa.github.io/2018/06/22/2-Camera-Model/</a>
+    <a href="https://jingxa.github.io/2018/07/05/STL-非标准-slist/" title="STL_非非标准_slist">https://jingxa.github.io/2018/07/05/STL-非标准-slist/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -578,7 +694,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Camera/" rel="tag"># Camera</a>
+            <a href="/tags/STL/" rel="tag"># STL</a>
+          
+            <a href="/tags/Container/" rel="tag"># Container</a>
           
         </div>
       
@@ -591,8 +709,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/21/1-Tensor-Learn-OPS-2/" rel="next" title="1_Tensor_Learn_OPS_2">
-                <i class="fa fa-chevron-left"></i> 1_Tensor_Learn_OPS_2
+              <a href="/2018/07/05/STL-heap/" rel="next" title="STL_heap">
+                <i class="fa fa-chevron-left"></i> STL_heap
               </a>
             
           </div>
@@ -600,10 +718,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/22/5-Epiplolar-Geometry/" rel="prev" title="5_Epiplolar_Geometry">
-                5_Epiplolar_Geometry <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -789,7 +903,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#3-3d到2d的投影变换"><span class="nav-text">3. 3d到2d的投影变换</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-Camera-Calibration（相机校准）"><span class="nav-text">4. Camera Calibration（相机校准）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-投影类型"><span class="nav-text">4.1 投影类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-1-弱透视投影"><span class="nav-text">4.1.1 弱透视投影</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-2-正投影：orthographic-projection"><span class="nav-text">4.1.2 正投影：orthographic projection</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-校准目标"><span class="nav-text">4.2 校准目标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-2-Radial-Distortion"><span class="nav-text">4.2.2 Radial Distortion</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-节点结构"><span class="nav-text">1 节点结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-迭代器"><span class="nav-text">2 迭代器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-数据结构"><span class="nav-text">3 数据结构</span></a></li></ol></div>
             
 
           </div>
