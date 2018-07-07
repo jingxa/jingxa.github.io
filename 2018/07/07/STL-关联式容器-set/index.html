@@ -112,7 +112,7 @@
 
 
 
-  <meta name="keywords" content="STL,Container," />
+  <meta name="keywords" content="STL,Associative Container," />
 
 
 
@@ -125,18 +125,18 @@
 
 
 
-<meta name="description" content="本文章内容来源于《STL源码分析》第四章   3.4 deque的元素操作3.4.1 deque的前和尾部删除 pop_back() pop_front()      // pop      void pop_back(){         if(finish.cur != finish.start){ // 最后缓冲区还有一个以上的元素             -- finish.cur;">
-<meta name="keywords" content="STL,Container">
+<meta name="description" content="本文章内容来源于《STL源码分析》第五章   1 概述 set 所有元素根据元素的键值自动被排序 set的键值和实值都是同样的； 不允许两个元素有相同的键值； set::iterator为const_iterator Rb_tree作为底层；  1. set/**     set源码摘录 */  template&amp;lt;class Key,          class Compare = le">
+<meta name="keywords" content="STL,Associative Container">
 <meta property="og:type" content="article">
-<meta property="og:title" content="STL_容器_deque_2">
-<meta property="og:url" content="https://jingxa.github.io/2018/07/04/STL-容器-deque-2/index.html">
+<meta property="og:title" content="STL_关联式容器_set">
+<meta property="og:url" content="https://jingxa.github.io/2018/07/07/STL-关联式容器-set/index.html">
 <meta property="og:site_name" content="Jingxa&#39;s Blog">
-<meta property="og:description" content="本文章内容来源于《STL源码分析》第四章   3.4 deque的元素操作3.4.1 deque的前和尾部删除 pop_back() pop_front()      // pop      void pop_back(){         if(finish.cur != finish.start){ // 最后缓冲区还有一个以上的元素             -- finish.cur;">
+<meta property="og:description" content="本文章内容来源于《STL源码分析》第五章   1 概述 set 所有元素根据元素的键值自动被排序 set的键值和实值都是同样的； 不允许两个元素有相同的键值； set::iterator为const_iterator Rb_tree作为底层；  1. set/**     set源码摘录 */  template&amp;lt;class Key,          class Compare = le">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-04T08:55:08.834Z">
+<meta property="og:updated_time" content="2018-07-07T10:11:52.274Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="STL_容器_deque_2">
-<meta name="twitter:description" content="本文章内容来源于《STL源码分析》第四章   3.4 deque的元素操作3.4.1 deque的前和尾部删除 pop_back() pop_front()      // pop      void pop_back(){         if(finish.cur != finish.start){ // 最后缓冲区还有一个以上的元素             -- finish.cur;">
+<meta name="twitter:title" content="STL_关联式容器_set">
+<meta name="twitter:description" content="本文章内容来源于《STL源码分析》第五章   1 概述 set 所有元素根据元素的键值自动被排序 set的键值和实值都是同样的； 不允许两个元素有相同的键值； set::iterator为const_iterator Rb_tree作为底层；  1. set/**     set源码摘录 */  template&amp;lt;class Key,          class Compare = le">
 
 
 
@@ -166,13 +166,13 @@
 
 
 
-  <link rel="canonical" href="https://jingxa.github.io/2018/07/04/STL-容器-deque-2/"/>
+  <link rel="canonical" href="https://jingxa.github.io/2018/07/07/STL-关联式容器-set/"/>
 
 
 
 
 
-  <title>STL_容器_deque_2 | Jingxa's Blog</title>
+  <title>STL_关联式容器_set | Jingxa's Blog</title>
   
 
 
@@ -309,7 +309,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://jingxa.github.io/2018/07/04/STL-容器-deque-2/">
+    <link itemprop="mainEntityOfPage" href="https://jingxa.github.io/2018/07/07/STL-关联式容器-set/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="jingxa">
@@ -326,7 +326,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">STL_容器_deque_2</h1>
+          <h1 class="post-title" itemprop="name headline">STL_关联式容器_set</h1>
         
 
         <div class="post-meta">
@@ -338,8 +338,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-04T16:54:21+08:00">
-                2018-07-04
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-07T18:08:21+08:00">
+                2018-07-07
               </time>
             
 
@@ -379,8 +379,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/07/04/STL-容器-deque-2/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/07/04/STL-容器-deque-2/" itemprop="commentsCount"></span>
+                <a href="/2018/07/07/STL-关联式容器-set/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/07/07/STL-关联式容器-set/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -402,7 +402,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,040
+                  731
                 </span>
               
 
@@ -418,7 +418,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5
+                  4
                 </span>
               
             </div>
@@ -440,264 +440,207 @@
 
       
         <blockquote>
-<p>本文章内容来源于《STL源码分析》第四章</p>
+<p>本文章内容来源于《STL源码分析》第五章</p>
 </blockquote>
 <hr>
-<h2 id="3-4-deque的元素操作"><a href="#3-4-deque的元素操作" class="headerlink" title="3.4 deque的元素操作"></a>3.4 deque的元素操作</h2><h3 id="3-4-1-deque的前和尾部删除"><a href="#3-4-1-deque的前和尾部删除" class="headerlink" title="3.4.1 deque的前和尾部删除"></a>3.4.1 deque的前和尾部删除</h3><ul>
-<li>pop_back()</li>
-<li>pop_front()</li>
+<h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1 概述"></a>1 概述</h1><ul>
+<li>set 所有元素根据元素的键值自动被排序</li>
+<li>set的键值和实值都是同样的；</li>
+<li>不允许两个元素有相同的键值；</li>
+<li>set<t>::iterator为const_iterator</t></li>
+<li>Rb_tree作为底层；</li>
 </ul>
-<pre><code>    // pop 
-    void pop_back(){
-        if(finish.cur != finish.start){ // 最后缓冲区还有一个以上的元素
-            -- finish.cur;  // 调整指针；
-            destroy(finish.cur);// 最后元素析构
-        }else{
-             // 最后缓冲区没有元素
-            pop_back_aux(); //  释放缓冲区
-        }
-    }
-
-
-    void pop_front(){
-        if(start.cur != start.last -1){// 第一缓冲区还有多个元素
-            destroy(start.cur);
-            ++ start.cur;
-        }else{  // 第一缓冲区只有一个元素
-            pop_front_aux();  // 释放缓冲区
-        }
-    }
-
-
-</code></pre><p>这两个函数依然是借助了辅助函数：</p>
-<pre><code>    // pop_back_aux
-    void pop_back_aux(){
-        deallocate_node(finish.first); // 释放最后一个缓冲区
-        finish.set_node(finish.node -1); // 调整finish的指向
-        finish.cur = finish.last -1;
-        destroy(finish.cur);   // 析构该元素
-    }
-
-    //pop_front_aux
-    void pop_front_aux(){
-        destroy(start.first);  // 第一缓冲区第一个元素析构
-        deallocate_node(start.first) ;  // 释放第一缓冲区
-        start.set_node(start.node + 1);
-        start.cur = start.first;  // 下一个缓冲区第一个元素
-    }
-
-</code></pre><ul>
-<li>在删除元素的时候，也要考虑缓冲区的释放</li>
-</ul>
-<h3 id="3-4-2-clear"><a href="#3-4-2-clear" class="headerlink" title="3.4.2 clear()"></a>3.4.2 clear()</h3><pre><code>// 清除deque，保留一个缓冲区
-    void clear(){
-        // 针对头和尾部中间的缓冲区，都是饱满的
-        for(map_pointer node = start.node +1; node&lt;finish.node ; ++node){
-            // 析构所有元素
-            destroy(*node, *node+buffer_size());
-            // 释放缓冲区
-            data_allocator::deallocate(*node,buffer_size());
-        }
-
-        if(start.node !=finish.node){  // 还有头和尾部两个缓冲区
-            destroy(start.cur, start.last);   // 将头部缓冲区所有元素析构
-            destroy(finish.first, finish.cur); // 尾部缓冲区析构
-            // 释放掉尾部缓冲区，头部缓冲区保留
-            data_allocator::deallocate(finish.start, buffer_size());
-        }else{  // 只有一个缓冲区
-            destroy(start.cur, finish.cur); // 所有元素析构
-            finish = start; // 调整状态
-        }
-
-    }
-
-
-</code></pre><h3 id="3-4-3-erase"><a href="#3-4-3-erase" class="headerlink" title="3.4.3 erase"></a>3.4.3 erase</h3><pre><code>
-    // erase 操作
-    iterator erase(iterator pos){
-        iterator next = pos;
-        ++next;
-        difference_type index = pos - next;  // 清除点之前的元素个数
-        if(index &lt;(size() &gt;&gt;1 )){
-            copy_backward(start,pos, next); // 移动清除之前的元素
-            pop_front();  // 消除最前的一个元素
-        }else{
-            copy(next, finish, pos);  // 移动清除之后的元素
-            pop_back();
-        }
-        return start+ index;
-    }
-
-
-    // erase  [first, last)
-    void erase(iterator first, iterator last){
-        if(first == start &amp;&amp; last == finish){  // 如果是清除整个deque
-            clear();
-            return finish;
-        }else{
-            difference_type n = last - first;
-            difference_type elems_before = first - start;  // 清除区间前方的元素个数
-            if(elems_before &lt; (size() -n) /2){ // 前方元素比较少
-                copy_backward(start, first, last);
-                iterator new_start = start +n;   // 新起点
-                destroy(start, new_start);       // 移动完毕，冗余元素析构
-                for(map_pointer cur = start.node; cur&lt;new_start.node; ++cur){
-                    data_allocator::deallocate(*cur, buffer_size());
-                }
-                start = new_start; // 设定deque的新起点
-            }else{
-                copy(last,finish, first);  // 向前移动后方元素
-                iterator new_finish = finish - n; 
-                destroy(new_finish , finish);   // 移动完成冗余析构
-
-                for(map_pointer cur = new_finish.node +1;cur &lt;=finish.node; ++cur){
-                    data_allocator::deallocate(*cur, buffer_size());
-                }
-                finish = new_finish ; // deque 新尾部
-
-            }
-            return start + elems_before;
-
-        }
-    }
-
-
-</code></pre><h1 id="4-迭代器的操作"><a href="#4-迭代器的操作" class="headerlink" title="4 迭代器的操作"></a>4 迭代器的操作</h1><pre><code>/**
-    deque 的迭代器
-
+<h1 id="1-set"><a href="#1-set" class="headerlink" title="1. set"></a>1. set</h1><pre><code>/**
+    set源码摘录
 */
 
-template&lt;class T, class Ref, class Ptr, size_t BufSiz&gt;
-struct __deque_iterator{
-    typedef __deque_iterator&lt;T, T&amp;,T*, BufSiz&gt;                iterator;
-    typedef    __deque_iterator&lt;T, const T&amp;, const T*, BufSiz&gt; const_iterator;
-    static    size_t buffer_size() {return __deque_buf_size(BufSiz, sizeof(T));}
+template&lt;class Key, 
+        class Compare = less &lt;Key&gt;,   // 缺省下采用递增排序
+        class Alloc = alloc&gt;
+class set{
+public:
+    typedef Key    key_type;
+    typedef    Key    value_type;
+    typedef Compare    key_compare;
+    typedef    Compare    value_compare;
 
-    // 未继承std::iterator, 必须自行添加iterator_category
-    typedef random_access_iterator_tag              iterator_category;
-    typedef T                                        value_type;
-    typedef Ptr                                        pointer;
-    typedef    Ref                                        reference;
-    typedef    size_t                                    size_type;
-    typedef    ptrdiff_t                                difference_type;
-    typedef T**                                        map_pointer;
+private:
+// 以下 identity 定义于&lt;stl_function.h&gt;
+    /*
+    template&lt; class T&gt;
+    struct identity:public unary_function&lt;T, T&gt;{
+        const T&amp; operator()(const T&amp; x){return x;}
+    };
+    */
+    typedef    rb_tree&lt;key_type, value_type,identity&lt;value_type&gt;,key_compare,Alloc&gt; rep_type;
 
-    typedef    __deque_iterator                        self;
-
-    // 保持与容器的联结
-    T*    cur;  // 迭代器指向缓冲区的current 元素
-    T*  first;    // 指向缓冲区的头；
-    T*  last;     // 指向缓冲区的尾巴（含备用空间）
-    map_pointer node;   // 指向管理中心
-
+    rep_type t;  // 采用红黑树表示set
 
 public:
-    void set_node(map_pointer new_node){
-        node = new_node;
-        first =*new_node;    // 缓冲区开头
-        last = first + difference_type(buffer_size());
+    typedef     typename  rep_type::const_pointer pointer;
+    typedef     typename  rep_type::const_pointer const_pointer;
+    typedef     typename  rep_type::const_reference reference;
+    typedef     typename  rep_type::const_reference const_reference;
+    typedef     typename  rep_type::const_iterator  iterator;
+    // 以上iterator定义为const，表示不允许用户执行写入操作
+
+    typedef     typename  rep_type::const_iterator    const_iterator;
+    typedef     typename  rep_type::const_reverse_iterator reverse_iterator;
+    typedef  typename  rep_type::const_reverse_iterator const_reverse_iterator;
+    typedef     typename  rep_type::size_type    size_type;
+    typedef     typename  rep_type::difference_type  difference_type;
+
+    // aollocattion // deallocation
+    // set 使用rb_tree 的insert_unique()
+    // multiset 使用 rb_tree的insert_equal()
+
+    set():t(Compare()){}
+    explicit set(const Compare&amp; comp):t(comp){}
+
+
+    template&lt;class InputIterator&gt;
+    set(InputIterator first, InputIterator last):t(Compare())
+    {
+        t.insert_unique(first,last);
     }
 
-    // 运算符重载
-    reference operator*() const{return *cur;}
-
-    pointer operator-&gt;() const{return &amp;(operator*());}
-
-    difference_type operator-(const self&amp; x) const{
-        return difference_type(buffer_size()) * (node - x.node -1) + 
-            (cur - first) + ( x.last - x.cur);
-    }
-
-    self&amp; operator++(){
-        ++cur;
-        if(cur == last){ // 到达尾部， 切换到下一节点
-            set_node(node+1);
-            cur = first;
+    template&lt;class InputIterator&gt;
+    set(InputIterator first, InputIterator last, const Compare&amp; comp)
+        :t(comp){
+            t.insert_unique(first,last);
         }
+
+    set(const set&lt;Key,Compare,Alloc&gt;&amp; x):t(x.t){}
+
+    // 赋值符
+    set&lt;Key, Compare,Alloc&gt;&amp; operator=(const set&lt;Key,Compare,Alloc&gt;&amp; x){
+        t = x.t;
         return *this;
     }
 
-    self operator++(int){
-        self tmp  = *this;
-        ++*this;
-        return tmp;
-    }
 
-    self operator--(){
-        if(cur == first){
-            set_node(node -1);
-            cur = last;
-        }
-        -- cur;
-        return *this;
-    }
+    // set 操作
+    key_compare key_comp() const{return t.key_comp();}
+    value_compare value_comp() const{{return t.key_comp();}
+
+    iterator begin() const{return t.begin();}
+    iterator end()    const{return t.end();}
+    reverse_iterator rbegin() const{retur t.rbegin();}
+    reverse_iterator rend() const{return t.rend();}
+    bool empty() const{return t.empty();}
+    size_type size() const {return t.size();}
+    size_type max_size() const{return t.max_size();}
+    void swap(set&lt;Key,Compare,Alloc&gt;&amp;x){t.swap(x.t);}
 
 
-    self operator--(int){
-        self tmp = *this;
-        -- *this;
-        return tmp;
-    }
-
-    // 随机存取
-    self&amp; operator+= (difference_type n){
-        difference_type offset = n +(cur - first);
-        //  first&lt; cur -n &lt;= offset &lt;= cur +n &lt; last 
-        // 目标位置在同一缓冲区
-        if(offset &gt;= &amp;&amp; offset &lt; difference_type(buffer_size())){ 
-            cur += n;
-        }else{
-        // 目标的位置不在同一缓冲区
-            difference_type node_offset = 
-                offset &gt; 0 ? offset / difference_type(buffer_size())
-                    : difference_type((-offset - 1) / buffer_size()) -1;
-
-            // 切换到正确的节点
-            set_node(node + node_offset);
-            // 切换到正确的元素
-            cur = first + (offset - node_offset * difference_type(buffer_size()))
-        }
-        return *this;
-    }
-
-    self operator+(difference_type n) const{
-        self  tmp = *this;
-        return tmp += n;
-    }
-
-    self&amp; operator -=(difference_type n){
-        return *this += -n;
-    }
-
-    self operator-(difference_type n ){
-        self tmp = *this;
-        return tmp -= n;
-    }
-
-    // 随机存取[]
-    reference operator[] (difference_type n) const {
-        return *(*this + n);
-    }
-
-    bool operator== (const self&amp; x)const{
-        return cur == x.cur;
-    }
-    bool operator!=(const self&amp; x)const{
-        return !(*this == x);
-    }
-    boll operator&lt;(const self&amp; x)const{
-        return (node == x.node) ? (cur &lt; x.cur) :(node &lt; x.node);
+    // 插入、 删除操作
+    typedef pair&lt;iterator,bool&gt; pair_iterator_bool;
+    pair&lt;iterator,bool&gt; insert(const value_type&amp; x){
+        pair&lt;typename rep_type::iterator,bool&gt; p = t.insert_unique(x);
+        return pair&lt;iterator,bool&gt;(p.first,p.last);
     }
 
 
+    iterator insert(iterator position, const value_type&amp; x){
+        typedef typename rep_type::iterator rep_iterator;
+        return t.insert_unique((rep_iterator&amp;)position,x);
+    }
 
+    template&lt;class InputIterator&gt;
+    void insert(InputIterator first, InputIterator last){
+        t.insert_unique(first, last);
+    }
 
+    void erase(iterator position){
+        typedef typename rep_type::iterator rep_iterator;
+        t.erase((rep_iterator&amp;)position);
+    }
+
+    size_type erase(const key_type&amp; x){
+        return t.erase(x);
+    }
+
+    void erase(iterator first, iterator last){
+        typedef typename rep_type::iterator rep_iterator;
+        t.erase((rep_iterator&amp;)first, (rep_iterator&amp;)last);
+    }
+
+    void clear(){
+        t.clear();
+    }
+
+    // set 操作
+    iterator find(const key_type&amp; x) const{return t.find(x);}
+    size_type count(const key_type&amp; x)const{return t.count(x);}
+    iterator lower_bound(const key_type&amp; x)const{
+        return t.lower_bound(x);
+    }
+    iterator upper_bound(const key_type&amp; x)const{
+        return t.upper_bound(x);
+    }
+    pair&lt;iterator,iterator&gt; equal_range(const key_type&amp; x)const{
+        return t.equal_range(x);
+
+    }
+
+    // 以下的 __STL_NULL_TMPL_ARGS 被定义为&lt;&gt;
+    friend bool operator==__STL_NULL_TMPL_ARGS(const set&amp;, const set&amp;);
+    friend bool operator&lt; __STL_NULL_TMPL_ARGS(cosnt set&amp;, const set&amp;);
 
 };
 
 
+template&lt;class Key, class Compare, class Alloc&gt;
+inline bool operator==(const set&lt;Key,Compare,Alloc&gt;&amp; x,
+                        const set&lt;Key,Compare,Alloc&gt;&amp; y){
+    return x.t == y.t;                        
+}
 
-</code></pre><hr>
+
+
+template&lt;class Key, class Compare, class Alloc&gt;
+inline bool operator&lt;(const set&lt;Key,Compare,Alloc&gt;&amp; x,
+                        const set&lt;Key,Compare,Alloc&gt;&amp; y){
+    return x.t &lt; y.t;                        
+}
+
+</code></pre><h1 id="2-multiset"><a href="#2-multiset" class="headerlink" title="2 multiset"></a>2 multiset</h1><p><code>`</code><br>/*<em><br>    multiset
+</em>/</p>
+<p>// set 不同之处<br>template&lt;class Key, class Compare = less<key>, class Alloc= alloc&gt;<br>class multiset{</key></p>
+<p>public:<br>// typedefs<br>… // 一样和set</p>
+<p>//构造函数</p>
+<pre><code>template&lt;class InputIterator&gt;
+multiset(InputIterator first,InputIterator last):t(Compare()){
+    t.insert_equal(first,last);
+}
+
+template&lt;class InputIterator&gt;
+multiset(InputIterator first, InputIterator last, Compare&amp; comp):t(comp){
+    t.insert_equal(first,last);
+}
+
+...   // 与 set一样
+
+
+// 插入删除
+iterator insert(const value_type&amp; x){
+    return t.insert_equal(x);
+}
+
+iterator insert(iterator position, const value_type&amp; x){
+    typedef typename rep_type::iterator rep_iterator;
+    return t.insert_equal((rep_iterator&amp;)position,x);
+}
+
+template&lt;class InputIterator&gt;
+void insert(InputIterator first, InputIterator last){
+    t.insert_equal(first,last);
+}
+
+... // 其他和set一样
+</code></pre><p>};</p>
+<p>···</p>
+<hr>
 
       
     </div>
@@ -718,7 +661,7 @@ public:
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://jingxa.github.io/2018/07/04/STL-容器-deque-2/" title="STL_容器_deque_2">https://jingxa.github.io/2018/07/04/STL-容器-deque-2/</a>
+    <a href="https://jingxa.github.io/2018/07/07/STL-关联式容器-set/" title="STL_关联式容器_set">https://jingxa.github.io/2018/07/07/STL-关联式容器-set/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -735,7 +678,7 @@ public:
           
             <a href="/tags/STL/" rel="tag"># STL</a>
           
-            <a href="/tags/Container/" rel="tag"># Container</a>
+            <a href="/tags/Associative-Container/" rel="tag"># Associative Container</a>
           
         </div>
       
@@ -748,8 +691,8 @@ public:
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/04/STL-容器-deque-1/" rel="next" title="STL_容器_deque_1">
-                <i class="fa fa-chevron-left"></i> STL_容器_deque_1
+              <a href="/2018/07/05/STL-非标准-slist/" rel="next" title="STL_非标准_slist">
+                <i class="fa fa-chevron-left"></i> STL_非标准_slist
               </a>
             
           </div>
@@ -758,8 +701,8 @@ public:
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/07/05/STL-适配器/" rel="prev" title="STL_适配器">
-                STL_适配器 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/07/07/STL-关联式容器-map/" rel="prev" title="STL_关联式容器_map">
+                STL_关联式容器_map <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -946,7 +889,7 @@ public:
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-deque的元素操作"><span class="nav-text">3.4 deque的元素操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-1-deque的前和尾部删除"><span class="nav-text">3.4.1 deque的前和尾部删除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-2-clear"><span class="nav-text">3.4.2 clear()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-3-erase"><span class="nav-text">3.4.3 erase</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-迭代器的操作"><span class="nav-text">4 迭代器的操作</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-概述"><span class="nav-text">1 概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-set"><span class="nav-text">1. set</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-multiset"><span class="nav-text">2 multiset</span></a></li></ol></div>
             
 
           </div>
