@@ -112,7 +112,7 @@
 
 
 
-  <meta name="keywords" content="STL,Associative Container," />
+  <meta name="keywords" content="STL,Iterator Adapter," />
 
 
 
@@ -125,18 +125,20 @@
 
 
 
-<meta name="description" content="本文章内容来源于《STL源码分析》第五章   1 概述 set 所有元素根据元素的键值自动被排序 set的键值和实值都是同样的； 不允许两个元素有相同的键值； set::iterator为const_iterator Rb_tree作为底层；  1. set/**     set源码摘录 */  template&amp;lt;class Key,          class Compare = le">
-<meta name="keywords" content="STL,Associative Container">
+<meta name="description" content="本文章内容来源于《STL源码分析》第八章   1 概述adapter:  讲一个class的接口转换为另一个class的接口，使原本不兼容而不能合作的classes，可以一起运作；  2 分类 funcition adapter container adapter iterator adapter   3 container adapter quque deque构成底层；   stack">
+<meta name="keywords" content="STL,Iterator Adapter">
 <meta property="og:type" content="article">
-<meta property="og:title" content="STL_关联式容器_set">
-<meta property="og:url" content="https://jingxa.github.io/2018/07/07/STL-关联式容器-set/index.html">
+<meta property="og:title" content="STL_配接器器_1">
+<meta property="og:url" content="https://jingxa.github.io/2018/07/11/STL-配接器器-1/index.html">
 <meta property="og:site_name" content="Jingxa&#39;s Blog">
-<meta property="og:description" content="本文章内容来源于《STL源码分析》第五章   1 概述 set 所有元素根据元素的键值自动被排序 set的键值和实值都是同样的； 不允许两个元素有相同的键值； set::iterator为const_iterator Rb_tree作为底层；  1. set/**     set源码摘录 */  template&amp;lt;class Key,          class Compare = le">
+<meta property="og:description" content="本文章内容来源于《STL源码分析》第八章   1 概述adapter:  讲一个class的接口转换为另一个class的接口，使原本不兼容而不能合作的classes，可以一起运作；  2 分类 funcition adapter container adapter iterator adapter   3 container adapter quque deque构成底层；   stack">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-07T10:11:52.274Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-a52a8e6d8c64cacf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-07-11T12:53:29.004Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="STL_关联式容器_set">
-<meta name="twitter:description" content="本文章内容来源于《STL源码分析》第五章   1 概述 set 所有元素根据元素的键值自动被排序 set的键值和实值都是同样的； 不允许两个元素有相同的键值； set::iterator为const_iterator Rb_tree作为底层；  1. set/**     set源码摘录 */  template&amp;lt;class Key,          class Compare = le">
+<meta name="twitter:title" content="STL_配接器器_1">
+<meta name="twitter:description" content="本文章内容来源于《STL源码分析》第八章   1 概述adapter:  讲一个class的接口转换为另一个class的接口，使原本不兼容而不能合作的classes，可以一起运作；  2 分类 funcition adapter container adapter iterator adapter   3 container adapter quque deque构成底层；   stack">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5361608-a52a8e6d8c64cacf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -166,13 +168,13 @@
 
 
 
-  <link rel="canonical" href="https://jingxa.github.io/2018/07/07/STL-关联式容器-set/"/>
+  <link rel="canonical" href="https://jingxa.github.io/2018/07/11/STL-配接器器-1/"/>
 
 
 
 
 
-  <title>STL_关联式容器_set | Jingxa's Blog</title>
+  <title>STL_配接器器_1 | Jingxa's Blog</title>
   
 
 
@@ -309,7 +311,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://jingxa.github.io/2018/07/07/STL-关联式容器-set/">
+    <link itemprop="mainEntityOfPage" href="https://jingxa.github.io/2018/07/11/STL-配接器器-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="jingxa">
@@ -326,7 +328,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">STL_关联式容器_set</h1>
+          <h1 class="post-title" itemprop="name headline">STL_配接器器_1</h1>
         
 
         <div class="post-meta">
@@ -338,8 +340,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-07T18:08:21+08:00">
-                2018-07-07
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-11T20:48:33+08:00">
+                2018-07-11
               </time>
             
 
@@ -379,8 +381,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/07/07/STL-关联式容器-set/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/07/07/STL-关联式容器-set/" itemprop="commentsCount"></span>
+                <a href="/2018/07/11/STL-配接器器-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/07/11/STL-配接器器-1/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -402,7 +404,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  731
+                  1,231
                 </span>
               
 
@@ -418,7 +420,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4
+                  6
                 </span>
               
             </div>
@@ -440,207 +442,366 @@
 
       
         <blockquote>
-<p>本文章内容来源于《STL源码分析》第五章</p>
+<p>本文章内容来源于《STL源码分析》第八章</p>
 </blockquote>
 <hr>
-<h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1 概述"></a>1 概述</h1><ul>
-<li>set 所有元素根据元素的键值自动被排序</li>
-<li>set的键值和实值都是同样的；</li>
-<li>不允许两个元素有相同的键值；</li>
-<li>set<t>::iterator为const_iterator</t></li>
-<li>Rb_tree作为底层；</li>
+<h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1 概述"></a>1 概述</h1><p>adapter:</p>
+<ul>
+<li>讲一个class的接口转换为另一个class的接口，使原本不兼容而不能合作的classes，可以一起运作；</li>
 </ul>
-<h1 id="1-set"><a href="#1-set" class="headerlink" title="1. set"></a>1. set</h1><pre><code>/**
-    set源码摘录
+<h1 id="2-分类"><a href="#2-分类" class="headerlink" title="2 分类"></a>2 分类</h1><ul>
+<li>funcition adapter</li>
+<li>container adapter</li>
+<li>iterator adapter</li>
+</ul>
+<hr>
+<h1 id="3-container-adapter"><a href="#3-container-adapter" class="headerlink" title="3 container adapter"></a>3 container adapter</h1><ul>
+<li>quque<ul>
+<li>deque构成底层；</li>
+</ul>
+</li>
+<li>stack</li>
+</ul>
+<hr>
+<h1 id="4-iterator-adapter"><a href="#4-iterator-adapter" class="headerlink" title="4 iterator adapter"></a>4 iterator adapter</h1><ul>
+<li>insert itearators</li>
+<li>reverse iterators</li>
+<li>iostream iterators<br>接口：</li>
+<li><code>&lt;iterator&gt;</code></li>
+<li>SGI STL <code>&lt;stl_iterator.h</code></li>
+</ul>
+<h2 id="4-1-insert-itearators"><a href="#4-1-insert-itearators" class="headerlink" title="4.1 insert itearators"></a>4.1 insert itearators</h2><ul>
+<li>back_insert_iterator</li>
+<li>front_insert_iterator</li>
+<li>insert_iterator</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-a52a8e6d8c64cacf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>每一个insert iterators内部维护一个容器（用户指定）,</li>
+<li>用户对insert iterator赋值的时候，insert iterator调用内部容器的操作</li>
+<li><code>operator++,opreator++(int),operator*</code>等都被关闭；</li>
+<li>insert_iterators的前进，后退，取值，成员取用都不被允许；</li>
+</ul>
+<h3 id="4-1-1-back-insert-iterator"><a href="#4-1-1-back-insert-iterator" class="headerlink" title="4.1.1 back_insert_iterator"></a>4.1.1 back_insert_iterator</h3><pre><code>/**
+    1. back_insert_iterator
 */
-
-template&lt;class Key, 
-        class Compare = less &lt;Key&gt;,   // 缺省下采用递增排序
-        class Alloc = alloc&gt;
-class set{
-public:
-    typedef Key    key_type;
-    typedef    Key    value_type;
-    typedef Compare    key_compare;
-    typedef    Compare    value_compare;
-
-private:
-// 以下 identity 定义于&lt;stl_function.h&gt;
-    /*
-    template&lt; class T&gt;
-    struct identity:public unary_function&lt;T, T&gt;{
-        const T&amp; operator()(const T&amp; x){return x;}
-    };
-    */
-    typedef    rb_tree&lt;key_type, value_type,identity&lt;value_type&gt;,key_compare,Alloc&gt; rep_type;
-
-    rep_type t;  // 采用红黑树表示set
+template&lt;class Container&gt;
+class back_insert_iterator{
+protected:
+    Container* container; // 底层容器
 
 public:
-    typedef     typename  rep_type::const_pointer pointer;
-    typedef     typename  rep_type::const_pointer const_pointer;
-    typedef     typename  rep_type::const_reference reference;
-    typedef     typename  rep_type::const_reference const_reference;
-    typedef     typename  rep_type::const_iterator  iterator;
-    // 以上iterator定义为const，表示不允许用户执行写入操作
-
-    typedef     typename  rep_type::const_iterator    const_iterator;
-    typedef     typename  rep_type::const_reverse_iterator reverse_iterator;
-    typedef  typename  rep_type::const_reverse_iterator const_reverse_iterator;
-    typedef     typename  rep_type::size_type    size_type;
-    typedef     typename  rep_type::difference_type  difference_type;
-
-    // aollocattion // deallocation
-    // set 使用rb_tree 的insert_unique()
-    // multiset 使用 rb_tree的insert_equal()
-
-    set():t(Compare()){}
-    explicit set(const Compare&amp; comp):t(comp){}
+    typedef output_iterator_tag         iterator_category;   
+    typedef    void                        value_type;
+    typedef    void                         difference_type;
+    typedef void                        pointer;
+    typedef    void                        reference;
 
 
-    template&lt;class InputIterator&gt;
-    set(InputIterator first, InputIterator last):t(Compare())
-    {
-        t.insert_unique(first,last);
+    explicit back_insert_iterator(Container&amp; x):container(x){}
+    back_insert_iterator&lt;Container&gt;&amp;
+        operator=(const typename Container::value_type&amp; value){
+            container-&gt;push_back(value);  // 调用容器操作
+            return *this;
     }
 
-    template&lt;class InputIterator&gt;
-    set(InputIterator first, InputIterator last, const Compare&amp; comp)
-        :t(comp){
-            t.insert_unique(first,last);
-        }
+    // 一下三个操作对 back_insert_iterator 不起作用
+    // 三个返回都是自己
+    back_insert_iterator&lt;Container&gt;&amp; operator*(){return *this;}
+    back_insert_iterator&lt;Container&gt;&amp; operator++(){return *this;}
+    back_insert_iterator&lt;Container&gt;&amp; operator++(int){return *this;}
 
-    set(const set&lt;Key,Compare,Alloc&gt;&amp; x):t(x.t){}
 
-    // 赋值符
-    set&lt;Key, Compare,Alloc&gt;&amp; operator=(const set&lt;Key,Compare,Alloc&gt;&amp; x){
-        t = x.t;
+};
+
+// 辅助函数
+template&lt;class Container&gt;
+inline back_insert_iterator&lt;Container&gt; back_inserter(Container&amp; x){
+    return back_insert_iterator&lt;Container&gt;(x);
+}
+
+</code></pre><h3 id="4-1-2-front-insert-iterator"><a href="#4-1-2-front-insert-iterator" class="headerlink" title="4.1.2 front_insert_iterator"></a>4.1.2 front_insert_iterator</h3><pre><code>
+/**
+
+    2. front_insert_iterator
+*/
+template&lt;class Container&gt;
+class front_insert_iterator{
+protected:
+    Container* container; // 底层容器
+
+public:
+    typedef output_iterator_tag         iterator_category;   
+    typedef    void                        value_type;
+    typedef    void                         difference_type;
+    typedef void                        pointer;
+    typedef    void                        reference;
+
+
+    explicit front_insert_iterator(Container&amp; x):container(x){}
+    front_insert_iterator&lt;Container&gt;&amp;
+        operator=(const typename Container::value_type&amp; value){
+            container-&gt;push_front(value);  // 调用容器操作
+            return *this;
+    }
+
+    // 一下三个操作对 front_insert_iterator 不起作用
+    // 三个返回都是自己
+    front_insert_iterator&lt;Container&gt;&amp; operator*(){return *this;}
+    front_insert_iterator&lt;Container&gt;&amp; operator++(){return *this;}
+    front_insert_iterator&lt;Container&gt;&amp; operator++(int){return *this;}
+
+
+};
+
+// 辅助函数
+template&lt;class Container&gt;
+inline front_insert_iterator&lt;Container&gt; front_inserter(Container&amp; x){
+    return front_insert_iterator&lt;Container&gt;(x);
+}
+
+</code></pre><h3 id="4-1-3-insert-iterator"><a href="#4-1-3-insert-iterator" class="headerlink" title="4.1.3 insert_iterator"></a>4.1.3 insert_iterator</h3><pre><code>/**
+    3. insert_iterator
+*/
+
+template&lt;class Container&gt;
+class insert_iterator{
+protected:
+    Container* container; // 底层容器
+    typename Container::iterator  iter;
+
+public:
+    typedef output_iterator_tag         iterator_category;   
+    typedef    void                        value_type;
+    typedef    void                         difference_type;
+    typedef void                        pointer;
+    typedef    void                        reference;
+
+
+    insert_iterator(Container&amp; x,typename Container::iterator i)
+        :container(x),iter(i){}
+
+
+    insert_iterator&lt;Container&gt;&amp;
+        operator=(const typename Container::value_type&amp; value){
+            iter = container-&gt;insert(value);  // 调用容器操作
+            ++iter;  // 随着目标移动
+            return *this;
+    }
+
+    // 一下三个操作对 insert_iterator 不起作用
+    // 三个返回都是自己
+    insert_iterator&lt;Container&gt;&amp; operator*(){return *this;}
+    insert_iterator&lt;Container&gt;&amp; operator++(){return *this;}
+    insert_iterator&lt;Container&gt;&amp; operator++(int){return *this;}
+
+
+};
+
+// 辅助函数
+template&lt;class Container&gt;
+inline insert_iterator&lt;Container&gt; front_inserter(Container&amp; x，Iterator i){
+    typedef typename Container::iterator iter;
+    return insert_iterator&lt;Container&gt;(x,iter(i));
+}
+
+</code></pre><h2 id="4-2-Reverse-Iterators"><a href="#4-2-Reverse-Iterators" class="headerlink" title="4.2 Reverse Iterators"></a>4.2 Reverse Iterators</h2><ul>
+<li>将一般的迭代器逆转；</li>
+</ul>
+<pre><code>
+/**
+    二、 reverse Iterator
+
+*/
+template&lt;class Iterator&gt;
+class reverse_iterator{
+
+protected:
+    Iterator    current;   // 记录正向迭代器
+
+public:
+    // 逆向迭代器的5中类型
+    typedef typename iterator_traits&lt;Iterator&gt;:: iterator_category iterator_category;
+    typedef typename iterator_traits&lt;Iterator&gt;::value_type             value_type;
+    typedef typename iterator_traits&lt;Iterator&gt;::difference_type        difference_type;
+    typedef typename iterator_traits&lt;Iterator&gt;::pointer                pointer;
+    typedef typename iterator_traits&lt;Iterator&gt;::reference            reference;
+
+    typedef    Iterator    iterator_type;  // 正向迭代器
+    typedef    reverse_iterator&lt;Iterator&gt; self;        // 逆向迭代器
+
+
+public:
+
+    reverse_iterator(){}
+
+    explicit reverse_iterator(iterator_type x):current(x){}
+
+    reverse_iterator(const self&amp; x):current(x.current){}
+
+
+    iterator_type base() const{return current;}   // 取出正向迭代器
+    reference operator*() const {  
+    // 对逆向迭代器取值，就是讲“对应的正向迭代器”退一格在取值
+        Iterator tmp = current;
+        treturn *--tmp;
+    }
+
+    pointer operator-&gt;() const{return &amp;(operator*());}
+
+    self&amp; operator++(){
+        -- current;
+        return *this;
+    }
+
+    self operator++(int){
+        self tmp = *this;
+        -- current;
+        return tmp;
+    }
+
+    // 后退操作
+    self&amp; operator--(){
+        ++current;
+        return *this;
+    }
+
+    self operator--(int){
+        self  tmp = *this;
+        ++current;
+        return tmp;
+    }
+
+    // 前进和后退完全逆转
+    self  operator+(difference_type n) const{
+        return self(current -n);
+    }
+    self&amp;  operator+=(difference_type n) const{
+        current -= n;
+        return *this;
+    }
+    self  operator-(difference_type n) const{
+        return self(current + n);
+    }
+    self&amp;  operator-=(difference_type n) const{
+        current += n;
         return *this;
     }
 
 
-    // set 操作
-    key_compare key_comp() const{return t.key_comp();}
-    value_compare value_comp() const{{return t.key_comp();}
-
-    iterator begin() const{return t.begin();}
-    iterator end()    const{return t.end();}
-    reverse_iterator rbegin() const{retur t.rbegin();}
-    reverse_iterator rend() const{return t.rend();}
-    bool empty() const{return t.empty();}
-    size_type size() const {return t.size();}
-    size_type max_size() const{return t.max_size();}
-    void swap(set&lt;Key,Compare,Alloc&gt;&amp;x){t.swap(x.t);}
-
-
-    // 插入、 删除操作
-    typedef pair&lt;iterator,bool&gt; pair_iterator_bool;
-    pair&lt;iterator,bool&gt; insert(const value_type&amp; x){
-        pair&lt;typename rep_type::iterator,bool&gt; p = t.insert_unique(x);
-        return pair&lt;iterator,bool&gt;(p.first,p.last);
+    // 下面第一个* 和 + 都会调用本类的operator* 和operator+
+    // 第二个 * 不会调用本类，而是调用正向迭代器的operator*；
+    reference operator[](difference_type n )const{
+        return *(*this + n);
     }
-
-
-    iterator insert(iterator position, const value_type&amp; x){
-        typedef typename rep_type::iterator rep_iterator;
-        return t.insert_unique((rep_iterator&amp;)position,x);
-    }
-
-    template&lt;class InputIterator&gt;
-    void insert(InputIterator first, InputIterator last){
-        t.insert_unique(first, last);
-    }
-
-    void erase(iterator position){
-        typedef typename rep_type::iterator rep_iterator;
-        t.erase((rep_iterator&amp;)position);
-    }
-
-    size_type erase(const key_type&amp; x){
-        return t.erase(x);
-    }
-
-    void erase(iterator first, iterator last){
-        typedef typename rep_type::iterator rep_iterator;
-        t.erase((rep_iterator&amp;)first, (rep_iterator&amp;)last);
-    }
-
-    void clear(){
-        t.clear();
-    }
-
-    // set 操作
-    iterator find(const key_type&amp; x) const{return t.find(x);}
-    size_type count(const key_type&amp; x)const{return t.count(x);}
-    iterator lower_bound(const key_type&amp; x)const{
-        return t.lower_bound(x);
-    }
-    iterator upper_bound(const key_type&amp; x)const{
-        return t.upper_bound(x);
-    }
-    pair&lt;iterator,iterator&gt; equal_range(const key_type&amp; x)const{
-        return t.equal_range(x);
-
-    }
-
-    // 以下的 __STL_NULL_TMPL_ARGS 被定义为&lt;&gt;
-    friend bool operator==__STL_NULL_TMPL_ARGS(const set&amp;, const set&amp;);
-    friend bool operator&lt; __STL_NULL_TMPL_ARGS(cosnt set&amp;, const set&amp;);
 
 };
 
 
-template&lt;class Key, class Compare, class Alloc&gt;
-inline bool operator==(const set&lt;Key,Compare,Alloc&gt;&amp; x,
-                        const set&lt;Key,Compare,Alloc&gt;&amp; y){
-    return x.t == y.t;                        
-}
+
+
+</code></pre><h2 id="4-3-IOStream-Iterators"><a href="#4-3-IOStream-Iterators" class="headerlink" title="4.3 IOStream Iterators"></a>4.3 IOStream Iterators</h2><ul>
+<li>将迭代器绑定到某个iostream对象上；</li>
+<li>istream_iterator</li>
+<li>ostream_iterator</li>
+</ul>
+<h3 id="4-3-1-istream-iterator"><a href="#4-3-1-istream-iterator" class="headerlink" title="4.3.1 istream_iterator"></a>4.3.1 istream_iterator</h3><pre><code>// istream_iterator
+
+template&lt;class T, class Distance = prdiff_t&gt;
+class istream_iterator{
+    // __STL_NULL_TMPL_ARGS    在&lt;stl_config.h&gt;中定义为 template&lt;&gt;
+    friend bool 
+        operator== __STL_NULL_TMPL_ARGS(const istream_iterator&lt;T,Distance&gt;&amp; x,
+            const istream_iterator&lt;T,Distance&gt;&amp; y&gt;;
+
+protected:
+    istream* stream;
+    T value;
+    bool end_marker;
+    void read(){
+        end_marker = (*stream)? true: false;
+        if(end_marker)*stream &gt;&gt;value;
+        //以上输入之后，stream状态改变，所以在下面在判断一次决定end_marker
+        // 当读到eof或者型别不符合的时候，stream处于false状态
+        end_marker = (*stream)? true: false;
+    }
+
+public:
+    typedef input_iterator_tag                    iterator_category;
+    typedef    T                                    value_type;
+    typedef    Distance                            difference_type;
+    typedef    const T*                            pointer;
+    typedef    const T&amp;                            reference;
+    // 以上，因为input iterator ,所以采用const
+
+    istream_iterator(): stream(&amp;cin),end_marker(false){}
+    istream_iterator(istream&amp; s):stream(&amp;s){red();}
+    // 以上两行用法：
+    // istream_iterator&lt;int&gt; eos;  造成end_marker为false;
+    // istream_iterator&lt;int&gt; initer(cin); 引发read(), 程序会等待
+    // 因此，下面这两行：
+    // istream_iterator&lt;int&gt; initer(cin); (A)
+    // cout&lt;&lt;&quot;please input ..&quot;&lt;&lt;endl;     (B)
+    // 会停留在A等待一个输入，然后才执行(B)的提示信息，不合理；
+    // 规避：永远在合适的时候定义一个 istream_iterator
+
+    reference operator*()const{return value;}
+    pointer operator-&gt;() const{return &amp;(operator*());}
+
+    // 迭代器前进一个位置，读取一个资料
+    istream_iterator&lt;T,Distance&gt;&amp; operator++(){
+        read();
+        return *this;
+    }
+
+    istream_iterator&lt;T,Distance&gt; operator++(int){
+        istream_iterator&lt;T,Distance&gt; tmp = *this;
+        read();
+        return tmp;
+    }
 
 
 
-template&lt;class Key, class Compare, class Alloc&gt;
-inline bool operator&lt;(const set&lt;Key,Compare,Alloc&gt;&amp; x,
-                        const set&lt;Key,Compare,Alloc&gt;&amp; y){
-    return x.t &lt; y.t;                        
-}
 
-</code></pre><h1 id="2-multiset"><a href="#2-multiset" class="headerlink" title="2 multiset"></a>2 multiset</h1><p><code>`</code><br>/*<em><br>    multiset
-</em>/</p>
-<p>// set 不同之处<br>template&lt;class Key, class Compare = less<key>, class Alloc= alloc&gt;<br>class multiset{</key></p>
-<p>public:<br>// typedefs<br>… // 一样和set</p>
-<p>//构造函数</p>
-<pre><code>template&lt;class InputIterator&gt;
-multiset(InputIterator first,InputIterator last):t(Compare()){
-    t.insert_equal(first,last);
-}
+};
 
-template&lt;class InputIterator&gt;
-multiset(InputIterator first, InputIterator last, Compare&amp; comp):t(comp){
-    t.insert_equal(first,last);
-}
+</code></pre><h3 id="4-3-2-ostream-itreator"><a href="#4-3-2-ostream-itreator" class="headerlink" title="4.3.2 ostream_itreator"></a>4.3.2 ostream_itreator</h3><pre><code>// ostream_iterator
 
-...   // 与 set一样
+template&lt;class T&gt;
+class ostream_iterator{
+protected:
+    ostream* stream;
+    const char* string; // 每次输出的间隔符号
+
+public:
+    typedef output_iterator_tag        iterator_category;
+    typedef    void                    value_type;
+    typedef    void                    pointer;
+    typedef    void                    difference_type;
+    typedef    void                    reference;
 
 
-// 插入删除
-iterator insert(const value_type&amp; x){
-    return t.insert_equal(x);
-}
+    ostream_iterator(ostream&amp; s):stream(&amp;s),string(0){}
+    ostream_iterator(ostream&amp; s, const char* c):stream(&amp;s),string(c){}
+    // 以上，用法：
+    // ostream_iterator&lt;int&gt; outlier(cout,&#39; &#39;); 输出到cout,每次间隔一个空格
 
-iterator insert(iterator position, const value_type&amp; x){
-    typedef typename rep_type::iterator rep_iterator;
-    return t.insert_equal((rep_iterator&amp;)position,x);
-}
+    // 迭代器赋值操作，代表输出一笔数据
+    ostream_iterator&lt;T&gt;&amp; operator=(const T&amp; value){
+        *stream&lt;&lt;value;
+        if(string) *stream&lt;&lt;string;  // 如果状态无误，输出间隔符号
+        return *this;
+    }
 
-template&lt;class InputIterator&gt;
-void insert(InputIterator first, InputIterator last){
-    t.insert_equal(first,last);
-}
+    // 一下三个操作，都是返回自己
+    ostream_iterator&lt;T&gt;&amp; operator*(){return *this;}
+    ostream_iterator&lt;T&gt;&amp; operator++(){return *this;}
+    ostream_iterator&lt;T&gt;&amp; operator++(int){return *this;}
+};
 
-... // 其他和set一样
-</code></pre><p>};</p>
-<p>···</p>
-<hr>
+
+
+</code></pre><hr>
 
       
     </div>
@@ -661,7 +822,7 @@ void insert(InputIterator first, InputIterator last){
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://jingxa.github.io/2018/07/07/STL-关联式容器-set/" title="STL_关联式容器_set">https://jingxa.github.io/2018/07/07/STL-关联式容器-set/</a>
+    <a href="https://jingxa.github.io/2018/07/11/STL-配接器器-1/" title="STL_配接器器_1">https://jingxa.github.io/2018/07/11/STL-配接器器-1/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -678,7 +839,7 @@ void insert(InputIterator first, InputIterator last){
           
             <a href="/tags/STL/" rel="tag"># STL</a>
           
-            <a href="/tags/Associative-Container/" rel="tag"># Associative Container</a>
+            <a href="/tags/Iterator-Adapter/" rel="tag"># Iterator Adapter</a>
           
         </div>
       
@@ -691,8 +852,8 @@ void insert(InputIterator first, InputIterator last){
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/05/STL-非标准-slist/" rel="next" title="STL_非标准_slist">
-                <i class="fa fa-chevron-left"></i> STL_非标准_slist
+              <a href="/2018/07/11/STL-仿函数/" rel="next" title="STL_仿函数">
+                <i class="fa fa-chevron-left"></i> STL_仿函数
               </a>
             
           </div>
@@ -700,10 +861,6 @@ void insert(InputIterator first, InputIterator last){
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/07/07/STL-关联式容器-map/" rel="prev" title="STL_关联式容器_map">
-                STL_关联式容器_map <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -889,7 +1046,7 @@ void insert(InputIterator first, InputIterator last){
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-概述"><span class="nav-text">1 概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-set"><span class="nav-text">1. set</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-multiset"><span class="nav-text">2 multiset</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-概述"><span class="nav-text">1 概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-分类"><span class="nav-text">2 分类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-container-adapter"><span class="nav-text">3 container adapter</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-iterator-adapter"><span class="nav-text">4 iterator adapter</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-insert-itearators"><span class="nav-text">4.1 insert itearators</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-1-back-insert-iterator"><span class="nav-text">4.1.1 back_insert_iterator</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-2-front-insert-iterator"><span class="nav-text">4.1.2 front_insert_iterator</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-3-insert-iterator"><span class="nav-text">4.1.3 insert_iterator</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-Reverse-Iterators"><span class="nav-text">4.2 Reverse Iterators</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-IOStream-Iterators"><span class="nav-text">4.3 IOStream Iterators</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-1-istream-iterator"><span class="nav-text">4.3.1 istream_iterator</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-2-ostream-itreator"><span class="nav-text">4.3.2 ostream_itreator</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

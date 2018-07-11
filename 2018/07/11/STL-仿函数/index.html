@@ -112,7 +112,7 @@
 
 
 
-  <meta name="keywords" content="STL,Associative Container," />
+  <meta name="keywords" content="STL,Function Object," />
 
 
 
@@ -125,18 +125,20 @@
 
 
 
-<meta name="description" content="本文章内容来源于《STL源码分析》第五章   1 概述 set 所有元素根据元素的键值自动被排序 set的键值和实值都是同样的； 不允许两个元素有相同的键值； set::iterator为const_iterator Rb_tree作为底层；  1. set/**     set源码摘录 */  template&amp;lt;class Key,          class Compare = le">
-<meta name="keywords" content="STL,Associative Container">
+<meta name="description" content="本文章内容来源于《STL源码分析》第七章    1 概述 操作数的个数  一元 二元   功能  算法运算 关系运算 逻辑运算   &amp;lt;stl_finction.h&amp;gt;    2 基类 /**     一元仿函数： unary_function */  template&amp;lt;class Arg, class Result&amp;gt; struct unary_function{     t">
+<meta name="keywords" content="STL,Function Object">
 <meta property="og:type" content="article">
-<meta property="og:title" content="STL_关联式容器_set">
-<meta property="og:url" content="https://jingxa.github.io/2018/07/07/STL-关联式容器-set/index.html">
+<meta property="og:title" content="STL_仿函数">
+<meta property="og:url" content="https://jingxa.github.io/2018/07/11/STL-仿函数/index.html">
 <meta property="og:site_name" content="Jingxa&#39;s Blog">
-<meta property="og:description" content="本文章内容来源于《STL源码分析》第五章   1 概述 set 所有元素根据元素的键值自动被排序 set的键值和实值都是同样的； 不允许两个元素有相同的键值； set::iterator为const_iterator Rb_tree作为底层；  1. set/**     set源码摘录 */  template&amp;lt;class Key,          class Compare = le">
+<meta property="og:description" content="本文章内容来源于《STL源码分析》第七章    1 概述 操作数的个数  一元 二元   功能  算法运算 关系运算 逻辑运算   &amp;lt;stl_finction.h&amp;gt;    2 基类 /**     一元仿函数： unary_function */  template&amp;lt;class Arg, class Result&amp;gt; struct unary_function{     t">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-07T10:11:52.274Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-e4607d5a9010612b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-07-11T12:51:34.817Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="STL_关联式容器_set">
-<meta name="twitter:description" content="本文章内容来源于《STL源码分析》第五章   1 概述 set 所有元素根据元素的键值自动被排序 set的键值和实值都是同样的； 不允许两个元素有相同的键值； set::iterator为const_iterator Rb_tree作为底层；  1. set/**     set源码摘录 */  template&amp;lt;class Key,          class Compare = le">
+<meta name="twitter:title" content="STL_仿函数">
+<meta name="twitter:description" content="本文章内容来源于《STL源码分析》第七章    1 概述 操作数的个数  一元 二元   功能  算法运算 关系运算 逻辑运算   &amp;lt;stl_finction.h&amp;gt;    2 基类 /**     一元仿函数： unary_function */  template&amp;lt;class Arg, class Result&amp;gt; struct unary_function{     t">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5361608-e4607d5a9010612b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -166,13 +168,13 @@
 
 
 
-  <link rel="canonical" href="https://jingxa.github.io/2018/07/07/STL-关联式容器-set/"/>
+  <link rel="canonical" href="https://jingxa.github.io/2018/07/11/STL-仿函数/"/>
 
 
 
 
 
-  <title>STL_关联式容器_set | Jingxa's Blog</title>
+  <title>STL_仿函数 | Jingxa's Blog</title>
   
 
 
@@ -309,7 +311,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://jingxa.github.io/2018/07/07/STL-关联式容器-set/">
+    <link itemprop="mainEntityOfPage" href="https://jingxa.github.io/2018/07/11/STL-仿函数/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="jingxa">
@@ -326,7 +328,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">STL_关联式容器_set</h1>
+          <h1 class="post-title" itemprop="name headline">STL_仿函数</h1>
         
 
         <div class="post-meta">
@@ -338,8 +340,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-07T18:08:21+08:00">
-                2018-07-07
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-11T20:47:56+08:00">
+                2018-07-11
               </time>
             
 
@@ -379,8 +381,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/07/07/STL-关联式容器-set/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/07/07/STL-关联式容器-set/" itemprop="commentsCount"></span>
+                <a href="/2018/07/11/STL-仿函数/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/07/11/STL-仿函数/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -402,7 +404,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  731
+                  865
                 </span>
               
 
@@ -418,7 +420,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4
+                  5
                 </span>
               
             </div>
@@ -440,207 +442,277 @@
 
       
         <blockquote>
-<p>本文章内容来源于《STL源码分析》第五章</p>
+<p>本文章内容来源于《STL源码分析》第七章</p>
 </blockquote>
 <hr>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-e4607d5a9010612b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1 概述"></a>1 概述</h1><ul>
-<li>set 所有元素根据元素的键值自动被排序</li>
-<li>set的键值和实值都是同样的；</li>
-<li>不允许两个元素有相同的键值；</li>
-<li>set<t>::iterator为const_iterator</t></li>
-<li>Rb_tree作为底层；</li>
+<li><p>操作数的个数</p>
+<ul>
+<li>一元</li>
+<li>二元</li>
 </ul>
-<h1 id="1-set"><a href="#1-set" class="headerlink" title="1. set"></a>1. set</h1><pre><code>/**
-    set源码摘录
+</li>
+<li><p>功能</p>
+<ul>
+<li>算法运算</li>
+<li>关系运算</li>
+<li>逻辑运算</li>
+</ul>
+</li>
+<li><p><code>&lt;stl_finction.h&gt;</code> </p>
+</li>
+</ul>
+<h1 id="2-基类"><a href="#2-基类" class="headerlink" title="2 基类"></a>2 基类</h1><pre><code>
+/**
+    一元仿函数： unary_function
 */
 
-template&lt;class Key, 
-        class Compare = less &lt;Key&gt;,   // 缺省下采用递增排序
-        class Alloc = alloc&gt;
-class set{
-public:
-    typedef Key    key_type;
-    typedef    Key    value_type;
-    typedef Compare    key_compare;
-    typedef    Compare    value_compare;
-
-private:
-// 以下 identity 定义于&lt;stl_function.h&gt;
-    /*
-    template&lt; class T&gt;
-    struct identity:public unary_function&lt;T, T&gt;{
-        const T&amp; operator()(const T&amp; x){return x;}
-    };
-    */
-    typedef    rb_tree&lt;key_type, value_type,identity&lt;value_type&gt;,key_compare,Alloc&gt; rep_type;
-
-    rep_type t;  // 采用红黑树表示set
-
-public:
-    typedef     typename  rep_type::const_pointer pointer;
-    typedef     typename  rep_type::const_pointer const_pointer;
-    typedef     typename  rep_type::const_reference reference;
-    typedef     typename  rep_type::const_reference const_reference;
-    typedef     typename  rep_type::const_iterator  iterator;
-    // 以上iterator定义为const，表示不允许用户执行写入操作
-
-    typedef     typename  rep_type::const_iterator    const_iterator;
-    typedef     typename  rep_type::const_reverse_iterator reverse_iterator;
-    typedef  typename  rep_type::const_reverse_iterator const_reverse_iterator;
-    typedef     typename  rep_type::size_type    size_type;
-    typedef     typename  rep_type::difference_type  difference_type;
-
-    // aollocattion // deallocation
-    // set 使用rb_tree 的insert_unique()
-    // multiset 使用 rb_tree的insert_equal()
-
-    set():t(Compare()){}
-    explicit set(const Compare&amp; comp):t(comp){}
-
-
-    template&lt;class InputIterator&gt;
-    set(InputIterator first, InputIterator last):t(Compare())
-    {
-        t.insert_unique(first,last);
-    }
-
-    template&lt;class InputIterator&gt;
-    set(InputIterator first, InputIterator last, const Compare&amp; comp)
-        :t(comp){
-            t.insert_unique(first,last);
-        }
-
-    set(const set&lt;Key,Compare,Alloc&gt;&amp; x):t(x.t){}
-
-    // 赋值符
-    set&lt;Key, Compare,Alloc&gt;&amp; operator=(const set&lt;Key,Compare,Alloc&gt;&amp; x){
-        t = x.t;
-        return *this;
-    }
-
-
-    // set 操作
-    key_compare key_comp() const{return t.key_comp();}
-    value_compare value_comp() const{{return t.key_comp();}
-
-    iterator begin() const{return t.begin();}
-    iterator end()    const{return t.end();}
-    reverse_iterator rbegin() const{retur t.rbegin();}
-    reverse_iterator rend() const{return t.rend();}
-    bool empty() const{return t.empty();}
-    size_type size() const {return t.size();}
-    size_type max_size() const{return t.max_size();}
-    void swap(set&lt;Key,Compare,Alloc&gt;&amp;x){t.swap(x.t);}
-
-
-    // 插入、 删除操作
-    typedef pair&lt;iterator,bool&gt; pair_iterator_bool;
-    pair&lt;iterator,bool&gt; insert(const value_type&amp; x){
-        pair&lt;typename rep_type::iterator,bool&gt; p = t.insert_unique(x);
-        return pair&lt;iterator,bool&gt;(p.first,p.last);
-    }
-
-
-    iterator insert(iterator position, const value_type&amp; x){
-        typedef typename rep_type::iterator rep_iterator;
-        return t.insert_unique((rep_iterator&amp;)position,x);
-    }
-
-    template&lt;class InputIterator&gt;
-    void insert(InputIterator first, InputIterator last){
-        t.insert_unique(first, last);
-    }
-
-    void erase(iterator position){
-        typedef typename rep_type::iterator rep_iterator;
-        t.erase((rep_iterator&amp;)position);
-    }
-
-    size_type erase(const key_type&amp; x){
-        return t.erase(x);
-    }
-
-    void erase(iterator first, iterator last){
-        typedef typename rep_type::iterator rep_iterator;
-        t.erase((rep_iterator&amp;)first, (rep_iterator&amp;)last);
-    }
-
-    void clear(){
-        t.clear();
-    }
-
-    // set 操作
-    iterator find(const key_type&amp; x) const{return t.find(x);}
-    size_type count(const key_type&amp; x)const{return t.count(x);}
-    iterator lower_bound(const key_type&amp; x)const{
-        return t.lower_bound(x);
-    }
-    iterator upper_bound(const key_type&amp; x)const{
-        return t.upper_bound(x);
-    }
-    pair&lt;iterator,iterator&gt; equal_range(const key_type&amp; x)const{
-        return t.equal_range(x);
-
-    }
-
-    // 以下的 __STL_NULL_TMPL_ARGS 被定义为&lt;&gt;
-    friend bool operator==__STL_NULL_TMPL_ARGS(const set&amp;, const set&amp;);
-    friend bool operator&lt; __STL_NULL_TMPL_ARGS(cosnt set&amp;, const set&amp;);
-
+template&lt;class Arg, class Result&gt;
+struct unary_function{
+    typedef Arg argument_type;
+    typedef Result result_type;
 };
 
 
-template&lt;class Key, class Compare, class Alloc&gt;
-inline bool operator==(const set&lt;Key,Compare,Alloc&gt;&amp; x,
-                        const set&lt;Key,Compare,Alloc&gt;&amp; y){
-    return x.t == y.t;                        
+/**
+    二元仿函数： binary_function
+*/
+template&lt;class Arg1,class Arg2,class Result&gt;
+struct binary_function{
+    typedef Arg1 first_argument_type;
+    typedef Arg2 seconde_argument_type;
+    typedef Result return_type;
+};
+
+</code></pre><h1 id="3-算术运算"><a href="#3-算术运算" class="headerlink" title="3 算术运算"></a>3 算术运算</h1><pre><code>/**
+
+    一、 算术类
+    --- 支持加法，减法，乘法，除法，模数和否定运算
+    -- 加法：plus&lt;T&gt;
+    -- 减法：minus&lt;T&gt;
+    -- 乘法： multiplies&lt;T&gt;
+    -- 除法： divides&lt;T&gt;
+    -- 模取： modulus&lt;T&gt;
+    -- 否定： negate&lt;T&gt;
+*/
+
+
+template&lt;class T&gt;
+struct plus : public binary_function&lt;T,T,T&gt;{
+    T operator()(const T&amp; x, const T&amp; y) const{
+        return x + y;
+    }
+};
+
+template&lt;class T&gt;
+struct minus: public binary_function&lt;T,T,T&gt;{
+    T operator()(const T&amp; x, const T&amp; y) const {
+        return x - y;
+    }
+};
+
+
+template&lt;class T&gt;
+struct multiplies: public binary_function&lt;T,T,T&gt;{
+    T operator()(const T&amp; x,const T&amp; y) const{
+        return x * y;
+    }
+};
+
+
+
+template&lt;class T&gt;
+struct divides: public binary_function&lt;T,T,T&gt;{
+    T operator()(const T&amp; x, const T&amp; y) const{
+        return x / y;
+    }
+};
+
+template&lt;class T&gt;
+struct modulus: public binary_function&lt;T,T,T&gt;{
+    T operator()(const T&amp; x, const T&amp; y) const {
+        return x % y;
+    }
+};
+
+
+template&lt;class T&gt;
+struct negate: public unary_function&lt;T,T&gt;{
+    T operator()(const T&amp; x) const{
+        return -x;
+    }
+};
+
+
+</code></pre><h1 id="4-关系运算"><a href="#4-关系运算" class="headerlink" title="4 关系运算"></a>4 关系运算</h1><pre><code>
+/**
+
+    二、关系运算
+    -- 等于： equal_to&lt;T
+    -- 不等于： not_equal_to&lt;T
+    -- 大于： greater&lt;T&gt;
+    -- 大于或等于： greater_equal&lt;T&gt;
+    -- 小于： less&lt;T&gt;
+    -- 小于等于： less_equal&lt;T&gt;
+
+*/
+template&lt; class T&gt;
+struct equal_to: public binary_function&lt;T,T, bool&gt; {
+    bool operator()(const T&amp; x, const T&amp; y)const{
+        return x==y;
+    }
+};
+
+template&lt;class T&gt;
+struct not_equal_to: public binary_function&lt;T,T,T&gt;{
+    bool oeperator()(const T&amp; x, const T&amp; y) const{
+        return x!= y;
+    }
+};
+
+
+
+template&lt; class T&gt;
+struct greater: public binary_function&lt;T,T,T&gt; {
+    bool operator()(const T&amp; x, const T&amp; y) const{
+        return x&gt;y;
+    }
+};
+
+template&lt; class T&gt;
+struct less: public binary_function&lt;T,T,T&gt; {
+    bool operator()(const T&amp; x,const T&amp; y) const{
+        return x &lt; y;
+    }
+};
+
+template&lt; class T&gt;
+struct greater_equal: public binary_function&lt;T,T,T&gt;{
+    bool operator()(const T&amp; x, const T&amp; y) const{
+        sdreturn x&gt;=y;
+    }
+};
+
+template&lt; class T&gt;
+struct less_equal: public binary_function&lt;T,T,T&gt;{
+    bool operator()(const T&amp; x,const T&amp; y)const{
+        return x &lt;= y;
+    }
+};
+
+
+
+</code></pre><h1 id="5-逻辑运算"><a href="#5-逻辑运算" class="headerlink" title="5 逻辑运算"></a>5 逻辑运算</h1><pre><code>
+/**
+    三、 逻辑运算
+    -- And : logical_and
+    -- Or  : logical_or
+    __ Not:  logical_not
+*/
+
+template&lt;class T&gt;
+struct logical_and:public binary_function&lt;T,T,T&gt;{
+    bool operator()(const T&amp; x, const T&amp; y) const{
+        return x &amp;&amp; y;
+    }
+};
+
+
+template&lt;class T&gt;
+struct logical_or:public binary_function&lt;T,T,T&gt;{
+    bool operator()(const T&amp; x, const T&amp; y) const{
+        return x || y;
+    }
+};
+
+
+
+template&lt;class T&gt;
+struct logical_not:public unary_function&lt;T,T&gt;{
+    bool operator()(const T&amp; x) const{
+        return !x ;
+    }
+};
+
+
+
+
+
+
+</code></pre><h1 id="6-证同（identity）、选择（select）、-投射（project）"><a href="#6-证同（identity）、选择（select）、-投射（project）" class="headerlink" title="6 证同（identity）、选择（select）、 投射（project）"></a>6 证同（identity）、选择（select）、 投射（project）</h1><h2 id="6-1-证同"><a href="#6-1-证同" class="headerlink" title="6.1 证同"></a>6.1 证同</h2><h3 id="6-1-1-仿函数的证同"><a href="#6-1-1-仿函数的证同" class="headerlink" title="6.1.1 仿函数的证同"></a>6.1.1 仿函数的证同</h3><p> 证同元素(identity element)</p>
+<ul>
+<li>数值A若与该元素做op运算，会得到A自己；</li>
+<li>加法的证同元素为0</li>
+<li>乘法的证同元素为1 </li>
+</ul>
+<pre><code>/**
+
+ 3.2 证同元素(identity element)
+- 数值A若与该元素做op运算，会得到A自己；
+- 加法的证同元素为0
+- 乘法的证同元素为1 
+*/
+
+template&lt;class T&gt;
+inline T identity_element(plus&lt;T&gt;){
+    return T(0);
 }
 
 
-
-template&lt;class Key, class Compare, class Alloc&gt;
-inline bool operator&lt;(const set&lt;Key,Compare,Alloc&gt;&amp; x,
-                        const set&lt;Key,Compare,Alloc&gt;&amp; y){
-    return x.t &lt; y.t;                        
+template&lt; class T&gt;
+inline T identity_element(multiplies&lt;T&gt;){
+    return T(1);
 }
 
-</code></pre><h1 id="2-multiset"><a href="#2-multiset" class="headerlink" title="2 multiset"></a>2 multiset</h1><p><code>`</code><br>/*<em><br>    multiset
-</em>/</p>
-<p>// set 不同之处<br>template&lt;class Key, class Compare = less<key>, class Alloc= alloc&gt;<br>class multiset{</key></p>
-<p>public:<br>// typedefs<br>… // 一样和set</p>
-<p>//构造函数</p>
-<pre><code>template&lt;class InputIterator&gt;
-multiset(InputIterator first,InputIterator last):t(Compare()){
-    t.insert_equal(first,last);
-}
+</code></pre><h3 id="6-1-2-证同函数"><a href="#6-1-2-证同函数" class="headerlink" title="6.1.2 证同函数"></a>6.1.2 证同函数</h3><pre><code>
+struct identity: public unary_function&lt;T,T&gt;{
+    const T&amp; operator()(const T&amp; x)const{
+        return x;
+    }
+};
+</code></pre><h2 id="6-2-选择"><a href="#6-2-选择" class="headerlink" title="6.2 选择"></a>6.2 选择</h2><pre><code>
+// 选择函数： 接受一个pair,传回第一个元素
+// 运用于&lt;stl_map.h&gt; ，用来指定rb_tree所需要的KeyOfValue op;
+template&lt; class Pair&gt;
+struct select1st:public unary_function&lt;Pair,typename Pair::first_type&gt;
+{
+    const typename Pair::first_type&amp; operator()(const Pair&amp; x) const{
+        return x.first;
+    }
+};
 
-template&lt;class InputIterator&gt;
-multiset(InputIterator first, InputIterator last, Compare&amp; comp):t(comp){
-    t.insert_equal(first,last);
-}
+// 选择函数，返回第二个元素
+// SGI stl 未使用此式子
+template&lt; class Pair&gt;
+struct select2nd:public unary_function&lt;Pair,typename Pair::second_type&gt;
+{
+    const typename Pair::second_type&amp; operator()(const Pair&amp; x) const{
+        return x.second;
+    }
+};
+</code></pre><h2 id="6-3-投射"><a href="#6-3-投射" class="headerlink" title="6.3 投射"></a>6.3 投射</h2><pre><code>
+// 投射函数：传回第一参数，忽略第二参数
+// SGI STL 未使用此式子
+template&lt;class Arg1,class Arg2&gt;
+struct project1st:public binary_function&lt;T,T,T&gt;{
+    Arg1 operator()(const Arg1&amp; x, const Arg2&amp;) const{
+        return x;
+    }
+};
 
-...   // 与 set一样
 
 
-// 插入删除
-iterator insert(const value_type&amp; x){
-    return t.insert_equal(x);
-}
+// 投射函数：传回第二参数，忽略第一参数
+// SGI STL 未使用此式子
+template&lt;class Arg1,class Arg2&gt;
+struct project1st:public binary_function&lt;T,T,T&gt;{
+    Arg2 operator()(const Arg1&amp;, const Arg2&amp; y) const{
+        return y;
+    }
+};
 
-iterator insert(iterator position, const value_type&amp; x){
-    typedef typename rep_type::iterator rep_iterator;
-    return t.insert_equal((rep_iterator&amp;)position,x);
-}
-
-template&lt;class InputIterator&gt;
-void insert(InputIterator first, InputIterator last){
-    t.insert_equal(first,last);
-}
-
-... // 其他和set一样
-</code></pre><p>};</p>
-<p>···</p>
-<hr>
+</code></pre><hr>
 
       
     </div>
@@ -661,7 +733,7 @@ void insert(InputIterator first, InputIterator last){
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://jingxa.github.io/2018/07/07/STL-关联式容器-set/" title="STL_关联式容器_set">https://jingxa.github.io/2018/07/07/STL-关联式容器-set/</a>
+    <a href="https://jingxa.github.io/2018/07/11/STL-仿函数/" title="STL_仿函数">https://jingxa.github.io/2018/07/11/STL-仿函数/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -678,7 +750,7 @@ void insert(InputIterator first, InputIterator last){
           
             <a href="/tags/STL/" rel="tag"># STL</a>
           
-            <a href="/tags/Associative-Container/" rel="tag"># Associative Container</a>
+            <a href="/tags/Function-Object/" rel="tag"># Function Object</a>
           
         </div>
       
@@ -691,8 +763,8 @@ void insert(InputIterator first, InputIterator last){
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/05/STL-非标准-slist/" rel="next" title="STL_非标准_slist">
-                <i class="fa fa-chevron-left"></i> STL_非标准_slist
+              <a href="/2018/07/08/STL-关联式容器-hashtable/" rel="next" title="STL_关联式容器_hashtable">
+                <i class="fa fa-chevron-left"></i> STL_关联式容器_hashtable
               </a>
             
           </div>
@@ -701,8 +773,8 @@ void insert(InputIterator first, InputIterator last){
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/07/07/STL-关联式容器-map/" rel="prev" title="STL_关联式容器_map">
-                STL_关联式容器_map <i class="fa fa-chevron-right"></i>
+              <a href="/2018/07/11/STL-配接器器-1/" rel="prev" title="STL_配接器器_1">
+                STL_配接器器_1 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -889,7 +961,7 @@ void insert(InputIterator first, InputIterator last){
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-概述"><span class="nav-text">1 概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-set"><span class="nav-text">1. set</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-multiset"><span class="nav-text">2 multiset</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-概述"><span class="nav-text">1 概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-基类"><span class="nav-text">2 基类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-算术运算"><span class="nav-text">3 算术运算</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-关系运算"><span class="nav-text">4 关系运算</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-逻辑运算"><span class="nav-text">5 逻辑运算</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-证同（identity）、选择（select）、-投射（project）"><span class="nav-text">6 证同（identity）、选择（select）、 投射（project）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-证同"><span class="nav-text">6.1 证同</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-1-仿函数的证同"><span class="nav-text">6.1.1 仿函数的证同</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-2-证同函数"><span class="nav-text">6.1.2 证同函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-选择"><span class="nav-text">6.2 选择</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-3-投射"><span class="nav-text">6.3 投射</span></a></li></ol></li></ol></div>
             
 
           </div>
