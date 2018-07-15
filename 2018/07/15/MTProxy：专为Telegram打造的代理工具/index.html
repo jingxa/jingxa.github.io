@@ -112,7 +112,7 @@
 
 
 
-  <meta name="keywords" content="STL,Associative Container," />
+  <meta name="keywords" content="MTProxy," />
 
 
 
@@ -125,18 +125,20 @@
 
 
 
-<meta name="description" content="本文章内容来源于《STL源码分析》第五章   1 概述 set 所有元素根据元素的键值自动被排序 set的键值和实值都是同样的； 不允许两个元素有相同的键值； set::iterator为const_iterator Rb_tree作为底层；  1. set/**     set源码摘录 */  template&amp;lt;class Key,          class Compare = le">
-<meta name="keywords" content="STL,Associative Container">
+<meta name="description" content="转载自：https://lala.im/3598.html    记录一下操作   接着我们按键盘组合键Ctrl+C退出运行。现在来创建一个系统服务，可以在往后更方便的管理和运行MTProxy。 新建服务文件： vi /etc/systemd/system/MTProxy.service  写入： [Unit] Description=MTProxy After=network.target">
+<meta name="keywords" content="MTProxy">
 <meta property="og:type" content="article">
-<meta property="og:title" content="STL_关联式容器_set">
-<meta property="og:url" content="https://jingxa.github.io/2018/07/07/STL-关联式容器-set/index.html">
+<meta property="og:title" content="MTProxy：专为Telegram打造的代理工具">
+<meta property="og:url" content="https://jingxa.github.io/2018/07/15/MTProxy：专为Telegram打造的代理工具/index.html">
 <meta property="og:site_name" content="Jingxa&#39;s Blog">
-<meta property="og:description" content="本文章内容来源于《STL源码分析》第五章   1 概述 set 所有元素根据元素的键值自动被排序 set的键值和实值都是同样的； 不允许两个元素有相同的键值； set::iterator为const_iterator Rb_tree作为底层；  1. set/**     set源码摘录 */  template&amp;lt;class Key,          class Compare = le">
+<meta property="og:description" content="转载自：https://lala.im/3598.html    记录一下操作   接着我们按键盘组合键Ctrl+C退出运行。现在来创建一个系统服务，可以在往后更方便的管理和运行MTProxy。 新建服务文件： vi /etc/systemd/system/MTProxy.service  写入： [Unit] Description=MTProxy After=network.target">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-07T10:11:52.274Z">
+<meta property="og:image" content="https://lala.im/wp-content/uploads/2018/06/lala.im_2018-06-11-00-795.png">
+<meta property="og:updated_time" content="2018-07-15T09:26:48.515Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="STL_关联式容器_set">
-<meta name="twitter:description" content="本文章内容来源于《STL源码分析》第五章   1 概述 set 所有元素根据元素的键值自动被排序 set的键值和实值都是同样的； 不允许两个元素有相同的键值； set::iterator为const_iterator Rb_tree作为底层；  1. set/**     set源码摘录 */  template&amp;lt;class Key,          class Compare = le">
+<meta name="twitter:title" content="MTProxy：专为Telegram打造的代理工具">
+<meta name="twitter:description" content="转载自：https://lala.im/3598.html    记录一下操作   接着我们按键盘组合键Ctrl+C退出运行。现在来创建一个系统服务，可以在往后更方便的管理和运行MTProxy。 新建服务文件： vi /etc/systemd/system/MTProxy.service  写入： [Unit] Description=MTProxy After=network.target">
+<meta name="twitter:image" content="https://lala.im/wp-content/uploads/2018/06/lala.im_2018-06-11-00-795.png">
 
 
 
@@ -166,13 +168,13 @@
 
 
 
-  <link rel="canonical" href="https://jingxa.github.io/2018/07/07/STL-关联式容器-set/"/>
+  <link rel="canonical" href="https://jingxa.github.io/2018/07/15/MTProxy：专为Telegram打造的代理工具/"/>
 
 
 
 
 
-  <title>STL_关联式容器_set | Jingxa's Blog</title>
+  <title>MTProxy：专为Telegram打造的代理工具 | Jingxa's Blog</title>
   
 
 
@@ -309,7 +311,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://jingxa.github.io/2018/07/07/STL-关联式容器-set/">
+    <link itemprop="mainEntityOfPage" href="https://jingxa.github.io/2018/07/15/MTProxy：专为Telegram打造的代理工具/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="jingxa">
@@ -326,7 +328,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">STL_关联式容器_set</h1>
+          <h1 class="post-title" itemprop="name headline">MTProxy：专为Telegram打造的代理工具</h1>
         
 
         <div class="post-meta">
@@ -338,8 +340,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-07T18:08:21+08:00">
-                2018-07-07
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-15T17:23:50+08:00">
+                2018-07-15
               </time>
             
 
@@ -361,8 +363,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/STL源码分析/" itemprop="url" rel="index">
-                    <span itemprop="name">STL源码分析</span>
+                  <a href="/categories/杂乱笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">杂乱笔记</span>
                   </a>
                 </span>
 
@@ -379,8 +381,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/07/07/STL-关联式容器-set/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/07/07/STL-关联式容器-set/" itemprop="commentsCount"></span>
+                <a href="/2018/07/15/MTProxy：专为Telegram打造的代理工具/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/07/15/MTProxy：专为Telegram打造的代理工具/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -402,7 +404,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  731
+                  299
                 </span>
               
 
@@ -418,7 +420,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4
+                  1
                 </span>
               
             </div>
@@ -440,206 +442,50 @@
 
       
         <blockquote>
-<p>本文章内容来源于《STL源码分析》第五章</p>
+<p>转载自：<a href="https://lala.im/3598.html" target="_blank" rel="noopener">https://lala.im/3598.html</a></p>
 </blockquote>
 <hr>
-<h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1 概述"></a>1 概述</h1><ul>
-<li>set 所有元素根据元素的键值自动被排序</li>
-<li>set的键值和实值都是同样的；</li>
-<li>不允许两个元素有相同的键值；</li>
-<li>set<t>::iterator为const_iterator</t></li>
-<li>Rb_tree作为底层；</li>
-</ul>
-<h1 id="1-set"><a href="#1-set" class="headerlink" title="1. set"></a>1. set</h1><pre><code>/**
-    set源码摘录
-*/
+<blockquote>
+<p>记录一下操作</p>
+</blockquote>
+<hr>
+<p>接着我们按键盘组合键Ctrl+C退出运行。<br>现在来创建一个系统服务，可以在往后更方便的管理和运行MTProxy。</p>
+<p>新建服务文件：</p>
+<pre><code>vi /etc/systemd/system/MTProxy.service
 
-template&lt;class Key, 
-        class Compare = less &lt;Key&gt;,   // 缺省下采用递增排序
-        class Alloc = alloc&gt;
-class set{
-public:
-    typedef Key    key_type;
-    typedef    Key    value_type;
-    typedef Compare    key_compare;
-    typedef    Compare    value_compare;
+</code></pre><p>写入：</p>
+<pre><code>[Unit]
+Description=MTProxy
+After=network.target
 
-private:
-// 以下 identity 定义于&lt;stl_function.h&gt;
-    /*
-    template&lt; class T&gt;
-    struct identity:public unary_function&lt;T, T&gt;{
-        const T&amp; operator()(const T&amp; x){return x;}
-    };
-    */
-    typedef    rb_tree&lt;key_type, value_type,identity&lt;value_type&gt;,key_compare,Alloc&gt; rep_type;
+[Service]
+Type=simple
+WorkingDirectory=/root/MTProxy
+ExecStart=/root/MTProxy/objs/bin/mtproto-proxy -u nobody -p 8888 -H 2333 -S 密匙 --aes-pwd /root/MTProxy/objs/bin/proxy-secret /root/MTProxy/objs/bin/proxy-multi.conf -M 1
+Restart=on-failure
 
-    rep_type t;  // 采用红黑树表示set
+[Install]
+WantedBy=multi-user.target
 
-public:
-    typedef     typename  rep_type::const_pointer pointer;
-    typedef     typename  rep_type::const_pointer const_pointer;
-    typedef     typename  rep_type::const_reference reference;
-    typedef     typename  rep_type::const_reference const_reference;
-    typedef     typename  rep_type::const_iterator  iterator;
-    // 以上iterator定义为const，表示不允许用户执行写入操作
+</code></pre><p>注：</p>
+<p>1、确保WorkingDirectory以及ExecStart内正确写明mtproto-proxy可执行文件的绝对路径。<br>以及指定proxy-secret、proxy-multi.conf的路径也是绝对路径。如果你是按照我的这篇文章来一字不动部署的，那么可以直接看第2点注意说明。</p>
+<p>2、“密匙”改为之前你生成的密匙。</p>
+<p>重加载，让新的服务文件生效：</p>
+<pre><code>systemctl daemon-reload
 
-    typedef     typename  rep_type::const_iterator    const_iterator;
-    typedef     typename  rep_type::const_reverse_iterator reverse_iterator;
-    typedef  typename  rep_type::const_reverse_iterator const_reverse_iterator;
-    typedef     typename  rep_type::size_type    size_type;
-    typedef     typename  rep_type::difference_type  difference_type;
-
-    // aollocattion // deallocation
-    // set 使用rb_tree 的insert_unique()
-    // multiset 使用 rb_tree的insert_equal()
-
-    set():t(Compare()){}
-    explicit set(const Compare&amp; comp):t(comp){}
+</code></pre><p>现在就可以启动MTProxy了：</p>
+<pre><code>systemctl start MTProxy.service
+</code></pre><p>查看运行状态：</p>
+<pre><code>systemctl status MTProxy.service
+</code></pre><p>如图所示是Active就说明MTProxy运行正常：</p>
+<p><img src="https://lala.im/wp-content/uploads/2018/06/lala.im_2018-06-11-00-795.png" alt=""></p>
+<p>把MTProxy设为开机启动：</p>
+<pre><code>systemctl enable MTProxy.service
+</code></pre><p>停止MTProxy的运行：</p>
+<pre><code>systemctl stop MTProxy.service
 
 
-    template&lt;class InputIterator&gt;
-    set(InputIterator first, InputIterator last):t(Compare())
-    {
-        t.insert_unique(first,last);
-    }
-
-    template&lt;class InputIterator&gt;
-    set(InputIterator first, InputIterator last, const Compare&amp; comp)
-        :t(comp){
-            t.insert_unique(first,last);
-        }
-
-    set(const set&lt;Key,Compare,Alloc&gt;&amp; x):t(x.t){}
-
-    // 赋值符
-    set&lt;Key, Compare,Alloc&gt;&amp; operator=(const set&lt;Key,Compare,Alloc&gt;&amp; x){
-        t = x.t;
-        return *this;
-    }
-
-
-    // set 操作
-    key_compare key_comp() const{return t.key_comp();}
-    value_compare value_comp() const{{return t.key_comp();}
-
-    iterator begin() const{return t.begin();}
-    iterator end()    const{return t.end();}
-    reverse_iterator rbegin() const{retur t.rbegin();}
-    reverse_iterator rend() const{return t.rend();}
-    bool empty() const{return t.empty();}
-    size_type size() const {return t.size();}
-    size_type max_size() const{return t.max_size();}
-    void swap(set&lt;Key,Compare,Alloc&gt;&amp;x){t.swap(x.t);}
-
-
-    // 插入、 删除操作
-    typedef pair&lt;iterator,bool&gt; pair_iterator_bool;
-    pair&lt;iterator,bool&gt; insert(const value_type&amp; x){
-        pair&lt;typename rep_type::iterator,bool&gt; p = t.insert_unique(x);
-        return pair&lt;iterator,bool&gt;(p.first,p.last);
-    }
-
-
-    iterator insert(iterator position, const value_type&amp; x){
-        typedef typename rep_type::iterator rep_iterator;
-        return t.insert_unique((rep_iterator&amp;)position,x);
-    }
-
-    template&lt;class InputIterator&gt;
-    void insert(InputIterator first, InputIterator last){
-        t.insert_unique(first, last);
-    }
-
-    void erase(iterator position){
-        typedef typename rep_type::iterator rep_iterator;
-        t.erase((rep_iterator&amp;)position);
-    }
-
-    size_type erase(const key_type&amp; x){
-        return t.erase(x);
-    }
-
-    void erase(iterator first, iterator last){
-        typedef typename rep_type::iterator rep_iterator;
-        t.erase((rep_iterator&amp;)first, (rep_iterator&amp;)last);
-    }
-
-    void clear(){
-        t.clear();
-    }
-
-    // set 操作
-    iterator find(const key_type&amp; x) const{return t.find(x);}
-    size_type count(const key_type&amp; x)const{return t.count(x);}
-    iterator lower_bound(const key_type&amp; x)const{
-        return t.lower_bound(x);
-    }
-    iterator upper_bound(const key_type&amp; x)const{
-        return t.upper_bound(x);
-    }
-    pair&lt;iterator,iterator&gt; equal_range(const key_type&amp; x)const{
-        return t.equal_range(x);
-
-    }
-
-    // 以下的 __STL_NULL_TMPL_ARGS 被定义为&lt;&gt;
-    friend bool operator==__STL_NULL_TMPL_ARGS(const set&amp;, const set&amp;);
-    friend bool operator&lt; __STL_NULL_TMPL_ARGS(cosnt set&amp;, const set&amp;);
-
-};
-
-
-template&lt;class Key, class Compare, class Alloc&gt;
-inline bool operator==(const set&lt;Key,Compare,Alloc&gt;&amp; x,
-                        const set&lt;Key,Compare,Alloc&gt;&amp; y){
-    return x.t == y.t;                        
-}
-
-
-
-template&lt;class Key, class Compare, class Alloc&gt;
-inline bool operator&lt;(const set&lt;Key,Compare,Alloc&gt;&amp; x,
-                        const set&lt;Key,Compare,Alloc&gt;&amp; y){
-    return x.t &lt; y.t;                        
-}
-
-</code></pre><h1 id="2-multiset"><a href="#2-multiset" class="headerlink" title="2 multiset"></a>2 multiset</h1><p><code>`</code><br>/*<em><br>    multiset
-</em>/</p>
-<p>// set 不同之处<br>template&lt;class Key, class Compare = less<key>, class Alloc= alloc&gt;<br>class multiset{</key></p>
-<p>public:<br>// typedefs<br>… // 一样和set</p>
-<p>//构造函数</p>
-<pre><code>template&lt;class InputIterator&gt;
-multiset(InputIterator first,InputIterator last):t(Compare()){
-    t.insert_equal(first,last);
-}
-
-template&lt;class InputIterator&gt;
-multiset(InputIterator first, InputIterator last, Compare&amp; comp):t(comp){
-    t.insert_equal(first,last);
-}
-
-...   // 与 set一样
-
-
-// 插入删除
-iterator insert(const value_type&amp; x){
-    return t.insert_equal(x);
-}
-
-iterator insert(iterator position, const value_type&amp; x){
-    typedef typename rep_type::iterator rep_iterator;
-    return t.insert_equal((rep_iterator&amp;)position,x);
-}
-
-template&lt;class InputIterator&gt;
-void insert(InputIterator first, InputIterator last){
-    t.insert_equal(first,last);
-}
-
-... // 其他和set一样
-</code></pre><p>};</p>
-<p>···</p>
+</code></pre><p>OK，到这里，MTProxy的服务端就部署完成了，</p>
 <hr>
 
       
@@ -661,7 +507,7 @@ void insert(InputIterator first, InputIterator last){
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://jingxa.github.io/2018/07/07/STL-关联式容器-set/" title="STL_关联式容器_set">https://jingxa.github.io/2018/07/07/STL-关联式容器-set/</a>
+    <a href="https://jingxa.github.io/2018/07/15/MTProxy：专为Telegram打造的代理工具/" title="MTProxy：专为Telegram打造的代理工具">https://jingxa.github.io/2018/07/15/MTProxy：专为Telegram打造的代理工具/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -676,9 +522,7 @@ void insert(InputIterator first, InputIterator last){
       
         <div class="post-tags">
           
-            <a href="/tags/STL/" rel="tag"># STL</a>
-          
-            <a href="/tags/Associative-Container/" rel="tag"># Associative Container</a>
+            <a href="/tags/MTProxy/" rel="tag"># MTProxy</a>
           
         </div>
       
@@ -691,8 +535,8 @@ void insert(InputIterator first, InputIterator last){
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/05/STL-非标准-slist/" rel="next" title="STL_非标准_slist">
-                <i class="fa fa-chevron-left"></i> STL_非标准_slist
+              <a href="/2018/07/14/CS131-Homework-2/" rel="next" title="CS131_Homework_2">
+                <i class="fa fa-chevron-left"></i> CS131_Homework_2
               </a>
             
           </div>
@@ -700,10 +544,6 @@ void insert(InputIterator first, InputIterator last){
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/07/07/STL-关联式容器-map/" rel="prev" title="STL_关联式容器_map">
-                STL_关联式容器_map <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -762,17 +602,8 @@ void insert(InputIterator first, InputIterator last){
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -879,22 +710,6 @@ void insert(InputIterator first, InputIterator last){
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-概述"><span class="nav-text">1 概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-set"><span class="nav-text">1. set</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-multiset"><span class="nav-text">2 multiset</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
