@@ -112,7 +112,7 @@
 
 
 
-  <meta name="keywords" content="STL,Container," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -125,22 +125,14 @@
 
 
 
-<meta name="description" content="本文章内容来源于《STL源码分析》第四章   1 适配器 （adapter） “修改某物接口，形成另一个风貌者”的性质，称为adapter；  STL的适配器：  stack queue  2 stack 以deque或者 list作为底层容器 先进后出 stack没有迭代器   emplate&amp;lt;class T, Sequence = deque&amp;lt;T&amp;gt;&amp;gt; class st">
-<meta name="keywords" content="STL,Container">
 <meta property="og:type" content="article">
-<meta property="og:title" content="STL_适配器">
-<meta property="og:url" content="https://jingxa.github.io/2018/07/05/STL-适配器/index.html">
+<meta property="og:title" content="STL_并发_高级接口">
+<meta property="og:url" content="https://jingxa.github.io/2018/07/18/STL-并发-高级接口/index.html">
 <meta property="og:site_name" content="Jingxa&#39;s Blog">
-<meta property="og:description" content="本文章内容来源于《STL源码分析》第四章   1 适配器 （adapter） “修改某物接口，形成另一个风貌者”的性质，称为adapter；  STL的适配器：  stack queue  2 stack 以deque或者 list作为底层容器 先进后出 stack没有迭代器   emplate&amp;lt;class T, Sequence = deque&amp;lt;T&amp;gt;&amp;gt; class st">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-f525a94e3884b2a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-c3723b2ba1434db7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-a4a3bd8124fc1325.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-07-05T13:47:18.847Z">
+<meta property="og:updated_time" content="2018-07-18T08:16:26.033Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="STL_适配器">
-<meta name="twitter:description" content="本文章内容来源于《STL源码分析》第四章   1 适配器 （adapter） “修改某物接口，形成另一个风貌者”的性质，称为adapter；  STL的适配器：  stack queue  2 stack 以deque或者 list作为底层容器 先进后出 stack没有迭代器   emplate&amp;lt;class T, Sequence = deque&amp;lt;T&amp;gt;&amp;gt; class st">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5361608-f525a94e3884b2a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:title" content="STL_并发_高级接口">
 
 
 
@@ -170,13 +162,13 @@
 
 
 
-  <link rel="canonical" href="https://jingxa.github.io/2018/07/05/STL-适配器/"/>
+  <link rel="canonical" href="https://jingxa.github.io/2018/07/18/STL-并发-高级接口/"/>
 
 
 
 
 
-  <title>STL_适配器 | Jingxa's Blog</title>
+  <title>STL_并发_高级接口 | Jingxa's Blog</title>
   
 
 
@@ -313,7 +305,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://jingxa.github.io/2018/07/05/STL-适配器/">
+    <link itemprop="mainEntityOfPage" href="https://jingxa.github.io/2018/07/18/STL-并发-高级接口/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="jingxa">
@@ -330,7 +322,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">STL_适配器</h1>
+          <h1 class="post-title" itemprop="name headline">STL_并发_高级接口</h1>
         
 
         <div class="post-meta">
@@ -342,8 +334,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-05T21:43:51+08:00">
-                2018-07-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-18T16:16:26+08:00">
+                2018-07-18
               </time>
             
 
@@ -353,28 +345,6 @@
           </span>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/STL源码分析/" itemprop="url" rel="index">
-                    <span itemprop="name">STL源码分析</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -383,8 +353,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/07/05/STL-适配器/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/07/05/STL-适配器/" itemprop="commentsCount"></span>
+                <a href="/2018/07/18/STL-并发-高级接口/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/07/18/STL-并发-高级接口/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -406,7 +376,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  762
+                  0
                 </span>
               
 
@@ -422,7 +392,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4
+                  1
                 </span>
               
             </div>
@@ -443,184 +413,7 @@
       
 
       
-        <blockquote>
-<p>本文章内容来源于《STL源码分析》第四章</p>
-</blockquote>
-<hr>
-<h1 id="1-适配器-（adapter）"><a href="#1-适配器-（adapter）" class="headerlink" title="1 适配器 （adapter）"></a>1 适配器 （adapter）</h1><ul>
-<li>“修改某物接口，形成另一个风貌者”的性质，称为adapter；</li>
-</ul>
-<p>STL的适配器：</p>
-<ul>
-<li>stack</li>
-<li>queue</li>
-</ul>
-<h1 id="2-stack"><a href="#2-stack" class="headerlink" title="2 stack"></a>2 stack</h1><ul>
-<li>以deque或者 list作为底层容器</li>
-<li>先进后出</li>
-<li>stack没有迭代器</li>
-</ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-f525a94e3884b2a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<pre><code>emplate&lt;class T, Sequence = deque&lt;T&gt;&gt;
-class stack{
-    // __STL_NULL_TMPL_ARGS 展开为&lt;&gt;
-    friend bool operator== __STL_NULL_TMPL_ARGS(const stack&amp;, const stack&amp;);
-    friend bool operator&lt; __STL_NULL_TMPL_ARGS(const stack&amp;, const stack&amp;);
-
-public:
-    typedef typename Sequence::value_type value_type;
-    typedef typename Sequence:size_type     size_type;
-    typedef typename Sequence::reference    reference;
-    typedef    typename Sequence::const_reference    const_reference;
-
-protected:
-    Sequence c;  // 底层容器
-
-
-public:
-    // 一下完全利用Sequence c 的操作，完成stack的操作
-    bool empty()const{return c.empty();}
-    size_type    size() const{return c.size();}
-    reference top(){returnc.back();}
-    const_reference top() const{return c.back();}
-
-    // stack末端进，末端出
-    void push(const value_type&amp; x){c.push_back(x);}
-    void pop(){c.pop_back();}
-};
-
-
-template&lt;class T, class Sequence&gt;
-bool operator==(const stack&lt;T,Sequence&gt;&amp; x, const stack&lt;T, Sequence&gt;&amp; y){
-    return x.c = y.c;
-}
-
-template&lt;class T ,class Sequence&gt;
-bool operator&lt;(const stack&lt;T, Sequence&gt;&amp; x, const stack&lt;T, Sequence&gt;&amp; y){
-    return x.c &lt; y.c;
-}
-
-
-</code></pre><h1 id="3-queue"><a href="#3-queue" class="headerlink" title="3 queue"></a>3 queue</h1><ul>
-<li>以deque或者list作为底层容器</li>
-<li>先进先出的结构</li>
-<li>不允许有遍历行为，没有迭代器</li>
-</ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-c3723b2ba1434db7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<pre><code>/**
-    queue: 先进先出
-    1. 不允许遍历
-    2. deque作为底层容器
-*/
-
-template&lt;class T, class Sequence = deque&lt;T&gt; &gt;
-class queue{
-    // __STL_NULL_TMPL_ARGS展开为&lt;&gt;
-    friend bool operator== __STL_NULL_TMPL_ARGS(const queue&amp; x, const queue&amp; y);
-    friend bool operator&lt; __STL_NULL_TMPL_ARGS(const queue&amp; x, const queue&amp; y);
-
-public:
-    typedef typename    Sequence::value_type    value_type;
-    typedef    typename    Sequence::size_type        size_type;
-    typedef    typename    Sequence::reference        reference;
-    typedef    typename    Sequence::const_reference    const_reference;
-
-protected:
-    Sequence c;  // 底层容器
-
-public:
-    bool empty() const{return c.empty();}
-    size_type size() const{return c.size();}
-    reference front(){return c.front();}
-    const_reference front() const{return c.front();}
-    reference back(){return c.back();}
-    const_reference back(){return c.back();}
-
-    // queue 末端进，前端出
-    void push(const value_type&amp; x){c.push_back(x);}
-    void pop(){c.pop_front();}
-
-
-};
-
-
-template&lt;class T, class Sequence&gt;
-bool operator==(const queue&lt;T, Sequence&gt;&amp; x, const queue&lt;T,Sequence&gt;&amp; y){
-    return x.c == y.c;
-}
-
-template&lt;class T, class Sequence&gt;
-bool operator,(const queue&lt;T, Sequence&gt;&amp; x, const queue&lt;T,Sequence&gt;&amp; y){
-    return x.c , y.c;
-}
-
-</code></pre><h1 id="4-priority-queue"><a href="#4-priority-queue" class="headerlink" title="4 priority_queue"></a>4 priority_queue</h1><h2 id="4-1-概述"><a href="#4-1-概述" class="headerlink" title="4.1  概述"></a>4.1  概述</h2><ul>
-<li>带有权值观念的queue;</li>
-<li>按照权值排列；</li>
-<li>缺省情况下priority_queue利用max_heap完成；</li>
-</ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-a4a3bd8124fc1325.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h2 id="4-2-定义"><a href="#4-2-定义" class="headerlink" title="4.2 定义"></a>4.2 定义</h2><ul>
-<li>priority_queue内部以vector为底层容器；</li>
-<li>使用泛型算法<code>push_heap</code>、<code>pop_heap</code>  、<code>mmake_heap</code>；</li>
-</ul>
-<pre><code>
-template&lt;class T, class Sequence = vector&lt;T&gt;, 
-    class Compare = less&lt;typename Sequence::value_type&gt; &gt;
-class priority_queue{
-public:
-    typedef typename Sequence::value_type  value_type;
-    typedef typename Sequence::size_type     size_type;
-    typedef    typename Sequence::reference    reference;
-    typedef    typename Sequence::const_reference    const_reference;
-
-protected:
-    Sequence c; // 底层容器
-    Compare    comp;  // 元素比较器
-
-pubic:
-priority_queue(): c(){}
-explicit priority_queue(const Compar&amp; x):c(),comp(x){}
-
-
-    // 一下用到 make_heap()，push_heap(),pop_heap()都是泛型算法
-    // 注意，任一个构造函数都立刻于底层容器内产生一个隐式表述法的heap
-    template&lt;class InputIterator&gt;
-    priority_queue(InputIterator first, InputIterator last,
-    const Compar&amp; x):c(first,last), comp(x){
-        make_heap(c.begin(),c.end(),comp);
-    }
-
-    template&lt;class InputIterator&gt;
-    priority_queue(InputIterator first, InputIterator last)
-        :c(first,last){
-            make_heap(c.begin(),c.end(),comp);
-        }
-
-    bool empty() const{return c.empty();}
-    size_type size() const{return c.size();}
-    const_reference top() const{return c.front();}
-    void push(const value_type&amp; x){
-        __STL_TRY{
-            // push_heap 是泛型算法，先利用底层容器的push_back()将xnyrsu
-            // 推入末端，在重排heap
-            c.push_back(x);
-            push_heap(c.begin(),c.end(),comp);  // push_heap 是泛型算法
-        }
-        __STL_UNWIND(c.clear())；
-    }
-
-    void pop(){
-        __STL_TRY{
-            // pop_heap 是泛型算法， 从heap内取出一个元素，它并不是真正将
-            // 元素弹出，而是重排heap,然后再以底层容器pop_back()取得被弹出的元素
-            pop_heap(c.begin(),c.end(),comp);
-            c.pop_back();
-        }
-        __STL_UNWIND(c.clear());
-    }
-};
-</code></pre><hr>
+        <hr>
 
       
     </div>
@@ -641,7 +434,7 @@ explicit priority_queue(const Compar&amp; x):c(),comp(x){}
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://jingxa.github.io/2018/07/05/STL-适配器/" title="STL_适配器">https://jingxa.github.io/2018/07/05/STL-适配器/</a>
+    <a href="https://jingxa.github.io/2018/07/18/STL-并发-高级接口/" title="STL_并发_高级接口">https://jingxa.github.io/2018/07/18/STL-并发-高级接口/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -654,14 +447,6 @@ explicit priority_queue(const Compar&amp; x):c(),comp(x){}
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/STL/" rel="tag"># STL</a>
-          
-            <a href="/tags/Container/" rel="tag"># Container</a>
-          
-        </div>
-      
 
       
       
@@ -671,8 +456,8 @@ explicit priority_queue(const Compar&amp; x):c(),comp(x){}
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/04/STL-容器-deque-2/" rel="next" title="STL_容器_deque_2">
-                <i class="fa fa-chevron-left"></i> STL_容器_deque_2
+              <a href="/2018/07/18/STL-并发-线程间共享数据/" rel="next" title="STL_并发_线程间共享数据">
+                <i class="fa fa-chevron-left"></i> STL_并发_线程间共享数据
               </a>
             
           </div>
@@ -680,10 +465,6 @@ explicit priority_queue(const Compar&amp; x):c(),comp(x){}
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/07/05/STL-heap/" rel="prev" title="STL_heap">
-                STL_heap <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -742,17 +523,8 @@ explicit priority_queue(const Compar&amp; x):c(),comp(x){}
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -859,22 +631,6 @@ explicit priority_queue(const Compar&amp; x):c(),comp(x){}
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-适配器-（adapter）"><span class="nav-text">1 适配器 （adapter）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-stack"><span class="nav-text">2 stack</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-queue"><span class="nav-text">3 queue</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-priority-queue"><span class="nav-text">4 priority_queue</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-概述"><span class="nav-text">4.1  概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-定义"><span class="nav-text">4.2 定义</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       

@@ -112,7 +112,7 @@
 
 
 
-  <meta name="keywords" content="STL,Container," />
+  <meta name="keywords" content="STL,Concurrency," />
 
 
 
@@ -125,22 +125,23 @@
 
 
 
-<meta name="description" content="本文章内容来源于《STL源码分析》第四章   1 适配器 （adapter） “修改某物接口，形成另一个风貌者”的性质，称为adapter；  STL的适配器：  stack queue  2 stack 以deque或者 list作为底层容器 先进后出 stack没有迭代器   emplate&amp;lt;class T, Sequence = deque&amp;lt;T&amp;gt;&amp;gt; class st">
-<meta name="keywords" content="STL,Container">
+<meta name="description" content="参考资料：  c++ 标准库 (第二版)c++并发编程(第三版)cplusplus.com   1 概述 std::thread用来启动和表现线程；  thread对象和线程之间的关联式将一个callable objects（例如，函数，函数对象）   关联的状态：使用joinable()判断：  true ： 已经连接到一个线程 false ： 未关联线程  在判断关联状态后，只可调用一次一下方">
+<meta name="keywords" content="STL,Concurrency">
 <meta property="og:type" content="article">
-<meta property="og:title" content="STL_适配器">
-<meta property="og:url" content="https://jingxa.github.io/2018/07/05/STL-适配器/index.html">
+<meta property="og:title" content="STL_并发_线程管理简介">
+<meta property="og:url" content="https://jingxa.github.io/2018/07/18/STL-并发-线程管理简介/index.html">
 <meta property="og:site_name" content="Jingxa&#39;s Blog">
-<meta property="og:description" content="本文章内容来源于《STL源码分析》第四章   1 适配器 （adapter） “修改某物接口，形成另一个风貌者”的性质，称为adapter；  STL的适配器：  stack queue  2 stack 以deque或者 list作为底层容器 先进后出 stack没有迭代器   emplate&amp;lt;class T, Sequence = deque&amp;lt;T&amp;gt;&amp;gt; class st">
+<meta property="og:description" content="参考资料：  c++ 标准库 (第二版)c++并发编程(第三版)cplusplus.com   1 概述 std::thread用来启动和表现线程；  thread对象和线程之间的关联式将一个callable objects（例如，函数，函数对象）   关联的状态：使用joinable()判断：  true ： 已经连接到一个线程 false ： 未关联线程  在判断关联状态后，只可调用一次一下方">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-f525a94e3884b2a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-c3723b2ba1434db7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-a4a3bd8124fc1325.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-07-05T13:47:18.847Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-90df511b3502839a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-b341ea469784d628.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-cd911df5f841d07f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-3a0087121f1a0dca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-07-18T08:19:37.281Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="STL_适配器">
-<meta name="twitter:description" content="本文章内容来源于《STL源码分析》第四章   1 适配器 （adapter） “修改某物接口，形成另一个风貌者”的性质，称为adapter；  STL的适配器：  stack queue  2 stack 以deque或者 list作为底层容器 先进后出 stack没有迭代器   emplate&amp;lt;class T, Sequence = deque&amp;lt;T&amp;gt;&amp;gt; class st">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5361608-f525a94e3884b2a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:title" content="STL_并发_线程管理简介">
+<meta name="twitter:description" content="参考资料：  c++ 标准库 (第二版)c++并发编程(第三版)cplusplus.com   1 概述 std::thread用来启动和表现线程；  thread对象和线程之间的关联式将一个callable objects（例如，函数，函数对象）   关联的状态：使用joinable()判断：  true ： 已经连接到一个线程 false ： 未关联线程  在判断关联状态后，只可调用一次一下方">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5361608-90df511b3502839a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -170,13 +171,13 @@
 
 
 
-  <link rel="canonical" href="https://jingxa.github.io/2018/07/05/STL-适配器/"/>
+  <link rel="canonical" href="https://jingxa.github.io/2018/07/18/STL-并发-线程管理简介/"/>
 
 
 
 
 
-  <title>STL_适配器 | Jingxa's Blog</title>
+  <title>STL_并发_线程管理简介 | Jingxa's Blog</title>
   
 
 
@@ -313,7 +314,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://jingxa.github.io/2018/07/05/STL-适配器/">
+    <link itemprop="mainEntityOfPage" href="https://jingxa.github.io/2018/07/18/STL-并发-线程管理简介/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="jingxa">
@@ -330,7 +331,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">STL_适配器</h1>
+          <h1 class="post-title" itemprop="name headline">STL_并发_线程管理简介</h1>
         
 
         <div class="post-meta">
@@ -342,8 +343,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-05T21:43:51+08:00">
-                2018-07-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-18T16:15:20+08:00">
+                2018-07-18
               </time>
             
 
@@ -365,8 +366,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/STL源码分析/" itemprop="url" rel="index">
-                    <span itemprop="name">STL源码分析</span>
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
                   </a>
                 </span>
 
@@ -383,8 +384,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/07/05/STL-适配器/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/07/05/STL-适配器/" itemprop="commentsCount"></span>
+                <a href="/2018/07/18/STL-并发-线程管理简介/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/07/18/STL-并发-线程管理简介/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -406,7 +407,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  762
+                  701
                 </span>
               
 
@@ -422,7 +423,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4
+                  3
                 </span>
               
             </div>
@@ -443,184 +444,131 @@
       
 
       
-        <blockquote>
-<p>本文章内容来源于《STL源码分析》第四章</p>
+        <p>参考资料：</p>
+<blockquote>
+<p>c++ 标准库 (第二版)<br>c++并发编程(第三版)<br>cplusplus.com</p>
 </blockquote>
 <hr>
-<h1 id="1-适配器-（adapter）"><a href="#1-适配器-（adapter）" class="headerlink" title="1 适配器 （adapter）"></a>1 适配器 （adapter）</h1><ul>
-<li>“修改某物接口，形成另一个风貌者”的性质，称为adapter；</li>
+<h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1 概述"></a>1 概述</h1><ul>
+<li><p><code>std::thread</code>用来启动和表现线程；</p>
+</li>
+<li><p>thread对象和线程之间的关联式将一个callable objects（例如，函数，函数对象）</p>
+</li>
 </ul>
-<p>STL的适配器：</p>
+<p>关联的状态：<br>使用<code>joinable()</code>判断：</p>
 <ul>
-<li>stack</li>
-<li>queue</li>
+<li>true ： 已经连接到一个线程</li>
+<li>false ： 未关联线程</li>
 </ul>
-<h1 id="2-stack"><a href="#2-stack" class="headerlink" title="2 stack"></a>2 stack</h1><ul>
-<li>以deque或者 list作为底层容器</li>
-<li>先进后出</li>
-<li>stack没有迭代器</li>
+<p>在判断关联状态后，只可调用一次一下方法：</p>
+<ul>
+<li>join():等待已连接的线程返回结果</li>
+<li>detach(): 失去对线程的关联</li>
 </ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-f525a94e3884b2a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<pre><code>emplate&lt;class T, Sequence = deque&lt;T&gt;&gt;
-class stack{
-    // __STL_NULL_TMPL_ARGS 展开为&lt;&gt;
-    friend bool operator== __STL_NULL_TMPL_ARGS(const stack&amp;, const stack&amp;);
-    friend bool operator&lt; __STL_NULL_TMPL_ARGS(const stack&amp;, const stack&amp;);
+<h1 id="2-操作函数"><a href="#2-操作函数" class="headerlink" title="2 操作函数"></a>2 操作函数</h1><h2 id="2-1-成员类型和成员函数"><a href="#2-1-成员类型和成员函数" class="headerlink" title="2.1 成员类型和成员函数"></a>2.1 成员类型和成员函数</h2><p><img src="https://upload-images.jianshu.io/upload_images/5361608-90df511b3502839a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>部分函数的解释：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-b341ea469784d628.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>另一个静态函数</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-cd911df5f841d07f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="2-2-构造函数"><a href="#2-2-构造函数" class="headerlink" title="2.2 构造函数"></a>2.2 构造函数</h2><p>声明了两个函数，第二个函数传递引用；</p>
+<pre><code>void increase_global (int n) ;
+void increase_reference (std::atomic&lt;int&gt;&amp; variable, int n) ;
+</code></pre><p>(1)  默认构造函数</p>
+<pre><code> std::vector&lt;std::thread&gt; threads;
+</code></pre><p>（2) 传递给线程一个带参数的函数</p>
+<ul>
+<li>参数作为thread的实参<pre><code>std::thread(increase_global,1000);
+</code></pre>(3) 传递给线程一个参数为引用的函数</li>
+<li>使用标准库函数<code>std::ref()</code>传递引用</li>
+</ul>
+<pre><code>std::atomic&lt;int&gt; foo(0);
+std::thread(increase_reference,std::ref(foo),1000);
+</code></pre><p>上述例子中实现了thread的三种构造函数;</p>
+<h2 id="2-3-joinable-join-detach"><a href="#2-3-joinable-join-detach" class="headerlink" title="2.3 joinable(),join(),detach()"></a>2.3 joinable(),join(),detach()</h2><p>(1) <code>joinable()</code></p>
+<pre><code>bool joinable() const noexcept;
+</code></pre><ul>
+<li>判断线程是否已经连接</li>
+<li>线程不可连接的情况：<ul>
+<li>默认构造的线程</li>
+<li>move过的线程</li>
+<li><code>join</code>或者<code>detach</code>后的线程；</li>
+</ul>
+</li>
+</ul>
+<p>(2) <code>join()</code></p>
+<pre><code>void join();
+</code></pre><ul>
+<li>函数在线程执行完成后返回；</li>
+</ul>
+<pre><code>// example for thread::join
+#include &lt;iostream&gt;       // std::cout
+#include &lt;thread&gt;         // std::thread, std::this_thread::sleep_for
+#include &lt;chrono&gt;         // std::chrono::seconds
 
-public:
-    typedef typename Sequence::value_type value_type;
-    typedef typename Sequence:size_type     size_type;
-    typedef typename Sequence::reference    reference;
-    typedef    typename Sequence::const_reference    const_reference;
-
-protected:
-    Sequence c;  // 底层容器
-
-
-public:
-    // 一下完全利用Sequence c 的操作，完成stack的操作
-    bool empty()const{return c.empty();}
-    size_type    size() const{return c.size();}
-    reference top(){returnc.back();}
-    const_reference top() const{return c.back();}
-
-    // stack末端进，末端出
-    void push(const value_type&amp; x){c.push_back(x);}
-    void pop(){c.pop_back();}
-};
-
-
-template&lt;class T, class Sequence&gt;
-bool operator==(const stack&lt;T,Sequence&gt;&amp; x, const stack&lt;T, Sequence&gt;&amp; y){
-    return x.c = y.c;
+void pause_thread(int n) 
+{
+  std::this_thread::sleep_for (std::chrono::seconds(n));
+  std::cout &lt;&lt; &quot;pause of &quot; &lt;&lt; n &lt;&lt; &quot; seconds ended\n&quot;;
 }
 
-template&lt;class T ,class Sequence&gt;
-bool operator&lt;(const stack&lt;T, Sequence&gt;&amp; x, const stack&lt;T, Sequence&gt;&amp; y){
-    return x.c &lt; y.c;
+int main() 
+{
+  std::cout &lt;&lt; &quot;Spawning 1 threads...\n&quot;;
+  std::thread t1 (pause_thread,1);
+  std::cout &lt;&lt; &quot;Done spawning threads. Now waiting for them to join:\n&quot;;
+  t1.join();
+
+  std::cout &lt;&lt; &quot;All threads joined!\n&quot;;
+
+  return 0;
 }
-
-
-</code></pre><h1 id="3-queue"><a href="#3-queue" class="headerlink" title="3 queue"></a>3 queue</h1><ul>
-<li>以deque或者list作为底层容器</li>
-<li>先进先出的结构</li>
-<li>不允许有遍历行为，没有迭代器</li>
+</code></pre><p>结果为：</p>
+<pre><code>Spawning 1 threads...
+Done spawning threads. Now waiting for them to join:
+pause of 1 seconds ended
+All threads joined!
+</code></pre><p><code>join</code>让主线程必须等待其他线程返回后才能继续执行；</p>
+<ul>
+<li>返回后的线程的<code>joinable</code>返回false,不可被连接，能够安全释放；</li>
 </ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-c3723b2ba1434db7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<pre><code>/**
-    queue: 先进先出
-    1. 不允许遍历
-    2. deque作为底层容器
-*/
-
-template&lt;class T, class Sequence = deque&lt;T&gt; &gt;
-class queue{
-    // __STL_NULL_TMPL_ARGS展开为&lt;&gt;
-    friend bool operator== __STL_NULL_TMPL_ARGS(const queue&amp; x, const queue&amp; y);
-    friend bool operator&lt; __STL_NULL_TMPL_ARGS(const queue&amp; x, const queue&amp; y);
-
-public:
-    typedef typename    Sequence::value_type    value_type;
-    typedef    typename    Sequence::size_type        size_type;
-    typedef    typename    Sequence::reference        reference;
-    typedef    typename    Sequence::const_reference    const_reference;
-
-protected:
-    Sequence c;  // 底层容器
-
-public:
-    bool empty() const{return c.empty();}
-    size_type size() const{return c.size();}
-    reference front(){return c.front();}
-    const_reference front() const{return c.front();}
-    reference back(){return c.back();}
-    const_reference back(){return c.back();}
-
-    // queue 末端进，前端出
-    void push(const value_type&amp; x){c.push_back(x);}
-    void pop(){c.pop_front();}
-
-
-};
-
-
-template&lt;class T, class Sequence&gt;
-bool operator==(const queue&lt;T, Sequence&gt;&amp; x, const queue&lt;T,Sequence&gt;&amp; y){
-    return x.c == y.c;
-}
-
-template&lt;class T, class Sequence&gt;
-bool operator,(const queue&lt;T, Sequence&gt;&amp; x, const queue&lt;T,Sequence&gt;&amp; y){
-    return x.c , y.c;
-}
-
-</code></pre><h1 id="4-priority-queue"><a href="#4-priority-queue" class="headerlink" title="4 priority_queue"></a>4 priority_queue</h1><h2 id="4-1-概述"><a href="#4-1-概述" class="headerlink" title="4.1  概述"></a>4.1  概述</h2><ul>
-<li>带有权值观念的queue;</li>
-<li>按照权值排列；</li>
-<li>缺省情况下priority_queue利用max_heap完成；</li>
+<p>(3) <code>detach()</code></p>
+<pre><code>void detach();
+</code></pre><ul>
+<li>分离线程</li>
+<li>在分离过后，线程在后台运行，thread对象不能引用，<code>joinable</code>变成不可被连接，能不安全释放；</li>
 </ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-a4a3bd8124fc1325.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h2 id="4-2-定义"><a href="#4-2-定义" class="headerlink" title="4.2 定义"></a>4.2 定义</h2><ul>
-<li>priority_queue内部以vector为底层容器；</li>
-<li>使用泛型算法<code>push_heap</code>、<code>pop_heap</code>  、<code>mmake_heap</code>；</li>
+<h2 id="2-4-转移线程的所有权"><a href="#2-4-转移线程的所有权" class="headerlink" title="2.4 转移线程的所有权"></a>2.4 转移线程的所有权</h2><ul>
+<li>线程是可移动的(movable)，但是不可复制的(copyable)</li>
 </ul>
-<pre><code>
-template&lt;class T, class Sequence = vector&lt;T&gt;, 
-    class Compare = less&lt;typename Sequence::value_type&gt; &gt;
-class priority_queue{
-public:
-    typedef typename Sequence::value_type  value_type;
-    typedef typename Sequence::size_type     size_type;
-    typedef    typename Sequence::reference    reference;
-    typedef    typename Sequence::const_reference    const_reference;
-
-protected:
-    Sequence c; // 底层容器
-    Compare    comp;  // 元素比较器
-
-pubic:
-priority_queue(): c(){}
-explicit priority_queue(const Compar&amp; x):c(),comp(x){}
-
-
-    // 一下用到 make_heap()，push_heap(),pop_heap()都是泛型算法
-    // 注意，任一个构造函数都立刻于底层容器内产生一个隐式表述法的heap
-    template&lt;class InputIterator&gt;
-    priority_queue(InputIterator first, InputIterator last,
-    const Compar&amp; x):c(first,last), comp(x){
-        make_heap(c.begin(),c.end(),comp);
-    }
-
-    template&lt;class InputIterator&gt;
-    priority_queue(InputIterator first, InputIterator last)
-        :c(first,last){
-            make_heap(c.begin(),c.end(),comp);
-        }
-
-    bool empty() const{return c.empty();}
-    size_type size() const{return c.size();}
-    const_reference top() const{return c.front();}
-    void push(const value_type&amp; x){
-        __STL_TRY{
-            // push_heap 是泛型算法，先利用底层容器的push_back()将xnyrsu
-            // 推入末端，在重排heap
-            c.push_back(x);
-            push_heap(c.begin(),c.end(),comp);  // push_heap 是泛型算法
-        }
-        __STL_UNWIND(c.clear())；
-    }
-
-    void pop(){
-        __STL_TRY{
-            // pop_heap 是泛型算法， 从heap内取出一个元素，它并不是真正将
-            // 元素弹出，而是重排heap,然后再以底层容器pop_back()取得被弹出的元素
-            pop_heap(c.begin(),c.end(),comp);
-            c.pop_back();
-        }
-        __STL_UNWIND(c.clear());
-    }
-};
-</code></pre><hr>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-3a0087121f1a0dca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li><ol>
+<li>启动一个新线程关联到t1</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>通过std::move()显式移动所有权，t1不在拥有相关线程；</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>启动一个线程关联到临时的thread对象，然后将线程所有权移交给t1;</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>默认构造一个t3;</li>
+</ol>
+</li>
+<li><ol start="5">
+<li>将t2的关联线程移交给t3;</li>
+</ol>
+</li>
+<li><ol start="6">
+<li>将t3关联的线程所有权移交给t1,但是t1已经有线程，所以会调用<code>std::terminate()</code>来终止程序；</li>
+</ol>
+</li>
+</ul>
+<p>因此，不能只通过向管理一个线程的thread对象赋值一个新的值来“舍弃”一个线程；</p>
+<hr>
 
       
     </div>
@@ -641,7 +589,7 @@ explicit priority_queue(const Compar&amp; x):c(),comp(x){}
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://jingxa.github.io/2018/07/05/STL-适配器/" title="STL_适配器">https://jingxa.github.io/2018/07/05/STL-适配器/</a>
+    <a href="https://jingxa.github.io/2018/07/18/STL-并发-线程管理简介/" title="STL_并发_线程管理简介">https://jingxa.github.io/2018/07/18/STL-并发-线程管理简介/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -658,7 +606,7 @@ explicit priority_queue(const Compar&amp; x):c(),comp(x){}
           
             <a href="/tags/STL/" rel="tag"># STL</a>
           
-            <a href="/tags/Container/" rel="tag"># Container</a>
+            <a href="/tags/Concurrency/" rel="tag"># Concurrency</a>
           
         </div>
       
@@ -671,8 +619,8 @@ explicit priority_queue(const Compar&amp; x):c(),comp(x){}
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/04/STL-容器-deque-2/" rel="next" title="STL_容器_deque_2">
-                <i class="fa fa-chevron-left"></i> STL_容器_deque_2
+              <a href="/2018/07/15/MTProxy：专为Telegram打造的代理工具/" rel="next" title="MTProxy：专为Telegram打造的代理工具">
+                <i class="fa fa-chevron-left"></i> MTProxy：专为Telegram打造的代理工具
               </a>
             
           </div>
@@ -681,8 +629,8 @@ explicit priority_queue(const Compar&amp; x):c(),comp(x){}
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/07/05/STL-heap/" rel="prev" title="STL_heap">
-                STL_heap <i class="fa fa-chevron-right"></i>
+              <a href="/2018/07/18/STL-并发-线程间共享数据/" rel="prev" title="STL_并发_线程间共享数据">
+                STL_并发_线程间共享数据 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -869,7 +817,7 @@ explicit priority_queue(const Compar&amp; x):c(),comp(x){}
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-适配器-（adapter）"><span class="nav-text">1 适配器 （adapter）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-stack"><span class="nav-text">2 stack</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-queue"><span class="nav-text">3 queue</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-priority-queue"><span class="nav-text">4 priority_queue</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-概述"><span class="nav-text">4.1  概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-定义"><span class="nav-text">4.2 定义</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-概述"><span class="nav-text">1 概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-操作函数"><span class="nav-text">2 操作函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-成员类型和成员函数"><span class="nav-text">2.1 成员类型和成员函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-构造函数"><span class="nav-text">2.2 构造函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-joinable-join-detach"><span class="nav-text">2.3 joinable(),join(),detach()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-转移线程的所有权"><span class="nav-text">2.4 转移线程的所有权</span></a></li></ol></li></ol></div>
             
 
           </div>
