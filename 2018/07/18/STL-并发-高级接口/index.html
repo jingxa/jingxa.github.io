@@ -112,7 +112,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="STL,Concurrency," />
 
 
 
@@ -125,14 +125,27 @@
 
 
 
+<meta name="description" content="参考资料：  c++ 标准库 (第二版)c++并发编程(第三版)cplusplus.com   一、 概述 Future头文件中  其中class和Functions的providers  promise packaged_task  async  都是providers,能够将共享状态（shard state）的接口分享给future对象； 例如：  std::async(): 让一个calla">
+<meta name="keywords" content="STL,Concurrency">
 <meta property="og:type" content="article">
 <meta property="og:title" content="STL_并发_高级接口">
 <meta property="og:url" content="https://jingxa.github.io/2018/07/18/STL-并发-高级接口/index.html">
 <meta property="og:site_name" content="Jingxa&#39;s Blog">
+<meta property="og:description" content="参考资料：  c++ 标准库 (第二版)c++并发编程(第三版)cplusplus.com   一、 概述 Future头文件中  其中class和Functions的providers  promise packaged_task  async  都是providers,能够将共享状态（shard state）的接口分享给future对象； 例如：  std::async(): 让一个calla">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-18T08:16:26.033Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-57a769d1502dd91d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-fd3927866383ab95.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-782ebdb006364b59.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-36044c6aed919a32.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-8eb6a975f60f365c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-45c768b706a4fd5a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-80a06bc8d6f5770f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-1e3de1ca5670b3b4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-07-19T02:43:36.338Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="STL_并发_高级接口">
+<meta name="twitter:description" content="参考资料：  c++ 标准库 (第二版)c++并发编程(第三版)cplusplus.com   一、 概述 Future头文件中  其中class和Functions的providers  promise packaged_task  async  都是providers,能够将共享状态（shard state）的接口分享给future对象； 例如：  std::async(): 让一个calla">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5361608-57a769d1502dd91d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -345,6 +358,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -376,7 +411,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  0
+                  1,501
                 </span>
               
 
@@ -392,7 +427,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  7
                 </span>
               
             </div>
@@ -413,7 +448,259 @@
       
 
       
-        <hr>
+        <p>参考资料：</p>
+<blockquote>
+<p>c++ 标准库 (第二版)<br>c++并发编程(第三版)<br>cplusplus.com</p>
+</blockquote>
+<hr>
+<h1 id="一、-概述"><a href="#一、-概述" class="headerlink" title="一、 概述"></a>一、 概述</h1><ul>
+<li><code>Future</code>头文件中<br><img src="https://upload-images.jianshu.io/upload_images/5361608-57a769d1502dd91d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></li>
+</ul>
+<p>其中class和Functions的providers</p>
+<ul>
+<li>promise</li>
+<li>packaged_task </li>
+<li>async</li>
+</ul>
+<p>都是providers,能够将共享状态（shard state）的接口分享给future对象；</p>
+<p>例如：</p>
+<ul>
+<li><code>std::async()</code>: 让一个callable objects在后台运行，成为一个独立线程；</li>
+<li><code>class std::future&lt;&gt;</code> ： 允许等待线程结束并且获取结果（一个返回值，或者一个异常）</li>
+</ul>
+<h1 id="二、-Providers"><a href="#二、-Providers" class="headerlink" title="二、 Providers"></a>二、 Providers</h1><h2 id="2-1-asnyc"><a href="#2-1-asnyc" class="headerlink" title="2.1 asnyc()"></a>2.1 asnyc()</h2><h3 id="2-1-1-构造函数"><a href="#2-1-1-构造函数" class="headerlink" title="2.1.1 构造函数"></a>2.1.1 构造函数</h3><p>提供了两个版本：</p>
+<pre><code>// unspecified policy (1)    
+template &lt;class Fn, class... Args&gt;
+  future&lt;typename result_of&lt;Fn(Args...)&gt;::type&gt;
+    async (Fn&amp;&amp; fn, Args&amp;&amp;... args);
+
+// specific policy (2)    
+template &lt;class Fn, class... Args&gt;
+  future&lt;typename result_of&lt;Fn(Args...)&gt;::type&gt;
+    async (launch policy, Fn&amp;&amp; fn, Args&amp;&amp;... args);
+</code></pre><ul>
+<li>第一个版本执行callable对象 fn，无需等待fn完成就可以返回</li>
+<li>返回值的访问通过future对象（future::get）</li>
+</ul>
+<p>第二个版本：</p>
+<ul>
+<li>调用callable对象的时候选择一种一种策略；</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>策略</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>launch::async</td>
+<td>尝试启动fn并给予参数args,形成一个异步任务</td>
+</tr>
+<tr>
+<td>launch::deferred</td>
+<td>调用fn并且传递参数args，形成一个推迟任务，直到返回的future调用wait()或者get()时，任务才同步调用，否则绝不启动</td>
+</tr>
+<tr>
+<td>launch::async \</td>
+<td>launch::deferred</td>
+<td>第一版本效果一样，即随机选择一个launch策略</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="2-2-promise"><a href="#2-2-promise" class="headerlink" title="2.2 promise"></a>2.2 promise</h2><ul>
+<li>1.promise对象能够关联到一个shared state上，其中shared state 能够存储一个返回值或者异常(std::exception);</li>
+<li>2.future对象能够检索promise对象关联的shared state</li>
+<li>3.future对象要关联到一个shared state上，需要promise调用成员函数<code>get_value</code>返回的值传递给future对象；</li>
+</ul>
+<p>这个时候，shared state关联到future对象和promise对象上：</p>
+<ul>
+<li>promise： 提供数据或来设置shared state</li>
+<li>future : 取回shared state中的数据</li>
+</ul>
+<h3 id="2-2-1-模板参数"><a href="#2-2-1-模板参数" class="headerlink" title="2.2.1 模板参数"></a>2.2.1 模板参数</h3><pre><code>template &lt;class T&gt;  promise;
+template &lt;class R&amp;&gt; promise&lt;R&amp;&gt;;     // specialization : T is a reference type (R&amp;)
+template &lt;&gt;         promise&lt;void&gt;;   // specialization : T is void
+</code></pre><h3 id="2-2-2-构造函数"><a href="#2-2-2-构造函数" class="headerlink" title="2.2.2 构造函数"></a>2.2.2 构造函数</h3><pre><code>// default (1)    
+promise();
+// with allocator (2)    
+template &lt;class Alloc&gt; promise (allocator_arg_t aa, const Alloc&amp; alloc);
+// copy [deleted] (3)    
+promise (const promise&amp;) = delete;
+// move (4)    
+promise (promise&amp;&amp; x) noexcept;
+</code></pre><p>例子：</p>
+<pre><code>// 默认
+  std::promise&lt;int&gt; foo;
+// 分配器构造  
+std::promise&lt;int&gt; bar = std::promise&lt;int&gt;(std::allocator_arg,std::allocator&lt;int&gt;());
+
+// 获取关联到shared state的future对象
+  std::future&lt;int&gt; fut = bar.get_future();
+</code></pre><h3 id="2-2-3-成员函数"><a href="#2-2-3-成员函数" class="headerlink" title="2.2.3 成员函数"></a>2.2.3 成员函数</h3><p><img src="https://upload-images.jianshu.io/upload_images/5361608-fd3927866383ab95.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>promise 对象通过</p>
+<ul>
+<li><code>set_value</code></li>
+<li><code>set_exception</code><br>来向shared state中存储一个数据或者一个异常；</li>
+</ul>
+<pre><code>// promise example
+#include &lt;iostream&gt;       // std::cout
+#include &lt;functional&gt;     // std::ref
+#include &lt;thread&gt;         // std::thread
+#include &lt;future&gt;         // std::promise, std::future
+
+void print_int (std::future&lt;int&gt;&amp; fut) {
+  int x = fut.get();
+  std::cout &lt;&lt; &quot;value: &quot; &lt;&lt; x &lt;&lt; &#39;\n&#39;;
+}
+
+int main ()
+{
+  std::promise&lt;int&gt; prom;                      // create promise
+
+  std::future&lt;int&gt; fut = prom.get_future();    // engagement with future
+
+  std::thread th1 (print_int, std::ref(fut));  // send future to new thread
+
+  prom.set_value (10);                         // fulfill promise
+                                               // (synchronizes with getting the future)
+  th1.join();
+  return 0;
+}
+</code></pre><ul>
+<li>一旦shared state存有某值或者异常， 状态变为ready,于是可以通过future对象读取内容；</li>
+</ul>
+<p>以上两个函数执行后，并不意味着执行promise 的线程结束，该线程可能还在运行；如果想要在线程结束时才设置数据或者异常，可以执行以下函数：</p>
+<ul>
+<li><code>set_value_at_thread_exit()</code></li>
+<li><code>set_exception_at_thread_exit()</code></li>
+</ul>
+<h3 id="2-2-4-操作函数-详解"><a href="#2-2-4-操作函数-详解" class="headerlink" title="2.2.4 操作函数 详解"></a>2.2.4 操作函数 详解</h3><p><img src="https://upload-images.jianshu.io/upload_images/5361608-782ebdb006364b59.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<hr>
+<h2 id="2-3-packaged-task"><a href="#2-3-packaged-task" class="headerlink" title="2.3 packaged_task"></a>2.3 packaged_task</h2><ul>
+<li>packaged_task 包装callable对象 ，并且允许这个callable结果异步访问；</li>
+<li>类似std::function , 但是结果自动被转换为一个future对象；</li>
+</ul>
+<p>packaged_task 的组成：</p>
+<ul>
+<li>stored task: 一些callable对象（例如函数指针，成员函数指针或者函数对象）并且能够利用 传递的args参数；</li>
+<li>shared state : 存储callable对象的结果，能够被future对象异步访问；</li>
+</ul>
+<p>shared state 能够通过packaged_task调用成员函数<code>get_future()</code>关联到一个future对象；</p>
+<h3 id="2-3-1-函数模板"><a href="#2-3-1-函数模板" class="headerlink" title="2.3.1 函数模板"></a>2.3.1 函数模板</h3><pre><code>template &lt;class T&gt; packaged_task;     // undefined
+template &lt;class Ret, class... Args&gt; class packaged_task&lt;Ret(Args...)&gt;;
+</code></pre><p>模板参数为函数返回值类型和参数类型；</p>
+<h3 id="2-3-2-构造函数"><a href="#2-3-2-构造函数" class="headerlink" title="2.3.2 构造函数"></a>2.3.2 构造函数</h3><pre><code>//default (1)    
+packaged_task() noexcept;
+//initialization (2)    
+template &lt;class Fn&gt;
+  explicit packaged_task (Fn&amp;&amp; fn);
+//with allocator (3)    
+template &lt;class Fn, class Alloc&gt;
+  explicit packaged_task (allocator_arg_t aa, const Alloc&amp; alloc, Fn&amp;&amp; fn);
+//copy [deleted] (4)    
+packaged_task (packaged_task&amp;) = delete;
+//move (5)    
+packaged_task (packaged_task&amp;&amp; x) noexcept;
+</code></pre><p>例如：</p>
+<pre><code>  std::packaged_task&lt;int(int)&gt; foo;                          // default-constructed
+  std::packaged_task&lt;int(int)&gt; bar ([](int x){return x*2;}); // initialized
+</code></pre><p>模板为：<br>函数的返回值类型，参数类型</p>
+<h3 id="2-3-3-成员函数"><a href="#2-3-3-成员函数" class="headerlink" title="2.3.3 成员函数"></a>2.3.3 成员函数</h3><p><img src="https://upload-images.jianshu.io/upload_images/5361608-36044c6aed919a32.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>例子：</p>
+<pre><code>// packaged_task::get_future
+#include &lt;iostream&gt;     // std::cout
+#include &lt;utility&gt;      // std::move
+#include &lt;future&gt;       // std::packaged_task, std::future
+#include &lt;thread&gt;       // std::thread
+
+// a simple task:
+int triple (int x) { return x*3; }
+
+int main ()
+{
+  std::packaged_task&lt;int(int)&gt; tsk (triple); // package task
+
+  std::future&lt;int&gt; fut = tsk.get_future();   // get future
+
+  std::thread(std::move(tsk),33).detach();   // spawn thread and call task
+
+  // ...
+
+  int value = fut.get();                     // wait for the task to complete and get result
+
+  std::cout &lt;&lt; &quot;The triple of 33 is &quot; &lt;&lt; value &lt;&lt; &quot;.\n&quot;;
+
+  return 0;
+}
+</code></pre><h3 id="2-3-4-操作函数详解"><a href="#2-3-4-操作函数详解" class="headerlink" title="2.3.4 操作函数详解"></a>2.3.4 操作函数详解</h3><p><img src="https://upload-images.jianshu.io/upload_images/5361608-8eb6a975f60f365c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<hr>
+<h1 id="三、-Future"><a href="#三、-Future" class="headerlink" title="三、 Future"></a>三、 Future</h1><h2 id="3-1-Future"><a href="#3-1-Future" class="headerlink" title="3.1 Future"></a>3.1 Future</h2><ul>
+<li>future对象用来表示某一操作的输出(outcome)，可能是一个返回值，或者异常；</li>
+<li><p>输出被保留在shared state中，可能是被<code>std::async()</code>,<code>std::packaged_task</code>, <code>promise</code>创建的；</p>
+</li>
+<li><p>结果只能被取出一次。future状态：</p>
+<ul>
+<li>有效(valid)： 结果未被取出</li>
+<li>无效(invalid):结果被取出</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-1-1-模板参数和构造函数"><a href="#3-1-1-模板参数和构造函数" class="headerlink" title="3.1.1 模板参数和构造函数"></a>3.1.1 模板参数和构造函数</h3><pre><code>template &lt;class T&gt;  future;
+template &lt;class R&amp;&gt; future&lt;R&amp;&gt;;     // specialization : T is a reference type (R&amp;)
+template &lt;&gt;         future&lt;void&gt;;   // specialization : T is void
+</code></pre><p>构造函数</p>
+<pre><code>//default (1)    
+future() noexcept;
+//copy [deleted] (2)    
+future (const future&amp;) = delete;
+//move (3)    
+future (future&amp;&amp; x) noexcept;
+</code></pre><p><img src="https://upload-images.jianshu.io/upload_images/5361608-45c768b706a4fd5a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>future没有复制构造函数和赋值操作符，确保不会有两个object 共享一个状态；</li>
+</ul>
+<h3 id="3-1-2-操作函数"><a href="#3-1-2-操作函数" class="headerlink" title="3.1.2 操作函数"></a>3.1.2 操作函数</h3><p><img src="https://upload-images.jianshu.io/upload_images/5361608-80a06bc8d6f5770f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="3-2-Shared-Future"><a href="#3-2-Shared-Future" class="headerlink" title="3.2 Shared Future"></a>3.2 Shared Future</h2><ul>
+<li><ol>
+<li>shared_future  对象类似future对象，但是shared_future对象能够被复制，即能够和另一个shared_future对象共享同一个后台shared state的状态；</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>当 shared state的状态一旦ready后，能够被检索多次；</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>shared_future对象能够从future对象转化过来，也能从future::share()获得； 这两种方法，future对象被转化为shared_future对象后，fut ure对象会无效；</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>shared state的生命周期会持续到最后一个相关的shared_future对象释放；</li>
+</ol>
+</li>
+<li>class shared_future&lt;&gt;的接口和class future&lt;&gt; 相同；</li>
+</ul>
+<h3 id="3-2-1-模板参数"><a href="#3-2-1-模板参数" class="headerlink" title="3.2.1 模板参数"></a>3.2.1 模板参数</h3><pre><code>template &lt;class T&gt;  shared_future;
+template &lt;class R&amp;&gt; shared_future&lt;R&amp;&gt;;   // specialization : T is a reference type (R&amp;)
+template &lt;&gt;         shared_future&lt;void&gt;; // specialization : T is void
+</code></pre><h3 id="3-2-2-构造函数"><a href="#3-2-2-构造函数" class="headerlink" title="3.2.2 构造函数"></a>3.2.2 构造函数</h3><pre><code>// default (1)    
+shared_future() noexcept;
+// copy (2)    
+shared_future (const shared_future&amp; x);
+// move (3)    
+shared_future (shared_future&amp;&amp; x) noexcept;
+// move from future (4)    
+shared_future (future&lt;T&gt;&amp;&amp; x) noexcept;
+</code></pre><ul>
+<li>其中move constuctors 后构造一个新的对象，但是旧的对象x不能共享shared state;</li>
+</ul>
+<h3 id="3-2-3-成员函数"><a href="#3-2-3-成员函数" class="headerlink" title="3.2.3 成员函数"></a>3.2.3 成员函数</h3><ul>
+<li>class shared_future&lt;&gt;的接口和class future&lt;&gt; 相同；</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-1e3de1ca5670b3b4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<hr>
 
       
     </div>
@@ -447,6 +734,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/STL/" rel="tag"># STL</a>
+          
+            <a href="/tags/Concurrency/" rel="tag"># Concurrency</a>
+          
+        </div>
+      
 
       
       
@@ -465,6 +760,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/21/STL-并发发-条件变量/" rel="prev" title="STL_并发发_条件变量">
+                STL_并发发_条件变量 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -523,8 +822,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -543,7 +851,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -565,7 +873,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -632,6 +940,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、-概述"><span class="nav-text">一、 概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、-Providers"><span class="nav-text">二、 Providers</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-asnyc"><span class="nav-text">2.1 asnyc()</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-1-构造函数"><span class="nav-text">2.1.1 构造函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-promise"><span class="nav-text">2.2 promise</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-模板参数"><span class="nav-text">2.2.1 模板参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-2-构造函数"><span class="nav-text">2.2.2 构造函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-3-成员函数"><span class="nav-text">2.2.3 成员函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-4-操作函数-详解"><span class="nav-text">2.2.4 操作函数 详解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-packaged-task"><span class="nav-text">2.3 packaged_task</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-1-函数模板"><span class="nav-text">2.3.1 函数模板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-2-构造函数"><span class="nav-text">2.3.2 构造函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-3-成员函数"><span class="nav-text">2.3.3 成员函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-4-操作函数详解"><span class="nav-text">2.3.4 操作函数详解</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、-Future"><span class="nav-text">三、 Future</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-Future"><span class="nav-text">3.1 Future</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-1-模板参数和构造函数"><span class="nav-text">3.1.1 模板参数和构造函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-2-操作函数"><span class="nav-text">3.1.2 操作函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-Shared-Future"><span class="nav-text">3.2 Shared Future</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-1-模板参数"><span class="nav-text">3.2.1 模板参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-2-构造函数"><span class="nav-text">3.2.2 构造函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-3-成员函数"><span class="nav-text">3.2.3 成员函数</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -659,7 +983,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">34.9k</span>
+    <span title="Site words total count">37.4k</span>
   
 </div>
 
