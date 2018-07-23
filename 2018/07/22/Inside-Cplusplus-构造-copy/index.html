@@ -112,7 +112,7 @@
 
 
 
-  <meta name="keywords" content="TensorFlow," />
+  <meta name="keywords" content="C++,constructor," />
 
 
 
@@ -125,36 +125,22 @@
 
 
 
-<meta name="description" content="1. 基本概念tensorflow不仅是一个软件库，还包括Tensorflow，Tensorboard,TensorServing;  Tensorflow中constants,variables,operators 称为：ops;  1.1 Constant optf.constant(value, dtype=None, shape=None, name=&amp;#39;Const&amp;#39;, ve">
-<meta name="keywords" content="TensorFlow">
+<meta name="description" content="参考资料：  深度探索c++对象模型第二章   概述 Deafault copy constructor  有三种情况，会以一个object的内容作为另一个class ojbject的初值；  赋值操作符`class x{…};X x;  X xx = x;  - 作为参数 void foo(X x); X xx;foo(xx);   // 产生copy - 函数回传 X foo(){…X xx;">
+<meta name="keywords" content="C++,constructor">
 <meta property="og:type" content="article">
-<meta property="og:title" content="1_Tensor_Learn_OPS_1">
-<meta property="og:url" content="https://jingxa.github.io/2018/06/21/1-Tensor-Learn-OPS-1/index.html">
+<meta property="og:title" content="Inside_Cplusplus_构造_copy">
+<meta property="og:url" content="https://jingxa.github.io/2018/07/22/Inside-Cplusplus-构造-copy/index.html">
 <meta property="og:site_name" content="Jingxa&#39;s Blog">
-<meta property="og:description" content="1. 基本概念tensorflow不仅是一个软件库，还包括Tensorflow，Tensorboard,TensorServing;  Tensorflow中constants,variables,operators 称为：ops;  1.1 Constant optf.constant(value, dtype=None, shape=None, name=&amp;#39;Const&amp;#39;, ve">
+<meta property="og:description" content="参考资料：  深度探索c++对象模型第二章   概述 Deafault copy constructor  有三种情况，会以一个object的内容作为另一个class ojbject的初值；  赋值操作符`class x{…};X x;  X xx = x;  - 作为参数 void foo(X x); X xx;foo(xx);   // 产生copy - 函数回传 X foo(){…X xx;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-51931d934a916970.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-c5db6be102722506.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-a2fa8fa2ae007f5d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-8502e3bd5a2c5d97.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-18ba5ab7b409d49b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-d11f279c7db31cc0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-3b675676bdb469d7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-1586df33c9136fcb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-4ec12108b8a3f45c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-27d7811b4186dcf4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-0ae8c3063d20cd86.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-d8cd33fe3bf21fac.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-ddc839d123dc7831.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-7616c685ca6085bc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-96befea16e1db0dd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-4aa75cfd5df45da3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-d94c5e020c92428c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-06-21T13:47:36.413Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-de8bc7bf83643fb3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-a717ba39b03919f8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-b3e4baf97ebfb19f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-07-23T06:38:33.378Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="1_Tensor_Learn_OPS_1">
-<meta name="twitter:description" content="1. 基本概念tensorflow不仅是一个软件库，还包括Tensorflow，Tensorboard,TensorServing;  Tensorflow中constants,variables,operators 称为：ops;  1.1 Constant optf.constant(value, dtype=None, shape=None, name=&amp;#39;Const&amp;#39;, ve">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5361608-51931d934a916970.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:title" content="Inside_Cplusplus_构造_copy">
+<meta name="twitter:description" content="参考资料：  深度探索c++对象模型第二章   概述 Deafault copy constructor  有三种情况，会以一个object的内容作为另一个class ojbject的初值；  赋值操作符`class x{…};X x;  X xx = x;  - 作为参数 void foo(X x); X xx;foo(xx);   // 产生copy - 函数回传 X foo(){…X xx;">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5361608-de8bc7bf83643fb3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -184,13 +170,13 @@
 
 
 
-  <link rel="canonical" href="https://jingxa.github.io/2018/06/21/1-Tensor-Learn-OPS-1/"/>
+  <link rel="canonical" href="https://jingxa.github.io/2018/07/22/Inside-Cplusplus-构造-copy/"/>
 
 
 
 
 
-  <title>1_Tensor_Learn_OPS_1 | Jingxa's Blog</title>
+  <title>Inside_Cplusplus_构造_copy | Jingxa's Blog</title>
   
 
 
@@ -327,7 +313,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://jingxa.github.io/2018/06/21/1-Tensor-Learn-OPS-1/">
+    <link itemprop="mainEntityOfPage" href="https://jingxa.github.io/2018/07/22/Inside-Cplusplus-构造-copy/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="jingxa">
@@ -344,7 +330,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">1_Tensor_Learn_OPS_1</h1>
+          <h1 class="post-title" itemprop="name headline">Inside_Cplusplus_构造_copy</h1>
         
 
         <div class="post-meta">
@@ -356,8 +342,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-21T21:44:43+08:00">
-                2018-06-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-22T15:23:46+08:00">
+                2018-07-22
               </time>
             
 
@@ -379,8 +365,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Standford-CS20/" itemprop="url" rel="index">
-                    <span itemprop="name">Standford_CS20</span>
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
                   </a>
                 </span>
 
@@ -397,8 +383,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/06/21/1-Tensor-Learn-OPS-1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/06/21/1-Tensor-Learn-OPS-1/" itemprop="commentsCount"></span>
+                <a href="/2018/07/22/Inside-Cplusplus-构造-copy/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/07/22/Inside-Cplusplus-构造-copy/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -420,7 +406,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  470
+                  987
                 </span>
               
 
@@ -436,7 +422,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  4
                 </span>
               
             </div>
@@ -457,93 +443,127 @@
       
 
       
-        <h1 id="1-基本概念"><a href="#1-基本概念" class="headerlink" title="1. 基本概念"></a>1. 基本概念</h1><p>tensorflow不仅是一个软件库，还包括Tensorflow，Tensorboard,TensorServing;</p>
-<ul>
-<li>Tensorflow中constants,variables,operators 称为：ops;</li>
-</ul>
-<h2 id="1-1-Constant-op"><a href="#1-1-Constant-op" class="headerlink" title="1.1 Constant op"></a>1.1 Constant op</h2><pre><code class="python">tf.constant(value, dtype=None, shape=None, name=&#39;Const&#39;, verify_shape=False)
-
-# constant of 1d tensor (vector)
-a = tf.constant([2, 2], name=&quot;vector&quot;)
-
-# constant of 2x2 tensor (matrix)
-b = tf.constant([[0, 1], [2, 3]], name=&quot;matrix&quot;)
-
-</code></pre>
-<p>创建 类似numpy的结构</p>
-<pre><code>tf.zeros(shape, dtype=tf.float32, name=None)
-# create a tensor of shape and all elements are zeros
-# ==&gt; [[0, 0, 0], [0, 0, 0]]
-tf.zeros([2, 3], tf.int32) 
-
-</code></pre><p>创建类似·input_tensor·的shape和type(除非指定)但是元素全部为0：</p>
-<pre><code>tf.zeros_like(input_tensor, dtype=None, name=None, optimize=True)
-
-# input_tensor [[0, 1], [2, 3], [4, 5]]
-tf.zeros_like(input_tensor)  #==&gt; [[0, 0], [0, 0], [0, 0]]
-</code></pre><ul>
-<li>创建一个tensor，所有元素都为1<br><code>`</code><br>tf.ones(shape.dtype  =  tf.float32  ,  name  =  None)</li>
-</ul>
-<p>tf.ones([  2  ,   3  ],  tf  .  int32  )  </p>
-<p> #==&gt;   [[  1  ,   1  ,   1  ],   [  1  ,   1  ,   1  ]]<br><code>`</code></p>
-<ul>
-<li>创建一个类似input_tensor的shape结构，数据type可以自定义,所有元素为1；</li>
-</ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-51931d934a916970.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<ul>
-<li>创建一个tensor ,并且使用一个标量填充；</li>
-</ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-c5db6be102722506.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<ul>
-<li>创建一个连续constant，包含start和stop；</li>
-</ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-a2fa8fa2ae007f5d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<ul>
-<li>从一个数开始创建一个constant 序列，但是不包括最后limit数；</li>
-</ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-8502e3bd5a2c5d97.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-18ba5ab7b409d49b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<ul>
-<li>但是，tensor不支持python的迭代器属性：</li>
-</ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-d11f279c7db31cc0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<ul>
-<li>tensorflow的随机生成：</li>
-</ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-3b675676bdb469d7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+        <p>参考资料：</p>
+<blockquote>
+<p>深度探索c++对象模型第二章</p>
+</blockquote>
 <hr>
-<h2 id="1-2-math-ops"><a href="#1-2-math-ops" class="headerlink" title="1.2 math ops"></a>1.2 math ops</h2><ul>
-<li><a href="https://www.tensorflow.org/api_guides/python/math_ops" target="_blank" rel="noopener">math_ops</a></li>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><ul>
+<li>Deafault copy constructor</li>
 </ul>
-<h3 id="1-2-1-division"><a href="#1-2-1-division" class="headerlink" title="1.2.1 division"></a>1.2.1 division</h3><p><img src="https://upload-images.jianshu.io/upload_images/5361608-1586df33c9136fcb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-4ec12108b8a3f45c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h3 id="1-2-2-add"><a href="#1-2-2-add" class="headerlink" title="1.2.2 add"></a>1.2.2 add</h3><p><img src="https://upload-images.jianshu.io/upload_images/5361608-27d7811b4186dcf4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h3 id="1-2-3-product"><a href="#1-2-3-product" class="headerlink" title="1.2.3 product"></a>1.2.3 product</h3><p><code>tf.matmul</code> 不等于dot product：<br><img src="https://upload-images.jianshu.io/upload_images/5361608-0ae8c3063d20cd86.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h3 id="1-2-4-ops-in-Python"><a href="#1-2-4-ops-in-Python" class="headerlink" title="1.2.4 ops in Python"></a>1.2.4 ops in Python</h3><p><img src="https://upload-images.jianshu.io/upload_images/5361608-d8cd33fe3bf21fac.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h2 id="1-3-Data-Type"><a href="#1-3-Data-Type" class="headerlink" title="1.3 Data Type"></a>1.3 Data Type</h2><h3 id="1-3-1-python-type"><a href="#1-3-1-python-type" class="headerlink" title="1.3.1 python type"></a>1.3.1 python type</h3><ul>
-<li>tensorflow 适配python原始类型：<ul>
-<li>python中的single value(boolean,numeric value,strings) =&gt; 0-d tensor（scalars）</li>
-<li>list : 1-d tensor</li>
-<li>list of list : 2-d tensor</li>
+<p>有三种情况，会以一个object的内容作为另一个class ojbject的初值；</p>
+<ul>
+<li>赋值操作符<br><code>`</code><br>class x{…};<br>X x;</li>
 </ul>
+<p>X xx = x; </p>
+<pre><code>- 作为参数
+</code></pre><p>void foo(X x);</p>
+<p>X xx;<br>foo(xx);   // 产生copy</p>
+<pre><code>- 函数回传
+</code></pre><p>X foo(){<br>…<br>X xx;<br> return xx;<br>}</p>
+<pre><code>这几种情况会导致临时object的产生；
+
+# 1 默认以成员为单位的初始化（Default Memberwise Initialization）和位逐次拷贝(Bitwise Copy Semantics)
+
+- 从概念上讲， 对于一个class X,“Default Memberwise Initialization”是被一个copy constructor 实现的；
+- 一个良好的编译器可以为大部分object产生`bitwise copies `, 因为它们有`bitwise copy semantics`
+- 因此，`default constructor` 和`copy constructor`在必要的时候才由编译器产生出来；
+
+## 1.1 位逐次拷贝
+- 如果一个class 展现`bitwise copy semantics`，就不需要合成一个默认构造函数；
+</code></pre><p>// 类的成员为POD类型<br>class Word{<br> public:<br>  Word(const char<em>);<br>  ~Word(){delete[] str;}<br>…<br>private:<br>  int cnt;<br>  char</em> str;<br>};</p>
+<pre><code>在这个类中，并不需要合成一个默认的copy constructor， 因为上述声明占星了“default copy semantics”；
+
+
+## 1.2 Default memberwise Initialization
+- 当一个class 未展现出`bitwise copy semantics`时，必须合成一个copy constructor；
+
+-  使用`default memberwise Initializatioon`方式构造； 
+
+例子：
+</code></pre><p>class Word{<br> public:<br>  Word(const string&amp;);<br>  ~Word(){delete[] str;}<br>…<br>private:<br>  int cnt;<br>  string  str;<br>};</p>
+<pre><code>- 其中，string class 拥有explicit copy constructor;
+
+编译器合成一个copy constructor， 以便调用string object的copy constructor;
+
+</code></pre><p>// c++ 伪代码<br>// 编译合成版本<br>inline Word::Word( const Word&amp; wd){<br>  str.string::string(wd.str);<br>  cnt = wd.cnt;<br>}</p>
+<pre><code>- 合成的copy constructor中， 整数，指针，数组等nonclass members 也被复制；
+
+## 1.3 不要 Bitwise Copy Semantics
+有四种情况：
+
+- 1. 当class 内部的一个member object 含有copy constructor(不论是声明（如string）者是编译器合成(如Word)的时候);
+
+- 2. 当class 继承自一个base class，而基类含有一个copy constructor的时候；
+
+- 3 当class 声明了一个或多个virtual functions；
+
+- 4. 当class 派生自一个继承链，其中有一个或多个virtual base classes；
+
+
+# 2. Virtual Table 的指针
+
+</code></pre><p>class ZooAnimal{<br>public:<br>    ZooAnimal();<br>    virtual  ~ZooAnimal();</p>
+<pre><code>virtual void animate();
+virtual void draw();
+// ...
+</code></pre><p>private:<br>    // animate()和draw()需要的数据<br>};</p>
+<p>class Bear: public ZooAnimal{<br>public:<br>    Bear();<br>    virtual void animate();<br>    virtual void draw();<br>    virtual void dance();<br>    // …<br>private:<br>    // 几个函数的数据<br>};</p>
+<pre><code>
+## 2.1 同类型的copy
+- 当ZooAnimal利用另一个 ZooAnimal 作为初值，Bear 以另一个 Bear作为初值，都可以直接靠“ bitwise copy semantics ”完成
+
+- yoqi被默认构造函数初始化， vptr被设定为Bear class 的虚函数表，而winnie 拷贝 yoqi 的vptr是安全的；
+
+```c++
+Bear yoqi;
+Bear winnie = yoqi;
+</code></pre><p><img src="https://upload-images.jianshu.io/upload_images/5361608-de8bc7bf83643fb3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="2-2-派生和基类的copy"><a href="#2-2-派生和基类的copy" class="headerlink" title="2.2 派生和基类的copy"></a>2.2 派生和基类的copy</h2><ul>
+<li><p>但是，当一个基类使用派生类的object 内容做初始化操作，franny 的vptr不能指向Bear的虚函数表，（如果使用“ bitwise copy”）导致错误；</p>
+</li>
+<li><p>因此，合成出来的 ZooAnimal copy constructor 会明确设定object的vptr指向ZooAnimal 的虚函数表，而不是直接从 右边的class object拷贝过来；</p>
 </li>
 </ul>
-<p>等等；</p>
-<p>例如： </p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-ddc839d123dc7831.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-7616c685ca6085bc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h3 id="1-3-2-tensor-type"><a href="#1-3-2-tensor-type" class="headerlink" title="1.3.2 tensor type"></a>1.3.2 tensor type</h3><ul>
-<li><a href="https://www.tensorflow.org/api_docs/python/tf/DType" target="_blank" rel="noopener">全部类型</a></li>
+<pre><code>ZooAnimal franny = yoqi; // 这回发生切割行为；
+</code></pre><p><img src="https://upload-images.jianshu.io/upload_images/5361608-a717ba39b03919f8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="2-3-virtual-base-class-subojbect"><a href="#2-3-virtual-base-class-subojbect" class="headerlink" title="2.3 virtual base class subojbect"></a>2.3 virtual base class subojbect</h2><ol>
+<li>一个<code>class object</code> 以另一个object作为初值，后者拥有<code>virtual base class subojbect</code>,会使 “<code>bitwise copy</code>”失效；</li>
+</ol>
+<ul>
+<li>编译器都虚拟继承的承诺： </li>
 </ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-96befea16e1db0dd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-4aa75cfd5df45da3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h3 id="1-3-3-numpy-Type"><a href="#1-3-3-numpy-Type" class="headerlink" title="1.3.3 numpy Type"></a>1.3.3 numpy Type</h3><ul>
-<li>tensor 的type基于numpy的type，因此例如 <code>tf.int32 == np.int32</code> 返回true;<br>在tensor中可以传递numpy的type：</li>
+<ol>
+<li>让派生类对象中的“<code>virtual base class subojbect</code>位置”在执行器准备好；</li>
+<li>“Bitwise copy”会破坏这个位置，所以编译器合成的copy constructor中使用memberwise 的初始化；</li>
+</ol>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-b3e4baf97ebfb19f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<pre><code>
+/*
+    编译器产生的代码：
+    1. 调用 ZooAnimal 的默认构造函数，
+    2. 将 Raccon 的vptr 初始化
+    3. 并且在 Raccon 中定位出 ZooAnimal subojbect的位置
+    这些代码安插在 Raccon 的两个constructor 中的最前部分；
+*/
+
+class Raccon: public virtual ZooAnimal{
+public:
+    Raccon(){ /*设定 private的初值*/}
+    Raccon(int val){/* 初始值设定*/}
+    // ..
+private:
+    // 所有数据
+};
+</code></pre><ul>
+<li>[注意]</li>
 </ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-d94c5e020c92428c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p> <strong>1.tensor 和numpy的boolean，numeric value相互匹配；但是string不是完全匹配，tf能够导入numpy strings，只是不要指定numpy的dtypes;</strong></p>
-<p><strong>2.numpy  不支持gpu,tensorflow 支持；</strong> </p>
-<p><strong>3.tensorflow能够推断数据类型状态：如integer： tf中有：8-bit,16-bit,32-bit,64bit可用，但是python不能推断使用的那种数据类型</strong></p>
+<ol>
+<li><p>如果 Raccon object利用另一个 Raccon object 作为初始值；那么 <code>bitwise copy</code>足够；</p>
+</li>
+<li><p>但是如果使用 派生类来作为基类的初值，编译器必须合成一个copy constructor，为了使vptr指向正确的位置；然后对每一个members执行必要的<code>memberwise</code>的初始化；</p>
+</li>
+</ol>
 <hr>
 
       
@@ -565,7 +585,7 @@ tf.zeros_like(input_tensor)  #==&gt; [[0, 0], [0, 0], [0, 0]]
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://jingxa.github.io/2018/06/21/1-Tensor-Learn-OPS-1/" title="1_Tensor_Learn_OPS_1">https://jingxa.github.io/2018/06/21/1-Tensor-Learn-OPS-1/</a>
+    <a href="https://jingxa.github.io/2018/07/22/Inside-Cplusplus-构造-copy/" title="Inside_Cplusplus_构造_copy">https://jingxa.github.io/2018/07/22/Inside-Cplusplus-构造-copy/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -580,7 +600,9 @@ tf.zeros_like(input_tensor)  #==&gt; [[0, 0], [0, 0], [0, 0]]
       
         <div class="post-tags">
           
-            <a href="/tags/TensorFlow/" rel="tag"># TensorFlow</a>
+            <a href="/tags/C/" rel="tag"># C++</a>
+          
+            <a href="/tags/constructor/" rel="tag"># constructor</a>
           
         </div>
       
@@ -593,8 +615,8 @@ tf.zeros_like(input_tensor)  #==&gt; [[0, 0], [0, 0], [0, 0]]
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/19/cs231a-homework-1/" rel="next" title="cs231a-homework-1">
-                <i class="fa fa-chevron-left"></i> cs231a-homework-1
+              <a href="/2018/07/21/Inside-Cplusplus-构造-default/" rel="next" title="Inside_Cplusplus_构造_default">
+                <i class="fa fa-chevron-left"></i> Inside_Cplusplus_构造_default
               </a>
             
           </div>
@@ -602,10 +624,6 @@ tf.zeros_like(input_tensor)  #==&gt; [[0, 0], [0, 0], [0, 0]]
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/21/1-Tensor-Learn-OPS-2/" rel="prev" title="1_Tensor_Learn_OPS_2">
-                1_Tensor_Learn_OPS_2 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -791,7 +809,7 @@ tf.zeros_like(input_tensor)  #==&gt; [[0, 0], [0, 0], [0, 0]]
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-基本概念"><span class="nav-text">1. 基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-Constant-op"><span class="nav-text">1.1 Constant op</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-math-ops"><span class="nav-text">1.2 math ops</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-division"><span class="nav-text">1.2.1 division</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-2-add"><span class="nav-text">1.2.2 add</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-3-product"><span class="nav-text">1.2.3 product</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-4-ops-in-Python"><span class="nav-text">1.2.4 ops in Python</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-Data-Type"><span class="nav-text">1.3 Data Type</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-1-python-type"><span class="nav-text">1.3.1 python type</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-2-tensor-type"><span class="nav-text">1.3.2 tensor type</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-3-numpy-Type"><span class="nav-text">1.3.3 numpy Type</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-派生和基类的copy"><span class="nav-text">2.2 派生和基类的copy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-virtual-base-class-subojbect"><span class="nav-text">2.3 virtual base class subojbect</span></a></li></ol></li></ol></div>
             
 
           </div>
