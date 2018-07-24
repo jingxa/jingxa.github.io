@@ -125,21 +125,21 @@
 
 
 
-<meta name="description" content="参考资料：  深度探索c++对象模型第二章   概述 Deafault copy constructor  有三种情况，会以一个object的内容作为另一个class ojbject的初值；  赋值操作符`class x{…};X x;  X xx = x;  - 作为参数 void foo(X x); X xx;foo(xx);   // 产生copy - 函数回传 X foo(){…X xx;">
+<meta name="description" content="参考资料：  深度探索c++对象模型第二章   概述 Deafault copy constructor  有三种情况，会以一个object的内容作为另一个class ojbject的初值；  赋值操作符  class x{...}; X x;  X xx = x;   作为参数  void foo(X x);  X xx;  foo(xx);   // 产生copy  函数回传  X foo()">
 <meta name="keywords" content="C++,constructor">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Inside_Cplusplus_构造_copy">
 <meta property="og:url" content="https://jingxa.github.io/2018/07/22/Inside-Cplusplus-构造-copy/index.html">
 <meta property="og:site_name" content="Jingxa&#39;s Blog">
-<meta property="og:description" content="参考资料：  深度探索c++对象模型第二章   概述 Deafault copy constructor  有三种情况，会以一个object的内容作为另一个class ojbject的初值；  赋值操作符`class x{…};X x;  X xx = x;  - 作为参数 void foo(X x); X xx;foo(xx);   // 产生copy - 函数回传 X foo(){…X xx;">
+<meta property="og:description" content="参考资料：  深度探索c++对象模型第二章   概述 Deafault copy constructor  有三种情况，会以一个object的内容作为另一个class ojbject的初值；  赋值操作符  class x{...}; X x;  X xx = x;   作为参数  void foo(X x);  X xx;  foo(xx);   // 产生copy  函数回传  X foo()">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-de8bc7bf83643fb3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-a717ba39b03919f8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-b3e4baf97ebfb19f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-07-23T06:38:33.378Z">
+<meta property="og:updated_time" content="2018-07-24T02:51:28.160Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Inside_Cplusplus_构造_copy">
-<meta name="twitter:description" content="参考资料：  深度探索c++对象模型第二章   概述 Deafault copy constructor  有三种情况，会以一个object的内容作为另一个class ojbject的初值；  赋值操作符`class x{…};X x;  X xx = x;  - 作为参数 void foo(X x); X xx;foo(xx);   // 产生copy - 函数回传 X foo(){…X xx;">
+<meta name="twitter:description" content="参考资料：  深度探索c++对象模型第二章   概述 Deafault copy constructor  有三种情况，会以一个object的内容作为另一个class ojbject的初值；  赋值操作符  class x{...}; X x;  X xx = x;   作为参数  void foo(X x);  X xx;  foo(xx);   // 产生copy  函数回传  X foo()">
 <meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5361608-de8bc7bf83643fb3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
@@ -406,7 +406,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  987
+                  985
                 </span>
               
 
@@ -453,72 +453,125 @@
 </ul>
 <p>有三种情况，会以一个object的内容作为另一个class ojbject的初值；</p>
 <ul>
-<li>赋值操作符<br><code>`</code><br>class x{…};<br>X x;</li>
+<li>赋值操作符</li>
 </ul>
-<p>X xx = x; </p>
-<pre><code>- 作为参数
-</code></pre><p>void foo(X x);</p>
-<p>X xx;<br>foo(xx);   // 产生copy</p>
-<pre><code>- 函数回传
-</code></pre><p>X foo(){<br>…<br>X xx;<br> return xx;<br>}</p>
-<pre><code>这几种情况会导致临时object的产生；
+<pre><code>class x{...};
+X x;
 
-# 1 默认以成员为单位的初始化（Default Memberwise Initialization）和位逐次拷贝(Bitwise Copy Semantics)
+X xx = x; 
+</code></pre><ul>
+<li>作为参数</li>
+</ul>
+<pre><code>void foo(X x);
 
-- 从概念上讲， 对于一个class X,“Default Memberwise Initialization”是被一个copy constructor 实现的；
-- 一个良好的编译器可以为大部分object产生`bitwise copies `, 因为它们有`bitwise copy semantics`
-- 因此，`default constructor` 和`copy constructor`在必要的时候才由编译器产生出来；
+X xx; 
+foo(xx);   // 产生copy
+</code></pre><ul>
+<li>函数回传</li>
+</ul>
+<pre><code>X foo(){
+...
+X xx;
+ return xx;
+}
+</code></pre><p>这几种情况会导致临时object的产生；</p>
+<h1 id="1-默认以成员为单位的初始化（Default-Memberwise-Initialization）和位逐次拷贝-Bitwise-Copy-Semantics"><a href="#1-默认以成员为单位的初始化（Default-Memberwise-Initialization）和位逐次拷贝-Bitwise-Copy-Semantics" class="headerlink" title="1 默认以成员为单位的初始化（Default Memberwise Initialization）和位逐次拷贝(Bitwise Copy Semantics)"></a>1 默认以成员为单位的初始化（Default Memberwise Initialization）和位逐次拷贝(Bitwise Copy Semantics)</h1><ul>
+<li>从概念上讲， 对于一个class X,“Default Memberwise Initialization”是被一个copy constructor 实现的；</li>
+<li>一个良好的编译器可以为大部分object产生<code>bitwise copies</code>, 因为它们有<code>bitwise copy semantics</code></li>
+<li>因此，<code>default constructor</code> 和<code>copy constructor</code>在必要的时候才由编译器产生出来；</li>
+</ul>
+<h2 id="1-1-位逐次拷贝"><a href="#1-1-位逐次拷贝" class="headerlink" title="1.1 位逐次拷贝"></a>1.1 位逐次拷贝</h2><ul>
+<li>如果一个class 展现<code>bitwise copy semantics</code>，就不需要合成一个默认构造函数；</li>
+</ul>
+<pre><code>// 类的成员为POD类型
+class Word{
+ public:
+  Word(const char*);  
+  ~Word(){delete[] str;}
+...
+private:
+  int cnt;
+  char* str;
+};
+</code></pre><p>在这个类中，并不需要合成一个默认的copy constructor， 因为上述声明占星了“default copy semantics”；</p>
+<h2 id="1-2-Default-memberwise-Initialization"><a href="#1-2-Default-memberwise-Initialization" class="headerlink" title="1.2 Default memberwise Initialization"></a>1.2 Default memberwise Initialization</h2><ul>
+<li><p>当一个class 未展现出<code>bitwise copy semantics</code>时，必须合成一个copy constructor；</p>
+</li>
+<li><p>使用<code>default memberwise Initializatioon</code>方式构造； </p>
+</li>
+</ul>
+<p>例子：</p>
+<pre><code>class Word{
+ public:
+  Word(const string&amp;);  
+  ~Word(){delete[] str;}
+...
+private:
+  int cnt;
+  string  str;
+};
+</code></pre><ul>
+<li>其中，string class 拥有explicit copy constructor;</li>
+</ul>
+<p>编译器合成一个copy constructor， 以便调用string object的copy constructor;</p>
+<pre><code>// c++ 伪代码
+// 编译合成版本
+inline Word::Word( const Word&amp; wd){
+  str.string::string(wd.str);
+  cnt = wd.cnt;
+}
+</code></pre><ul>
+<li>合成的copy constructor中， 整数，指针，数组等nonclass members 也被复制；</li>
+</ul>
+<h2 id="1-3-不要-Bitwise-Copy-Semantics"><a href="#1-3-不要-Bitwise-Copy-Semantics" class="headerlink" title="1.3 不要 Bitwise Copy Semantics"></a>1.3 不要 Bitwise Copy Semantics</h2><p>有四种情况：</p>
+<ul>
+<li><ol>
+<li>当class 内部的一个member object 含有copy constructor(不论是声明（如string）者是编译器合成(如Word)的时候);</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>当class 继承自一个base class，而基类含有一个copy constructor的时候；</li>
+</ol>
+</li>
+<li><p>3 当class 声明了一个或多个virtual functions；</p>
+</li>
+<li><ol start="4">
+<li>当class 派生自一个继承链，其中有一个或多个virtual base classes；</li>
+</ol>
+</li>
+</ul>
+<h1 id="2-Virtual-Table-的指针"><a href="#2-Virtual-Table-的指针" class="headerlink" title="2. Virtual Table 的指针"></a>2. Virtual Table 的指针</h1><pre><code>class ZooAnimal{
+public:
+    ZooAnimal();
+    virtual  ~ZooAnimal();
 
-## 1.1 位逐次拷贝
-- 如果一个class 展现`bitwise copy semantics`，就不需要合成一个默认构造函数；
-</code></pre><p>// 类的成员为POD类型<br>class Word{<br> public:<br>  Word(const char<em>);<br>  ~Word(){delete[] str;}<br>…<br>private:<br>  int cnt;<br>  char</em> str;<br>};</p>
-<pre><code>在这个类中，并不需要合成一个默认的copy constructor， 因为上述声明占星了“default copy semantics”；
+    virtual void animate();
+    virtual void draw();
+    // ...
+private:
+    // animate()和draw()需要的数据
+};
 
-
-## 1.2 Default memberwise Initialization
-- 当一个class 未展现出`bitwise copy semantics`时，必须合成一个copy constructor；
-
--  使用`default memberwise Initializatioon`方式构造； 
-
-例子：
-</code></pre><p>class Word{<br> public:<br>  Word(const string&amp;);<br>  ~Word(){delete[] str;}<br>…<br>private:<br>  int cnt;<br>  string  str;<br>};</p>
-<pre><code>- 其中，string class 拥有explicit copy constructor;
-
-编译器合成一个copy constructor， 以便调用string object的copy constructor;
-
-</code></pre><p>// c++ 伪代码<br>// 编译合成版本<br>inline Word::Word( const Word&amp; wd){<br>  str.string::string(wd.str);<br>  cnt = wd.cnt;<br>}</p>
-<pre><code>- 合成的copy constructor中， 整数，指针，数组等nonclass members 也被复制；
-
-## 1.3 不要 Bitwise Copy Semantics
-有四种情况：
-
-- 1. 当class 内部的一个member object 含有copy constructor(不论是声明（如string）者是编译器合成(如Word)的时候);
-
-- 2. 当class 继承自一个base class，而基类含有一个copy constructor的时候；
-
-- 3 当class 声明了一个或多个virtual functions；
-
-- 4. 当class 派生自一个继承链，其中有一个或多个virtual base classes；
-
-
-# 2. Virtual Table 的指针
-
-</code></pre><p>class ZooAnimal{<br>public:<br>    ZooAnimal();<br>    virtual  ~ZooAnimal();</p>
-<pre><code>virtual void animate();
-virtual void draw();
-// ...
-</code></pre><p>private:<br>    // animate()和draw()需要的数据<br>};</p>
-<p>class Bear: public ZooAnimal{<br>public:<br>    Bear();<br>    virtual void animate();<br>    virtual void draw();<br>    virtual void dance();<br>    // …<br>private:<br>    // 几个函数的数据<br>};</p>
-<pre><code>
-## 2.1 同类型的copy
-- 当ZooAnimal利用另一个 ZooAnimal 作为初值，Bear 以另一个 Bear作为初值，都可以直接靠“ bitwise copy semantics ”完成
-
-- yoqi被默认构造函数初始化， vptr被设定为Bear class 的虚函数表，而winnie 拷贝 yoqi 的vptr是安全的；
-
-```c++
-Bear yoqi;
+class Bear: public ZooAnimal{
+public:
+    Bear();
+    virtual void animate();
+    virtual void draw();
+    virtual void dance();
+    // ...
+private:
+    // 几个函数的数据
+};
+</code></pre><h2 id="2-1-同类型的copy"><a href="#2-1-同类型的copy" class="headerlink" title="2.1 同类型的copy"></a>2.1 同类型的copy</h2><ul>
+<li><p>当ZooAnimal利用另一个 ZooAnimal 作为初值，Bear 以另一个 Bear作为初值，都可以直接靠“ bitwise copy semantics ”完成</p>
+</li>
+<li><p>yoqi被默认构造函数初始化， vptr被设定为Bear class 的虚函数表，而winnie 拷贝 yoqi 的vptr是安全的；</p>
+</li>
+</ul>
+<pre><code class="c++">Bear yoqi;
 Bear winnie = yoqi;
-</code></pre><p><img src="https://upload-images.jianshu.io/upload_images/5361608-de8bc7bf83643fb3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+</code></pre>
+<p><img src="https://upload-images.jianshu.io/upload_images/5361608-de8bc7bf83643fb3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <h2 id="2-2-派生和基类的copy"><a href="#2-2-派生和基类的copy" class="headerlink" title="2.2 派生和基类的copy"></a>2.2 派生和基类的copy</h2><ul>
 <li><p>但是，当一个基类使用派生类的object 内容做初始化操作，franny 的vptr不能指向Bear的虚函数表，（如果使用“ bitwise copy”）导致错误；</p>
 </li>
@@ -809,7 +862,7 @@ private:
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-派生和基类的copy"><span class="nav-text">2.2 派生和基类的copy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-virtual-base-class-subojbect"><span class="nav-text">2.3 virtual base class subojbect</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-默认以成员为单位的初始化（Default-Memberwise-Initialization）和位逐次拷贝-Bitwise-Copy-Semantics"><span class="nav-text">1 默认以成员为单位的初始化（Default Memberwise Initialization）和位逐次拷贝(Bitwise Copy Semantics)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-位逐次拷贝"><span class="nav-text">1.1 位逐次拷贝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-Default-memberwise-Initialization"><span class="nav-text">1.2 Default memberwise Initialization</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-不要-Bitwise-Copy-Semantics"><span class="nav-text">1.3 不要 Bitwise Copy Semantics</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Virtual-Table-的指针"><span class="nav-text">2. Virtual Table 的指针</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-同类型的copy"><span class="nav-text">2.1 同类型的copy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-派生和基类的copy"><span class="nav-text">2.2 派生和基类的copy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-virtual-base-class-subojbect"><span class="nav-text">2.3 virtual base class subojbect</span></a></li></ol></li></ol></div>
             
 
           </div>
