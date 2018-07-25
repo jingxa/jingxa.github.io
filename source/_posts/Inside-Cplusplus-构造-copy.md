@@ -16,20 +16,25 @@ categories:
 
 有三种情况，会以一个object的内容作为另一个class ojbject的初值；
 - 赋值操作符
+
 ```
 class x{...};
 X x;
 
 X xx = x; 
 ```
+
 - 作为参数
+
 ```
 void foo(X x);
 
 X xx; 
 foo(xx);   // 产生copy
 ```
+
 - 函数回传
+
 ```
 X foo(){
 ...
@@ -47,6 +52,7 @@ X xx;
 
 ## 1.1 位逐次拷贝
 - 如果一个class 展现`bitwise copy semantics`，就不需要合成一个默认构造函数；
+
 ```
 // 类的成员为POD类型
 class Word{
@@ -59,6 +65,7 @@ private:
   char* str;
 };
 ```
+
 在这个类中，并不需要合成一个默认的copy constructor， 因为上述声明占星了“default copy semantics”；
 
 
@@ -68,6 +75,7 @@ private:
 -  使用`default memberwise Initializatioon`方式构造； 
 
 例子：
+
 ```
 class Word{
  public:
@@ -79,9 +87,11 @@ private:
   string  str;
 };
 ```
+
 - 其中，string class 拥有explicit copy constructor;
 
 编译器合成一个copy constructor， 以便调用string object的copy constructor;
+
 
 ```
 // c++ 伪代码
@@ -91,6 +101,7 @@ inline Word::Word( const Word& wd){
   cnt = wd.cnt;
 }
 ```
+
 - 合成的copy constructor中， 整数，指针，数组等nonclass members 也被复制；
 
 ## 1.3 不要 Bitwise Copy Semantics
@@ -106,6 +117,7 @@ inline Word::Word( const Word& wd){
 
 
 # 2. Virtual Table 的指针
+
 
 ```
 class ZooAnimal{
@@ -150,6 +162,7 @@ Bear winnie = yoqi;
 - 但是，当一个基类使用派生类的object 内容做初始化操作，franny 的vptr不能指向Bear的虚函数表，（如果使用“ bitwise copy”）导致错误；
 	
 - 因此，合成出来的 ZooAnimal copy constructor 会明确设定object的vptr指向ZooAnimal 的虚函数表，而不是直接从 右边的class object拷贝过来；
+
 
 ```
 ZooAnimal franny = yoqi; // 这回发生切割行为；
