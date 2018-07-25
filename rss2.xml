@@ -8,8 +8,32 @@
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>单影无人相依偎！</description>
-    <pubDate>Tue, 24 Jul 2018 02:51:28 GMT</pubDate>
+    <pubDate>Wed, 25 Jul 2018 03:27:35 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Inside_Cplusplus_data</title>
+      <link>https://jingxa.github.io/2018/07/25/Inside-Cplusplus-data/</link>
+      <guid>https://jingxa.github.io/2018/07/25/Inside-Cplusplus-data/</guid>
+      <pubDate>Wed, 25 Jul 2018 03:26:00 GMT</pubDate>
+      <description>
+      
+        
+        
+          &lt;p&gt;参考资料：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;深度探索c++对象模型第三章&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h1 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h1&gt;&lt;pre&gt;&lt;
+        
+      
+      </description>
+      
+      <content:encoded><![CDATA[<p>参考资料：</p><blockquote><p>深度探索c++对象模型第三章</p></blockquote><hr><h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><pre><code>class A{};class B: public virtual A{};class C: public virtual A{};class D: public B, public C{ char c;};   cout&lt;&lt;&quot;A:&quot;&lt;&lt;sizeof(A)&lt;&lt;endl;   cout&lt;&lt;&quot;B:&quot;&lt;&lt;sizeof(B)&lt;&lt;endl;   cout&lt;&lt;&quot;C:&quot;&lt;&lt;sizeof(C)&lt;&lt;endl;   cout&lt;&lt;&quot;D:&quot;&lt;&lt;sizeof(D)&lt;&lt;endl;</code></pre><p>结果为：</p><pre><code>A:1B:4C:4D:12</code></pre><ul><li><p>一个空类，<code>sizeof(A) == 1 byte</code>（这是编译器安插的一个char,是这个class对象在内存中有独一的地址）</p></li><li><p>当虚拟继承一个类的时候，类中存放了指向<code>virtual base class subobject</code>的相关的指针(本编译器指针为4bytes):</p><ul><li>但是，B,C为什么为4 bytes不为5bytes ? 因为，指向virtual base class的指针占据了类的开头，有了成员，则不需要编译器安插一个char；</li></ul></li><li><p>Alignment的限制；在32位计算机上，为了使bus的效率达到最高，一般采取内存对齐的方式；如B,C刚好4bytes，</p></li><li><p>对于类D:</p><ul><li>一个<code>virtual base class subobject</code>只会在派生类中存在一份实体</li><li>被大家共享的A只有一个实体， 大小为1bytes;(有了成员就会忽略)</li><li>B和C加起来为8bytes;</li><li>class D中有一个<code>char</code>  1byte;<br>因此，D中（两个指针，一个char），对齐后为12bytes;</li></ul></li></ul><p>如图中， X:为A, Y,Z为B,C;<br><img src="https://upload-images.jianshu.io/upload_images/5361608-9d9ed4f62b0d8c5f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p><h1 id="1-data-member-的绑定"><a href="#1-data-member-的绑定" class="headerlink" title="1. data member 的绑定"></a>1. data member 的绑定</h1><pre><code>typedef    int length;class Point3d{public:    // length 被决议为global length    void mumble(length val){_val = val;}    length mumble(){return _val;}    //...private:    // length 的声明要放在“本class 对它的第一个参考之前”    // 这个length会导致前面的操作 非法    typedef float length;    length _val;    // ...};</code></pre><h1 id="2-data-member-的布局"><a href="#2-data-member-的布局" class="headerlink" title="2. data member 的布局"></a>2. data member 的布局</h1><ol><li>Nonstatic data member在class object 的<pre><code> 同一access section（public, private, protected）中的排列顺序和声明顺序一样</code></pre></li></ol><pre><code>// 例子class Point3d{public:    // ..private:    float x;    static List&lt;Point3d*&gt; *freeeList;    float y;    static const int chunksize = 250;    float z;}; // 等价于class Point3d{public:    // ..private:    float x;    static List&lt;Point3d*&gt; *freeeList;private:    float y;    static const int chunksize = 250;private:    float z;}; </code></pre><h1 id="3-data-Member-的存取"><a href="#3-data-Member-的存取" class="headerlink" title="3. data Member 的存取"></a>3. data Member 的存取</h1><p>对于一个</p><pre><code>    Point3d origin, *pt = &amp;origin;    origin.x  = 0.0;    pt -&gt; x = 0.0;</code></pre><p>这两种存取方式的差异</p><ul><li>如果point3d是一个派生类，在其继承结构中有一个virtual base class，并且被存取的是一个virtual base class 中继承来的member时， 必须要等待执行器才能确定pt指向哪一种class type; </li></ul><ul><li>static data member 的存取<br>static data member 存放在 global data segment中， 取static data member 的地址得到的是一个指向static data的指针；</li></ul><h1 id="4-继承"><a href="#4-继承" class="headerlink" title="4. 继承"></a>4. 继承</h1><h2 id="4-1-只继承没有多态"><a href="#4-1-只继承没有多态" class="headerlink" title="4.1 只继承没有多态"></a>4.1 只继承没有多态</h2><p><img src="https://upload-images.jianshu.io/upload_images/5361608-581623f1f3ac1e04.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p><p><img src="https://upload-images.jianshu.io/upload_images/5361608-294830430c13f41e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p><ul><li>继承中的问题：<ul><li>把一个class 分解成多个层继承，导致class 膨胀；</li></ul></li></ul><p><img src="https://upload-images.jianshu.io/upload_images/5361608-871ea6f095a60a46.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p><p>对于图中的类，我们可以定义三个层级的继承；</p><p><img src="https://upload-images.jianshu.io/upload_images/5361608-bd4e21e54c753ffb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p><p>继承的布局为：</p><p><img src="https://upload-images.jianshu.io/upload_images/5361608-7af278ee7d673e6e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p><ul><li>如图所示，每个类由于内存对齐，有了很多的padding;</li></ul><p>但是，如果把padding去掉，破坏“<code>base class subobject</code>”的完整性，导致的后果如下：</p><p><img src="https://upload-images.jianshu.io/upload_images/5361608-aa0c26f7447bfd19.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p><h2 id="4-2-加上多态"><a href="#4-2-加上多态" class="headerlink" title="4.2 加上多态"></a>4.2 加上多态</h2><h3 id="4-2-1-多态继承"><a href="#4-2-1-多态继承" class="headerlink" title="4.2.1 多态继承"></a>4.2.1 多态继承</h3><ul><li>对于虚函数，类必须产生一个vptr指向虚函数表；</li></ul><pre><code>struct no_virts{    int d1,d2;};class has_virts: public no_virts{public:    virtual void foo();    // ...private:    int d3;};</code></pre><p>内存布局为：<br><img src="https://upload-images.jianshu.io/upload_images/5361608-a85603d750f45665.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p><h3 id="4-2-2-vptr的内存布局"><a href="#4-2-2-vptr的内存布局" class="headerlink" title="4.2.2  vptr的内存布局"></a>4.2.2  vptr的内存布局</h3><p>vptr的布局一般放在class object 的开头或者结尾；</p><ul><li><p>结尾：能够保留<code>base class C struct</code>的对象布局，因而能够在c程序代码中使用；</p></li><li><p>前端： “在多重继承下， 通过指向class members的指针调用virtual function”，会有帮助；</p></li></ul><h3 id="4-2-3-多重继承"><a href="#4-2-3-多重继承" class="headerlink" title="4.2.3 多重继承"></a>4.2.3 多重继承</h3><p><img src="https://upload-images.jianshu.io/upload_images/5361608-9721f7d43e638aa2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p><ul><li><code>point2d</code> ,<code>Vertex</code>两个类含有virtual接口<br>内存布局为：</li></ul><p><img src="https://upload-images.jianshu.io/upload_images/5361608-57cc458f7cbe08d5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p><h2 id="4-3-虚拟继承"><a href="#4-3-虚拟继承" class="headerlink" title="4.3 虚拟继承"></a>4.3 虚拟继承</h2><p><img src="https://upload-images.jianshu.io/upload_images/5361608-e374d8b25ef6a23a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p><ul><li><code>Vertex</code>和<code>Point3d</code>虚拟继承Point2d</li><li>·<code>Vertex3d</code>普通继承两个类；</li></ul><p><img src="https://upload-images.jianshu.io/upload_images/5361608-9f0e2f2fc058764f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p><ul><li>对于<code>virtual base class</code>：</li></ul><p>【方法一】：</p><ul><li>在每个<code>vritual base class</code> 的派生类中加入一个指针，指向<code>virtual base class</code><ul><li>如图3.5a</li></ul></li></ul><p>【方法二】：</p><ul><li>c++在<code>virtual function table</code> 中放置<code>virtual base class</code>的offset,<code>virtual function table</code>通过正负索引来判断；</li><li>索引为正值，索引到虚函数</li><li>索引为负值，索引到<code>virtual base class</code>的offsets</li></ul><p>如图所示:<br><img src="https://upload-images.jianshu.io/upload_images/5361608-aaa028bbf0650183.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p><hr>]]></content:encoded>
+      
+      <comments>https://jingxa.github.io/2018/07/25/Inside-Cplusplus-data/#disqus_thread</comments>
+    </item>
     
     <item>
       <title>Inside_Cplusplus_构造_copy</title>
@@ -102,30 +126,6 @@
       <content:encoded><![CDATA[<hr>]]></content:encoded>
       
       <comments>https://jingxa.github.io/2018/07/21/STL-%E5%B9%B6%E5%8F%91-%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9C/#disqus_thread</comments>
-    </item>
-    
-    <item>
-      <title>STL_并发发_条件变量</title>
-      <link>https://jingxa.github.io/2018/07/21/STL-%E5%B9%B6%E5%8F%91%E5%8F%91-%E6%9D%A1%E4%BB%B6%E5%8F%98%E9%87%8F/</link>
-      <guid>https://jingxa.github.io/2018/07/21/STL-%E5%B9%B6%E5%8F%91%E5%8F%91-%E6%9D%A1%E4%BB%B6%E5%8F%98%E9%87%8F/</guid>
-      <pubDate>Sat, 21 Jul 2018 11:21:38 GMT</pubDate>
-      <description>
-      
-        
-        
-          &lt;p&gt;参考资料：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;c++ 标准库 (第二版)&lt;br&gt;c++并发编程(第三版)&lt;br&gt;cplusplus.com&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;hr&gt;
-&lt;h1 id=&quot;1-概述&quot;&gt;&lt;a href=&quot;#1-概述&quot; class=&quot;head
-        
-      
-      </description>
-      
-      <content:encoded><![CDATA[<p>参考资料：</p><blockquote><p>c++ 标准库 (第二版)<br>c++并发编程(第三版)<br>cplusplus.com</p></blockquote><hr><h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h1><ul><li>条件变量</li><li>头文件<code>&lt;condition_variable&gt;</code></li></ul><p>使用：</p><ul><li><code>&lt;mutex&gt;</code> 和 <code>&lt;condtion_variable&gt;</code></li><li>必须同时包含mutex和一个条件变量</li></ul><p><img src="https://upload-images.jianshu.io/upload_images/5361608-98e976b39dbdc9a8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p><ul><li>条件变量分为两种：</li><li>第一种仅限于和std::mutex一起工作（如果没有普遍性，首选第一种）</li><li>后者能够和类似互斥元的任何东西一起工作；</li></ul><h1 id="2、condition-variable"><a href="#2、condition-variable" class="headerlink" title="2、condition_variable"></a>2、condition_variable</h1><ul><li>条件变量需要使用<code>unique_lock</code>来锁住一个线程，当条件变量的wait操作的时候；</li><li>在wait操作的时候，不能使用<code>lock_guard</code>，因为wait()调用中，条件变量会对锁不停地加锁和解锁操作，<code>lock_guard</code>不能满足这样的操作；</li></ul><h2 id="2-1-构造函数"><a href="#2-1-构造函数" class="headerlink" title="2.1 构造函数"></a>2.1 构造函数</h2><pre><code>//default (1)    condition_variable();//copy [deleted] (2)    condition_variable (const condition_variable&amp;) = delete;</code></pre><ul><li>条件变量不能被拷贝或者move构造；</li></ul><h2 id="2-2-成员函数"><a href="#2-2-成员函数" class="headerlink" title="2.2 成员函数"></a>2.2 成员函数</h2><p><img src="https://upload-images.jianshu.io/upload_images/5361608-2da74d06403c1937.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p><p>例子：</p><pre><code>// condition_variable example#include &lt;iostream&gt;           // std::cout#include &lt;thread&gt;             // std::thread#include &lt;mutex&gt;              // std::mutex, std::unique_lock#include &lt;condition_variable&gt; // std::condition_variablestd::mutex mtx;std::condition_variable cv;bool ready = false;void print_id (int id) {  std::unique_lock&lt;std::mutex&gt; lck(mtx);  while (!ready) cv.wait(lck);  // ...  std::cout &lt;&lt; &quot;thread &quot; &lt;&lt; id &lt;&lt; &#39;\n&#39;;}void go() {  std::unique_lock&lt;std::mutex&gt; lck(mtx); // 这里可以使用lock_guard  ready = true;  cv.notify_all();}int main (){  std::thread threads[10];  // spawn 10 threads:  for (int i=0; i&lt;10; ++i)    threads[i] = std::thread(print_id,i);  std::cout &lt;&lt; &quot;10 threads ready to race...\n&quot;;  go();                       // go!  for (auto&amp; th : threads) th.join();  return 0;}</code></pre><p>结果为：</p><pre><code>10 threads ready to race...thread 2thread 0thread 9thread 4thread 6thread 8thread 7thread 5thread 3thread 1</code></pre><p>其中，在print_id函数是的while循环，等价于：</p><pre><code>  while (!ready) cv.wait(lck);</code></pre><p>等价于：</p><pre><code>cv.wait(lck,[]-&gt;bool{return ready;}) </code></pre><p>当ready条件满足的时候，就返回;如果不满足，就将线程置于阻塞或等待要求；</p><h2 id="2-3-操作函数详解"><a href="#2-3-操作函数详解" class="headerlink" title="2.3 操作函数详解"></a>2.3 操作函数详解</h2><p><img src="https://upload-images.jianshu.io/upload_images/5361608-58370de18c92d484.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p><p><img src="https://upload-images.jianshu.io/upload_images/5361608-aa6192275617b65a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p><hr>]]></content:encoded>
-      
-      <comments>https://jingxa.github.io/2018/07/21/STL-%E5%B9%B6%E5%8F%91%E5%8F%91-%E6%9D%A1%E4%BB%B6%E5%8F%98%E9%87%8F/#disqus_thread</comments>
     </item>
     
   </channel>
