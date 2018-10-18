@@ -166,7 +166,7 @@
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-a06c93ec30ac32aa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-446adabfc4846b85.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-97bf6c2a7e7c0064.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-06-23T09:11:45.322Z">
+<meta property="og:updated_time" content="2018-10-18T08:24:25.168Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="5_Epiplolar_Geometry">
 <meta name="twitter:description" content="CS231A笔记文章截图大多来自斯坦福CS231A课程;   1 基本概念 相机的旋转矩阵： 正交矩阵  极点  极线 极平面  【推荐文章】：  对极几何（Epipolar Geometry）  叉乘：两个向量的叉乘可以由一个向量的斜对称矩阵和另一向量的积；    1.1 特点 前向平移—极点都处于同一位置   1.2 本质矩阵 相机是 标准相机：K = I    由图中可以看出，p经过变换得">
@@ -436,7 +436,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  729
+                  749
                 </span>
               
 
@@ -510,11 +510,7 @@
 </ul>
 <p>为本质矩阵（The Essential Matrix）：</p>
 <blockquote>
-<ul>
-<li>3*3的矩阵；</li>
-<li>自由度： 5（3:Rotation 2:translation）</li>
-<li>rank : 2 ,奇异矩阵</li>
-</ul>
+<p>3*3的矩阵；<br>自由度： 5（3:Rotation 2:translation）<br>rank : 2 ,奇异矩阵</p>
 </blockquote>
 <blockquote>
 <p>用处</p>
@@ -555,12 +551,15 @@
 <blockquote>
 <p>用处<br> 基本矩阵已知，已知一张图片上一点和另一张图片上的对应点， 就可以求出p和p’的对应关系；</p>
 </blockquote>
+<h2 id="自由度的分析"><a href="#自由度的分析" class="headerlink" title="自由度的分析"></a>自由度的分析</h2><ul>
+<li><a href="https://www.zhihu.com/question/270431743" target="_blank" rel="noopener">本质矩阵和基本矩阵的自由度</a></li>
+</ul>
 <p>#2  THE Eight-Point 算法</p>
 <h2 id="2-1-八点算法"><a href="#2-1-八点算法" class="headerlink" title="2.1 八点算法"></a>2.1 八点算法</h2><ul>
 <li>给予两张图片，没有相机内外参数；</li>
 <li><p>求出基本矩阵</p>
 </li>
-<li><p>方法： ‘<em>Eight-Point 算法</em> ‘</p>
+<li><p>方法： <code>_Eight-Point 算法_</code></p>
 </li>
 </ul>
 <hr>
@@ -867,7 +866,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-基本概念"><span class="nav-text">1 基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-特点"><span class="nav-text">1.1 特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-本质矩阵"><span class="nav-text">1.2 本质矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-基本矩阵（Fundamental-Matrix）"><span class="nav-text">1.3 基本矩阵（Fundamental Matrix）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-八点算法"><span class="nav-text">2.1 八点算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-Normalized-Eight-Point算法"><span class="nav-text">3.2 Normalized Eight-Point算法</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-基本概念"><span class="nav-text">1 基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-特点"><span class="nav-text">1.1 特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-本质矩阵"><span class="nav-text">1.2 本质矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-基本矩阵（Fundamental-Matrix）"><span class="nav-text">1.3 基本矩阵（Fundamental Matrix）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自由度的分析"><span class="nav-text">自由度的分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-八点算法"><span class="nav-text">2.1 八点算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-Normalized-Eight-Point算法"><span class="nav-text">3.2 Normalized Eight-Point算法</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -901,7 +900,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">41.6k</span>
+    <span title="Site words total count">41.7k</span>
   
 </div>
 
