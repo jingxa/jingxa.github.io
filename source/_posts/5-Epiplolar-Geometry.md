@@ -64,9 +64,9 @@ categories:
 
 为本质矩阵（The Essential Matrix）：
 
->- 3*3的矩阵；
->- 自由度： 5（3:Rotation 2:translation）
->- rank : 2 ,奇异矩阵
+> 3*3的矩阵；
+> 自由度： 5（3:Rotation 2:translation）
+> rank : 2 ,奇异矩阵
 
 
 > 用处
@@ -123,12 +123,18 @@ F就被称为： `基本矩阵`
 > 用处
  基本矩阵已知，已知一张图片上一点和另一张图片上的对应点， 就可以求出p和p'的对应关系；
 
+ 
+## 自由度的分析
+
+- [本质矩阵和基本矩阵的自由度](https://www.zhihu.com/question/270431743)
+
 #2  THE Eight-Point 算法
+
 ## 2.1 八点算法
 - 给予两张图片，没有相机内外参数；
 - 求出基本矩阵
 
-- 方法： '_Eight-Point 算法_ '
+- 方法： `_Eight-Point 算法_ `
 
 ---
 1. 至少8对 对应点

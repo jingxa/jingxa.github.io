@@ -60,6 +60,8 @@ categories:
 ![](https://upload-images.jianshu.io/upload_images/5361608-a068e0b2e384d123.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
+> 等式8中，由于后一项和前一项向量是正交的，所以内积为0
+
 其中，在叉乘中，
 
 ![](https://upload-images.jianshu.io/upload_images/5361608-6245e42a46cbd158.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
