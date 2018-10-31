@@ -133,12 +133,12 @@
 <meta property="og:site_name" content="Jingxa&#39;s Blog">
 <meta property="og:description" content="cs231A Homework-3:ps3_code-single-object-recognition   二、 Single Object Recognition via SIFT本节主要使用SIFT实现识别和定位一个给定的对象从一堆测试图片中。 2.1 关键点匹配给定一张图片的keypoint的descriptor ， 和另外多张图片的keypoint descriptors,实现一个算法">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://github.com/jingxa/cs231a_my/blob/master/images/ps3/H.gif">
-<meta property="og:updated_time" content="2018-10-25T08:15:01.501Z">
+<meta property="og:image" content="https://github.com/jingxa/cs231a_my/blob/master/images/ps3/h_trans.png">
+<meta property="og:updated_time" content="2018-10-31T07:26:36.579Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CS231A_Homework_3.2">
 <meta name="twitter:description" content="cs231A Homework-3:ps3_code-single-object-recognition   二、 Single Object Recognition via SIFT本节主要使用SIFT实现识别和定位一个给定的对象从一堆测试图片中。 2.1 关键点匹配给定一张图片的keypoint的descriptor ， 和另外多张图片的keypoint descriptors,实现一个算法">
-<meta name="twitter:image" content="https://github.com/jingxa/cs231a_my/blob/master/images/ps3/H.gif">
+<meta name="twitter:image" content="https://github.com/jingxa/cs231a_my/blob/master/images/ps3/h_trans.png">
 
 
 
@@ -483,7 +483,7 @@
 </code></pre>
 <h2 id="2-2-优化匹配"><a href="#2-2-优化匹配" class="headerlink" title="2.2 优化匹配"></a>2.2 优化匹配</h2><p>在上述初始匹配中，有一些错误匹配对，需要移除，这里使用RANSAC算法来计算两幅图片的单应性变换，通过变换，变换到另一幅图片的点应该和对应点的距离差值应该在一个很小的阈值内，如果超出阈值，说明不是对应点</p>
 <p>在两幅图的单应性变换中，可以得到公式如下：</p>
-<p><img src="https://github.com/jingxa/cs231a_my/blob/master/images/ps3/H.gif" alt="H"></p>
+<p><img src="https://github.com/jingxa/cs231a_my/blob/master/images/ps3/h_trans.png" alt="H"></p>
 <p>因此，对应H矩阵，我们可以建立对他的9个未知量建立方程矩阵（2N*9）,其中可以得到x和y的对应等式，还有1的等式</p>
 <p>函数：<code>refine_match()</code><br>参数：</p>
 <ul>
@@ -837,7 +837,7 @@ def refine_match(keypoints1, keypoints2, matches, reprojection_threshold = 10,
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">47</span>
+                  <span class="site-state-item-count">48</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -969,7 +969,7 @@ def refine_match(keypoints1, keypoints2, matches, reprojection_threshold = 10,
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">45.4k</span>
+    <span title="Site words total count">47.4k</span>
   
 </div>
 
