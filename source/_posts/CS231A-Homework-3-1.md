@@ -184,21 +184,21 @@ def get_voxel_bounds(cameras, estimate_better_bounds = False, num_voxels = 4000)
 
 ### 4.1 form_initial_voxels形成一个初始立方体
 
-![iniital_voxels](/imgages/cs231a/ps3/space_c_a.png)
+![iniital_voxels](https://github.com/jingxa/cs231a_my/raw/master/images/ps3/space_c_a.png)
 
 ### 4.2 carving : 一个视角的裁剪
 
-![one_carving](/imgages/cs231a/ps3/space_c_b.png)
+![one_carving](https://github.com/jingxa/cs231a_my/raw/master/images/ps3/space_c_b.png)
 
 
 ### 4.3 没有优化边界的多视角裁剪
 
-![muliti_carving](/imgages/cs231a/ps3/space_c_c.png)
+![muliti_carving](https://github.com/jingxa/cs231a_my/raw/master/images/ps3/space_c_c.png)
 
 
 ### 4.4 优化边界的多视角裁剪
 
-![best_carving](imgages/cs231a/ps3/space_c_d.png)
+![best_carving](https://github.com/jingxa/cs231a_my/raw/master/images/ps3/space_c_d.png)
 
 
 
