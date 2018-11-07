@@ -134,7 +134,7 @@
 <meta property="og:description" content="cs231A Homework-3:ps3_code-Histogram-of-Oriented-gradients   三、 Histogram of Oriented Gradients(方向梯度直方图)本部分内容主要实现HoG,然后进行一个简单的应用。  首先，进行梯度计算； 计算直方图 计算HoG特征  3.1 计算梯度: compute_gradient():参数：  im: 灰度图片">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://github.com/jingxa/cs231a_my/raw/master/images/ps3/hog.png">
-<meta property="og:updated_time" content="2018-10-25T12:58:05.078Z">
+<meta property="og:updated_time" content="2018-11-07T08:00:06.246Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CS231A_Homework_3.3">
 <meta name="twitter:description" content="cs231A Homework-3:ps3_code-Histogram-of-Oriented-gradients   三、 Histogram of Oriented Gradients(方向梯度直方图)本部分内容主要实现HoG,然后进行一个简单的应用。  首先，进行梯度计算； 计算直方图 计算HoG特征  3.1 计算梯度: compute_gradient():参数：  im: 灰度图片">
@@ -566,13 +566,13 @@ def generate_histogram(angles, magnitudes, nbins = 9):
 </ul>
 <p>返回值：</p>
 <ul>
-<li>features: hog 特征（H_blocks, W_blocks, cells_in_block <em> cells_in_block </em> nbins）</li>
+<li>features: hog 特征（H_blocks, W_blocks, cells_in_block * cells_in_block * nbins）</li>
 </ul>
 <p>实现：</p>
 <ol>
 <li>计算每个图片的梯度和角度</li>
 <li>定义一个cell和block</li>
-<li>定义一个滑动窗口，大小为一个block的大小，滑动步长为block的一半，每个block中的cell存储一个直方图中的梯度，<br>每个block 特征被表示为(cells_in_block， cells_in_block, nbins),也可表示为（ cells_in_block <em> cells_in_block </em> nbins ）<br>,确保归一化</li>
+<li>定义一个滑动窗口，大小为一个block的大小，滑动步长为block的一半，每个block中的cell存储一个直方图中的梯度，<br>每个block 特征被表示为(cells_in_block， cells_in_block, nbins),也可表示为（ cells_in_block * cells_in_block * nbins ）<br>,确保归一化</li>
 <li>返回这些所有网格的HoG特征</li>
 </ol>
 <pre><code class="python">
@@ -779,7 +779,7 @@ def compute_hog_features(im, pixels_in_cell, cells_in_block, nbins):
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -801,7 +801,7 @@ def compute_hog_features(im, pixels_in_cell, cells_in_block, nbins):
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -911,7 +911,7 @@ def compute_hog_features(im, pixels_in_cell, cells_in_block, nbins):
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">47.4k</span>
+    <span title="Site words total count">48.4k</span>
   
 </div>
 
