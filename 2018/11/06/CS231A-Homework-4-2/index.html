@@ -133,17 +133,17 @@
 <meta property="og:site_name" content="Jingxa&#39;s Blog">
 <meta property="og:description" content="cs231A Homework-4: Image Segmentation   2. Image Segmentation本节主要实现两个经典的分割方法  k-means meanshift  2.1 k-means函数：kmeans_segmentation(im, features, num_clusters)参数：  im: 图片（H,W,3） features: 每个像素点的特征（#pi">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://github.com/jingxa/cs231a_my/blob/master/images/ps4/ps4_b_1.png">
-<meta property="og:image" content="https://github.com/jingxa/cs231a_my/blob/master/images/ps4/ps4_b_2.png">
-<meta property="og:image" content="https://github.com/jingxa/cs231a_my/blob/master/images/ps4/ps4_b_3.png">
-<meta property="og:image" content="https://github.com/jingxa/cs231a_my/blob/master/images/ps4/ps4_c_1.png">
-<meta property="og:image" content="https://github.com/jingxa/cs231a_my/blob/master/images/ps4/ps4_c_2.png">
-<meta property="og:image" content="https://github.com/jingxa/cs231a_my/blob/master/images/ps4/ps4_c_3.png">
-<meta property="og:updated_time" content="2018-11-07T14:19:13.553Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/jingxa/cs231a_my/master/images/ps4/ps4_b_1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jingxa/cs231a_my/master/images/ps4/ps4_b_2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jingxa/cs231a_my/master/images/ps4/ps4_b_3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jingxa/cs231a_my/master/images/ps4/ps4_c_1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jingxa/cs231a_my/master/images/ps4/ps4_c_2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/jingxa/cs231a_my/master/images/ps4/ps4_c_3.png">
+<meta property="og:updated_time" content="2018-11-22T11:23:37.926Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CS231A_Homework_4.2">
 <meta name="twitter:description" content="cs231A Homework-4: Image Segmentation   2. Image Segmentation本节主要实现两个经典的分割方法  k-means meanshift  2.1 k-means函数：kmeans_segmentation(im, features, num_clusters)参数：  im: 图片（H,W,3） features: 每个像素点的特征（#pi">
-<meta name="twitter:image" content="https://github.com/jingxa/cs231a_my/blob/master/images/ps4/ps4_b_1.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/jingxa/cs231a_my/master/images/ps4/ps4_b_1.png">
 
 
 
@@ -409,7 +409,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  359
+                  653
                 </span>
               
 
@@ -425,7 +425,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  3
                 </span>
               
             </div>
@@ -475,7 +475,40 @@
 </ul>
 </li>
 </ol>
-<pre><code class="python">
+<pre><code class="python">def kmeans_segmentation(im, features, num_clusters):
+    H, W = im.shape[0], im.shape[1]
+    N = features.shape[0]
+
+    # 第一步： 随机选择num_clusters个种子
+    center_idx = np.random.randint(N, size=num_clusters)
+    centriods = features[center_idx]
+
+    matrixes = np.zeros((H, W))
+    # 第二步： 迭代器划分
+    while True:
+        # 每个像素到cneter的距离
+        dist = np.zeros((N, num_clusters))
+
+        for i in range(num_clusters):
+            dist[:, i] = np.linalg.norm(features - centriods[i, :], axis=1)     # 距离
+
+        # 寻找最近中心
+        nearest = np.argmin(dist, axis=1)       # (N,1)
+        # 更新
+        prev_centriods = centriods
+
+        for i in range(num_clusters):
+            pixels_idx = np.where(nearest == i)      # 和 第 i 个中心邻近的像素集合
+            cluster = features[pixels_idx]            # (M,5)
+            centriods[i, :] = np.mean(cluster, axis=0)      # 重新计算平均值
+
+        # 收敛
+        if np.array_equal(prev_centriods, centriods):
+            break
+
+    pixels_clusters = np.reshape(nearest, (H, W))
+    return pixels_clusters
+
 
 </code></pre>
 <h2 id="2-2-meanshift"><a href="#2-2-meanshift" class="headerlink" title="2.2 meanshift"></a>2.2 meanshift</h2><p>函数： <code>meanshift_segmentation(im, features, bandwidth)</code></p>
@@ -496,32 +529,60 @@
 <li>如果当前cluster漂移，和另一个clouster中心近于半个 bandwidth, 将两个归于一个cluster</li>
 <li>否则，创建一个新的cluster</li>
 </ol>
-<pre><code class="python">def draw_clusters_on_image(im, pixel_clusters):
-    num_clusters = int(pixel_clusters.max()) + 1
-    average_color = np.zeros((num_clusters, 3))
-    cluster_count = np.zeros(num_clusters)
+<pre><code class="python">
+def meanshift_segmentation(im, features, bandwidth):
+    H, W = im.shape[0], im.shape[1]
 
-    for i in range(im.shape[0]):
-        for j in range(im.shape[1]):
-            c = pixel_clusters[i,j]
-            cluster_count[c] += 1
-            average_color[c, :] += im[i, j, :]
+    N, M = features.shape       # 数量， 特征维度
+    mask = np.ones(N)
 
-    for c in range(num_clusters):
-        average_color[c,:] /= float(cluster_count[c])
+    clusters = []
 
-    out_im = np.zeros_like(im)
-    for i in range(im.shape[0]):
-        for j in range(im.shape[1]):
-            c = pixel_clusters[i,j]
-            out_im[i,j,:] = average_color[c,:]
+    while np.sum(mask) &gt; 0 :    # 当前还有像素未被遍历
+        loc = np.argwhere(mask &gt; 0)
+        idx = loc[int(np.random.choice(loc.shape[0], 1)[0])][0]     # 随扈挑选一个像素
 
-    return out_im
+        mask[idx] = 0   # 标记
+
+        current_mean = features[idx]
+        prev_mean = current_mean
+
+        while True:
+            dist = np.linalg.norm(features - prev_mean, axis=1)
+            incircle = dist &lt; bandwidth # 距离小于半径的点
+            mask[incircle] = 0
+
+            current_mean = np.mean(features[incircle], axis=0)  # 新的中心
+            # 稳定，收敛
+            if np.linalg.norm(current_mean - prev_mean) &lt; 0.01 * bandwidth:
+                break
+            prev_mean = current_mean
+
+        isValid = True
+        for cluster in clusters:
+            if np.linalg.norm(cluster - current_mean) &lt; 0.5 * bandwidth:   # 两个划分为一个cluster
+                isValid = False
+
+        if isValid:     # 添加一个新cluster
+            clusters.append(current_mean)
+
+
+    pixels_clusters = np.zeros((H, W))
+
+    clusters = np.array(clusters)
+
+    for i in range(N):     # 计算每个像素点的最近中心
+        idx = np.argmin(np.linalg.norm(features[i, :] - clusters, axis=1))
+        h = int(i/W)
+        w = i % W
+        pixels_clusters[h, w] = idx
+
+    return  pixels_clusters.astype(int)
 
 
 </code></pre>
-<h2 id="2-3-结果"><a href="#2-3-结果" class="headerlink" title="2.3 结果"></a>2.3 结果</h2><h3 id="k-means"><a href="#k-means" class="headerlink" title="k-means"></a>k-means</h3><p><img src="https://github.com/jingxa/cs231a_my/blob/master/images/ps4/ps4_b_1.png" alt="ps4_b_1"><br><img src="https://github.com/jingxa/cs231a_my/blob/master/images/ps4/ps4_b_2.png" alt="ps4_b_2"><br><img src="https://github.com/jingxa/cs231a_my/blob/master/images/ps4/ps4_b_3.png" alt="ps4_b_3"></p>
-<h3 id="meanshift"><a href="#meanshift" class="headerlink" title="meanshift"></a>meanshift</h3><p><img src="https://github.com/jingxa/cs231a_my/blob/master/images/ps4/ps4_c_1.png" alt="ps4_c_1"><br><img src="https://github.com/jingxa/cs231a_my/blob/master/images/ps4/ps4_c_2.png" alt="ps4_c_2"><br><img src="https://github.com/jingxa/cs231a_my/blob/master/images/ps4/ps4_c_3.png" alt="ps4_c_3"></p>
+<h2 id="2-3-结果"><a href="#2-3-结果" class="headerlink" title="2.3 结果"></a>2.3 结果</h2><h3 id="k-means"><a href="#k-means" class="headerlink" title="k-means"></a>k-means</h3><p><img src="https://raw.githubusercontent.com/jingxa/cs231a_my/master/images/ps4/ps4_b_1.png" alt="ps4_b_1"><br><img src="https://raw.githubusercontent.com/jingxa/cs231a_my/master/images/ps4/ps4_b_2.png" alt="ps4_b_2"><br><img src="https://raw.githubusercontent.com/jingxa/cs231a_my/master/images/ps4/ps4_b_3.png" alt="ps4_b_3"></p>
+<h3 id="meanshift"><a href="#meanshift" class="headerlink" title="meanshift"></a>meanshift</h3><p><img src="https://raw.githubusercontent.com/jingxa/cs231a_my/master/images/ps4/ps4_c_1.png" alt="ps4_c_1"><br><img src="https://raw.githubusercontent.com/jingxa/cs231a_my/master/images/ps4/ps4_c_2.png" alt="ps4_c_2"><br><img src="https://raw.githubusercontent.com/jingxa/cs231a_my/master/images/ps4/ps4_c_3.png" alt="ps4_c_3"></p>
 <hr>
 
       
@@ -801,7 +862,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">48.4k</span>
+    <span title="Site words total count">48.7k</span>
   
 </div>
 
