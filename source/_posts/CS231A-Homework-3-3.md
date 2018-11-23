@@ -152,14 +152,14 @@ def generate_histogram(angles, magnitudes, nbins = 9):
 - nbins: histogram bins
 
 返回值：
-- features: hog 特征（H_blocks, W_blocks, cells_in_block * cells_in_block * nbins）
+- features: hog 特征（H_blocks, W_blocks, cells_in_block \* cells_in_block \* nbins）
 
 实现：
 
 1. 计算每个图片的梯度和角度
 2. 定义一个cell和block
 3. 定义一个滑动窗口，大小为一个block的大小，滑动步长为block的一半，每个block中的cell存储一个直方图中的梯度，
-每个block 特征被表示为(cells_in_block， cells_in_block, nbins),也可表示为（ cells_in_block * cells_in_block * nbins ）
+每个block 特征被表示为(cells_in_block， cells_in_block, nbins),也可表示为（ cells_in_block \* cells_in_block \* nbins ）
 ,确保归一化
 4. 返回这些所有网格的HoG特征
 

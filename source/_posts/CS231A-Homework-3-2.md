@@ -65,6 +65,8 @@ def match_keypoints(descriptors1, descriptors2, threshold = 0.7):
 
 ![H](https://github.com/jingxa/cs231a_my/blob/master/images/ps3/h_trans.png)
 
+[H](https://github.com/jingxa/cs231a_my/blob/master/images/ps3/h_trans.png)
+
 因此，对应H矩阵，我们可以建立对他的9个未知量建立方程矩阵（2N*9）,其中可以得到x和y的对应等式，还有1的等式
 
 
