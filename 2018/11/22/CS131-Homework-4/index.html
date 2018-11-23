@@ -112,7 +112,7 @@
 
 
 
-  <meta name="keywords" content="Camera," />
+  <meta name="keywords" content="CS131,homeworks," />
 
 
 
@@ -125,39 +125,18 @@
 
 
 
-<meta name="description" content="CS231A笔记文章截图大多来自斯坦福CS231A课程;    干脆 明亮的图片   镜头   使用lense 透镜来解决上述问题；  透镜的问题：  pincushion distortion 枕形畸变 barrel distortion 桶形畸变      3. 3d到2d的投影变换对于某些平移和缩放：  但是在公式中，缺少两个重要参数，相机制造误差：  skewness: 倾斜 disto">
-<meta name="keywords" content="Camera">
+<meta name="description" content="cs131 hw4   主要内容 本次作业主要内容是 seam carving  1. Image Reducing using Seam Carving basic idea: 移除不重要的像素点 定义 unimportant: == less energy pixels， 一般为E = {x轴方向的梯度的绝对值} + {y 轴方向的梯度的绝对值}  1.1 Energy function函数">
+<meta name="keywords" content="CS131,homeworks">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2_Camera_Model">
-<meta property="og:url" content="https://jingxa.github.io/2018/06/22/2-Camera-Model/index.html">
+<meta property="og:title" content="CS131_Homework_4">
+<meta property="og:url" content="https://jingxa.github.io/2018/11/22/CS131-Homework-4/index.html">
 <meta property="og:site_name" content="Jingxa&#39;s Blog">
-<meta property="og:description" content="CS231A笔记文章截图大多来自斯坦福CS231A课程;    干脆 明亮的图片   镜头   使用lense 透镜来解决上述问题；  透镜的问题：  pincushion distortion 枕形畸变 barrel distortion 桶形畸变      3. 3d到2d的投影变换对于某些平移和缩放：  但是在公式中，缺少两个重要参数，相机制造误差：  skewness: 倾斜 disto">
+<meta property="og:description" content="cs131 hw4   主要内容 本次作业主要内容是 seam carving  1. Image Reducing using Seam Carving basic idea: 移除不重要的像素点 定义 unimportant: == less energy pixels， 一般为E = {x轴方向的梯度的绝对值} + {y 轴方向的梯度的绝对值}  1.1 Energy function函数">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-03d37c544f3260a2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-f22aaa6b85b5c1c2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-aa9051feb0ad3ba7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-cd8d34757e165d97.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-e8d619979d82849a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-2de9c0e396c134df.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-56bd38497c0aa26a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-10876044e7f7900a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-bf0b8cfedaf66c57.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-d6e80555a72c7dfa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-68c0aa0e15865b30.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-819d27eb90c59245.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-b2b94ebd08e64e3b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-734a190121f0af84.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-4f0424a16bb4daa7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-52f254e482337ca7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-63d1cb18425bbd9e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-314c82c970c265c3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-38920e7d3beea99c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5361608-fdc05c03cc05a7f0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-06-22T02:21:00.093Z">
+<meta property="og:updated_time" content="2018-11-23T12:53:54.200Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="2_Camera_Model">
-<meta name="twitter:description" content="CS231A笔记文章截图大多来自斯坦福CS231A课程;    干脆 明亮的图片   镜头   使用lense 透镜来解决上述问题；  透镜的问题：  pincushion distortion 枕形畸变 barrel distortion 桶形畸变      3. 3d到2d的投影变换对于某些平移和缩放：  但是在公式中，缺少两个重要参数，相机制造误差：  skewness: 倾斜 disto">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5361608-03d37c544f3260a2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:title" content="CS131_Homework_4">
+<meta name="twitter:description" content="cs131 hw4   主要内容 本次作业主要内容是 seam carving  1. Image Reducing using Seam Carving basic idea: 移除不重要的像素点 定义 unimportant: == less energy pixels， 一般为E = {x轴方向的梯度的绝对值} + {y 轴方向的梯度的绝对值}  1.1 Energy function函数">
 
 
 
@@ -187,13 +166,13 @@
 
 
 
-  <link rel="canonical" href="https://jingxa.github.io/2018/06/22/2-Camera-Model/"/>
+  <link rel="canonical" href="https://jingxa.github.io/2018/11/22/CS131-Homework-4/"/>
 
 
 
 
 
-  <title>2_Camera_Model | Jingxa's Blog</title>
+  <title>CS131_Homework_4 | Jingxa's Blog</title>
   
 
 
@@ -330,7 +309,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://jingxa.github.io/2018/06/22/2-Camera-Model/">
+    <link itemprop="mainEntityOfPage" href="https://jingxa.github.io/2018/11/22/CS131-Homework-4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="jingxa">
@@ -347,7 +326,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">2_Camera_Model</h1>
+          <h1 class="post-title" itemprop="name headline">CS131_Homework_4</h1>
         
 
         <div class="post-meta">
@@ -359,8 +338,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-22T10:16:24+08:00">
-                2018-06-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-22T19:33:17+08:00">
+                2018-11-22
               </time>
             
 
@@ -382,8 +361,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/cs231A/" itemprop="url" rel="index">
-                    <span itemprop="name">cs231A</span>
+                  <a href="/categories/CS131/" itemprop="url" rel="index">
+                    <span itemprop="name">CS131</span>
                   </a>
                 </span>
 
@@ -400,8 +379,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/06/22/2-Camera-Model/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/06/22/2-Camera-Model/" itemprop="commentsCount"></span>
+                <a href="/2018/11/22/CS131-Homework-4/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/11/22/CS131-Homework-4/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -423,7 +402,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  521
+                  1,505
                 </span>
               
 
@@ -439,7 +418,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  8
                 </span>
               
             </div>
@@ -461,88 +440,283 @@
 
       
         <blockquote>
-<p>CS231A笔记<br>文章截图大多来自斯坦福CS231A课程;</p>
+<p>cs131 hw4</p>
 </blockquote>
 <hr>
+<h1 id="主要内容"><a href="#主要内容" class="headerlink" title="主要内容"></a>主要内容</h1><ul>
+<li>本次作业主要内容是 <code>seam carving</code></li>
+</ul>
+<h2 id="1-Image-Reducing-using-Seam-Carving"><a href="#1-Image-Reducing-using-Seam-Carving" class="headerlink" title="1. Image Reducing using Seam Carving"></a>1. Image Reducing using Seam Carving</h2><ul>
+<li>basic idea: 移除不重要的像素点</li>
+<li>定义 <code>unimportant:</code> == <code>less energy pixels</code>， 一般为<code>E = {x轴方向的梯度的绝对值} + {y 轴方向的梯度的绝对值}</code></li>
+</ul>
+<h3 id="1-1-Energy-function"><a href="#1-1-Energy-function" class="headerlink" title="1.1 Energy function"></a>1.1 Energy function</h3><p>函数： <code>energy_function(im)</code></p>
+<p>参数：</p>
 <ul>
-<li>干脆 明亮的图片</li>
+<li>im: 图片 (H, W, 3)</li>
 </ul>
-<ol>
-<li>镜头</li>
-</ol>
+<p>返回值：</p>
 <ul>
-<li><p>使用lense 透镜来解决上述问题；</p>
-</li>
-<li><p>透镜的问题：</p>
+<li>每个像素点的energy (H, W)</li>
+</ul>
+<p>实现：<br>图像梯度一般也可以用中值差分：</p>
+<pre><code>dx(i,j) = [I(i+1,j) - I(i-1,j)]/2;
+dy(i,j) = [I(i,j+1) - I(i,j-1)]/2;
+
+G(x,y) = dx(i,j) + dy(i,j);
+</code></pre><ul>
+<li>这里可以使用<code>np.gradient</code></li>
+</ul>
+<pre><code class="python">
+def energy_function(image):
+    H, W, _ = image.shape
+    out = np.zeros((H, W))
+    gray_image = color.rgb2gray(image)
+
+    ### YOUR CODE HERE
+    dx, dy = np.gradient(gray_image)
+    out = np.abs(dx) + np.abs(dy)
+    ### END YOUR CODE
+
+    return out
+
+</code></pre>
+<h3 id="1-2-compute-cost"><a href="#1-2-compute-cost" class="headerlink" title="1.2 compute cost"></a>1.2 compute cost</h3><p>这一步从图片的顶部到低端计算每个像素的<code>minimal cost</code>,即从顶端到当前像素的最小cost路径</p>
+<p>函数：<code>compute_cost(image, energy, axis=1)</code><br>参数：</p>
 <ul>
-<li>pincushion distortion 枕形畸变<ul>
-<li>barrel distortion 桶形畸变</li>
+<li>image: </li>
+<li>energy： 数组(H,W)</li>
+<li>axis: 计算维度(width: axis=1 或者 height: axis=0)<br>返回值：</li>
+<li>cost： 每个像素的cost，数组(H,W) </li>
+<li>paths: lowest energy path图， 数组(H,W)，值为-1,0,1 (左上，正上，右上)判断当前像素是否在seam上</li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h1 id="3-3d到2d的投影变换"><a href="#3-3d到2d的投影变换" class="headerlink" title="3. 3d到2d的投影变换"></a>3. 3d到2d的投影变换</h1><p><img src="https://upload-images.jianshu.io/upload_images/5361608-03d37c544f3260a2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br><img src="https://upload-images.jianshu.io/upload_images/5361608-f22aaa6b85b5c1c2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>对于某些平移和缩放：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-aa9051feb0ad3ba7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<p>但是在公式中，缺少两个重要参数，相机制造误差：</p>
+<p>实现：<br>每个像素的cost为<code>M(i,j) = E(i,j) + min(M(i-1,j-1),M(i-1,j),M(i-1,j+1))</code></p>
+<pre><code class="python">
+def compute_cost(image, energy, axis=1):
+    energy = energy.copy()
+
+    if axis == 0:
+        energy = np.transpose(energy, (1, 0))
+
+    H, W = energy.shape
+
+    cost = np.zeros((H, W))
+    paths = np.zeros((H, W), dtype=np.int)
+
+    # Initialization
+    cost[0] = energy[0]
+    paths[0] = 0  # we don&#39;t care about the first row of paths
+
+    ### YOUR CODE HERE
+    for i in range(1, H):
+        M1 = np.r_[[1e10], cost[i-1, 0:W-1]]    # 左边添加一个无穷大
+        M2 = cost[i-1, :]
+        M3 = np.r_[cost[i-1, 1:], [1e10]]        # 右边添加一个无穷大
+        M = np.r_[M1, M2, M3].reshape(3, -1)
+        cost[i] = energy[i] + np.min(M, axis=0)     # cost
+        paths[i] = np.argmin(M, axis=0) - 1         # 上一层的最小值为左上角，正上方，右上角
+
+    ### END YOUR CODE
+
+    if axis == 0:
+        cost = np.transpose(cost, (1, 0))
+        paths = np.transpose(paths, (1, 0))
+
+    # Check that paths only contains -1, 0 or 1
+    assert np.all(np.any([paths == 1, paths == 0, paths == -1], axis=0)), \
+           &quot;paths contains other values than -1, 0 or 1&quot;
+
+    return cost, paths
+
+</code></pre>
+<h2 id="2-Finding-optimal-seams"><a href="#2-Finding-optimal-seams" class="headerlink" title="2. Finding optimal seams"></a>2. Finding optimal seams</h2><p>通过上一步计算最小能量；需要移除<code>optimal seam</code>， 即最小cost的像素点连成的线</p>
+<h3 id="2-1-Backtrack-seam"><a href="#2-1-Backtrack-seam" class="headerlink" title="2.1 Backtrack seam"></a>2.1 Backtrack seam</h3><p>函数： <code>backtrack_seam(paths, end)</code><br>参数：</p>
 <ul>
-<li>skewness: 倾斜</li>
-<li>distortion： 形变</li>
+<li>paths:</li>
+<li>end: seam ends(H,end)<br>返回值：</li>
+<li>seam: 数组(H,), </li>
 </ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-cd8d34757e165d97.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>因此形成5个自由度的相机内参矩阵K;</p>
-<p>世界坐标到相机坐标系的变换为：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-e8d619979d82849a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>综上，变换矩阵由两个部分组成：</p>
+<p>实现：</p>
+<pre><code>从下到上寻找最小：
+        - left (value -1)
+        - middle (value 0)
+        - right (value 1)
+</code></pre><p>def backtrack_seam(paths, end):<br>    H, W = paths.shape</p>
+<pre><code># initialize with -1 to make sure that everything gets modified
+seam = - np.ones(H, dtype=np.int)
+
+# Initialization
+seam[H-1] = end     # 最底层的像素点位置(H-1,end)
+
+### YOUR CODE HERE
+for i in range(H-2,-1,-1):
+    seam[i] = seam[i+1]+paths[i+1, seam[i+1]]       # 上层点的width坐标
+### END YOUR CODE
+
+# Check that seam only contains values in [0, W-1]
+assert np.all(np.all([seam &gt;= 0, seam &lt; W], axis=0)), &quot;seam contains values out of bounds&quot;
+
+return seam
+</code></pre><pre><code class="python">
+
+</code></pre>
+<h3 id="2-2-Reduce"><a href="#2-2-Reduce" class="headerlink" title="2.2 Reduce"></a>2.2 Reduce</h3><p>移除上一步计算的seam</p>
+<p>函数： <code>remove_seam(image, seam)</code></p>
+<p>参数：</p>
 <ul>
-<li>instrinsic : K : 5个自由度</li>
-<li>extrinsic ： T ,R : 各自3个自由度<br>总共11个自由度；</li>
+<li>seam: 每个像素点的位置为<code>image[i, seam[i]]</code></li>
 </ul>
-<h1 id="4-Camera-Calibration（相机校准）"><a href="#4-Camera-Calibration（相机校准）" class="headerlink" title="4. Camera Calibration（相机校准）"></a>4. Camera Calibration（相机校准）</h1><p>在投影变换中，<br><img src="https://upload-images.jianshu.io/upload_images/5361608-2de9c0e396c134df.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>原理为：<br><img src="https://upload-images.jianshu.io/upload_images/5361608-56bd38497c0aa26a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h2 id="4-1-投影类型"><a href="#4-1-投影类型" class="headerlink" title="4.1 投影类型"></a>4.1 投影类型</h2><p>参考资料：<br>-<a href="https://blog.csdn.net/jyc1228/article/details/4209870" target="_blank" rel="noopener"> 摄像机透视投影近似模型</a></p>
-<h3 id="4-1-1-弱透视投影"><a href="#4-1-1-弱透视投影" class="headerlink" title="4.1.1 弱透视投影"></a>4.1.1 弱透视投影</h3><blockquote>
-<p>弱透视：weak perpective, 如果摄像机的视场比较小，而且物体表面深度变化相对其到摄像机的距离很小的话，物体上个点的深度可以用一个固定的深度值z0近似，这个值一般取物体质心的深度。这种近似可以看做是两次投影的合成。</p>
-</blockquote>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-10876044e7f7900a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<blockquote>
-<p>首先，整个物体按平行于光轴的方向正投影到经过物体质心并与图像平面平行的平面上；</p>
-</blockquote>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-bf0b8cfedaf66c57.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<blockquote>
-<p>然后，再按透视模型将上述物体平面的图像投影到摄像机的图像平面上，这一步实际是全局的放缩。因此，弱透视也叫放缩正投影（scaled orthographic projection）。</p>
-</blockquote>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-d6e80555a72c7dfa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<h3 id="4-1-2-正投影：orthographic-projection"><a href="#4-1-2-正投影：orthographic-projection" class="headerlink" title="4.1.2 正投影：orthographic projection"></a>4.1.2 正投影：orthographic projection</h3><p><img src="https://upload-images.jianshu.io/upload_images/5361608-68c0aa0e15865b30.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<blockquote>
-<p>这种近似完全忽略了深度信息</p>
-</blockquote>
-<h2 id="4-2-校准目标"><a href="#4-2-校准目标" class="headerlink" title="4.2 校准目标"></a>4.2 校准目标</h2><blockquote>
-<p>估计内部参数和外部参数；</p>
-</blockquote>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-819d27eb90c59245.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-b2b94ebd08e64e3b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-734a190121f0af84.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>对于11自由度的参数：只要2n&gt;11,满足的n个点就可以得到很好的结果；<br><img src="https://upload-images.jianshu.io/upload_images/5361608-4f0424a16bb4daa7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-52f254e482337ca7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>得到一个方程组：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-63d1cb18425bbd9e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>求解一个线性方程：</p>
+<p>返回值：</p>
 <ul>
-<li>0 为解</li>
-<li>非零解： </li>
+<li>out: 多维数组，(H,W,C)或者(H,W-1)</li>
 </ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-314c82c970c265c3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<pre><code class="python">def remove_seam(image, seam):
+
+    # Add extra dimension if 2D input
+    if len(image.shape) == 2:
+        image = np.expand_dims(image, axis=2)   # 增加一个维度
+
+    out = None
+    H, W, C = image.shape
+    ### YOUR CODE HERE
+    out = np.zeros((H, W - 1, C), dtype=image.dtype)        # 返回值，每一行删除一个像素
+    for i in range(H):
+        out[i, :seam[i], :]=image[i, :seam[i], :]
+        out[i, seam[i]:, :]=image[i, seam[i]+1:, :]
+
+    ### END YOUR CODE
+    out = np.squeeze(out)  # remove last dimension if C == 1
+
+    # Make sure that `out` has same type as `image`
+    assert out.dtype == image.dtype, \
+       &quot;Type changed between image (%s) and out (%s) in remove_seam&quot; % (image.dtype, out.dtype)
+
+    return out
+
+
+</code></pre>
+<p>函数：<code>reduce(image, size, axis=1, efunc=energy_function, cfunc=compute_cost)</code></p>
+<p>参数：</p>
 <ul>
-<li>参考资料： <a href="http://www.cnblogs.com/pinard/p/6251584.html" target="_blank" rel="noopener">奇异值分解(SVD)原理与在降维中的应用</a></li>
+<li>size:根据axis移除像素知道axis的大小值为size</li>
 </ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-38920e7d3beea99c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<hr>
-<h3 id="4-2-2-Radial-Distortion"><a href="#4-2-2-Radial-Distortion" class="headerlink" title="4.2.2 Radial Distortion"></a>4.2.2 Radial Distortion</h3><ul>
-<li>参考资料：<a href="https://blog.csdn.net/dcrmg/article/details/52950141" target="_blank" rel="noopener">透镜畸变及校正模型</a></li>
+<p>实现：</p>
+<ul>
+<li>每一次移除一条最小的seam，最终移除size次</li>
 </ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/5361608-fdc05c03cc05a7f0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<hr>
+<pre><code class="python">
+def reduce(image, size, axis=1, efunc=energy_function, cfunc=compute_cost):
+
+    out = np.copy(image)
+    if axis == 0:
+        out = np.transpose(out, (1, 0, 2))
+
+    H = out.shape[0]
+    W = out.shape[1]
+
+    assert W &gt; size, &quot;Size must be smaller than %d&quot; % W
+
+    assert size &gt; 0, &quot;Size must be greater than zero&quot;
+
+    ### YOUR CODE HERE
+    while out.shape[1] &gt; size:
+        energy = efunc(out)         # 首先重新计算energy
+        cost, paths = cfunc(out, energy)        # 第二步计算cost map
+        seam = backtrack_seam(paths, np.argmin(cost[-1]))       #计算optimal seam
+        out = remove_seam(out, seam)                            # 移除
+    ### END YOUR CODE
+
+    assert out.shape[1] == size, &quot;Output doesn&#39;t have the right shape&quot;
+
+    if axis == 0:
+        out = np.transpose(out, (1, 0, 2))
+
+    return out
+</code></pre>
+<h2 id="3-Image-Enlarging"><a href="#3-Image-Enlarging" class="headerlink" title="3. Image Enlarging"></a>3. Image Enlarging</h2><h3 id="3-1-Enlarge-naive"><a href="#3-1-Enlarge-naive" class="headerlink" title="3.1 Enlarge naive"></a>3.1 Enlarge naive</h3><p>扩大图片，可以复制seam</p>
+<p>函数： </p>
+<h4 id="enlarge-naive-image-size-axis-1-efunc-energy-function-cfunc-compute-cost"><a href="#enlarge-naive-image-size-axis-1-efunc-energy-function-cfunc-compute-cost" class="headerlink" title="enlarge_naive(image, size, axis=1, efunc=energy_function, cfunc=compute_cost)"></a><code>enlarge_naive(image, size, axis=1, efunc=energy_function, cfunc=compute_cost)</code></h4><p>增大图片某axis到size大小<br>Use functions:</p>
+<pre><code>- efunc
+- cfunc
+- backtrack_seam
+- duplicate_seam
+</code></pre><p>返回值： out数组(size, W, c)如果axis=0, 或 (H, size, c) 如果axis=1</p>
+<h4 id="enlarge-image-size-axis-1-efunc-energy-function-cfunc-compute-cost"><a href="#enlarge-image-size-axis-1-efunc-energy-function-cfunc-compute-cost" class="headerlink" title="enlarge(image, size, axis=1, efunc=energy_function, cfunc=compute_cost)"></a><code>enlarge(image, size, axis=1, efunc=energy_function, cfunc=compute_cost)</code></h4><p>寻找多条lowest energy seam<br>Use functions:</p>
+<pre><code>- find_seams
+- duplicate_seam
+</code></pre><p>返回值： out数组(size, W, c)如果axis=0, 或 (H, size, c) 如果axis=1    </p>
+<pre><code class="python">
+
+def enlarge_naive(image, size, axis=1, efunc=energy_function, cfunc=compute_cost):
+
+
+    out = np.copy(image)
+    if axis == 0:
+        out = np.transpose(out, (1, 0, 2))
+
+    H = out.shape[0]
+    W = out.shape[1]
+
+    assert size &gt; W, &quot;size must be greather than %d&quot; % W
+
+    ### YOUR CODE HERE
+    while out.shape[1] &lt; size:
+        energy = efunc(out)         # 首先重新计算energy
+        cost, paths = cfunc(out, energy)        # 第二步计算cost map
+        seam = backtrack_seam(paths, np.argmin(cost[-1]))       #计算optimal seam
+        out = duplicate_seam(out, seam)                            # 复制
+    ### END YOUR CODE
+
+    if axis == 0:
+        out = np.transpose(out, (1, 0, 2))
+
+    return out
+
+
+
+def enlarge(image, size, axis=1, efunc=energy_function, cfunc=compute_cost):
+
+    out = np.copy(image)
+    # Transpose for height resizing
+    if axis == 0:
+        out = np.transpose(out, (1, 0, 2))
+
+    H, W, C = out.shape
+
+    assert size &gt; W, &quot;size must be greather than %d&quot; % W
+
+    assert size &lt;= 2 * W, &quot;size must be smaller than %d&quot; % (2 * W)
+
+    ### YOUR CODE HERE
+    seams = find_seams(out, size - W)       # 寻找size - W 条 seam
+    seams = np.expand_dims(seams, axis=2)   # (H,W)
+    for i in range(size - W):
+        out = duplicate_seam(out, np.where(seams == i+1)[1])        # 复制当前 seam
+        seams = duplicate_seam(seams, np.where(seams == i+1)[1])    # seam也复制
+    ### END YOUR CODE
+
+    if axis == 0:
+        out = np.transpose(out, (1, 0, 2))
+
+    return out    
+
+</code></pre>
+<h2 id="4-Faster-reduce"><a href="#4-Faster-reduce" class="headerlink" title="4. Faster reduce"></a>4. Faster reduce</h2><ul>
+<li>【暂时没有搞明白 ， 使用别人的代码】</li>
+</ul>
+<p>函数： <code>reduce_fast(image, size, axis=1, efunc=energy_function, cfunc=compute_cost)</code></p>
+<h2 id="5-Forward-Energy"><a href="#5-Forward-Energy" class="headerlink" title="5. Forward Energy"></a>5. Forward Energy</h2><p>函数：<code>compute_forward_cost(image, energy)</code></p>
+<p>实现：</p>
+<pre><code>M1: M(i-1,j-1)
+M2: M(i-1,j)
+M3: M(i-1,j+1)
+CL(i,j): |I(i,j+1) - I(i,j-1)| + |I(i-1,j) - I(i,j-1)|
+CL(i,j): |I(i,j+1) - I(i,j-1)| + |I(i-1,j) - I(i,j+1)|
+CV(i,j): |I(i,j+1) - I(i,j-1)|
+M(i,j) = min{{M1+CL(i,j)}, {M2 + Cv(i,j)}, {M3+CR(i,j)}}
+
+
+</code></pre><hr>
 
       
     </div>
@@ -563,7 +737,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://jingxa.github.io/2018/06/22/2-Camera-Model/" title="2_Camera_Model">https://jingxa.github.io/2018/06/22/2-Camera-Model/</a>
+    <a href="https://jingxa.github.io/2018/11/22/CS131-Homework-4/" title="CS131_Homework_4">https://jingxa.github.io/2018/11/22/CS131-Homework-4/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -578,7 +752,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Camera/" rel="tag"># Camera</a>
+            <a href="/tags/CS131/" rel="tag"># CS131</a>
+          
+            <a href="/tags/homeworks/" rel="tag"># homeworks</a>
           
         </div>
       
@@ -591,8 +767,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/21/1-Tensor-Learn-OPS-2/" rel="next" title="1_Tensor_Learn_OPS_2">
-                <i class="fa fa-chevron-left"></i> 1_Tensor_Learn_OPS_2
+              <a href="/2018/11/06/CS231A-Homework-4-2/" rel="next" title="CS231A_Homework_4.2">
+                <i class="fa fa-chevron-left"></i> CS231A_Homework_4.2
               </a>
             
           </div>
@@ -600,10 +776,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/22/5-Epiplolar-Geometry/" rel="prev" title="5_Epiplolar_Geometry">
-                5_Epiplolar_Geometry <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -789,7 +961,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#3-3d到2d的投影变换"><span class="nav-text">3. 3d到2d的投影变换</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-Camera-Calibration（相机校准）"><span class="nav-text">4. Camera Calibration（相机校准）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-投影类型"><span class="nav-text">4.1 投影类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-1-弱透视投影"><span class="nav-text">4.1.1 弱透视投影</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-2-正投影：orthographic-projection"><span class="nav-text">4.1.2 正投影：orthographic projection</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-校准目标"><span class="nav-text">4.2 校准目标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-2-Radial-Distortion"><span class="nav-text">4.2.2 Radial Distortion</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#主要内容"><span class="nav-text">主要内容</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Image-Reducing-using-Seam-Carving"><span class="nav-text">1. Image Reducing using Seam Carving</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-Energy-function"><span class="nav-text">1.1 Energy function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-compute-cost"><span class="nav-text">1.2 compute cost</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Finding-optimal-seams"><span class="nav-text">2. Finding optimal seams</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-Backtrack-seam"><span class="nav-text">2.1 Backtrack seam</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-Reduce"><span class="nav-text">2.2 Reduce</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Image-Enlarging"><span class="nav-text">3. Image Enlarging</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-Enlarge-naive"><span class="nav-text">3.1 Enlarge naive</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#enlarge-naive-image-size-axis-1-efunc-energy-function-cfunc-compute-cost"><span class="nav-text">enlarge_naive(image, size, axis=1, efunc=energy_function, cfunc=compute_cost)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#enlarge-image-size-axis-1-efunc-energy-function-cfunc-compute-cost"><span class="nav-text">enlarge(image, size, axis=1, efunc=energy_function, cfunc=compute_cost)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Faster-reduce"><span class="nav-text">4. Faster reduce</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Forward-Energy"><span class="nav-text">5. Forward Energy</span></a></li></ol></li></ol></div>
             
 
           </div>
