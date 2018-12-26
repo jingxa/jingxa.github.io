@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="CS131,homeworks," />
+
+
+
+
+
+  <link rel="alternate" href="/rss2.xml" title="Jingxa's Blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="cs131 hw6   主要内容 image compression using SVD kNN methods for image recognition. PCA and LDA to improve kNN  参考资料 wwdguu/CS131_homework Solutions-Stanford-cs131-Computer-Vision-Foundations-and-Applica">
+<meta name="keywords" content="CS131,homeworks">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CS131_Homework_6">
+<meta property="og:url" content="https://jingxa.github.io/2018/12/08/CS131-Homework-6/index.html">
+<meta property="og:site_name" content="Jingxa&#39;s Blog">
+<meta property="og:description" content="cs131 hw6   主要内容 image compression using SVD kNN methods for image recognition. PCA and LDA to improve kNN  参考资料 wwdguu/CS131_homework Solutions-Stanford-cs131-Computer-Vision-Foundations-and-Applica">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-12-26T11:15:48.095Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CS131_Homework_6">
+<meta name="twitter:description" content="cs131 hw6   主要内容 image compression using SVD kNN methods for image recognition. PCA and LDA to improve kNN  参考资料 wwdguu/CS131_homework Solutions-Stanford-cs131-Computer-Vision-Foundations-and-Applica">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Jingxa'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jingxa.github.io/2018/12/08/CS131-Homework-6/"/>
+
+
+
+
+
+  <title>CS131_Homework_6 | Jingxa's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jingxa's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">It's my precious!</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://jingxa.github.io/2018/12/08/CS131-Homework-6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jingxa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jingxa's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CS131_Homework_6</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-08T16:14:56+08:00">
+                2018-12-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CS131/" itemprop="url" rel="index">
+                    <span itemprop="name">CS131</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/12/08/CS131-Homework-6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/12/08/CS131-Homework-6/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,098
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  11
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>cs131 hw6</p>
+</blockquote>
+<hr>
+<h1 id="主要内容"><a href="#主要内容" class="headerlink" title="主要内容"></a>主要内容</h1><ul>
+<li>image compression using SVD</li>
+<li>kNN methods for image recognition.</li>
+<li>PCA and LDA to improve kNN</li>
+</ul>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li><a href="https://github.com/wwdguu/CS131_homework/tree/master/hw6_release" target="_blank" rel="noopener">wwdguu/CS131_homework</a></li>
+<li><a href="https://github.com/Hugstar/Solutions-Stanford-cs131-Computer-Vision-Foundations-and-Application/tree/master/hw6_release" target="_blank" rel="noopener">Solutions-Stanford-cs131-Computer-Vision-Foundations-and-Application/hw6_release/</a></li>
+</ul>
+<h1 id="1-Image-Compression"><a href="#1-Image-Compression" class="headerlink" title="1. Image  Compression"></a>1. Image  Compression</h1><h2 id="1-1-使用SVD压缩图片"><a href="#1-1-使用SVD压缩图片" class="headerlink" title="1.1 使用SVD压缩图片"></a>1.1 使用SVD压缩图片</h2><p>函数： <code>def compress_image(image, num_values)</code><br>参数：</p>
+<ul>
+<li>images: (H,w)</li>
+<li>num_values: 保留的奇异值<br>返回值：</li>
+<li>compressed_image: (H,w) 压缩后的图片</li>
+<li>compressed_size: 压缩图片的size</li>
+</ul>
+<p>实现：</p>
+<ol>
+<li>Get SVD of the image</li>
+<li>Only keep the top <code>num_values</code> singular values, and compute <code>compressed_image</code></li>
+<li>Compute the compressed size</li>
+</ol>
+<pre><code class="python">
+
+def compress_image(image, num_values):
+    compressed_image = None
+    compressed_size = 0
+
+    # YOUR CODE HERE
+    H, W = image.shape
+    # Steps:
+    #     1. Get SVD of the image
+    u, s, vt = np.linalg.svd(image)
+    #     2. Only keep the top `num_values` singular values, and compute `compressed_image`
+    sigular = np.diag(s[:num_values])       # 格式为对角阵
+    compressed_image = u[:, :num_values].dot(sigular).dot(vt[:num_values, :])    # (H,n) * (n, n) * ( n, W)
+    #     3. Compute the compressed size, 保留的数据为： (H,n), (sigular), (n, w)
+    compressed_size = H * num_values + num_values + num_values * W
+    pass
+    # END YOUR CODE
+
+    assert compressed_image.shape == image.shape, \
+           &quot;Compressed image and original image don&#39;t have the same shape&quot;
+
+    assert compressed_size &gt; 0, &quot;Don&#39;t forget to compute compressed_size&quot;
+
+    return compressed_image, compressed_size
+
+
+</code></pre>
+<h1 id="2-k-Nearest-Neighbor"><a href="#2-k-Nearest-Neighbor" class="headerlink" title="2. k-Nearest Neighbor"></a>2. k-Nearest Neighbor</h1><p>使用knn算法分类，使用图片的原始特征，例如像素值；<br>步骤如下：</p>
+<ol>
+<li>计算X_train 和 X_test 的两个元素之间的L2距离</li>
+<li>将数据集划分为5个文件为了交叉验证(cross-validation)</li>
+<li>对于每个文件,对于不同的k，进行预测和评估准确度</li>
+<li>最终获得最佳的k，来评估精确度</li>
+</ol>
+<h2 id="2-1-compute-distance"><a href="#2-1-compute-distance" class="headerlink" title="2.1 compute_distance"></a>2.1 compute_distance</h2><p>函数： <code>def compute_distances(X1, X2)</code><br>参数：</p>
+<ul>
+<li>X1，X2: (M,D)<br>实现：</li>
+<li>L2 距离就是欧式距离</li>
+</ul>
+<pre><code class="python">def compute_distances(X1, X2):
+
+    M = X1.shape[0]
+    N = X2.shape[0]
+    assert X1.shape[1] == X2.shape[1]
+
+    dists = np.zeros((M, N))
+
+    # YOUR CODE HERE
+    # (x-y)^2 == x^2 + y^2 -2xy
+    x_2 = np.sum(X1**2, axis=1)[:, np.newaxis]     # 增加一个维度
+    y_2 = np.sum(X2**2, axis=1)
+    xy_2 = np.dot(X1, X2.T)
+    dists = x_2 + y_2 - 2 * xy_2
+    # END YOUR CODE
+
+    assert dists.shape == (M, N), &quot;dists should have shape (M, N), got %s&quot; % dists.shape
+
+    return dists
+
+</code></pre>
+<h2 id="2-2-predict-labels"><a href="#2-2-predict-labels" class="headerlink" title="2.2 predict labels"></a>2.2 predict labels</h2><p>函数： <code>def predict_labels(dists, y_train, k=1)</code><br>参数：</p>
+<ul>
+<li>dists: (num_test, num_train)<br>实现：</li>
+<li>对于每个test寻找最近的train图片，然后统计k个最相似图片的类别，比重占最大的类别就是test的预测类别</li>
+</ul>
+<pre><code class="python">def predict_labels(dists, y_train, k=1):
+
+    num_test, num_train = dists.shape
+    y_pred = np.zeros(num_test, dtype=np.int)
+
+    for i in range(num_test):
+        # A list of length k storing the labels of the k nearest neighbors to
+        # the ith test point.
+        closest_y = []
+        # Use the distance matrix to find the k nearest neighbors of the ith
+        # testing point, and use self.y_train to find the labels of these
+        # neighbors. Store these labels in closest_y.
+        # Hint: Look up the function numpy.argsort.
+
+        # Now that you have found the labels of the k nearest neighbors, you
+        # need to find the most common label in the list closest_y of labels.
+        # Store this label in y_pred[i]. Break ties by choosing the smaller
+        # label.
+
+        # YOUR CODE HERE
+        indices = np.argsort(dists[i])      # 最近的label,排序
+        closest_y = y_train[indices[:k]]    # 选择最近的k个
+        # y_train 为重复的label，本例子中有800章图片，共16个分类
+        y_pred[i] = np.bincount(closest_y).argmax()     # 选择k个最相似的label中重复最多的
+        # END YOUR CODE
+
+    return y_pred
+
+
+</code></pre>
+<h2 id="2-3-cross-validation"><a href="#2-3-cross-validation" class="headerlink" title="2.3 cross-validation"></a>2.3 cross-validation</h2><p>选择k个最相似的参数，不能确定k，通过 cross-validation 来选择k；</p>
+<p>将所有训练集分为5个文件，</p>
+<ul>
+<li>80% ： 训练集</li>
+<li>20%%： 验证集</li>
+</ul>
+<p>函数：<code>split_folds(X_train, y_train, num_folds)</code></p>
+<pre><code class="python">
+def split_folds(X_train, y_train, num_folds):
+    &quot;&quot;&quot;Split up the training data into `num_folds` folds.
+
+    The goal of the functions is to return training sets (features and labels) along with
+    corresponding validation sets. In each fold, the validation set will represent (1/num_folds)
+    of the data while the training set represent (num_folds-1)/num_folds.
+    If num_folds=5, this corresponds to a 80% / 20% split.
+
+    For instance, if X_train = [0, 1, 2, 3, 4, 5], and we want three folds, the output will be:
+        X_trains = [[2, 3, 4, 5],
+                    [0, 1, 4, 5],
+                    [0, 1, 2, 3]]
+        X_vals = [[0, 1],
+                  [2, 3],
+                  [4, 5]]
+
+    Args:
+        X_train: numpy array of shape (N, D) containing N examples with D features each
+        y_train: numpy array of shape (N,) containing the label of each example
+        num_folds: number of folds to split the data into
+
+    jeturns:
+        X_trains: numpy array of shape (num_folds, train_size * (num_folds-1) / num_folds, D)
+        y_trains: numpy array of shape (num_folds, train_size * (num_folds-1) / num_folds)
+        X_vals: numpy array of shape (num_folds, train_size / num_folds, D)
+        y_vals: numpy array of shape (num_folds, train_size / num_folds)
+
+    &quot;&quot;&quot;
+    assert X_train.shape[0] == y_train.shape[0]
+
+    validation_size = X_train.shape[0] // num_folds
+    training_size = X_train.shape[0] - validation_size
+
+    X_trains = np.zeros((num_folds, training_size, X_train.shape[1]))
+    y_trains = np.zeros((num_folds, training_size), dtype=np.int)
+    X_vals = np.zeros((num_folds, validation_size, X_train.shape[1]))
+    y_vals = np.zeros((num_folds, validation_size), dtype=np.int)
+
+    # YOUR CODE HERE
+    # Hint: You can use the numpy array_split function.
+    # 例如 [1, 2, 3, 4,5]
+    # [1,2,3,4: 5]
+    # [2,3,4,5: 1]
+    # [3,4,5,1: 2]
+    # [4,5,1,2: 3]
+    # [5,1,2,3: 4] 这五种组合方式
+    X_num_folds = np.array(np.array_split(X_train, num_folds))
+    y_num_folds = np.array(np.array_split(y_train,num_folds))
+
+    for i in range(num_folds):
+        X_trains[i] = X_num_folds[(np.arange(num_folds) != i)].reshape((-1,X_trains.shape[-1]))
+        X_vals[i] = X_num_folds[i]
+
+        y_trains[i] = y_num_folds[(np.arange(num_folds) != i)].reshape((-1, y_trains.shape[-1]))
+        y_vals[i] = y_num_folds[i]
+
+    # END YOUR CODE
+
+    return X_trains, y_trains, X_vals, y_vals
+
+
+</code></pre>
+<h1 id="3-PCA"><a href="#3-PCA" class="headerlink" title="3. PCA"></a>3. PCA</h1><p>PCA方法的总结：</p>
+<ol>
+<li>标准化数据</li>
+<li>计算特征向量和特征值 </li>
+<li>按照降序将特征值排序，选择前k个特征值和对应的特征向量，</li>
+<li>建立映射矩阵W,从选择的k个特征向量</li>
+<li>将原始的数据集X通过W降低维度为K的子空间Y</li>
+</ol>
+<h2 id="3-1-Eigen-decomposition"><a href="#3-1-Eigen-decomposition" class="headerlink" title="3,1 Eigen decomposition"></a>3,1 Eigen decomposition</h2><p>类：<code>class PCA(object)</code></p>
+<p>函数：<code>def _eigen_decomp(self, X)</code><br>返回值：</p>
+<ul>
+<li>e_vecs: 特征向量(D,D)</li>
+<li>e_vals: 特征值：(D,)<br>实现： </li>
+<li>主要功能是执行特征协方差矩阵的特征分解</li>
+</ul>
+<pre><code class="python">    def _eigen_decomp(self, X):
+        N, D = X.shape
+        e_vecs = None
+        e_vals = None
+        # YOUR CODE HERE
+        # Steps: 计算步骤如下
+        #     1. compute the covariance matrix of X, of shape (D, D)
+        matrix = np.matmul(X.T, X) / (X.shape[0] - 1)        # 协方差矩阵 (D,D)
+        #     2. compute the eigenvalues and eigenvectors of the covariance matrix
+        e_vals, e_vecs = np.linalg.eig(matrix)      # 计算特征值特征向量
+        #     3. Sort both of them in decreasing order (ex: 1.0 &gt; 0.5 &gt; 0.0 &gt; -0.2 &gt; -1.2)
+        indices = np.argsort(-e_vals)       # 从达到小排序，序号
+        e_vals = np.real(e_vals[indices])   # 返回实数
+        e_vecs = np.real(e_vecs[:, indices])
+        # END YOUR CODE
+        # Check the output shapes
+        assert e_vals.shape == (D,)
+        assert e_vecs.shape == (D, D)
+
+        return e_vecs, e_vals
+
+
+</code></pre>
+<h2 id="3-2-SVD"><a href="#3-2-SVD" class="headerlink" title="3.2 SVD"></a>3.2 SVD</h2><p>函数：<code>def _svd(self, X)</code><br>返回值：<br>返回值：</p>
+<ul>
+<li>e_vecs: 特征向量(D,D)</li>
+<li>e_vals: 特征值：(D,)<br>实现：</li>
+<li>实现svd分解</li>
+</ul>
+<pre><code class="python">
+    def _svd(self, X):
+
+        vecs = None  # shape (D, D)
+        N, D = X.shape
+        vals = None  # shape (K,)
+        # YOUR CODE HERE
+        # Here, compute the SVD of X
+        # Make sure to return vecs as the matrix of vectors where each column is a singular vector
+        # U: X*X.T , V.T = X.T*X, S:square roots of the eigenvalues of U or V.T
+        u, s, vt = np.linalg.svd(X)
+        vals = s
+        vecs = vt.T         # 转置
+        # END YOUR CODE
+        assert vecs.shape == (D, D)
+        K = min(N, D)
+        assert vals.shape == (K,)
+
+        return vecs, vals
+
+
+</code></pre>
+<h2 id="3-3-Dimensionality-Reduction"><a href="#3-3-Dimensionality-Reduction" class="headerlink" title="3.3 Dimensionality Reduction"></a>3.3 Dimensionality Reduction</h2><p>对原始数据集进行降维处理</p>
+<p>函数： <code>def transform(self, X, n_components)</code></p>
+<pre><code class="python">
+
+
+
+</code></pre>
+<h2 id="3-4-Reconstruction-error-and-captured-variance"><a href="#3-4-Reconstruction-error-and-captured-variance" class="headerlink" title="3.4  Reconstruction error and captured variance"></a>3.4  Reconstruction error and captured variance</h2><p>将降低维度后的数据重新映射到原空间</p>
+<p>函数：<code>def reconstruct(self, X_proj)</code></p>
+<pre><code class="python">    def reconstruct(self, X_proj):
+        N, n_components = X_proj.shape
+        X = None
+
+        # YOUR CODE HERE
+        # Steps:
+        #     1. project back onto the original space of dimension D
+        X = np.zeros((N, self.W_pca.shape[1]))      # 原空间
+        X[:, :n_components] = X_proj
+        #     2. add the mean that we substracted in `transform`
+        X = X.dot(np.linalg.inv(self.W_pca)) + self.mean
+        pass
+        # END YOUR CODE
+
+        return X
+
+
+</code></pre>
+<h1 id="4-Fisherface-Linear-Discriminant-Analysis"><a href="#4-Fisherface-Linear-Discriminant-Analysis" class="headerlink" title="4.  Fisherface: Linear Discriminant Analysis"></a>4.  Fisherface: Linear Discriminant Analysis</h1><p>LDA和PCA的区别：</p>
+<ul>
+<li>LDA需要labels，不是完全无监督，PCA是完全无监督的</li>
+<li>PCA保持 <code>maximum variance</code></li>
+<li>LDA保持 <code>discimination between classes</code></li>
+</ul>
+<h2 id="4-1-Dimensionality-Reduction-via-PCA"><a href="#4-1-Dimensionality-Reduction-via-PCA" class="headerlink" title="4.1 Dimensionality Reduction via PCA"></a>4.1 Dimensionality Reduction via PCA</h2><p>对于本例子，N= 800, D = 4096, 为了应用LDA,需要使得D&lt;N,使用PCA来降低维度；</p>
+<h2 id="4-2-Scatter-matrices"><a href="#4-2-Scatter-matrices" class="headerlink" title="4.2 Scatter matrices"></a>4.2 Scatter matrices</h2><p>为了分类，分别计算类内散度矩阵Sw, 和类间散度矩阵Sb</p>
+<p>函数：<code>def _within_class_scatter(self, X, y)</code><br>实现：</p>
+<ul>
+<li>对于每个类，计算协方差矩阵</li>
+<li>最后结果为协方差矩阵之和</li>
+</ul>
+<pre><code class="python">
+    def _within_class_scatter(self, X, y):
+        _, D = X.shape
+        assert X.shape[0] == y.shape[0]
+        scatter_within = np.zeros((D, D))
+
+        for i in np.unique(y):
+            # YOUR CODE HERE
+            # Get the covariance matrix for class i, and add it to scatter_within
+            X_i = X[y == i]     # 类为i
+            X_i_centered = X_i - np.mean(X_i, axis=0)
+            S_i = np.matmul(X_i_centered.T, X_i_centered)       # 协方差矩阵
+            scatter_within += S_i       # 结果
+            # END YOUR CODE
+
+        return scatter_within
+</code></pre>
+<p>函数： <code>def _between_class_scatter(self, X, y)</code><br>实现： </p>
+<ul>
+<li>计算两个类之间的协方差矩阵</li>
+</ul>
+<pre><code class="python">
+    def _between_class_scatter(self, X, y):
+
+        _, D = X.shape
+        assert X.shape[0] == y.shape[0]
+        scatter_between = np.zeros((D, D))
+
+        mu = X.mean(axis=0)
+        for i in np.unique(y):
+            # YOUR CODE HERE
+            X_i = X[y==i]           # 类别i
+            mu_i = np.mean(X_i, axis=0) # 类别i的均值
+            scatter_between += (len(y[y==i])) * np.matmul((mu_i - mu).T, (mu_i - mu))
+
+            # END YOUR CODE
+
+        return scatter_between
+
+</code></pre>
+<h2 id="4-3-Solving-generalized-Eigenvalue-problem"><a href="#4-3-Solving-generalized-Eigenvalue-problem" class="headerlink" title="4.3 Solving generalized Eigenvalue problem"></a>4.3 Solving generalized Eigenvalue problem</h2><p>拟合训练数据<br>计算完类内散度矩阵Sw，类间散度矩阵Sb 后，计算矩阵Sw^-1Sb的特征向量和特征矩阵；<br>新的</p>
+<p>函数： <code>def fit(self, X, y)</code></p>
+<pre><code class="python">    def fit(self, X, y):
+        N, D = X.shape
+
+        scatter_between = self._between_class_scatter(X, y)
+        scatter_within = self._within_class_scatter(X, y)
+
+        e_vecs = None
+
+        # YOUR CODE HERE
+        # Solve generalized eigenvalue problem for matrices `scatter_between` and `scatter_within`
+        # Use `scipy.linalg.eig` instead of numpy&#39;s eigenvalue solver.
+        # Don&#39;t forget to sort the values and vectors in descending order.
+        e_vals, e_vecs = scipy.linalg.eig(np.linalg.inv(scatter_within).dot(scatter_between))
+        # END YOUR CODE
+        sorting_order = np.argsort(e_vals)[::-1]
+        e_vals = e_vals[sorting_order]
+        e_vecs = e_vecs[:,sorting_order]        # 从大到小排序
+
+        self.W_lda = e_vecs
+
+        # Check that the shape of `self.W_lda` is correct
+        assert self.W_lda.shape == (D, D)
+
+        # Each column of `self.W_lda` should have norm 1 (each one is an eigenvector)
+        for i in range(D):
+            assert np.allclose(np.linalg.norm(self.W_lda[:, i]), 1.0)
+</code></pre>
+<hr>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    jingxa
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://jingxa.github.io/2018/12/08/CS131-Homework-6/" title="CS131_Homework_6">https://jingxa.github.io/2018/12/08/CS131-Homework-6/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CS131/" rel="tag"># CS131</a>
+          
+            <a href="/tags/homeworks/" rel="tag"># homeworks</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/08/CS131-Homework-5/" rel="next" title="CS131_Homework_5">
+                <i class="fa fa-chevron-left"></i> CS131_Homework_5
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/08/CS131-Homework-7/" rel="prev" title="CS131_Homework_7">
+                CS131_Homework_7 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="jingxa" />
+            
+              <p class="site-author-name" itemprop="name">jingxa</p>
+              <p class="site-description motion-element" itemprop="description">单影无人相依偎！</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">55</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/rss2.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/jingxa" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://jingxa.coding.me" target="_blank" title="Coding">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Coding</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:wjszwzyd@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://kylingit.com/" title="诗与胡说" target="_blank">诗与胡说</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#主要内容"><span class="nav-text">主要内容</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-text">参考资料</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Image-Compression"><span class="nav-text">1. Image  Compression</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-使用SVD压缩图片"><span class="nav-text">1.1 使用SVD压缩图片</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-k-Nearest-Neighbor"><span class="nav-text">2. k-Nearest Neighbor</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-compute-distance"><span class="nav-text">2.1 compute_distance</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-predict-labels"><span class="nav-text">2.2 predict labels</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-cross-validation"><span class="nav-text">2.3 cross-validation</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-PCA"><span class="nav-text">3. PCA</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-Eigen-decomposition"><span class="nav-text">3,1 Eigen decomposition</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-SVD"><span class="nav-text">3.2 SVD</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-Dimensionality-Reduction"><span class="nav-text">3.3 Dimensionality Reduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-Reconstruction-error-and-captured-variance"><span class="nav-text">3.4  Reconstruction error and captured variance</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-Fisherface-Linear-Discriminant-Analysis"><span class="nav-text">4.  Fisherface: Linear Discriminant Analysis</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-Dimensionality-Reduction-via-PCA"><span class="nav-text">4.1 Dimensionality Reduction via PCA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-Scatter-matrices"><span class="nav-text">4.2 Scatter matrices</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-Solving-generalized-Eigenvalue-problem"><span class="nav-text">4.3 Solving generalized Eigenvalue problem</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jingxa</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">53.7k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+      <style>
+        a.gitment-editor-footer-tip { display: none; }
+        .gitment-container.gitment-footer-container { display: none; }
+      </style>
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'jingxa',
+            repo: 'jingxa.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: 'a60429c86a4b7abb1e1d5d4fa11db0557eb2683a',
+            
+                client_id: 'a24135f240136ad4e4bb'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
